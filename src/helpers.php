@@ -4,8 +4,8 @@
  *
  */
 
-use Wizhi\Forms\Form;
-use Wizhi\Forms\Renders\FormRender;
+use Wenprise\Forms\Form;
+use Wenprise\Forms\Renders\FormRender;
 
 /**
  * 格式化 Nette Form
@@ -17,8 +17,8 @@ use Wizhi\Forms\Renders\FormRender;
  *
  * @return string 订单号字符串
  */
-if ( ! function_exists( 'wizhi_form' ) ) {
-	function wizhi_form( Form $form, $type = 'horizontal' ) {
+if ( ! function_exists( 'wprs_form' ) ) {
+	function wprs_form( Form $form, $type = 'horizontal' ) {
 
 		// 设置自定义 Render 方法
 		$form->setRenderer( new FormRender );
@@ -60,8 +60,8 @@ if ( ! function_exists( 'wizhi_form' ) ) {
  * @param Form   $form
  * @param string $type
  */
-if ( ! function_exists( 'wizhi_admin_form' ) ) {
-	function wizhi_admin_form( Form $form, $type = 'horizontal' ) {
+if ( ! function_exists( 'wprs_admin_form' ) ) {
+	function wprs_admin_form( Form $form, $type = 'horizontal' ) {
 
 		$screen = get_current_screen();
 
@@ -76,15 +76,15 @@ if ( ! function_exists( 'wizhi_admin_form' ) ) {
 			case 'term_meta':
 				if ( $screen->base == 'term' ) {
 					$renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-					$renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=wizhi-form-filed';
+					$renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=Wenprise-form-filed';
 				} else {
 					$renderer->wrappers[ 'controls' ][ 'container' ] = '';
-					$renderer->wrappers[ 'pair' ][ 'container' ]     = 'div class="form-field wizhi-form-filed"';
+					$renderer->wrappers[ 'pair' ][ 'container' ]     = 'div class="form-field Wenprise-form-filed"';
 				}
 				break;
 			default:
 				$renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-				$renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=wizhi-form-filed';
+				$renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=Wenprise-form-filed';
 		}
 
 		$renderer->wrappers[ 'label' ][ 'container' ]   = 'th class=row';

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Wizhi\Forms;
+namespace Wenprise\Forms;
 
 
 class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
@@ -13,7 +13,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param      $name
 	 * @param null $errorMessage
 	 *
-	 * @return \Wizhi\Forms\Controls\CsrfInput
+	 * @return \Wenprise\Forms\Controls\CsrfInput
 	 */
 	public function addCsrf( $name, $errorMessage = null ) {
 		return $this[ $name ] = ( new Controls\CsrfInput( $errorMessage ) );
@@ -43,7 +43,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param null $label
 	 * @param bool $multiple
 	 *
-	 * @return \Wizhi\Forms\Controls\AjaxUploadInput
+	 * @return \Wenprise\Forms\Controls\AjaxUploadInput
 	 */
 	public function addAjaxUpload( $name, $label = null, $multiple = false ) {
 		return $this[ $name ] = ( new Controls\AjaxUploadInput( $label, $multiple ) );
@@ -57,7 +57,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param null       $label
 	 * @param array|null $items
 	 *
-	 * @return \Wizhi\Forms\Controls\DropdownSelectInput
+	 * @return \Wenprise\Forms\Controls\DropdownSelectInput
 	 */
 	public function addDropdownSelect( $name, $label = null, array $items = null ) {
 		return $this[ $name ] = ( new Controls\DropdownSelectInput( $label, $items ) );
@@ -70,7 +70,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param      $name     string  表单名称
 	 * @param      $label    string  表单标签
 	 *
-	 * @return \Wizhi\Forms\Controls\CloneInput
+	 * @return \Wenprise\Forms\Controls\CloneInput
 	 */
 	public function addClone( $name, $label = null ) {
 		return $this[ $name ] = ( new Controls\CloneInput( $label ) );
@@ -83,7 +83,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param      $name     string  表单名称
 	 * @param      $label    string  表单标签
 	 *
-	 * @return \Wizhi\Forms\Controls\SliderInput
+	 * @return \Wenprise\Forms\Controls\SliderInput
 	 */
 	public function addSlider( $name, $label = null, $args ) {
 		return $this[ $name ] = ( new Controls\SliderInput( $label, $args ) );
@@ -97,7 +97,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param      $label    string  表单标签
 	 * @param      $settings array   表单设置
 	 *
-	 * @return \Wizhi\Forms\Controls\DatePickerInput
+	 * @return \Wenprise\Forms\Controls\DatePickerInput
 	 */
 	public function addDatePicker( $name, $label = null, $settings ) {
 		return $this[ $name ] = ( new Controls\DatePickerInput( $label, $settings ) );
@@ -111,7 +111,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param      $label    string  表单标签
 	 * @param      $settings array   表单设置
 	 *
-	 * @return \Wizhi\Forms\Controls\ColorpickerInput
+	 * @return \Wenprise\Forms\Controls\ColorpickerInput
 	 */
 	public function addColorPicker( $name, $label = null, $settings ) {
 		return $this[ $name ] = ( new Controls\ColorpickerInput( $label, $settings ) );
@@ -125,7 +125,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param      $settings
 	 * @param      $field
 	 *
-	 * @return \Wizhi\Forms\Controls\ChainedInput
+	 * @return \Wenprise\Forms\Controls\ChainedInput
 	 */
 	public function addChainedSelect( $name, $label = null, $settings, $field ) {
 		return $this[ $name ] = ( new Controls\ChainedInput( $label, $settings, $field ) );
@@ -138,7 +138,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param      $name
 	 * @param null $caption
 	 *
-	 * @return \Wizhi\Forms\Controls\HtmlContent
+	 * @return \Wenprise\Forms\Controls\HtmlContent
 	 */
 	public function addHtml( $name, $caption = null ) {
 		return $this[ $name ] = ( new Controls\HtmlContent( $caption ) );
@@ -152,7 +152,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param null  $label
 	 * @param array $settings
 	 *
-	 * @return \Wizhi\Forms\Controls\SmsInput
+	 * @return \Wenprise\Forms\Controls\SmsInput
 	 */
 	public function AddSms( $name, $label = null, $settings = [] ) {
 		return $this[ $name ] = ( new Controls\SmsInput( $label, $settings ) );
@@ -166,7 +166,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 * @param null  $label
 	 * @param array $settings
 	 *
-	 * @return \Wizhi\Forms\Controls\CaptchaInput
+	 * @return \Wenprise\Forms\Controls\CaptchaInput
 	 */
 	public function AddCaptcha( $name, $label = null, $settings = [] ) {
 		return $this[ $name ] = ( new Controls\CaptchaInput( $label, $settings ) );

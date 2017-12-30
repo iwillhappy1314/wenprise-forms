@@ -1,6 +1,6 @@
 <?php
 
-namespace Wizhi\Forms\Renders;
+namespace Wenprise\Forms\Renders;
 
 use Nette;
 use Nette\Utils\Html;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wizhi\Forms\Controls;
+namespace Wenprise\Forms\Controls;
 
 use Nette;
 use Nette\Forms\Form;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wizhi\Forms\Controls;
+namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Form;
 use Nette\Forms\Controls\HiddenField;
@@ -9,7 +9,7 @@ use Nette\Forms\Controls\HiddenField;
  * CSRF 保护字段
  */
 class CsrfInput extends HiddenField {
-	const PROTECTION = 'Wizhi\Forms\Controls\CsrfInput::validateCsrf';
+	const PROTECTION = 'Wenprise\Forms\Controls\CsrfInput::validateCsrf';
 
 
 	/**
@@ -69,7 +69,7 @@ class CsrfInput extends HiddenField {
 	/**
 	 * 验证 Csrf 令牌
 	 *
-	 * @param \Wizhi\Forms\Controls\CsrfInput $control
+	 * @param \Wenprise\Forms\Controls\CsrfInput $control
 	 *
 	 * @return bool
 	 */

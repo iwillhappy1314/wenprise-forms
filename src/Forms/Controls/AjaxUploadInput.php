@@ -4,7 +4,7 @@
  * 多级上传组件
  */
 
-namespace Wizhi\Forms\Controls;
+namespace Wenprise\Forms\Controls;
 
 use Nette;
 use Nette\Forms\Controls\BaseControl;
