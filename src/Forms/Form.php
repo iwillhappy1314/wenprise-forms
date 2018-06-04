@@ -30,9 +30,10 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString {
 	 *
 	 * @return Controls\TextEditor
 	 */
-	public function addEditor( $name, $label = null, $cols = null, $rows = null ) {
+	public function addEditor( $name, $label = null, $settings = [] ) {
 		return $this[ $name ] = ( new Controls\TextEditor( $label ) )
-			->setHtmlAttribute( 'cols', $cols )->setHtmlAttribute( 'rows', $rows );
+			->setHtmlAttribute( 'cols', $settings['cols'] )
+			->setHtmlAttribute( 'rows',  $settings['rows'] );
 	}
 
 
