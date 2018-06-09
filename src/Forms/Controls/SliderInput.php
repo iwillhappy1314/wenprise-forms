@@ -7,24 +7,22 @@ use Nette\Forms\Form;
 
 
 /**
- * 克隆输入
- *
- * todo: 优化实现方法
+ * Slider 输入
  */
-class SliderInput extends TextBase {
-
-	private $args = [];
+class SliderInput extends TextBase
+{
 
 	/**
 	 * Slider Input constructor.
 	 *
 	 * @param string|null $label
-	 * @param array       $args
+	 * @param array       $settings
 	 */
-	public function __construct( $label = null, array $args ) {
+	public function __construct( $label = null, array $settings )
+	{
 		parent::__construct( $label );
 		$this->control->type = 'hidden';
-		$this->args          = $args;
+		$this->settings      = $settings;
 		$this->addCondition( Form::BLANK );
 	}
 
@@ -34,22 +32,29 @@ class SliderInput extends TextBase {
 	 *
 	 * @return string
 	 */
-	public function getControl() {
+	public function getControl()
+	{
 
-		wp_enqueue_script( 'frm-slider' );
+		if ( function_exists( 'wp_enqueue_script' ) ) {
+			wp_enqueue_script( 'frm-slider' );
+		}
 
-		$el   = parent::getControl();
-		$id   = $this->getHtmlId();
-		$args = $this->args;
+		$el       = parent::getControl();
+		$id       = $this->getHtmlId();
+		$settings = $this->settings;
+
+		$settings_default = [
+			'type' => 'single',
+			'min'  => '0',
+			'max'  => '100',
+			'grid' => 'false',
+		];
+
+		$settings = array_merge( $settings_default, $settings );
 
 		$script = '<script>
 	        jQuery(document).ready(function($) {
-	            $("#' . $id . '").ionRangeSlider({
-				    type: "' . $args[ "type" ] . '",
-				    min: ' . $args[ "min" ] . ',
-				    max: ' . $args[ "max" ] . ',
-				    grid: ' . $args[ "grid" ] . '
-				});
+	            $("#' . $id . '").ionRangeSlider(' . json_encode( $settings ) . ');
 	        });
 	    </script>';
 

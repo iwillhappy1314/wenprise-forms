@@ -7,7 +7,8 @@ use Nette\Forms\Controls\TextInput;
 /**
  * Multiline text input control.
  */
-class DatePickerInput extends TextInput {
+class DatePickerInput extends TextInput
+{
 
 	private $settings = [];
 
@@ -15,7 +16,8 @@ class DatePickerInput extends TextInput {
 	 * @param  string|object $label    Html 标签
 	 * @param  array         $settings TinyMce 设置
 	 */
-	public function __construct( $label = null, $settings = [] ) {
+	public function __construct( $label = null, $settings = [] )
+	{
 		parent::__construct( $label );
 		$this->settings = $settings;
 	}
@@ -26,7 +28,8 @@ class DatePickerInput extends TextInput {
 	 *
 	 * @return string
 	 */
-	public function getControl() {
+	public function getControl()
+	{
 
 		$el = parent::getControl();
 
@@ -37,15 +40,15 @@ class DatePickerInput extends TextInput {
 			'dateFormat' => 'yy-mm-dd',
 		];
 
-		wp_enqueue_script( 'jquery-ui-datepicker' );
+		if ( function_exists( 'wp_enqueue_script' ) ) {
+			wp_enqueue_script( 'jquery-ui-datepicker' );
+		}
 
-		$settings = wp_parse_args( $settings_default, $settings );
+		$settings = array_merge( $settings_default, $settings );
 
 		$script = ' <script>
 		        jQuery(document).ready(function($){
-		        	$( "#' . $id . '" ).datepicker({
-		        		"dateFormat" : "yy-mm-dd"
-		        	});
+		        	$( "#' . $id . '" ).datepicker(' . json_encode( $settings ) . ');
 		        });
 		    </script>';
 

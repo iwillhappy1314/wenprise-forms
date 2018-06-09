@@ -21,7 +21,8 @@ use Nette\Utils\Html;
  * todo: 考虑增加上传进度, 增加上传出错时的提示
  * todo: 和后端相册数据统一
  */
-class  AjaxUploadInput extends BaseControl {
+class  AjaxUploadInput extends BaseControl
+{
 
 	/** validation rule */
 	const VALID = ':uploadControlValid';
@@ -30,7 +31,8 @@ class  AjaxUploadInput extends BaseControl {
 	 * @param  string|object
 	 * @param  bool
 	 */
-	public function __construct( $label = null, $multiple = false ) {
+	public function __construct( $label = null, $multiple = false )
+	{
 		parent::__construct( $label );
 		$this->control->multiple = (bool) $multiple;
 		$this->setOption( 'type', 'text' );
@@ -48,7 +50,8 @@ class  AjaxUploadInput extends BaseControl {
 	 *
 	 * @return void
 	 */
-	protected function attached( $form ) {
+	protected function attached( $form )
+	{
 		if ( $form instanceof Nette\Forms\Form ) {
 			if ( ! $form->isMethod( 'post' ) ) {
 				throw new Nette\InvalidStateException( 'File upload requires method POST.' );
@@ -64,11 +67,14 @@ class  AjaxUploadInput extends BaseControl {
 	 *
 	 * @return string
 	 */
-	public function getControl() {
+	public function getControl()
+	{
 
 		$el = parent::getControl();
 
-		wp_enqueue_script( 'frm-upload' );
+		if ( function_exists( 'wp_enqueue_script' ) ) {
+			wp_enqueue_script( 'frm-upload' );
+		}
 
 		$name        = $this->getHtmlName();
 		$id          = $this->getHtmlId();
@@ -117,7 +123,8 @@ class  AjaxUploadInput extends BaseControl {
 	 *
 	 * @return string
 	 */
-	public function getPreview( $value ) {
+	public function getPreview( $value )
+	{
 
 		$thumb = wp_get_attachment_thumb_url( $value );
 
@@ -137,7 +144,8 @@ class  AjaxUploadInput extends BaseControl {
 	 *
 	 * @return void
 	 */
-	public function loadHttpData() {
+	public function loadHttpData()
+	{
 		$this->setValue( $this->getHttpData( Form::DATA_LINE ) );
 	}
 
@@ -147,7 +155,8 @@ class  AjaxUploadInput extends BaseControl {
 	 *
 	 * @return mixed
 	 */
-	public function getValue() {
+	public function getValue()
+	{
 		return $this->value;
 	}
 
@@ -156,8 +165,10 @@ class  AjaxUploadInput extends BaseControl {
 	 * @return static
 	 * @internal
 	 */
-	public function setValue( $value ) {
+	public function setValue( $value )
+	{
 		$this->value = $value;
+
 		return $this;
 	}
 
@@ -166,7 +177,8 @@ class  AjaxUploadInput extends BaseControl {
 	 *
 	 * @return string
 	 */
-	public function getHtmlName() {
+	public function getHtmlName()
+	{
 		return parent::getHtmlName() . ( $this->control->multiple ? '[]' : '' );
 	}
 
@@ -176,7 +188,8 @@ class  AjaxUploadInput extends BaseControl {
 	 *
 	 * @return bool
 	 */
-	public function isOk() {
+	public function isOk()
+	{
 
 		return $this->isDisabled()
 		       || $this->getValue() == 0

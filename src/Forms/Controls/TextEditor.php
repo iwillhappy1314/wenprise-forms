@@ -8,15 +8,17 @@ use Nette\Forms\Controls\TextArea;
 /**
  * WordPress TinyMce 可视化编辑器
  */
-class TextEditor extends TextArea {
+class TextEditor extends TextArea
+{
 
 	private $settings = [];
 
 	/**
 	 * @param  string|object Html      标签
-	 * @param  array         $settings TinyMce 设置
+	 * @param  array $settings TinyMce 设置
 	 */
-	public function __construct( $label = null, $settings = [] ) {
+	public function __construct( $label = null, $settings = [] )
+	{
 		parent::__construct( $label );
 		$this->settings = $settings;
 	}
@@ -27,7 +29,8 @@ class TextEditor extends TextArea {
 	 *
 	 * @return string
 	 */
-	public function getControl() {
+	public function getControl()
+	{
 
 		$id       = $this->getHtmlId();
 		$name     = $this->getHtmlName();
@@ -41,10 +44,12 @@ class TextEditor extends TextArea {
 			'media_buttons' => false,
 		];
 
-		$settings = wp_parse_args( $settings_default, $settings );
+		$settings = array_merge( $settings_default, $settings );
 
 		ob_start();
-		wp_editor( $default_value, $id, $settings );
+		if ( function_exists( 'wp_editor' ) ) {
+			wp_editor( $default_value, $id, $settings );
+		}
 		$html = ob_get_contents();
 		ob_end_clean();
 

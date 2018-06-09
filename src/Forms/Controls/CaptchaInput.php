@@ -33,15 +33,7 @@ class CaptchaInput extends TextInput {
 
 		$id        = $this->getHtmlId();
 		$action_id = $id . '-action';
-		$settings  = $this->settings;
 		$data_url  = $this->control->getAttribute( 'data-url' );
-
-		$settings_default = [
-			'teeny'         => true,
-			'media_buttons' => false,
-		];
-
-		$settings = wp_parse_args( $settings_default, $settings );
 
 		$script = "<script>
             // 刷新验证码
@@ -51,7 +43,7 @@ class CaptchaInput extends TextInput {
 
 		$input_group   = Html::el( 'div class=input-group' );
 		$action_button = Html::el( 'span class=input-group-btn' )
-		                     ->addHtml( Html::el( 'img alt="captcha" onclick="refresh_code(this)" id="' . $action_id . '" data-toggle="tooltip" title="点击刷新验证码"' )
+		                     ->addHtml( Html::el( 'img alt="Captcha" onclick="refresh_code(this)" id="' . $action_id . '" data-toggle="tooltip" title="点击刷新验证码"' )
 		                                    ->src( $data_url ) );
 
 		$input_group->addHtml( $el->setAttribute( 'class', 'form-control' ) );

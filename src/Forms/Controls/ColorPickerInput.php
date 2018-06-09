@@ -7,15 +7,17 @@ use Nette\Forms\Controls\TextInput;
 /**
  * 颜色选择
  */
-class ColorPickerInput extends TextInput {
+class ColorPickerInput extends TextInput
+{
 
 	private $settings = [];
 
 	/**
 	 * @param  string|object Html      标签
-	 * @param  array         $settings TinyMce 设置
+	 * @param  array $settings TinyMce 设置
 	 */
-	public function __construct( $label = null, $settings = [] ) {
+	public function __construct( $label = null, $settings = [] )
+	{
 		parent::__construct( $label );
 		$this->settings = $settings;
 	}
@@ -26,30 +28,28 @@ class ColorPickerInput extends TextInput {
 	 *
 	 * @return string
 	 */
-	public function getControl() {
+	public function getControl()
+	{
 
 		$el = parent::getControl();
 
 		$id       = $this->getHtmlId();
-		$name     = $this->getHtmlName();
 		$settings = $this->settings;
 
 		$settings_default = [
-			'textarea_name' => $name,
-			'teeny'         => true,
-			'media_buttons' => false,
+			'palettes' => [ '#125', '#459', '#78b', '#ab0', '#de3', '#f0f' ],
 		];
 
-		$settings = wp_parse_args( $settings_default, $settings );
+		$settings = array_merge( $settings_default, $settings );
 
-		wp_enqueue_script( 'frm-iris' );
+		if ( function_exists( 'wp_enqueue_script' ) ) {
+			wp_enqueue_script( 'frm-iris' );
+		}
 
 		$script = "<script>
 			jQuery(document).ready(function($) {
 				var picker = $('#" . $id . "');
-				picker.iris({
-					palettes: ['#125', '#459', '#78b', '#ab0', '#de3', '#f0f']}
-				);
+				picker.iris(" . json_encode( $settings ) . ");
 				picker.blur(function() {
 					setTimeout(function() {
 					  if (!$(document.activeElement).closest('.iris-picker').length){

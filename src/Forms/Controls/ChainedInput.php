@@ -7,7 +7,8 @@ use Nette\Forms\Controls\BaseControl;
 /**
  * 链式选择输入
  */
-class ChainedInput extends BaseControl {
+class ChainedInput extends BaseControl
+{
 
 	private $settings = [];
 	private $fields = [];
@@ -17,7 +18,8 @@ class ChainedInput extends BaseControl {
 	 * @param  array         $settings TinyMce 设置
 	 * @param  array         $fields   TinyMce 设置
 	 */
-	public function __construct( $label = null, $settings = [], $fields = [] ) {
+	public function __construct( $label = null, $settings = [], $fields = [] )
+	{
 		parent::__construct( $label );
 		$this->settings = $settings;
 		$this->fields   = $fields;
@@ -29,7 +31,8 @@ class ChainedInput extends BaseControl {
 	 *
 	 * @return string
 	 */
-	public function getControl() {
+	public function getControl()
+	{
 
 		$id            = $this->getHtmlId();
 		$name          = $this->getHtmlName();
@@ -37,7 +40,9 @@ class ChainedInput extends BaseControl {
 		$fields        = $this->fields;
 		$default_value = $this->value ? $this->value : [];
 
-		wp_enqueue_script( 'frm-chained' );
+		if ( function_exists( 'wp_enqueue_script' ) ) {
+			wp_enqueue_script( 'frm-chained' );
+		}
 
 		$js_fields = '["' . implode( '","', $fields ) . '"]';
 
@@ -45,7 +50,7 @@ class ChainedInput extends BaseControl {
 
 		$i = 0;
 		foreach ( $fields as $field ) {
-			$html     .= '<select name="' . $name . '" class="form-control ' . $field . '" data-value="'. $default_value[ $i ]  .'"></select>';
+			$html .= '<select name="' . $name . '" class="form-control ' . $field . '" data-value="' . $default_value[ $i ] . '"></select>';
 			$i ++;
 		}
 
@@ -70,7 +75,8 @@ class ChainedInput extends BaseControl {
 	 *
 	 * @return mixed
 	 */
-	public function getHtmlName() {
+	public function getHtmlName()
+	{
 		return parent::getHtmlName() . '[]';
 	}
 
