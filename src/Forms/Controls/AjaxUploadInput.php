@@ -126,7 +126,11 @@ class  AjaxUploadInput extends BaseControl
 	public function getPreview( $value )
 	{
 
-		$thumb = wp_get_attachment_thumb_url( $value );
+		if ( ! function_exists( 'wp_get_attachment_thumb_url' ) ) {
+			$thumb = wp_get_attachment_thumb_url( $value );
+		} else {
+			$thumb = $value;
+		}
 
 		$preview = Html::el( 'div class="col-xs-6 col-md-3"' );
 		$button  = Html::el( 'button type=button class=close data-value="' . $value . '"' )->addHtml( Html::el( 'span' )->setText( 'x' ) );
