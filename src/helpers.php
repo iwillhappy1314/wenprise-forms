@@ -39,6 +39,7 @@ if ( ! function_exists( 'wprs_form' ) ) {
 				if ( ! $control->getOption( 'class' ) ) {
 					$control->setOption( 'class', 'col-md-12' );
 				}
+				$control->setOption('id', 'grp-' . $control->name);
 				$type = $control->getOption( 'type' );
 				if ( $type === 'button' ) {
 					$control->getControlPrototype()->addClass( empty( $usedPrimary ) ? 'btn btn-primary' : 'btn btn-default' );
