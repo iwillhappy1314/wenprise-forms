@@ -126,7 +126,7 @@ class  AjaxUploadInput extends BaseControl
 	public function getPreview( $value )
 	{
 
-		if ( ! function_exists( 'wp_get_attachment_thumb_url' ) ) {
+		if ( function_exists( 'wp_get_attachment_thumb_url' ) ) {
 			$thumb = wp_get_attachment_thumb_url( $value );
 		} else {
 			$thumb = $value;
