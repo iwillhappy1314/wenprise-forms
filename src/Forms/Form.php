@@ -55,6 +55,23 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 
 
 	/**
+	 * 带前缀或者后缀的文本输入
+	 *
+	 * @param      $name
+	 * @param null $label
+	 * @param null $maxLength
+	 * @param null $prefix
+	 * @param null $suffix
+	 *
+	 * @return \Wenprise\Forms\Controls\GroupInput
+	 */
+	public function addGroupInput( $name, $label = null, $maxLength = null, $prefix = null, $suffix = null )
+	{
+		return $this[ $name ] = ( new Controls\GroupInput( $label, $maxLength, $prefix, $suffix ) );
+	}
+
+
+	/**
 	 * 下拉选择模拟输入控件
 	 *
 	 * @param            $name

@@ -355,17 +355,42 @@ class FormRender implements Nette\Forms\IFormRenderer {
 	 *
 	 * @return string
 	 */
-	public function renderPair( Nette\Forms\IControl $control ) {
+	public function renderPair( Nette\Forms\IControl $control )
+	{
+
 		$pair = $this->getWrapper( 'pair container' );
 		$pair->addHtml( $this->renderLabel( $control ) );
-		$pair->addHtml( $this->renderControl( $control ) );
-		$pair->class( $this->getValue( $control->isRequired() ? 'pair .required' : 'pair .optional' ), true );
-		$pair->class( $control->hasErrors() ? $this->getValue( 'pair .error' ) : null, true );
-		$pair->class( $control->getOption( 'class' ), true );
+
 		if ( ++ $this->counter % 2 ) {
 			$pair->class( $this->getValue( 'pair .odd' ), true );
 		}
 		$pair->id = $control->getOption( 'id' );
+
+		if ( isset( $control->suffix ) || isset( $control->suffix ) ) {
+
+			$group = Html::el( 'div class=input-group' );
+
+			if ( isset( $control->suffix ) ) {
+				$group->insert( 1, $control->prefix );
+			}
+
+			$group->addHtml( $this->renderControl( $control ) );
+
+			if ( isset( $control->suffix ) ) {
+				$group->addHtml( $control->suffix );
+			}
+
+			$pair->addHtml($group);
+
+		} else {
+
+			$pair->addHtml( $this->renderControl( $control ) );
+
+		}
+
+		$pair->class( $this->getValue( $control->isRequired() ? 'pair .required' : 'pair .optional' ), true );
+		$pair->class( $control->hasErrors() ? $this->getValue( 'pair .error' ) : null, true );
+		$pair->class( $control->getOption( 'class' ), true );
 
 		return $pair->render( 0 );
 	}
