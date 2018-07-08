@@ -73,6 +73,7 @@ class FormRender implements Nette\Forms\IFormRenderer {
 
 		'pair' => [
 			'container' => 'tr',
+			'.addon' => 'input-group',
 			'.required' => 'required',
 			'.optional' => null,
 			'.odd'      => null,
@@ -364,13 +365,14 @@ class FormRender implements Nette\Forms\IFormRenderer {
 		if ( ++ $this->counter % 2 ) {
 			$pair->class( $this->getValue( 'pair .odd' ), true );
 		}
+		
 		$pair->id = $control->getOption( 'id' );
 
-		if ( isset( $control->suffix ) || isset( $control->suffix ) ) {
+		if ( isset( $control->prefix ) || isset( $control->suffix ) ) {
 
-			$group = Html::el( 'div class=input-group' );
+			$group = Html::el( 'div' )->class($this->getValue( 'pair .addon' ));
 
-			if ( isset( $control->suffix ) ) {
+			if ( isset( $control->prefix ) ) {
 				$group->insert( 1, $control->prefix );
 			}
 

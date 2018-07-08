@@ -45,7 +45,7 @@ class GroupInput extends TextInput
 	 *
 	 * @return $this
 	 */
-	public function setPrefix( $prefix = '' )
+	public function setPrefix( $prefix )
 	{
 		$this->prefix = $prefix;
 
@@ -60,7 +60,7 @@ class GroupInput extends TextInput
 	 *
 	 * @return $this
 	 */
-	public function setSuffix( $suffix = '' )
+	public function setSuffix( $suffix )
 	{
 		$this->suffix = $suffix;
 
