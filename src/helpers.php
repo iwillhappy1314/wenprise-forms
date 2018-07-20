@@ -4,6 +4,8 @@
  *
  */
 
+namespace Wenprise;
+
 use Wenprise\Forms\Form;
 use Wenprise\Forms\Renders\FormRender;
 
@@ -18,7 +20,8 @@ use Wenprise\Forms\Renders\FormRender;
  * @return string 订单号字符串
  */
 if ( ! function_exists( 'wprs_form' ) ) {
-	function wprs_form( Form $form, $type = 'horizontal' ) {
+	function wprs_form( Form $form, $type = 'horizontal' )
+	{
 
 		// 设置自定义 Render 方法
 		$form->setRenderer( new FormRender );
@@ -34,12 +37,13 @@ if ( ! function_exists( 'wprs_form' ) ) {
 		$renderer->wrappers[ 'control' ][ 'description' ]    = 'span class=help-block';
 		$renderer->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=help-block';
 		$form->getElementPrototype()->class( $type == 'horizontal' ? 'form-horizontal' : '' );
-		$form->onRender[] = function ( $form ) {
+		$form->onRender[] = function ( $form )
+		{
 			foreach ( $form->getControls() as $control ) {
 				if ( ! $control->getOption( 'class' ) ) {
 					$control->setOption( 'class', 'col-md-12' );
 				}
-				$control->setOption('id', 'grp-' . $control->name);
+				$control->setOption( 'id', 'grp-' . $control->name );
 				$type = $control->getOption( 'type' );
 				if ( $type === 'button' ) {
 					$control->getControlPrototype()->addClass( empty( $usedPrimary ) ? 'btn btn-primary' : 'btn btn-default' );
@@ -62,7 +66,8 @@ if ( ! function_exists( 'wprs_form' ) ) {
  * @param string $type
  */
 if ( ! function_exists( 'wprs_admin_form' ) ) {
-	function wprs_admin_form( Form $form, $type = 'horizontal' ) {
+	function wprs_admin_form( Form $form, $type = 'horizontal' )
+	{
 
 		$screen = get_current_screen();
 
@@ -77,15 +82,15 @@ if ( ! function_exists( 'wprs_admin_form' ) ) {
 			case 'term_meta':
 				if ( $screen->base == 'term' ) {
 					$renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-					$renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=Wenprise-form-filed';
+					$renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=wprs-form-filed';
 				} else {
 					$renderer->wrappers[ 'controls' ][ 'container' ] = '';
-					$renderer->wrappers[ 'pair' ][ 'container' ]     = 'div class="form-field Wenprise-form-filed"';
+					$renderer->wrappers[ 'pair' ][ 'container' ]     = 'div class="form-field wprs-form-filed"';
 				}
 				break;
 			default:
 				$renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-				$renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=Wenprise-form-filed';
+				$renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=wprs-form-filed';
 		}
 
 		$renderer->wrappers[ 'label' ][ 'container' ]   = 'th class=row';
@@ -93,3 +98,58 @@ if ( ! function_exists( 'wprs_admin_form' ) ) {
 
 	}
 }
+
+
+/**
+ * 转换路径到 Url
+ *
+ * @param $directory
+ *
+ * @return string
+ */
+if ( ! function_exists( 'wprs_dir_to_url' ) ) {
+	function wprs_dir_to_url( $directory )
+	{
+		$url   = \trailingslashit( $directory );
+		$count = 0;
+
+		# Sanitize directory separator on Windows
+		$url = str_replace( '\\', '/', $url );
+
+		$possible_locations = [
+			WP_PLUGIN_DIR  => \plugins_url(), # If installed as a plugin
+			WP_CONTENT_DIR => \content_url(), # If anywhere in wp-content
+			ABSPATH        => \site_url( '/' ), # If anywhere else within the WordPress installation
+		];
+
+		foreach ( $possible_locations as $test_dir => $test_url ) {
+			$test_dir_normalized = str_replace( '\\', '/', $test_dir );
+			$url                 = str_replace( $test_dir_normalized, $test_url, $url, $count );
+
+			if ( $count > 0 ) {
+				return \untrailingslashit( $url );
+			}
+		}
+
+		return ''; // return empty string to avoid exposing half-parsed paths
+	}
+}
+
+
+// 插件版本
+if ( ! defined( 'WENPRISE_FORM_VERSION' ) ) {
+	define( 'WENPRISE_FORM_VERSION', '1.6' );
+}
+
+# 设置插件库根目录
+if ( ! defined( __NAMESPACE__ . '\DIR' ) ) {
+	define( __NAMESPACE__ . '\DIR', __DIR__ );
+}
+
+# 设置根目录 Url
+if ( ! defined( __NAMESPACE__ . '\URL' ) ) {
+	define( __NAMESPACE__ . '\URL', wprs_dir_to_url( \Wenprise\DIR ) );
+}
+
+wp_register_style( 'wprs-form-style', \Wenprise\URL . '/assets/styles/form.css', [], WENPRISE_FORM_VERSION );
+wp_register_script( 'wprs-modernizr', \Wenprise\URL . '/assets/scripts/modernizr-custom.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
