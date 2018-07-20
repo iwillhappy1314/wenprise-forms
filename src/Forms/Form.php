@@ -203,4 +203,20 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	}
 
 
+	/**
+	 * 表格输入
+	 *
+	 * @param      $name
+	 * @param null $label
+	 * @param      $settings
+	 * @param      $field
+	 *
+	 * @return \Wenprise\Forms\Controls\TableInput
+	 */
+	public function addTableInput( $name, $label = null, $settings = [], $field = [] )
+	{
+		return $this[ $name ] = ( new Controls\TableInput( $label, $settings, $field ) );
+	}
+
+
 }
