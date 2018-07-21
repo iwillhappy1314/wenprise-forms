@@ -4,8 +4,6 @@
  *
  */
 
-namespace Wenprise;
-
 use Wenprise\Forms\Form;
 use Wenprise\Forms\Renders\FormRender;
 
@@ -141,15 +139,10 @@ if ( ! defined( 'WENPRISE_FORM_VERSION' ) ) {
 	define( 'WENPRISE_FORM_VERSION', '1.6' );
 }
 
-# 设置插件库根目录
-if ( ! defined( __NAMESPACE__ . '\DIR' ) ) {
-	define( __NAMESPACE__ . '\DIR', __DIR__ );
-}
-
 # 设置根目录 Url
-if ( ! defined( __NAMESPACE__ . '\URL' ) ) {
-	define( __NAMESPACE__ . '\URL', wprs_dir_to_url( \Wenprise\DIR ) );
+if ( ! defined( 'WENPRISE_FORM_URL' ) ) {
+	define( 'WENPRISE_FORM_URL', wprs_dir_to_url( __DIR__ ) );
 }
 
-wp_register_style( 'wprs-form-style', \Wenprise\URL . '/assets/styles/form.css', [], WENPRISE_FORM_VERSION );
-wp_register_script( 'wprs-modernizr', \Wenprise\URL . '/assets/scripts/modernizr-custom.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+wp_register_style( 'wprs-form-style', WENPRISE_FORM_URL . '/assets/styles/form.css', [], WENPRISE_FORM_VERSION );
+wp_register_script( 'wprs-modernizr', WENPRISE_FORM_URL . '/assets/scripts/modernizr-custom.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
