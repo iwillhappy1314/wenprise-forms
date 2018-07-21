@@ -134,15 +134,41 @@ if ( ! function_exists( 'wprs_dir_to_url' ) ) {
 }
 
 
-// 插件版本
-if ( ! defined( 'WENPRISE_FORM_VERSION' ) ) {
-	define( 'WENPRISE_FORM_VERSION', '1.6' );
+if ( function_exists( 'wp_register_style' ) ) {
+
+	// 插件版本
+	if ( ! defined( 'WENPRISE_FORM_VERSION' ) ) {
+		define( 'WENPRISE_FORM_VERSION', '1.6' );
+	}
+
+	# 设置根目录 Url
+	if ( ! defined( 'WENPRISE_FORM_URL' ) ) {
+		define( 'WENPRISE_FORM_URL', wprs_dir_to_url( __DIR__ ) );
+	}
+
+	// 附加样式和脚本
+	wp_register_style( 'wprs-form-styles', WENPRISE_FORM_URL . '/assets/styles/main.css', [], WENPRISE_FORM_VERSION );
+	wp_register_script( 'wprs-form-scripts', WENPRISE_FORM_URL . '/assets/scripts/main.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+
+	// 表格输入
+	wp_register_script( 'wprs-table-input', WENPRISE_FORM_URL . '/assets/scripts/table-input.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+
+	// 前端验证
+	wp_register_script( 'wprs-nette-forms', WENPRISE_FORM_URL . '/assets/scripts/nette-forms.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+
+	wp_register_script( 'wprs-ajax-uploader', WENPRISE_FORM_URL . '/assets/scripts/ajax-uploader.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+
+	// 颜色选择
+	wp_enqueue_style( 'wp-color-picker' );
+	wp_register_script( 'wp-color-picker', admin_url( 'js/color-picker.min.js' ), [ 'iris' ], false, 1 );
+	wp_register_script( 'iris', admin_url( 'js/iris.min.js' ), [ 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ], false, 1 );
+
+	$colorpicker_l10n = [ 'clear' => __( 'Clear' ), 'defaultString' => __( 'Default' ), 'pick' => __( 'Select Color' ), 'current' => __( 'Current Color' ), ];
+	wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', $colorpicker_l10n );
+
+
+	// 注册公共样式和脚本
+	wp_enqueue_style( 'wprs-form-styles' );
+	wp_enqueue_style( 'wprs-form-scripts' );
 }
 
-# 设置根目录 Url
-if ( ! defined( 'WENPRISE_FORM_URL' ) ) {
-	define( 'WENPRISE_FORM_URL', wprs_dir_to_url( __DIR__ ) );
-}
-
-wp_register_style( 'wprs-form-style', WENPRISE_FORM_URL . '/assets/styles/form.css', [], WENPRISE_FORM_VERSION );
-wp_register_script( 'wprs-modernizr', WENPRISE_FORM_URL . '/assets/scripts/modernizr-custom.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );

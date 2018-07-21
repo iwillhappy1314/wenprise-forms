@@ -43,7 +43,8 @@ class ColorPickerInput extends TextInput
 		$settings = array_merge( $settings_default, $settings );
 
 		if ( function_exists( 'wp_enqueue_script' ) ) {
-			wp_enqueue_script( 'frm-iris' );
+			wp_enqueue_script( 'iris' );
+			wp_enqueue_script( 'wp-color-picker' );
 		}
 
 		$script = "<script>

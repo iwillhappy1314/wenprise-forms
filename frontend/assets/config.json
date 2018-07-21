@@ -1,0 +1,26 @@
+{
+  "entry": {
+    "main": [
+      "./scripts/main.js",
+      "./styles/main.scss"
+    ],
+    "table-input": [
+      "./scripts/modules/jquery.appendGrid-1.7.1.js"
+    ],
+    "ion-rangeslider": [
+      "./scripts/modules/ion-rangeslider.js"
+    ],
+    "nette-forms": [
+      "./scripts/modules/nette-forms.js"
+    ],
+    "ajax-uploader": [
+      "./scripts/modules/ajax-uploader.js"
+    ]
+  },
+  "publicPath": "/app/themes/sage",
+  "devUrl": "http://example.test",
+  "proxyUrl": "http://localhost:3000",
+  "cacheBusting": "[name]_[hash:8]",
+  "watch": [
+  ]
+}
