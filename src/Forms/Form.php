@@ -31,7 +31,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 *
 	 * @return Controls\TextEditor
 	 */
-	public function addEditor( $name, $label = null, $settings = [] )
+	public function addEditor( $name, $label = null, array $settings = null )
 	{
 		return $this[ $name ] = ( new Controls\TextEditor( $label, $settings ) )
 			->setHtmlAttribute( 'cols', $settings[ 'cols' ] )
@@ -109,7 +109,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 *
 	 * @return \Wenprise\Forms\Controls\SliderInput
 	 */
-	public function addSlider( $name, $label = null, $settings = [] )
+	public function addSlider( $name, $label = null, array $settings = null )
 	{
 		return $this[ $name ] = ( new Controls\SliderInput( $label, $settings ) );
 	}
@@ -124,7 +124,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 *
 	 * @return \Wenprise\Forms\Controls\DatePickerInput
 	 */
-	public function addDatePicker( $name, $label = null, $settings = [] )
+	public function addDatePicker( $name, $label = null, array $settings = null )
 	{
 		return $this[ $name ] = ( new Controls\DatePickerInput( $label, $settings ) );
 	}
@@ -139,7 +139,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 *
 	 * @return \Wenprise\Forms\Controls\ColorpickerInput
 	 */
-	public function addColorPicker( $name, $label = null, $settings = [] )
+	public function addColorPicker( $name, $label = null, array $settings = null )
 	{
 		return $this[ $name ] = ( new Controls\ColorpickerInput( $label, $settings ) );
 	}
@@ -154,7 +154,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 *
 	 * @return \Wenprise\Forms\Controls\ChainedInput
 	 */
-	public function addChainedSelect( $name, $label = null, $settings, $field )
+	public function addChainedSelect( $name, $label = null, array $settings = null, array $field = null )
 	{
 		return $this[ $name ] = ( new Controls\ChainedInput( $label, $settings, $field ) );
 	}
@@ -183,7 +183,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 *
 	 * @return \Wenprise\Forms\Controls\SmsInput
 	 */
-	public function AddSms( $name, $label = null, $settings = [] )
+	public function AddSms( $name, $label = null, array $settings = null )
 	{
 		return $this[ $name ] = ( new Controls\SmsInput( $label, $settings ) );
 	}
@@ -213,9 +213,25 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 *
 	 * @return \Wenprise\Forms\Controls\TableInput
 	 */
-	public function addTableInput( $name, $label = null, $settings = [], $field = [] )
+	public function addTableInput( $name, $label = null, array $settings = null, $field = [] )
 	{
 		return $this[ $name ] = ( new Controls\TableInput( $label, $settings, $field ) );
+	}
+
+
+	/**
+	 * Chosen 输入框架
+	 *
+	 * @param            $name
+	 * @param null       $label
+	 * @param array|null $items
+	 * @param array|null $settings
+	 *
+	 * @return \Wenprise\Forms\Controls\ChosenInput
+	 */
+	public function addChosenSelect( $name, $label = null, array $items = null, array $settings = null )
+	{
+		return $this[ $name ] = ( new Controls\ChosenInput( $label, $items, $settings ) );
 	}
 
 

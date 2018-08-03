@@ -150,6 +150,10 @@ if ( function_exists( 'wp_register_style' ) ) {
 	wp_register_style( 'wprs-form-styles', WENPRISE_FORM_URL . '/assets/styles/main.css', [], WENPRISE_FORM_VERSION );
 	wp_register_script( 'wprs-form-scripts', WENPRISE_FORM_URL . '/assets/scripts/main.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
+	// Chosen 样式和脚本
+	wp_register_style( 'wprs-chosen-styles', WENPRISE_FORM_URL . '/assets/styles/chosen.css', [], WENPRISE_FORM_VERSION );
+	wp_register_script( 'wprs-chosen-scripts', WENPRISE_FORM_URL . '/assets/scripts/chosen.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+
 	// 表格输入
 	wp_register_script( 'wprs-table-input', WENPRISE_FORM_URL . '/assets/scripts/table-input.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
@@ -169,6 +173,6 @@ if ( function_exists( 'wp_register_style' ) ) {
 
 	// 注册公共样式和脚本
 	wp_enqueue_style( 'wprs-form-styles' );
-	wp_enqueue_style( 'wprs-form-scripts' );
+	wp_enqueue_script( 'wprs-form-scripts' );
 }
 

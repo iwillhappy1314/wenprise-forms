@@ -33,8 +33,8 @@ class  AjaxUploadInput extends BaseControl
     {
         parent::__construct( $label );
         $this->control->multiple = (bool) $multiple;
-        $this->setOption( 'type', 'text' );
-        $this->control->type = 'text';
+	    $this->control->type = 'text';
+	    $this->setOption( 'type', 'text' );
         $this->addCondition( Form::BLANK )
              ->addRule( [ $this, 'isOk' ], Validator::$messages[ self::VALID ] );
     }

@@ -15,6 +15,10 @@
     ],
     "ajax-uploader": [
       "./scripts/modules/ajax-uploader.js"
+    ],
+    "chosen": [
+      "./styles/chosen.scss",
+      "./scripts/modules/chosen-js.js"
     ]
   },
   "publicPath": "/app/themes/sage",
