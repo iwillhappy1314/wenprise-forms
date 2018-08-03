@@ -16,10 +16,10 @@ class ColorPickerInput extends TextInput
 	 * @param  string|object Html      标签
 	 * @param  array $settings TinyMce 设置
 	 */
-	public function __construct( $label = null, $settings = [] )
+	public function __construct( $label = null, array $settings = null )
 	{
 		parent::__construct( $label );
-		$this->settings = $settings;
+		$this->settings = (array) $settings;
 	}
 
 

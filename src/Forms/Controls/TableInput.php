@@ -20,11 +20,11 @@ class TableInput extends BaseControl
 	 * @param  array         $settings TinyMce 设置
 	 * @param  array         $fields   TinyMce 设置
 	 */
-	public function __construct( $label = null, $settings = [], $fields = [] )
+	public function __construct( $label = null, array $settings = null, array $fields = null )
 	{
 		parent::__construct( $label );
-		$this->settings = $settings;
-		$this->fields   = $fields;
+		$this->settings = (array) $settings;
+		$this->fields   = (array) $fields;
 	}
 
 

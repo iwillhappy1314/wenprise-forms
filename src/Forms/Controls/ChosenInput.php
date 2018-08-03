@@ -19,8 +19,8 @@ class ChosenInput extends SelectBox
 	 */
 	public function __construct( $label = null, array $items = null, array $settings = null )
 	{
-		parent::__construct( $label );
-		$this->settings = $settings;
+		parent::__construct( $label, $items );
+		$this->settings = (array) $settings;
 	}
 
 	public function getControl()
@@ -36,13 +36,13 @@ class ChosenInput extends SelectBox
 		];
 
 		if ( function_exists( 'wp_enqueue_script' ) ) {
-			wp_enqueue_style( 'wprs-chosen-styles' );
-			wp_enqueue_script( 'wprs-chosen-scripts' );
+			wp_enqueue_style( 'wprs-chosen' );
+			wp_enqueue_script( 'wprs-chosen' );
 		}
 
 		$settings = array_merge( $settings_default, $settings );
 
-		$script = ' <script>
+		$script = '<script>
 		        jQuery(document).ready(function($){
 		        	$( "#' . $id . '" ).chosen(' . json_encode( $settings ) . ');
 		        });

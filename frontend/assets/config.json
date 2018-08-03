@@ -8,6 +8,7 @@
       "./scripts/modules/jquery.appendGrid-1.7.1.js"
     ],
     "ion-rangeslider": [
+      "./styles/ion-rangeslider.scss",
       "./scripts/modules/ion-rangeslider.js"
     ],
     "nette-forms": [

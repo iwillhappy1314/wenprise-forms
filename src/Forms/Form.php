@@ -33,9 +33,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 */
 	public function addEditor( $name, $label = null, array $settings = null )
 	{
-		return $this[ $name ] = ( new Controls\TextEditor( $label, $settings ) )
-			->setHtmlAttribute( 'cols', $settings[ 'cols' ] )
-			->setHtmlAttribute( 'rows', $settings[ 'rows' ] );
+		return $this[ $name ] = ( new Controls\TextEditor( $label, $settings ) );
 	}
 
 
@@ -79,6 +77,8 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 * @param array|null $items
 	 *
 	 * @return \Wenprise\Forms\Controls\DropdownSelectInput
+	 *
+	 * @deprecated
 	 */
 	public function addDropdownSelect( $name, $label = null, array $items = null )
 	{
@@ -93,6 +93,8 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 * @param      $label    string  表单标签
 	 *
 	 * @return \Wenprise\Forms\Controls\CloneInput
+	 *
+	 * @deprecated
 	 */
 	public function addClone( $name, $label = null )
 	{
@@ -229,7 +231,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	 *
 	 * @return \Wenprise\Forms\Controls\ChosenInput
 	 */
-	public function addChosenSelect( $name, $label = null, array $items = null, array $settings = null )
+	public function addChosen( $name, $label = null, array $items = null, array $settings = null )
 	{
 		return $this[ $name ] = ( new Controls\ChosenInput( $label, $items, $settings ) );
 	}

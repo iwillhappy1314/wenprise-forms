@@ -134,45 +134,63 @@ if ( ! function_exists( 'wprs_dir_to_url' ) ) {
 }
 
 
+// 插件版本
+if ( ! defined( 'WENPRISE_FORM_VERSION' ) ) {
+	define( 'WENPRISE_FORM_VERSION', '1.6' );
+}
+
+# 设置根目录 Url
+if ( ! defined( 'WENPRISE_FORM_URL' ) ) {
+	define( 'WENPRISE_FORM_URL', wprs_dir_to_url( __DIR__ ) );
+}
+
+
 if ( function_exists( 'wp_register_style' ) ) {
 
-	// 插件版本
-	if ( ! defined( 'WENPRISE_FORM_VERSION' ) ) {
-		define( 'WENPRISE_FORM_VERSION', '1.6' );
-	}
+	/**
+	 * Register stylesheet and scripts.
+	 */
+	add_action( 'wp_enqueue_scripts', function ()
+	{
 
-	# 设置根目录 Url
-	if ( ! defined( 'WENPRISE_FORM_URL' ) ) {
-		define( 'WENPRISE_FORM_URL', wprs_dir_to_url( __DIR__ ) );
-	}
+		// 附加样式和脚本
+		wp_register_style( 'wprs-form', WENPRISE_FORM_URL . '/assets/styles/main.css', [], WENPRISE_FORM_VERSION );
+		wp_register_script( 'wprs-form', WENPRISE_FORM_URL . '/assets/scripts/main.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
-	// 附加样式和脚本
-	wp_register_style( 'wprs-form-styles', WENPRISE_FORM_URL . '/assets/styles/main.css', [], WENPRISE_FORM_VERSION );
-	wp_register_script( 'wprs-form-scripts', WENPRISE_FORM_URL . '/assets/scripts/main.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+		// Chosen 样式和脚本
+		wp_register_style( 'wprs-chosen', WENPRISE_FORM_URL . '/assets/styles/chosen.css', [], WENPRISE_FORM_VERSION );
+		wp_register_script( 'wprs-chosen', WENPRISE_FORM_URL . '/assets/scripts/chosen.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
-	// Chosen 样式和脚本
-	wp_register_style( 'wprs-chosen-styles', WENPRISE_FORM_URL . '/assets/styles/chosen.css', [], WENPRISE_FORM_VERSION );
-	wp_register_script( 'wprs-chosen-scripts', WENPRISE_FORM_URL . '/assets/scripts/chosen.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+		// ion-rangeslider 样式
+		wp_register_style( 'wprs-ion-rangeslider', WENPRISE_FORM_URL . '/assets/styles/ion-rangeslider.css', [], WENPRISE_FORM_VERSION );
+		wp_register_script( 'wprs-ion-rangeslider', WENPRISE_FORM_URL . '/assets/scripts/ion-rangeslider.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
-	// 表格输入
-	wp_register_script( 'wprs-table-input', WENPRISE_FORM_URL . '/assets/scripts/table-input.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+		// 表格输入
+		wp_register_script( 'wprs-table-input', WENPRISE_FORM_URL . '/assets/scripts/table-input.js', [ 'jquery', 'jquery-ui-button' ], WENPRISE_FORM_VERSION, true );
 
-	// 前端验证
-	wp_register_script( 'wprs-nette-forms', WENPRISE_FORM_URL . '/assets/scripts/nette-forms.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+		// 前端验证
+		wp_register_script( 'wprs-nette-forms', WENPRISE_FORM_URL . '/assets/scripts/nette-forms.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
-	wp_register_script( 'wprs-ajax-uploader', WENPRISE_FORM_URL . '/assets/scripts/ajax-uploader.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
+		// Ajax 上传
+		wp_register_script( 'wprs-ajax-uploader', WENPRISE_FORM_URL . '/assets/scripts/ajax-uploader.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
-	// 颜色选择
-	wp_enqueue_style( 'wp-color-picker' );
-	wp_register_script( 'wp-color-picker', admin_url( 'js/color-picker.min.js' ), [ 'iris' ], false, 1 );
-	wp_register_script( 'iris', admin_url( 'js/iris.min.js' ), [ 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ], false, 1 );
+		// 颜色选择
+		wp_register_script( 'wp-color-picker', admin_url( 'js/color-picker.min.js' ), [ 'iris' ], false, 1 );
+		wp_register_script( 'iris', admin_url( 'js/iris.min.js' ), [ 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ], false, 1 );
 
-	$colorpicker_l10n = [ 'clear' => __( 'Clear' ), 'defaultString' => __( 'Default' ), 'pick' => __( 'Select Color' ), 'current' => __( 'Current Color' ), ];
-	wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', $colorpicker_l10n );
+		// 颜色选择
+		wp_enqueue_style( 'wp-color-picker' );
 
 
-	// 注册公共样式和脚本
-	wp_enqueue_style( 'wprs-form-styles' );
-	wp_enqueue_script( 'wprs-form-scripts' );
+		$colorpicker_l10n = [ 'clear' => __( 'Clear' ), 'defaultString' => __( 'Default' ), 'pick' => __( 'Select Color' ), 'current' => __( 'Current Color' ), ];
+		wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', $colorpicker_l10n );
+
+		// 注册公共样式和脚本
+		wp_enqueue_style( 'wprs-form' );
+		wp_enqueue_script( 'wprs-form' );
+
+	} );
+
+
 }
 

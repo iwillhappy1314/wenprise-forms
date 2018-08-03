@@ -60,23 +60,31 @@
 /******/ 	__webpack_require__.p = "/app/themes/sage/assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
 
 /***/ 10:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_nette_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_nette_forms___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_nette_forms__);
+module.exports = __webpack_require__(11);
 
 
 /***/ }),
 
 /***/ 11:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_nette_forms__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_nette_forms___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_nette_forms__);
+
+
+/***/ }),
+
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -815,14 +823,6 @@ Nette.webalizeTable = {\u00e1: 'a', \u00e4: 'a', \u010d: 'c', \u010f: 'd', \u00e
 
 return Nette;
 }));
-
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(10);
 
 
 /***/ })

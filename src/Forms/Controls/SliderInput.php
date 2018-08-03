@@ -12,17 +12,19 @@ use Nette\Forms\Form;
 class SliderInput extends TextBase
 {
 
+	private $settings = [];
+
 	/**
 	 * Slider Input constructor.
 	 *
 	 * @param string|null $label
 	 * @param array       $settings
 	 */
-	public function __construct( $label = null, array $settings )
+	public function __construct( $label = null, array $settings = null )
 	{
 		parent::__construct( $label );
 		$this->control->type = 'hidden';
-		$this->settings      = $settings;
+		$this->settings      = (array) $settings;
 		$this->addCondition( Form::BLANK );
 	}
 
@@ -36,7 +38,7 @@ class SliderInput extends TextBase
 	{
 
 		if ( function_exists( 'wp_enqueue_script' ) ) {
-			wp_enqueue_script( 'frm-slider' );
+			wp_enqueue_script( 'wprs-ion-rangeslider' );
 		}
 
 		$el       = parent::getControl();
