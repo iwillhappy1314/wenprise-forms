@@ -39,6 +39,7 @@ class SliderInput extends TextBase
 
 		if ( function_exists( 'wp_enqueue_script' ) ) {
 			wp_enqueue_script( 'wprs-ion-rangeslider' );
+			wp_enqueue_style( 'wprs-ion-rangeslider' );
 		}
 
 		$el       = parent::getControl();
