@@ -8,18 +8,22 @@
       "./scripts/modules/jquery.appendGrid-1.7.1.js"
     ],
     "ion-rangeslider": [
-      "./styles/ion-rangeslider.scss",
-      "./scripts/modules/ion-rangeslider.js"
+      "./scripts/modules/ion-rangeslider.js",
+      "./styles/ion-rangeslider.scss"
     ],
     "nette-forms": [
       "./scripts/modules/nette-forms.js"
     ],
     "ajax-uploader": [
-      "./scripts/modules/ajax-uploader.js"
+      "./scripts/modules/ajax-uploader.js",
+      "./styles/ajax-uploader.scss"
     ],
     "chosen": [
-      "./styles/chosen.scss",
-      "./scripts/modules/chosen-js.js"
+      "./scripts/modules/chosen-js.js",
+      "./styles/chosen.scss"
+    ],
+    "datepicker": [
+      "./styles/datepicker.scss"
     ]
   },
   "publicPath": "/app/themes/sage",

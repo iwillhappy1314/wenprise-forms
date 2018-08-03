@@ -71,6 +71,7 @@ class  AjaxUploadInput extends BaseControl
         $el = parent::getControl();
 
         if ( function_exists( 'wp_enqueue_script' ) ) {
+            wp_enqueue_style( 'wprs-ajax-uploader' );
             wp_enqueue_script( 'wprs-ajax-uploader' );
         }
 
@@ -98,16 +99,16 @@ class  AjaxUploadInput extends BaseControl
             }
         }
 
-        $html = '<div id="' . $id . '" class="fn-dnd-zone uploader" data-name="' . $name . '">
-            <div class="text">Drag &amp; Drop Images Here</div>
-            <div class="or">-or-</div>
-            <div class="browser">
+        $html = '<div id="' . $id . '" class="js-uploader c-uploader" data-name="' . $name . '">
+            <div class="c-uploader__text">Drag &amp; Drop Images Here</div>
+            <div class="c-uploader__or">-or-</div>
+            <div class="c-uploader__browser">
               <label class="btn btn-default">
                 <span>' . $placeholder . '</span>
-                <input class="upload_shadow" type="file" data-url="' . $data_url . '" name="input_shadow" ' . ( $this->control->multiple ? 'multiple="multiple"' : '' ) . ' title="' . $placeholder . '">
+                <input class="c-uploader__shadow" type="file" data-url="' . $data_url . '" name="js_input_shadow" ' . ( $this->control->multiple ? 'multiple="multiple"' : '' ) . ' title="' . $placeholder . '">
               </label>
-              <div class="frm-thumbs">' . $el . '</div>
-              <div class="frm-preview clearfix ' . $hide . '">' . $preview . '</div>
+              <div class="c-uploader__preview">' . $el . '</div>
+              <div class="c-uploader__thumb clearfix ' . $hide . '">' . $preview . '</div>
             </div>
         </div>';
 

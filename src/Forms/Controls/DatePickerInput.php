@@ -41,6 +41,7 @@ class DatePickerInput extends TextInput
 		];
 
 		if ( function_exists( 'wp_enqueue_script' ) ) {
+			wp_enqueue_style( 'jquery-ui-datepicker' );
 			wp_enqueue_script( 'jquery-ui-datepicker' );
 		}
 

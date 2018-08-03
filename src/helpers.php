@@ -165,6 +165,9 @@ if ( function_exists( 'wp_register_style' ) ) {
 		wp_register_style( 'wprs-ion-rangeslider', WENPRISE_FORM_URL . '/assets/styles/ion-rangeslider.css', [], WENPRISE_FORM_VERSION );
 		wp_register_script( 'wprs-ion-rangeslider', WENPRISE_FORM_URL . '/assets/scripts/ion-rangeslider.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
+		// Datepicker 样式
+		wp_register_style( 'jquery-ui-datepicker', WENPRISE_FORM_URL . '/assets/styles/datepicker.css', [], WENPRISE_FORM_VERSION );
+
 		// 表格输入
 		wp_register_script( 'wprs-table-input', WENPRISE_FORM_URL . '/assets/scripts/table-input.js', [ 'jquery', 'jquery-ui-button' ], WENPRISE_FORM_VERSION, true );
 
@@ -172,6 +175,7 @@ if ( function_exists( 'wp_register_style' ) ) {
 		wp_register_script( 'wprs-nette-forms', WENPRISE_FORM_URL . '/assets/scripts/nette-forms.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
 		// Ajax 上传
+		wp_register_style( 'wprs-ajax-uploader', WENPRISE_FORM_URL . '/assets/styles/ajax-uploader.css', [], WENPRISE_FORM_VERSION );
 		wp_register_script( 'wprs-ajax-uploader', WENPRISE_FORM_URL . '/assets/scripts/ajax-uploader.js', [ 'jquery' ], WENPRISE_FORM_VERSION, true );
 
 		// 颜色选择
