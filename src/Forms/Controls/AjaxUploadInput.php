@@ -77,7 +77,7 @@ class  AjaxUploadInput extends BaseControl
 
         $name        = $this->getHtmlName();
         $id          = $this->getHtmlId();
-        $placeholder = $this->control->getAttribute( 'placeholder' );
+        $placeholder = $this->control->getAttribute( 'placeholder' ) ?? __('Select File', 'wprs') ;
         $data_url    = $this->control->getAttribute( 'data-url' );
         $value       = $this->value;
         $preview     = '';
