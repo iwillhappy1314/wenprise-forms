@@ -20,10 +20,10 @@ jQuery(document).ready(function ($) {
                 $(this).find('.c-uploader__or').hide();
                 //$(this).find('label').hide();
             }
-            $(this).find('.c-uploader__preview').empty().append('<input type="hidden" name="' + $(this).data('name') +
+            $(this).find('.c-uploader__value').empty().append('<input type="hidden" name="' + $(this).data('name') +
                 '" value="' + data.id + '">');
 
-            $(this).find('.c-uploader__thumb').empty().show().append('<div class="col-xs-6 col-md-3"><a href="#" class="thumbnail"><img src="' +
+            $(this).find('.c-uploader__preview').empty().show().append('<div class="col-xs-6 col-md-3"><a href="#" class="thumbnail"><img src="' +
                 data.thumb + '" alt="Thumbnail"></a></div>');
         },
     });
@@ -36,7 +36,7 @@ jQuery(document).ready(function ($) {
             multiple = $(this).closest('.js-uploader').find('input[name=js_input_shadow]').attr('multiple');
 
         $(this).parent().hide();
-        $('.c-uploader__preview input').attr('value', '');
+        $('.c-uploader__value input').attr('value', '');
 
         $(this).closest('.js-uploader').show();
 
@@ -51,11 +51,11 @@ jQuery(document).ready(function ($) {
     /**
      * 单文件上传时，如果已有文件，移除上传组件
      */
-    $('input[name=input_shadow]').each(function() {
+    $('input[name=input_shadow]').each(function () {
         var multiple = $(this).attr('multiple'),
-            thumbs = $(this).closest('.js-uploader').find('.c-uploader__preview').children().length;
+            thumbnails = $(this).closest('.js-uploader').find('.c-uploader__value').children().length;
 
-        if ((typeof multiple === typeof undefined || multiple === false) && thumbs > 0) {
+        if ((typeof multiple === typeof undefined || multiple === false) && thumbnails > 0) {
             $(this).closest('.js-uploader').find('.c-uploader__text').hide();
             $(this).closest('.js-uploader').find('.c-uploader__or').hide();
             $(this).parent().hide();

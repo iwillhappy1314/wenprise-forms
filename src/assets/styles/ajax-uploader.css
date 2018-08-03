@@ -1,4 +1,4 @@
-.dm-uploader {
+.c-uploader {
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -7,19 +7,21 @@
   user-select: none;
   border: 0.25rem dashed #a5a5c7;
   text-align: center;
+  padding: 2rem;
+  max-width: 20rem;
 }
 
-.dm-uploader.active {
+.c-uploader.active {
   border-color: red;
   border-style: solid;
 }
 
-.dm-uploader .btn {
+.c-uploader .btn {
   position: relative;
   overflow: hidden;
 }
 
-.dm-uploader .btn input[type="file"] {
+.c-uploader .btn input[type="file"] {
   position: absolute;
   top: 0;
   right: 0;
@@ -29,6 +31,25 @@
   opacity: .0;
   filter: alpha(opacity=0);
   cursor: pointer;
+}
+
+.c-uploader__text {
+  color: #999;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.c-uploader__browser {
+  margin-bottom: 2rem;
+}
+
+.c-uploader__or {
+  display: none;
+}
+
+.fn-hide {
+  display: none;
 }
 
 

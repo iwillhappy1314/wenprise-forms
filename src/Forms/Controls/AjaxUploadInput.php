@@ -107,8 +107,8 @@ class  AjaxUploadInput extends BaseControl
                 <span>' . $placeholder . '</span>
                 <input class="c-uploader__shadow" type="file" data-url="' . $data_url . '" name="js_input_shadow" ' . ( $this->control->multiple ? 'multiple="multiple"' : '' ) . ' title="' . $placeholder . '">
               </label>
-              <div class="c-uploader__preview">' . $el . '</div>
-              <div class="c-uploader__thumb clearfix ' . $hide . '">' . $preview . '</div>
+              <div class="c-uploader__value">' . $el . '</div>
+              <div class="c-uploader__preview clearfix ' . $hide . '">' . $preview . '</div>
             </div>
         </div>';
 
