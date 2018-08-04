@@ -222,7 +222,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 
 
 	/**
-	 * Chosen 输入框架
+	 * Chosen 输入空间
 	 *
 	 * @param            $name
 	 * @param null       $label
@@ -234,6 +234,22 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 	public function addChosen( $name, $label = null, array $items = null, array $settings = null )
 	{
 		return $this[ $name ] = ( new Controls\ChosenInput( $label, $items, $settings ) );
+	}
+
+
+	/**
+	 * Chosen 多选输入控件
+	 *
+	 * @param            $name
+	 * @param null       $label
+	 * @param array|null $items
+	 * @param array|null $settings
+	 *
+	 * @return \Wenprise\Forms\Controls\MultiChosenInput
+	 */
+	public function addMultiChosen( $name, $label = null, array $items = null, array $settings = null )
+	{
+		return $this[ $name ] = ( new Controls\MultiChosenInput( $label, $items, $settings ) );
 	}
 
 
