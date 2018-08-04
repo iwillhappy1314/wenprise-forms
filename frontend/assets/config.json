@@ -2,6 +2,7 @@
   "entry": {
     "main": [
       "./scripts/main.js",
+      "./scripts/modules/nette-forms.js",
       "./styles/main.scss"
     ],
     "table-input": [
@@ -10,9 +11,6 @@
     "ion-rangeslider": [
       "./scripts/modules/ion-rangeslider.js",
       "./styles/ion-rangeslider.scss"
-    ],
-    "nette-forms": [
-      "./scripts/modules/nette-forms.js"
     ],
     "ajax-uploader": [
       "./scripts/modules/ajax-uploader.js",
