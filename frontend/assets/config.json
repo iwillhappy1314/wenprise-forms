@@ -12,6 +12,9 @@
       "./scripts/modules/ion-rangeslider.js",
       "./styles/ion-rangeslider.scss"
     ],
+    "moment": [
+      "./scripts/modules/moment.js"
+    ],
     "combodate": [
       "./scripts/modules/combodate.js"
     ],
