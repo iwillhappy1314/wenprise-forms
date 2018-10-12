@@ -12,6 +12,9 @@
       "./scripts/modules/ion-rangeslider.js",
       "./styles/ion-rangeslider.scss"
     ],
+    "combodate": [
+      "./scripts/modules/combodate.js"
+    ],
     "ajax-uploader": [
       "./scripts/modules/ajax-uploader.js",
       "./styles/ajax-uploader.scss"

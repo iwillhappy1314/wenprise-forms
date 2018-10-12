@@ -61,8 +61,7 @@ class TableInput extends BaseControl
 	public function getControl()
 	{
 
-		$id            = $this->getHtmlId();
-		$name          = str_replace( 'frm-', '', $id );
+		$name          = $this->getName();
 		$settings      = $this->settings;
 		$fields        = $this->fields;
 		$default_value = $this->value ? $this->value : [];

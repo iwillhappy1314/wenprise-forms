@@ -29,14 +29,14 @@ class  AjaxUploadInput extends BaseControl
      * @param  string|object
      * @param  bool
      */
-    public function __construct( $label = null, $multiple = false )
+    public function __construct($label = null, $multiple = false)
     {
-        parent::__construct( $label );
-        $this->control->multiple = (bool) $multiple;
-	    $this->control->type = 'text';
-	    $this->setOption( 'type', 'text' );
-        $this->addCondition( Form::BLANK )
-             ->addRule( [ $this, 'isOk' ], Validator::$messages[ self::VALID ] );
+        parent::__construct($label);
+        $this->control->multiple = (bool)$multiple;
+        $this->control->type     = 'text';
+        $this->setOption('type', 'text');
+        $this->addCondition(Form::BLANK)
+             ->addRule([$this, 'isOk'], Validator::$messages[ self::VALID ]);
     }
 
 
@@ -48,15 +48,15 @@ class  AjaxUploadInput extends BaseControl
      *
      * @return void
      */
-    protected function attached( $form )
+    protected function attached($form)
     {
-        if ( $form instanceof Nette\Forms\Form ) {
-            if ( ! $form->isMethod( 'post' ) ) {
-                throw new Nette\InvalidStateException( 'File upload requires method POST.' );
+        if ($form instanceof Nette\Forms\Form) {
+            if ( ! $form->isMethod('post')) {
+                throw new Nette\InvalidStateException('File upload requires method POST.');
             }
             $form->getElementPrototype()->enctype = 'multipart/form-data';
         }
-        parent::attached( $form );
+        parent::attached($form);
     }
 
 
@@ -70,32 +70,32 @@ class  AjaxUploadInput extends BaseControl
 
         $el = parent::getControl();
 
-        if ( function_exists( 'wp_enqueue_script' ) ) {
-            wp_enqueue_style( 'wprs-ajax-uploader' );
-            wp_enqueue_script( 'wprs-ajax-uploader' );
+        if (function_exists('wp_enqueue_script')) {
+            wp_enqueue_style('wprs-ajax-uploader');
+            wp_enqueue_script('wprs-ajax-uploader');
         }
 
         $name        = $this->getHtmlName();
         $id          = $this->getHtmlId();
-        $placeholder = $this->control->getAttribute( 'placeholder' ) ?? __('Select File', 'wprs') ;
-        $data_url    = $this->control->getAttribute( 'data-url' );
+        $placeholder = $this->control->getAttribute('placeholder') ? $this->control->getAttribute('placeholder') : __('Select File', 'wprs');
+        $data_url    = $this->control->getAttribute('data-url');
         $value       = $this->value;
         $preview     = '';
-        $hide        = 'fn-hide';
+        $hide        = 'u-hide';
 
         $el->class[] = $hide;
 
         // 如果有默认值，设置隐藏的真实表单
-        if ( $value && ! empty( $value ) ) {
+        if ($value && ! empty($value)) {
             $hide = '';
-            if ( is_array( $value ) ) {
-                foreach ( $value as $v ) {
-                    $el->setAttribute( 'value', $v );
-                    $preview .= $this->getPreview( $v );
+            if (is_array($value)) {
+                foreach ($value as $v) {
+                    $el->setAttribute('value', $v);
+                    $preview .= $this->getPreview($v);
                 }
             } else {
-                $el->setAttribute( 'value', $value );
-                $preview .= $this->getPreview( $value );
+                $el->setAttribute('value', $value);
+                $preview .= $this->getPreview($value);
             }
         }
 
@@ -105,7 +105,7 @@ class  AjaxUploadInput extends BaseControl
             <div class="c-uploader__browser">
               <label class="btn btn-default">
                 <span>' . $placeholder . '</span>
-                <input class="c-uploader__shadow" type="file" data-url="' . $data_url . '" name="js_input_shadow" ' . ( $this->control->multiple ? 'multiple="multiple"' : '' ) . ' title="' . $placeholder . '">
+                <input class="c-uploader__shadow" type="file" data-url="' . $data_url . '" name="js_input_shadow" ' . ($this->control->multiple ? 'multiple="multiple"' : '') . ' title="' . $placeholder . '">
               </label>
               <div class="c-uploader__value">' . $el . '</div>
               <div class="c-uploader__preview clearfix ' . $hide . '">' . $preview . '</div>
@@ -123,20 +123,20 @@ class  AjaxUploadInput extends BaseControl
      *
      * @return string
      */
-    public function getPreview( $value )
+    public function getPreview($value)
     {
 
-        if ( function_exists( 'wp_get_attachment_thumb_url' ) ) {
-            $thumb = wp_get_attachment_thumb_url( $value );
+        if (function_exists('wp_get_attachment_thumb_url')) {
+            $thumb = wp_get_attachment_thumb_url($value);
         } else {
             $thumb = $value;
         }
 
-        $preview = Html::el( 'div class="col-xs-6 col-md-3"' );
-        $button  = Html::el( 'button type=button class=close data-value="' . $value . '"' )->addHtml( Html::el( 'span' )->setText( 'x' ) );
-        $image   = Html::el( 'img' )->src( $thumb );
+        $preview = Html::el('div class="col-xs-6 col-md-3"');
+        $button  = Html::el('button type=button class=close data-value="' . $value . '"')->addHtml(Html::el('span')->setText('x'));
+        $image   = Html::el('img')->src($thumb);
 
-        $preview->addHtml( $button . $image );
+        $preview->addHtml($button . $image);
 
         return $preview;
 
@@ -150,7 +150,7 @@ class  AjaxUploadInput extends BaseControl
      */
     public function loadHttpData()
     {
-        $this->setValue( $this->getHttpData( Form::DATA_LINE ) );
+        $this->setValue($this->getHttpData(Form::DATA_LINE));
     }
 
 
@@ -169,7 +169,7 @@ class  AjaxUploadInput extends BaseControl
      * @return static
      * @internal
      */
-    public function setValue( $value )
+    public function setValue($value)
     {
         $this->value = $value;
 
@@ -183,7 +183,7 @@ class  AjaxUploadInput extends BaseControl
      */
     public function getHtmlName()
     {
-        return parent::getHtmlName() . ( $this->control->multiple ? '[]' : '' );
+        return parent::getHtmlName() . ($this->control->multiple ? '[]' : '');
     }
 
 

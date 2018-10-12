@@ -8,83 +8,87 @@ use Nette\Utils\Html;
 /**
  * 颜色选择
  */
-class SmsInput extends TextInput {
+class SmsInput extends TextInput
+{
 
-	private $settings = [];
+    private $settings = [];
 
-	/**
-	 * @param  string|object Html      标签
-	 * @param  array         $settings TinyMce 设置
-	 */
-	public function __construct( $label = null, array $settings = null ) {
-		parent::__construct( $label );
-		$this->settings = (array) $settings;
-	}
+    /**
+     * @param  string|object Html      标签
+     * @param  array $settings TinyMce 设置
+     */
+    public function __construct($label = null, array $settings = null)
+    {
+        parent::__construct($label);
+        $this->settings = (array)$settings;
+    }
 
 
-	/**
-	 * 生成控件 HTML 内容
-	 *
-	 * @return string
-	 */
-	public function getControl() {
+    /**
+     * 生成控件 HTML 内容
+     *
+     * @return string
+     */
+    public function getControl()
+    {
 
-		$el = parent::getControl();
+        $el = parent::getControl();
 
-		$action_id = $this->getHtmlId() . '-action';
-		$data_url  = $this->control->getAttribute( 'data-url' );
+        $name      = $this->getName();
+        $action_id = $this->getHtmlId() . '-action';
+        $data_url  = $this->control->getAttribute('data-url');
 
-		$input_group   = Html::el( 'div class=input-group' );
-		$action_button = Html::el( 'span class=input-group-btn' )
-		                     ->addHtml( Html::el( 'input type=button class="btn btn-primary" id="' . $action_id . '" value="获取验证码"' ) );
+        $input_group   = Html::el('div class=input-group');
+        $action_button = Html::el('span class=input-group-btn')
+                             ->addHtml(Html::el('input type=button class="btn btn-primary" id="' . $action_id . '" value="获取验证码"'));
 
-		$input_group->addHtml( $el );
-		$input_group->addHtml( $action_button );
+        $input_group->addHtml($el);
+        $input_group->addHtml($action_button);
 
-		$script = "<script>
+        $script = "<script>
             jQuery(document).ready(function ($) {
                 //timer处理函数
-			    var InterValObj; //timer变量，控制时间
-			    var count = 60; //间隔函数，1秒执行
-			    var curCount;//当前剩余秒数
+                var InterValObj; //timer变量，控制时间
+                var count = 60; //间隔函数，1秒执行
+                var curCount;//当前剩余秒数
                 
-                var action_id= $('#" . $action_id . "');
+                var action_id= $('#$action_id');
                 
                 // 设置倒计时
                 function set_count_dwon() {
-			        if (curCount === 0) {
-			            window.clearInterval(InterValObj);//停止计时器
-			            action_id.removeAttr('disabled');//启用按钮
-			            action_id.val('重新发送');
-			        }
-			        else {
-			            curCount--;
-			            action_id.val(curCount + '后重新获取');
-			        }
-			    }
+                    if (curCount === 0) {
+                        window.clearInterval(InterValObj);//停止计时器
+                        action_id.removeAttr('disabled');//启用按钮
+                        action_id.val('重新发送');
+                    }
+                    else {
+                        curCount--;
+                        action_id.val(curCount + '后重新获取');
+                    }
+                }
                 
                 action_id.click(function () {
                     $.ajax({
                         type      : 'POST',
                         dataType  : 'json',
-                        url       : '" . $data_url . "',
+                        url       : '$data_url',
                         data      : {
-                            'mobile': $('input[name=mobile]').val()
+                            '$name': $('input[name=$name]').val()
                         },
                         beforeSend: function () {
                             $(this).addClass('loading');
                         },
                         success   : function (data) {
-		                    alert(data.message);
+                            alert(data.message);
                             if (data.sucees === 1) {
                                 // 验证码发送成功后，启动计时器
-			                    curCount = count;
-			
-			                    // 设置button效果，开始计时
-			                    action_id.prop('disabled', true);
-			                    action_id.val(curCount + '后重新获取');
-			                    
-	                            InterValObj = window.setInterval(set_count_dwon, 1000); //启动计时器，1秒执行一次
+                                curCount = count;
+            
+                                // 设置button效果，开始计时
+                                action_id.prop('disabled', true);
+                                action_id.val(curCount + '后重新获取');
+                                
+                                InterValObj = window.setInterval(set_count_dwon, 1000); //启动计时器，1秒执行一次
                                 $(this).removeClass('loading');
                             }
                         },
@@ -97,6 +101,6 @@ class SmsInput extends TextInput {
             });
         </script>";
 
-		return $input_group . $script;
-	}
+        return $input_group . $script;
+    }
 }
