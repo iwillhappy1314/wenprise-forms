@@ -46,7 +46,7 @@ class BirthdayPickerInput extends TextInput
 
         $script = "<script>
 			jQuery(document).ready(function($) {
-				$('#$id').combodate(json_encode( $settings ));
+				$('#$id').combodate(" . json_encode($settings) . ");
 			});
 		</script>";
 

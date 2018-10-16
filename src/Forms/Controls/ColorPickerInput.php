@@ -49,7 +49,7 @@ class ColorPickerInput extends TextInput
 
 		$script = "<script>
 			jQuery(document).ready(function($) {
-				var picker = $('#" . $id . "');
+				var picker = $('#$id');
 				picker.iris(" . json_encode( $settings ) . ");
 				picker.blur(function() {
 					setTimeout(function() {
