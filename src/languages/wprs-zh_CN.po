@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Shortcode 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-10-16 17:45+0800\n"
-"PO-Revision-Date: 2018-10-16 17:46+0800\n"
+"POT-Creation-Date: 2018-10-16 19:37+0800\n"
+"PO-Revision-Date: 2018-10-16 19:37+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
@@ -18,31 +18,31 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Forms/Controls/AjaxUploadInput.php:80
+#: Forms/Controls/AjaxUploadInput.php:81
 msgid "Select File"
 msgstr "选择文件"
 
-#: Forms/Controls/AjaxUploadInput.php:103
+#: Forms/Controls/AjaxUploadInput.php:104
 msgid "Drag &amp; Drop Images Here"
 msgstr "拖放图像到这里"
 
-#: Forms/Controls/AjaxUploadInput.php:104
+#: Forms/Controls/AjaxUploadInput.php:105
 msgid "-or-"
 msgstr "- 或 -"
 
-#: helpers.php:203
+#: helpers.php:217
 msgid "Clear"
 msgstr "清除"
 
-#: helpers.php:203
+#: helpers.php:217
 msgid "Default"
 msgstr "默认"
 
-#: helpers.php:203
+#: helpers.php:217
 msgid "Select Color"
 msgstr "选择颜色"
 
-#: helpers.php:203
+#: helpers.php:217
 msgid "Current Color"
 msgstr "当前颜色"
 

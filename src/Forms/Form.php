@@ -169,6 +169,8 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
      * @param      $field
      *
      * @return \Wenprise\Forms\Controls\ChainedInput
+     *
+     * @deprecated
      */
     public function addChainedSelect($name, $label = null, array $settings = null, array $field = null)
     {

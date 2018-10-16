@@ -109,7 +109,7 @@ class  AjaxUploadInput extends BaseControl
                 <input class="c-uploader__shadow" type="file" data-url="' . $data_url . '" name="js-input-shadow" ' . ($this->control->multiple ? 'multiple="multiple"' : '') . ' title="' . $placeholder . '">
               </label>
               <div class="c-uploader__value">' . $el . '</div>
-              <div class="c-uploader__preview clearfix ' . $hide . '">' . $preview . '</div>
+              <div class="c-uploader__preview ' . $hide . '">' . $preview . '</div>
             </div>
         </div>';
 
@@ -133,8 +133,10 @@ class  AjaxUploadInput extends BaseControl
             $thumb = $value;
         }
 
-        $preview = Html::el('div class="col-xs-6 col-md-3"');
-        $button  = Html::el('button type=button class=close data-value="' . $value . '"')->addHtml(Html::el('span')->setText('x'));
+        $preview = Html::el('div class="c-uploader__thumbnail"');
+        $button  = Html::el('button type=button class=close data-value="' . $value . '"')
+                       ->addHtml(Html::el('span')->setText('x'));
+
         $image   = Html::el('img')->src($thumb);
 
         $preview->addHtml($button . $image);

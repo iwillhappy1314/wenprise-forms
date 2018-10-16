@@ -28,10 +28,14 @@
 }
 
 .c-uploader__or {
+  color: #999;
   display: none;
+  margin-bottom: 2em;
 }
 
 .c-uploader__button {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
   position: relative;
   overflow: hidden;
   height: 34px;
@@ -43,6 +47,9 @@
   text-align: center;
   vertical-align: middle;
   border-radius: 4px;
+  padding: 0 15px;
+  margin: 0;
+  font-weight: 400;
 }
 
 .c-uploader__button:active,
@@ -54,6 +61,10 @@
   border-color: #adadad;
 }
 
+.c-uploader__value {
+  display: none;
+}
+
 .c-uploader__shadow {
   position: absolute;
   top: 0;
@@ -62,6 +73,7 @@
   border: solid transparent;
   width: 100%;
   opacity: .0;
+  border: 0;
   filter: alpha(opacity=0);
   cursor: pointer;
 }

@@ -31,8 +31,10 @@ jQuery(document).ready(function($) {
           find('.c-uploader__preview').
           empty().
           show().
-          append('<a href="#" class="thumbnail"><img src="' +
-              data.thumb + '" alt="Thumbnail"></a>');
+          append(
+              '<div class="c-uploader__thumbnail"><button type=button class="close" data-value=' +
+              data.id + '>x</button><img src="' +
+              data.thumb + '" alt="Thumbnail"></div>');
     },
   });
 
