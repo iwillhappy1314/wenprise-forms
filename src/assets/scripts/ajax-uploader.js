@@ -92,60 +92,93 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 jQuery(document).ready(function($) {
 
+  var uploader = $('.js-uploader'),
+      name = uploader.data('name'),
+      is_multiple = (uploader.data('multiple') === true);
+
   /**
    * 初始化文件上传组件
    */
-  $('.js-uploader').dmUploader({
+  uploader.dmUploader({
     url            : $('.js-uploader .c-uploader__shadow').data('url'),
     type           : 'POST',
     dataType       : 'json',
     allowedTypes   : 'image/*',
+    multiple       : is_multiple,
     onUploadSuccess: function(id, data) {
 
-      var multiple = $(this).
-          find('input[name=js-input-shadow]').
-          attr('multiple');
+      var button = '<button type=button class="close" data-value=' +
+          data.id + '>x</button>',
+          thumb = '<img src="' + data.thumb + '" alt="Thumbnail">';
 
-      if (typeof multiple === typeof undefined || multiple === false) {
+      $(this).
+          find('input:text').
+          filter(function() { return this.value === ''; }).
+          remove();
+
+      if (!is_multiple) {
         $(this).find('.c-uploader__text').hide();
-        $(this).find('.c-uploader__or').hide();
         $(this).find('.c-uploader__button').hide();
-      }
-      $(this).
-          find('.c-uploader__value').
-          empty().
-          append('<input type="hidden" name="' + $(this).data('name') +
-              '" value="' + data.id + '">');
 
-      $(this).
-          find('.c-uploader__preview').
-          empty().
-          show().
-          append('<a href="#" class="thumbnail"><img src="' +
-              data.thumb + '" alt="Thumbnail"></a>');
+        $(this).
+            find('.c-uploader__value').
+            empty().
+            append(
+                '<input type="hidden" name="' + name + '" value="' + data.id +
+                '">');
+
+        $(this).
+            find('.c-uploader__preview').
+            empty().
+            show().
+            append(
+                '<div class="c-uploader__thumbnail">' + button + thumb +
+                '</div>');
+      } else {
+
+        $(this).
+            find('.c-uploader__value').
+            append('<input type="hidden" name="' + name +
+                '" value="' + data.id + '">');
+
+        $(this).
+            find('.c-uploader__preview').
+            show().
+            append(
+                '<div class="c-uploader__thumbnail">' + button + thumb +
+                '</div>');
+      }
+
     },
   });
 
   /**
    * 删除缩略图
    */
-  $('.js-uploader button.close').bind('click', function() {
-    var value = $(this).data('value'),
-        multiple = $(this).
-            closest('.js-uploader').
-            find('input[name=js-input-shadow]').
-            attr('multiple');
+  $('.js-uploader button.close').live('click', function() {
 
-    $(this).parent().hide();
-    $('.c-uploader__value input').attr('value', '');
+    var value = $(this).data('value');
 
-    $(this).closest('.js-uploader').show();
+    // 移除值
+    if (!is_multiple) {
 
-    if (typeof multiple === typeof undefined || multiple === false) {
+      $('.c-uploader__value input').attr('value', '');
+
+      $(this).closest('.js-uploader').show();
       $(this).closest('.js-uploader').find('.c-uploader__text').show();
-      $(this).closest('.js-uploader').find('.c-uploader__or').show();
-      $(this).closest('.js-uploader').find('label').show();
+      $(this).closest('.js-uploader').find('.c-uploader__button').show();
+
+    } else {
+
+      $(this).
+          closest('.js-uploader').
+          find('input[value=' + value + ']').
+          remove();
+
     }
+
+    // 移除缩略图
+    $(this).parent().remove();
 
   });
 
@@ -153,16 +186,14 @@ jQuery(document).ready(function($) {
    * 单文件上传时，如果已有文件，移除上传组件
    */
   $('input[name=js-input-shadow]').each(function() {
-    var multiple = $(this).attr('multiple'),
-        thumbnails = $(this).
-            closest('.js-uploader').
-            find('.c-uploader__value').
-            children().length;
 
-    if ((typeof multiple === typeof undefined || multiple === false) &&
-        thumbnails > 0) {
+    var thumbnails = $(this).
+        closest('.js-uploader').
+        find('.c-uploader__preview').
+        children().length;
+
+    if (!is_multiple && thumbnails > 0) {
       $(this).closest('.js-uploader').find('.c-uploader__text').hide();
-      $(this).closest('.js-uploader').find('.c-uploader__or').hide();
       $(this).parent().hide();
     }
 

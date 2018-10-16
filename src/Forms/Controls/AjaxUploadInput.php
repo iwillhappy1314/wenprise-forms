@@ -83,6 +83,7 @@ class  AjaxUploadInput extends BaseControl
         $value       = $this->value;
         $preview     = '';
         $hide        = 'u-hide';
+        $multiple    = $this->control->multiple ? 'true' : 'false';
 
         $el->class[] = $hide;
 
@@ -100,9 +101,8 @@ class  AjaxUploadInput extends BaseControl
             }
         }
 
-        $html = '<div id="' . $id . '" class="js-uploader c-uploader" data-name="' . $name . '">
+        $html = '<div id="' . $id . '" class="js-uploader c-uploader" data-name="' . $name . '" data-multiple="' . $multiple . '">
             <div class="c-uploader__text">' . __('Drag &amp; Drop Images Here', 'wprs') . '</div>
-            <div class="c-uploader__or">' . __('-or-', 'wprs') . '</div>
             <div class="c-uploader__browser">
               <label class="c-uploader__button">
                 <span>' . $placeholder . '</span>
@@ -137,7 +137,7 @@ class  AjaxUploadInput extends BaseControl
         $button  = Html::el('button type=button class=close data-value="' . $value . '"')
                        ->addHtml(Html::el('span')->setText('x'));
 
-        $image   = Html::el('img')->src($thumb);
+        $image = Html::el('img')->src($thumb);
 
         $preview->addHtml($button . $image);
 
