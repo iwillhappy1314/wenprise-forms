@@ -21,6 +21,8 @@ class MultiChosenInput extends MultiSelectBox
     {
         parent::__construct($label, $items);
         $this->settings = (array)$settings;
+
+        $this->setOption('type', 'multi-chosen');
     }
 
     public function getControl()

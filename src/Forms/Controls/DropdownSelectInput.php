@@ -14,6 +14,8 @@ use Nette\Forms\Controls\ChoiceControl;
  *
  * todo: 添加验证规则，验证规则其实就是 text input 的验证规则
  * todo: 考虑在已选择项目上添加高亮的可能性
+ *
+ * @deprecated
  */
 class DropdownSelectInput extends ChoiceControl {
 

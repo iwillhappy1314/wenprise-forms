@@ -43,24 +43,37 @@ if ( ! function_exists('wprs_form')) {
         $renderer->wrappers[ 'control' ][ 'description' ]    = 'span class=help-block';
         $renderer->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=help-block';
         $form->getElementPrototype()->class($type == 'horizontal' ? 'form-horizontal' : '');
+
         $form->onRender[] = function ($form)
         {
             foreach ($form->getControls() as $control) {
-                if ( ! $control->getOption('class')) {
-                    $control->setOption('class', 'col-md-12');
-                }
-                $control->setOption('id', 'grp-' . $control->name);
+
                 $type = $control->getOption('type');
+
+                if ( ! $control->getOption('class')) {
+                    $control->setOption('class', 'col-md-12 c-form--' . $type);
+                }
+
+                $control->setOption('id', 'grp-' . $control->name);
+
                 if ($type === 'button') {
+
                     $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
                     $usedPrimary = true;
+
                 } elseif (in_array($type, ['text', 'textarea', 'select'], true)) {
+
                     $control->getControlPrototype()->addClass('form-control');
+
                 } elseif (in_array($type, ['checkbox', 'radio'], true)) {
+
                     $control->getSeparatorPrototype()->setName('div')->addClass($type . ' ' . $type . '-inline');
+
                 }
+
             }
         };
+
     }
 }
 

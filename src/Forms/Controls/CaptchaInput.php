@@ -19,6 +19,8 @@ class CaptchaInput extends TextInput {
 	public function __construct( $label = null, $settings = [] ) {
 		parent::__construct( $label );
 		$this->settings = $settings;
+
+        $this->setOption('type', 'captcha');
 	}
 
 

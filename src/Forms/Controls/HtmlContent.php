@@ -15,6 +15,7 @@ class HtmlContent extends BaseControl {
 	public function __construct( $caption = null ) {
 		parent::__construct( $caption );
 		$this->control->type = 'html';
+
 		$this->setOption( 'type', 'html' );
 	}
 

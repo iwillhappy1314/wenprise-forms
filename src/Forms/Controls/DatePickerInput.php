@@ -20,6 +20,8 @@ class DatePickerInput extends TextInput
 	{
 		parent::__construct( $label );
 		$this->settings = (array) $settings;
+
+        $this->setOption('type', 'datepicker');
 	}
 
 

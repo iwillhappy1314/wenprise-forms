@@ -6,6 +6,8 @@ use Nette\Forms\Controls\BaseControl;
 
 /**
  * 链式选择输入
+ *
+ * @deprecated
  */
 class ChainedInput extends BaseControl
 {

@@ -12,6 +12,7 @@ use Nette\Utils\Html;
  * 克隆输入
  *
  * todo: 优化实现方法
+ * @deprecated
  */
 class CloneInput extends BaseControl {
 

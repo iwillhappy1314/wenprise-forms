@@ -17,6 +17,8 @@ class CsrfInput extends HiddenField {
 	 */
 	public function __construct( $errorMessage ) {
 		parent::__construct();
+
+        $this->setOption('type', 'csrf');
 		$this->setOmitted()
 		     ->setRequired()
 		     ->addRule( self::PROTECTION, $errorMessage );

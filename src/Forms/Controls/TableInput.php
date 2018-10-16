@@ -25,6 +25,8 @@ class TableInput extends BaseControl
 		parent::__construct( $label );
 		$this->settings = (array) $settings;
 		$this->fields   = (array) $fields;
+
+        $this->setOption('type', 'table');
 	}
 
 

@@ -20,6 +20,8 @@ class BirthdayPickerInput extends TextInput
     {
         parent::__construct($label);
         $this->settings = (array)$settings;
+
+        $this->setOption('type', 'birthday');
     }
 
 
@@ -36,7 +38,11 @@ class BirthdayPickerInput extends TextInput
         $id       = $this->getHtmlId();
         $settings = $this->settings;
 
-        $settings_default = [];
+        $settings_default = [
+            'format'   => 'YYYY-MM-DD',
+            'template' => 'YYYY-MM-DD',
+            'maxYear'  => date("Y"),
+        ];
 
         $settings = array_merge($settings_default, $settings);
 

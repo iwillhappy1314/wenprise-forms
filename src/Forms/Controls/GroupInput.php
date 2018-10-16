@@ -33,8 +33,11 @@ class GroupInput extends TextInput
 	public function __construct( $label = null, $maxLength = null, $prefix = null, $suffix = null )
 	{
 		parent::__construct( $label, $maxLength );
+
 		$this->prefix = $prefix;
 		$this->suffix = $suffix;
+
+        $this->setOption('type', 'group');
 	}
 
 

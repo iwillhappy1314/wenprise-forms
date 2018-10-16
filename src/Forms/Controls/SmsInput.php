@@ -21,6 +21,8 @@ class SmsInput extends TextInput
     {
         parent::__construct($label);
         $this->settings = (array)$settings;
+
+        $this->setOption('type', 'sms');
     }
 
 

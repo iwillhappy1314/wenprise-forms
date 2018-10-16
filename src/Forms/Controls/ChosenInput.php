@@ -21,6 +21,8 @@ class ChosenInput extends SelectBox
     {
         parent::__construct($label, $items);
         $this->settings = (array)$settings;
+
+        $this->setOption('type', 'chosen');
     }
 
     public function getControl()

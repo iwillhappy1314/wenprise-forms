@@ -25,6 +25,8 @@ class SliderInput extends TextBase
 		parent::__construct( $label );
 		$this->control->type = 'hidden';
 		$this->settings      = (array) $settings;
+
+        $this->setOption('type', 'slider');
 		$this->addCondition( Form::BLANK );
 	}
 
