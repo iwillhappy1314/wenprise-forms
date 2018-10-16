@@ -100,12 +100,12 @@ class  AjaxUploadInput extends BaseControl
         }
 
         $html = '<div id="' . $id . '" class="js-uploader c-uploader" data-name="' . $name . '">
-            <div class="c-uploader__text">Drag &amp; Drop Images Here</div>
-            <div class="c-uploader__or">-or-</div>
+            <div class="c-uploader__text">' . __('Drag &amp; Drop Images Here', 'wprs') . '</div>
+            <div class="c-uploader__or">' . __('-or-', 'wprs') . '</div>
             <div class="c-uploader__browser">
-              <label class="btn btn-default">
+              <label class="c-uploader__button">
                 <span>' . $placeholder . '</span>
-                <input class="c-uploader__shadow" type="file" data-url="' . $data_url . '" name="js_input_shadow" ' . ($this->control->multiple ? 'multiple="multiple"' : '') . ' title="' . $placeholder . '">
+                <input class="c-uploader__shadow" type="file" data-url="' . $data_url . '" name="js-input-shadow" ' . ($this->control->multiple ? 'multiple="multiple"' : '') . ' title="' . $placeholder . '">
               </label>
               <div class="c-uploader__value">' . $el . '</div>
               <div class="c-uploader__preview clearfix ' . $hide . '">' . $preview . '</div>
