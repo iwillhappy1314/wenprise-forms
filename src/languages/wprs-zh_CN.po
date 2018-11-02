@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Shortcode 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-10-16 19:37+0800\n"
-"PO-Revision-Date: 2018-10-16 19:37+0800\n"
+"POT-Creation-Date: 2018-11-02 16:39+0800\n"
+"PO-Revision-Date: 2018-11-02 16:40+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_\n"
@@ -22,29 +22,44 @@ msgstr ""
 msgid "Select File"
 msgstr "选择文件"
 
-#: Forms/Controls/AjaxUploadInput.php:104
+#: Forms/Controls/AjaxUploadInput.php:105
 msgid "Drag &amp; Drop Images Here"
 msgstr "拖放图像到这里"
 
-#: Forms/Controls/AjaxUploadInput.php:105
-msgid "-or-"
-msgstr "- 或 -"
+#: Forms/Controls/SmsInput.php:45
+msgid "Get Code"
+msgstr "获取验证码"
 
-#: helpers.php:217
+#: Forms/Controls/SmsInput.php:64 Forms/Controls/SmsInput.php:68
+msgid "Get Again"
+msgstr "重新获取"
+
+#: Forms/Controls/SmsInput.php:91
+msgid "minutes Later Get Again"
+msgstr "秒后再次获取"
+
+#: Forms/Controls/SmsInput.php:99
+msgid "Send failed"
+msgstr "发送失败"
+
+#: helpers.php:219
 msgid "Clear"
 msgstr "清除"
 
-#: helpers.php:217
+#: helpers.php:219
 msgid "Default"
 msgstr "默认"
 
-#: helpers.php:217
+#: helpers.php:219
 msgid "Select Color"
 msgstr "选择颜色"
 
-#: helpers.php:217
+#: helpers.php:219
 msgid "Current Color"
 msgstr "当前颜色"
+
+#~ msgid "-or-"
+#~ msgstr "- 或 -"
 
 #~ msgid "Loop Template Name"
 #~ msgstr "循环模板名称"

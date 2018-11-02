@@ -42,7 +42,7 @@ class SmsInput extends TextInput
 
         $input_group   = Html::el('div class=input-group');
         $action_button = Html::el('span class=input-group-btn')
-                             ->addHtml(Html::el('input type=button class="btn btn-primary" id="' . $action_id . '" value="获取验证码"'));
+                             ->addHtml(Html::el('input type=button class="btn btn-primary" id="' . $action_id . '" value="' . __('Get Code', 'wprs') . '"'));
 
         $input_group->addHtml($el);
         $input_group->addHtml($action_button);
@@ -61,11 +61,11 @@ class SmsInput extends TextInput
                     if (curCount === 0) {
                         window.clearInterval(InterValObj);//停止计时器
                         action_id.removeAttr('disabled');//启用按钮
-                        action_id.val('重新发送');
+                        action_id.val('" . __('Get Again', 'wprs') . "');
                     }
                     else {
                         curCount--;
-                        action_id.val(curCount + '后重新获取');
+                        action_id.val(curCount + '" . __('Get Again', 'wprs') . "');
                     }
                 }
                 
@@ -88,7 +88,7 @@ class SmsInput extends TextInput
             
                                 // 设置button效果，开始计时
                                 action_id.prop('disabled', true);
-                                action_id.val(curCount + '后重新获取');
+                                action_id.val(curCount + '" . __('minutes Later Get Again', 'wprs') . "');
                                 
                                 InterValObj = window.setInterval(set_count_dwon, 1000); //启动计时器，1秒执行一次
                                 $(this).removeClass('loading');
@@ -96,7 +96,7 @@ class SmsInput extends TextInput
                         },
                         error     : function (data) {
                             $(this).removeClass('loading');
-                            alert('发送失败');
+                            alert('" . __('Send failed', 'wprs') . "');
                         }
                     });
                 })

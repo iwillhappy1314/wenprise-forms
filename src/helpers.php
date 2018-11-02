@@ -155,18 +155,20 @@ if ( ! function_exists('wprs_dir_to_url')) {
 }
 
 
-// 插件版本
-if ( ! defined('WENPRISE_FORM_VERSION')) {
-    define('WENPRISE_FORM_VERSION', '1.6');
-}
-
-# 设置根目录 Url
-if ( ! defined('WENPRISE_FORM_URL')) {
-    define('WENPRISE_FORM_URL', wprs_dir_to_url(__DIR__));
-}
-
-
+/**
+ * 在 WordPress 中按需加载前端文件
+ */
 if (function_exists('wp_register_style')) {
+
+    // 插件版本
+    if ( ! defined('WENPRISE_FORM_VERSION')) {
+        define('WENPRISE_FORM_VERSION', '1.6');
+    }
+
+    # 设置根目录 Url
+    if ( ! defined('WENPRISE_FORM_URL')) {
+        define('WENPRISE_FORM_URL', wprs_dir_to_url(__DIR__));
+    }
 
     /**
      * Register stylesheet and scripts.
