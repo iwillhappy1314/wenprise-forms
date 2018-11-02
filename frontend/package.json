@@ -107,6 +107,7 @@
     "chosen-js": "^1.8.7",
     "dm-file-uploader": "^1.0.2",
     "ion-rangeslider": "^2.2.0",
+    "jq-signature": "^2.0.0",
     "jquery": "^3.3.1",
     "moment": "^2.22.2",
     "nette-forms": "^2.4.2",

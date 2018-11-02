@@ -1,0 +1,1 @@
+﻿import 'jq-signature';

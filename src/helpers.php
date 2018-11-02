@@ -191,6 +191,9 @@ if (function_exists('wp_register_style')) {
         // Moment Js 日期处理
         wp_register_script('wprs-moment', WENPRISE_FORM_URL . '/assets/scripts/moment.js', ['jquery'], WENPRISE_FORM_VERSION, true);
 
+        // 签字/签名
+        wp_register_script('wprs-signature', WENPRISE_FORM_URL . '/assets/scripts/signature.js', ['jquery'], WENPRISE_FORM_VERSION, true);
+
         // Birthday Picker
         wp_register_script('wprs-combodate', WENPRISE_FORM_URL . '/assets/scripts/combodate.js', ['jquery', 'moment'], WENPRISE_FORM_VERSION, true);
 

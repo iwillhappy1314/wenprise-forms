@@ -12,59 +12,59 @@ use Nette\Forms\Form;
 class SliderInput extends TextBase
 {
 
-	private $settings = [];
+    private $settings = [];
 
-	/**
-	 * Slider Input constructor.
-	 *
-	 * @param string|null $label
-	 * @param array       $settings
-	 */
-	public function __construct( $label = null, array $settings = null )
-	{
-		parent::__construct( $label );
-		$this->control->type = 'hidden';
-		$this->settings      = (array) $settings;
+    /**
+     * Slider Input constructor.
+     *
+     * @param string|null $label
+     * @param array       $settings
+     */
+    public function __construct($label = null, array $settings = null)
+    {
+        parent::__construct($label);
+        $this->control->type = 'hidden';
+        $this->settings      = (array)$settings;
 
         $this->setOption('type', 'slider');
-		$this->addCondition( Form::BLANK );
-	}
+        $this->addCondition(Form::BLANK);
+    }
 
 
-	/**
-	 * 生成 HTML 元素
-	 *
-	 * @return string
-	 */
-	public function getControl()
-	{
+    /**
+     * 生成 HTML 元素
+     *
+     * @return string
+     */
+    public function getControl()
+    {
 
-		if ( function_exists( 'wp_enqueue_script' ) ) {
-			wp_enqueue_script( 'wprs-ion-rangeslider' );
-			wp_enqueue_style( 'wprs-ion-rangeslider' );
-		}
+        if (function_exists('wp_enqueue_script')) {
+            wp_enqueue_script('wprs-ion-rangeslider');
+            wp_enqueue_style('wprs-ion-rangeslider');
+        }
 
-		$el       = parent::getControl();
-		$id       = $this->getHtmlId();
-		$settings = $this->settings;
+        $el       = parent::getControl();
+        $id       = $this->getHtmlId();
+        $settings = $this->settings;
 
-		$settings_default = [
-			'type' => 'single',
-			'min'  => '0',
-			'max'  => '100',
-			'grid' => 'false',
-		];
+        $settings_default = [
+            'type' => 'single',
+            'min'  => '0',
+            'max'  => '100',
+            'grid' => 'false',
+        ];
 
-		$settings = array_merge( $settings_default, $settings );
+        $settings = array_merge($settings_default, $settings);
 
-		$script = '<script>
+        $script = "<script>
 	        jQuery(document).ready(function($) {
-	            $("#' . $id . '").ionRangeSlider(' . json_encode( $settings ) . ');
+	            $('$id').ionRangeSlider('" . json_encode($settings) . "');
 	        });
-	    </script>';
+	    </script>";
 
-		return $el . $script;
+        return $el . $script;
 
-	}
+    }
 
 }

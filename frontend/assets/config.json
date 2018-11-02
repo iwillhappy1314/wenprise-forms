@@ -28,6 +28,9 @@
     ],
     "datepicker": [
       "./styles/datepicker.scss"
+    ],
+    "signature": [
+      "./scripts/modules/jq-signature.js"
     ]
   },
   "publicPath": "/app/themes/sage",
