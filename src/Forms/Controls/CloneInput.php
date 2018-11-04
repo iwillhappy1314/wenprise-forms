@@ -14,7 +14,7 @@ class CloneInput extends BaseControl
 {
 
     /**
-     * DropdownInput constructor.
+     * CloneInput constructor.
      *
      * @param string|null $label
      * @param array|null  $settings
