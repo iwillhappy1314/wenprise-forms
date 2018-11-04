@@ -18,7 +18,7 @@ class ChainedInput extends BaseControl
      * @param  array         $settings TinyMce 设置
      * @param  array         $fields   TinyMce 设置
      */
-    public function __construct($label = null, $settings = [], $fields = [])
+    public function __construct($label = null, $settings = null, $fields = null)
     {
         parent::__construct($label);
         $this->settings = $settings;

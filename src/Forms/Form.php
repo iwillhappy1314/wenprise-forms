@@ -89,16 +89,15 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 添加文本克隆输入控件
      *
-     * @param      $name     string  表单名称
-     * @param      $label    string  表单标签
+     * @param      $name        string  表单名称
+     * @param      $label       string  表单标签
+     * @param      $settings    array  设置
      *
      * @return \Wenprise\Forms\Controls\CloneInput
-     *
-     * @deprecated
      */
-    public function addClone($name, $label = null)
+    public function addCloneInput($name, $label = null, array $settings = null)
     {
-        return $this[ $name ] = (new Controls\CloneInput($label));
+        return $this[ $name ] = (new Controls\CloneInput($label, $settings));
     }
 
 
