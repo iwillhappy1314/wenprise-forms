@@ -76,16 +76,17 @@ class CloneInput extends BaseControl
 
         $scripts = '<script>
                         jQuery(document).ready(function($) {
-                            var max_fields      = 10;
-                            var wrapper         = $("#' . $id . '");
-                            var add_button      = $(" .js-more-button");
-                
-                            var x = 1;
+                            var max_fields      = 10,
+                                wrapper         = $("#' . $id . '"),
+                                add_button      = $(" .js-more-button"),
+                                x = 1;
+                                
                             $(add_button).click(function(e){
                                 e.preventDefault();
+                                
                                 if(x < max_fields){
-                                    x++;
                                     $(wrapper).append(\'' . $input_group->setHtml($input_control_raw . $action_button) . '\');
+                                    x++;
                                 }
                                 
                                 return false;
@@ -93,8 +94,10 @@ class CloneInput extends BaseControl
                 
                             $(wrapper).on("click", ".js-remove-button", function(e){
                                 e.preventDefault();
+                                
                                 $(this).closest(".input-group").remove(); 
                                 x--;
+                                
                                 return false;
                             })
                         });
