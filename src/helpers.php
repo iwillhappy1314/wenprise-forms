@@ -61,7 +61,7 @@ if ( ! function_exists('wprs_form')) {
                     $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
                     $usedPrimary = true;
 
-                } elseif (in_array($type, ['text', 'textarea', 'select'], true)) {
+                } elseif (in_array($type, ['text', 'textarea', 'select', 'sms'], true)) {
 
                     $control->getControlPrototype()->addClass('form-control');
 
