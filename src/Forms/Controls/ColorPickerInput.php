@@ -34,6 +34,7 @@ class ColorPickerInput extends TextInput
 	{
 
 		$el = parent::getControl();
+        $el->setAttribute('autocomplete', 'off');
 
 		$id       = $this->getHtmlId();
 		$settings = $this->settings;

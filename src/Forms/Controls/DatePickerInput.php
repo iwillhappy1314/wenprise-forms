@@ -34,6 +34,7 @@ class DatePickerInput extends TextInput
     {
 
         $el = parent::getControl();
+        $el->setAttribute('autocomplete', 'off');
 
         $id       = $this->getHtmlId();
         $settings = $this->settings;
@@ -51,7 +52,7 @@ class DatePickerInput extends TextInput
 
         $script = "<script>
 		        jQuery(document).ready(function($){
-		        	$( '#$id' ).datepicker('" . json_encode($settings) . "');
+		        	$( '#$id' ).datepicker(" . json_encode($settings) . ");
 		        });
 		    </script>";
 

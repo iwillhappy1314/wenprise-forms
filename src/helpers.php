@@ -44,8 +44,11 @@ if ( ! function_exists('wprs_form')) {
         $renderer->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=help-block';
         $form->getElementPrototype()->class($type == 'horizontal' ? 'form-horizontal' : '');
 
+
         $form->onRender[] = function ($form)
         {
+            $text_control_type = ['text', 'textarea', 'select', 'sms', 'datepicker', 'color-picker'];
+
             foreach ($form->getControls() as $control) {
 
                 $type = $control->getOption('type');
@@ -61,7 +64,7 @@ if ( ! function_exists('wprs_form')) {
                     $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
                     $usedPrimary = true;
 
-                } elseif (in_array($type, ['text', 'textarea', 'select', 'sms'], true)) {
+                } elseif (in_array($type, $text_control_type, true)) {
 
                     $control->getControlPrototype()->addClass('form-control');
 
