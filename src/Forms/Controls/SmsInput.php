@@ -50,22 +50,22 @@ class SmsInput extends TextInput
         $script = "<script>
             jQuery(document).ready(function ($) {
                 //timer处理函数
-                var InterValObj; //timer变量，控制时间
+                var InterValObj; //timer 变量，控制时间
                 var count = 60; //间隔函数，1秒执行
-                var curCount;//当前剩余秒数
+                var current_count;//当前剩余秒数
                 
                 var action_id= $('#$action_id');
                 
                 // 设置倒计时
-                function set_count_dwon() {
-                    if (curCount === 0) {
+                function set_count_down() {
+                    if (current_count === 0) {
                         window.clearInterval(InterValObj);//停止计时器
                         action_id.removeAttr('disabled');//启用按钮
                         action_id.val('" . __('Get Again', 'wprs') . "');
                     }
                     else {
-                        curCount--;
-                        action_id.val(curCount + '" . __('Get Again', 'wprs') . "');
+                        current_count--;
+                        action_id.val(current_count + '" . __('Get Again', 'wprs') . "');
                     }
                 }
                 
@@ -82,15 +82,15 @@ class SmsInput extends TextInput
                         },
                         success   : function (data) {
                             alert(data.message);
-                            if (data.sucees === 1) {
+                            if (parseInt(data.success) === 1) {
                                 // 验证码发送成功后，启动计时器
-                                curCount = count;
+                                current_count = count;
             
                                 // 设置button效果，开始计时
                                 action_id.prop('disabled', true);
-                                action_id.val(curCount + '" . __('minutes Later Get Again', 'wprs') . "');
+                                action_id.val(current_count + '" . __('minutes Later Get Again', 'wprs') . "');
                                 
-                                InterValObj = window.setInterval(set_count_dwon, 1000); //启动计时器，1秒执行一次
+                                InterValObj = window.setInterval(set_count_down, 1000); //启动计时器，1秒执行一次
                                 $(this).removeClass('loading');
                             }
                         },
