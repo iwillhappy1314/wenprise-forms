@@ -118,6 +118,39 @@ if ( ! function_exists('wprs_admin_form')) {
         $renderer->wrappers[ 'label' ][ 'container' ]   = 'th class=row';
         $renderer->wrappers[ 'control' ][ 'container' ] = 'td';
 
+
+        $form->onRender[] = function ($form)
+        {
+            $text_control_type = ['text', 'textarea', 'select', 'sms', 'datepicker', 'color-picker'];
+
+            foreach ($form->getControls() as $control) {
+
+                $type = $control->getOption('type');
+
+                if ( ! $control->getOption('class')) {
+                    $control->setOption('class', 'col-md-12 c-form--' . $type);
+                }
+
+                $control->setOption('id', 'grp-' . $control->name);
+
+                if ($type === 'button') {
+
+                    $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
+                    $usedPrimary = true;
+
+                } elseif (in_array($type, $text_control_type, true)) {
+
+                    $control->getControlPrototype()->addClass('form-control');
+
+                } elseif (in_array($type, ['checkbox', 'radio'], true)) {
+
+                    $control->getSeparatorPrototype()->setName('div')->addClass($type . ' ' . $type . '-inline');
+
+                }
+
+            }
+        };
+
     }
 }
 
