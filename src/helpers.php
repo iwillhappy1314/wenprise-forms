@@ -104,7 +104,7 @@ if ( ! function_exists('wprs_admin_form')) {
             case 'term_meta':
                 if ($screen->base == 'term') {
                     $renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-                    $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=wprs-form-filed';
+                    $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=c-form-filed';
                 } else {
                     $renderer->wrappers[ 'controls' ][ 'container' ] = '';
                     $renderer->wrappers[ 'pair' ][ 'container' ]     = 'div class="form-field wprs-form-filed"';
@@ -112,10 +112,10 @@ if ( ! function_exists('wprs_admin_form')) {
                 break;
             default:
                 $renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-                $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=wprs-form-filed';
+                $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=c-form-filed';
         }
 
-        $renderer->wrappers[ 'label' ][ 'container' ]   = 'th class=row';
+        $renderer->wrappers[ 'label' ][ 'container' ]   = 'th class=row scope=row';
         $renderer->wrappers[ 'control' ][ 'container' ] = 'td';
 
 
@@ -128,23 +128,23 @@ if ( ! function_exists('wprs_admin_form')) {
                 $type = $control->getOption('type');
 
                 if ( ! $control->getOption('class')) {
-                    $control->setOption('class', 'col-md-12 c-form--' . $type);
+                    $control->setOption('class', 'c-form--' . $type);
                 }
 
                 $control->setOption('id', 'grp-' . $control->name);
 
                 if ($type === 'button') {
 
-                    $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
+                    $control->getControlPrototype()->addClass(empty($usedPrimary) ? 'button button-primary' : 'button');
                     $usedPrimary = true;
 
                 } elseif (in_array($type, $text_control_type, true)) {
 
-                    $control->getControlPrototype()->addClass('form-control');
+                    $control->getControlPrototype()->addClass('regular-text');
 
                 } elseif (in_array($type, ['checkbox', 'radio'], true)) {
 
-                    $control->getSeparatorPrototype()->setName('div')->addClass($type . ' ' . $type . '-inline');
+                    $control->getSeparatorPrototype()->setName('fieldset')->addClass($type . ' ' . $type . '-inline');
 
                 }
 
