@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Wenprise\Forms;
-
 
 class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 {

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Shortcode 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-11-02 16:39+0800\n"
-"PO-Revision-Date: 2018-11-02 16:40+0800\n"
+"POT-Creation-Date: 2018-12-07 11:46+0800\n"
+"PO-Revision-Date: 2018-12-07 11:47+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
@@ -42,19 +42,113 @@ msgstr "秒后再次获取"
 msgid "Send failed"
 msgstr "发送失败"
 
-#: helpers.php:219
+#: helpers.php:171
+msgid "Your session has expired. Please return to the home page and try again."
+msgstr "您的会话已过期，请返回或刷新重试。"
+
+#: helpers.php:172
+#, php-format
+msgid "Please enter %s."
+msgstr "请输入 %s 。"
+
+#: helpers.php:173
+#, php-format
+msgid "This value should not be %s."
+msgstr "这个字段的值不应为 %s。"
+
+#: helpers.php:174
+msgid "This field is required."
+msgstr "此项为必填项。"
+
+#: helpers.php:175
+msgid "This field should be blank."
+msgstr "这个字段应该留空。"
+
+#: helpers.php:176
+#, php-format
+msgid "Please enter at least %d characters."
+msgstr "请输入至少为 %d 个字符。"
+
+#: helpers.php:177
+#, php-format
+msgid "Please enter no more than %d characters."
+msgstr "请输入不超过 %d 个字符。"
+
+#: helpers.php:178
+#, php-format
+msgid "Please enter a value between %d and %d characters long."
+msgstr "请输入一个 %d 到 %d 位的字符。"
+
+#: helpers.php:179
+msgid "Please enter a valid email address."
+msgstr "请输入一个有效的电子邮件地址。"
+
+#: helpers.php:180
+msgid "Please enter a valid URL."
+msgstr "请输入一个正确的 URL。"
+
+#: helpers.php:181
+msgid "Please enter a valid integer."
+msgstr "请输入一个整数。"
+
+#: helpers.php:182
+msgid "Please enter a valid number."
+msgstr "请输入一个有效的数字。"
+
+#: helpers.php:183
+#, php-format
+msgid "Please enter a value greater than or equal to %d."
+msgstr "请输入至少为 %d 个字符。"
+
+#: helpers.php:184
+#, php-format
+msgid "Please enter a value less than or equal to %d."
+msgstr "请输入一个小于等于 %d 的数字。"
+
+#: helpers.php:185
+#, php-format
+msgid "Please enter a value between %d and %d."
+msgstr "请输入一个处于 %d 和 %d 之间的数字。"
+
+#: helpers.php:186
+#, php-format
+msgid "The size of the uploaded file can be up to %d bytes."
+msgstr "上传的文件尺寸最大为 %d 字节。"
+
+#: helpers.php:187
+#, php-format
+msgid "The uploaded data exceeds the limit of %d bytes."
+msgstr "上传的数据超过了 %d 字节的限制。"
+
+#: helpers.php:188
+msgid "The uploaded file is not in the expected format."
+msgstr "上传的文件不是有效的格式。"
+
+#: helpers.php:189
+msgid "The uploaded file must be image in format JPEG, GIF or PNG."
+msgstr "上传的文件必须为 JPED、GIF 或 PNG 格式。"
+
+#: helpers.php:190
+msgid "Please select a valid option."
+msgstr "请选择一个有效的选项。"
+
+#: helpers.php:191
+msgid "An error occurred during file upload."
+msgstr "上传时出现了一些错误。"
+
+#: helpers.php:299
 msgid "Clear"
 msgstr "清除"
 
-#: helpers.php:219
+#: helpers.php:299
 msgid "Default"
 msgstr "默认"
 
-#: helpers.php:219
+#: helpers.php:299
 msgid "Select Color"
 msgstr "选择颜色"
 
-#: helpers.php:219
+#: helpers.php:299
 msgid "Current Color"
 msgstr "当前颜色"
 

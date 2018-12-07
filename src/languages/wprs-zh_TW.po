@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Shortcode 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-11-02 16:39+0800\n"
-"PO-Revision-Date: 2018-11-08 17:22+0800\n"
+"POT-Creation-Date: 2018-12-07 11:47+0800\n"
+"PO-Revision-Date: 2018-12-07 11:48+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_TW\n"
@@ -42,19 +42,113 @@ msgstr "秒後重新獲取"
 msgid "Send failed"
 msgstr "發送失敗"
 
-#: helpers.php:219
+#: helpers.php:171
+msgid "Your session has expired. Please return to the home page and try again."
+msgstr ""
+
+#: helpers.php:172
+#, php-format
+msgid "Please enter %s."
+msgstr "請輸入 %s。"
+
+#: helpers.php:173
+#, php-format
+msgid "This value should not be %s."
+msgstr ""
+
+#: helpers.php:174
+msgid "This field is required."
+msgstr ""
+
+#: helpers.php:175
+msgid "This field should be blank."
+msgstr ""
+
+#: helpers.php:176
+#, php-format
+msgid "Please enter at least %d characters."
+msgstr ""
+
+#: helpers.php:177
+#, php-format
+msgid "Please enter no more than %d characters."
+msgstr ""
+
+#: helpers.php:178
+#, php-format
+msgid "Please enter a value between %d and %d characters long."
+msgstr ""
+
+#: helpers.php:179
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: helpers.php:180
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: helpers.php:181
+msgid "Please enter a valid integer."
+msgstr "請輸入一個正確的整數。"
+
+#: helpers.php:182
+msgid "Please enter a valid number."
+msgstr ""
+
+#: helpers.php:183
+#, php-format
+msgid "Please enter a value greater than or equal to %d."
+msgstr ""
+
+#: helpers.php:184
+#, php-format
+msgid "Please enter a value less than or equal to %d."
+msgstr ""
+
+#: helpers.php:185
+#, php-format
+msgid "Please enter a value between %d and %d."
+msgstr ""
+
+#: helpers.php:186
+#, php-format
+msgid "The size of the uploaded file can be up to %d bytes."
+msgstr ""
+
+#: helpers.php:187
+#, php-format
+msgid "The uploaded data exceeds the limit of %d bytes."
+msgstr ""
+
+#: helpers.php:188
+msgid "The uploaded file is not in the expected format."
+msgstr ""
+
+#: helpers.php:189
+msgid "The uploaded file must be image in format JPEG, GIF or PNG."
+msgstr ""
+
+#: helpers.php:190
+msgid "Please select a valid option."
+msgstr ""
+
+#: helpers.php:191
+msgid "An error occurred during file upload."
+msgstr ""
+
+#: helpers.php:299
 msgid "Clear"
 msgstr "清除"
 
-#: helpers.php:219
+#: helpers.php:299
 msgid "Default"
 msgstr "默認"
 
-#: helpers.php:219
+#: helpers.php:299
 msgid "Select Color"
 msgstr "選擇顏色"
 
-#: helpers.php:219
+#: helpers.php:299
 msgid "Current Color"
 msgstr "當前顏色"
 

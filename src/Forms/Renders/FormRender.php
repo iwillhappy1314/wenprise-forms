@@ -6,7 +6,6 @@ use Nette;
 use Nette\Utils\Html;
 use Nette\Utils\IHtmlString;
 
-
 /**
  * 转到表单到 HTML 输出
  */

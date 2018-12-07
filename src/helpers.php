@@ -5,6 +5,7 @@
  */
 
 use Wenprise\Forms\Form;
+use Wenprise\Forms\Translator;
 use Wenprise\Forms\Renders\FormRender;
 
 /**
@@ -31,6 +32,7 @@ if ( ! function_exists('wprs_form')) {
 
         // 设置自定义 Render 方法
         $form->setRenderer(new FormRender);
+        $form->setTranslator(new Translator());
 
         $renderer                                            = $form->getRenderer();
         $renderer->wrappers[ 'group' ][ 'container' ]        = 'fieldset class=row';
@@ -95,6 +97,7 @@ if ( ! function_exists('wprs_admin_form')) {
 
         // 设置自定义 Render 方法
         $form->setRenderer(new FormRender);
+        $form->setTranslator(new Translator());
 
         $renderer                                     = $form->getRenderer();
         $renderer->wrappers[ 'group' ][ 'container' ] = null;
@@ -151,6 +154,44 @@ if ( ! function_exists('wprs_admin_form')) {
             }
         };
 
+    }
+}
+
+
+/**
+ * 获取表单验证信息
+ * 只是为了翻译功能，实际应该是用不到这个函数的
+ *
+ * @return array
+ */
+if ( ! function_exists('wprs_form_messages')) {
+    function wprs_form_messages()
+    {
+        $messages = [
+            __('Your session has expired. Please return to the home page and try again.', 'wprs'),
+            __('Please enter %s.', 'wprs'),
+            __('This value should not be %s.', 'wprs'),
+            __('This field is required.', 'wprs'),
+            __('This field should be blank.', 'wprs'),
+            __('Please enter at least %d characters.', 'wprs'),
+            __('Please enter no more than %d characters.', 'wprs'),
+            __('Please enter a value between %d and %d characters long.', 'wprs'),
+            __('Please enter a valid email address.', 'wprs'),
+            __('Please enter a valid URL.', 'wprs'),
+            __('Please enter a valid integer.', 'wprs'),
+            __('Please enter a valid number.', 'wprs'),
+            __('Please enter a value greater than or equal to %d.', 'wprs'),
+            __('Please enter a value less than or equal to %d.', 'wprs'),
+            __('Please enter a value between %d and %d.', 'wprs'),
+            __('The size of the uploaded file can be up to %d bytes.', 'wprs'),
+            __('The uploaded data exceeds the limit of %d bytes.', 'wprs'),
+            __('The uploaded file is not in the expected format.', 'wprs'),
+            __('The uploaded file must be image in format JPEG, GIF or PNG.', 'wprs'),
+            __('Please select a valid option.', 'wprs'),
+            __('An error occurred during file upload.', 'wprs'),
+        ];
+
+        return $messages;
     }
 }
 
