@@ -107,15 +107,15 @@ if ( ! function_exists('wprs_admin_form')) {
             case 'term_meta':
                 if ($screen->base == 'term') {
                     $renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-                    $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=c-form-filed';
+                    $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=c-form-field';
                 } else {
                     $renderer->wrappers[ 'controls' ][ 'container' ] = '';
-                    $renderer->wrappers[ 'pair' ][ 'container' ]     = 'div class="form-field wprs-form-filed"';
+                    $renderer->wrappers[ 'pair' ][ 'container' ]     = 'div class="form-field wprs-form-field"';
                 }
                 break;
             default:
                 $renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-                $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=c-form-filed';
+                $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=c-form-field';
         }
 
         $renderer->wrappers[ 'label' ][ 'container' ]   = 'th class=row scope=row';
