@@ -32,6 +32,9 @@ class BirthdayPickerInput extends TextInput
      */
     public function getControl()
     {
+        if (function_exists('wp_enqueue_script')) {
+            wp_enqueue_script('wprs-combodate');
+        }
 
         $el = parent::getControl();
 
@@ -45,10 +48,6 @@ class BirthdayPickerInput extends TextInput
         ];
 
         $settings = array_merge($settings_default, $settings);
-
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_script('wprs-combodate');
-        }
 
         $script = "<script>
 			jQuery(document).ready(function($) {

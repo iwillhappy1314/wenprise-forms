@@ -67,23 +67,6 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 
 
     /**
-     * 下拉选择模拟输入控件
-     *
-     * @param            $name
-     * @param null       $label
-     * @param array|null $items
-     *
-     * @return \Wenprise\Forms\Controls\DropdownSelectInput
-     *
-     * @deprecated
-     */
-    public function addDropdownSelect($name, $label = null, array $items = null)
-    {
-        return $this[ $name ] = (new Controls\DropdownSelectInput($label, $items));
-    }
-
-
-    /**
      * 添加文本克隆输入控件
      *
      * @param      $name        string  表单名称

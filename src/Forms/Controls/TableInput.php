@@ -63,14 +63,14 @@ class TableInput extends BaseControl
     public function getControl()
     {
 
+        if (function_exists('wp_enqueue_script')) {
+            wp_enqueue_script('wprs-table-input');
+        }
+
         $name          = $this->getName();
         $settings      = $this->settings;
         $fields        = $this->fields;
         $default_value = $this->value ? $this->value : [];
-
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_script('wprs-table-input');
-        }
 
         $default = [
             'caption'          => '',

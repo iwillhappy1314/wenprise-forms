@@ -37,15 +37,15 @@ class ChainedInput extends BaseControl
     public function getControl()
     {
 
+        if (function_exists('wp_enqueue_script')) {
+            wp_enqueue_script('frm-chained');
+        }
+
         $id            = $this->getHtmlId();
         $name          = $this->getHtmlName();
         $settings      = $this->settings;
         $fields        = $this->fields;
         $default_value = $this->value ? $this->value : [];
-
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_script('frm-chained');
-        }
 
         $settings_default = [
             'selects'    => $fields,

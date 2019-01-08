@@ -28,6 +28,11 @@ class MultiChosenInput extends MultiSelectBox
     public function getControl()
     {
 
+        if (function_exists('wp_enqueue_script')) {
+            wp_enqueue_style('wprs-chosen');
+            wp_enqueue_script('wprs-chosen');
+        }
+
         $el = parent::getControl();
 
         $id       = $this->getHtmlId();
@@ -36,11 +41,6 @@ class MultiChosenInput extends MultiSelectBox
         $settings_default = [
             'disable_search' => false,
         ];
-
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_style('wprs-chosen');
-            wp_enqueue_script('wprs-chosen');
-        }
 
         $settings = array_merge($settings_default, $settings);
 

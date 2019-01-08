@@ -33,6 +33,11 @@ class ColorPickerInput extends TextInput
 	public function getControl()
 	{
 
+        if ( function_exists( 'wp_enqueue_script' ) ) {
+            wp_enqueue_script( 'iris' );
+            wp_enqueue_script( 'wp-color-picker' );
+        }
+
 		$el = parent::getControl();
         $el->setAttribute('autocomplete', 'off');
 
@@ -44,11 +49,6 @@ class ColorPickerInput extends TextInput
 		];
 
 		$settings = array_merge( $settings_default, $settings );
-
-		if ( function_exists( 'wp_enqueue_script' ) ) {
-			wp_enqueue_script( 'iris' );
-			wp_enqueue_script( 'wp-color-picker' );
-		}
 
 		$script = "<script>
 			jQuery(document).ready(function($) {

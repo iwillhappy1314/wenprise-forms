@@ -47,8 +47,11 @@ class CloneInput extends BaseControl
 
         $input_group = Html::el('div class=input-group');
 
-        $input_control     = Html::el('input name="' . $name . '" class=form-control');
-        $input_control_raw = Html::el('input name="' . $name . '" class=form-control');
+        $input_control = Html::el('input class=form-control')
+                             ->setAttribute('name', $name);
+
+        $input_control_raw = Html::el('input class=form-control')
+                                 ->setAttribute('name', $name);
 
         $action_button = Html::el('span class=input-group-btn')
                              ->addHtml(
@@ -56,7 +59,8 @@ class CloneInput extends BaseControl
                                      ->setText('Remove')
                              );
 
-        $clone_group = Html::el('div class=frm-group-input id="' . $id . '"');
+        $clone_group = Html::el('div class=frm-group-input')
+                           ->setAttribute('id', $id);
 
         $add_button = Html::el('button class="btn btn-default btn-sm js-more-button"')
                           ->setText('Add More Fields');
