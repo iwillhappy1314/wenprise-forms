@@ -137,7 +137,7 @@ class  AjaxUploadInput extends BaseControl
         $button  = Html::el('button type=button class=close data-value="' . $value . '"')
                        ->addHtml(Html::el('span')->setText('x'));
 
-        $image = Html::el('img')->src($thumb);
+        $image = Html::el('img')->setAttribute('src', $thumb);
 
         $preview->addHtml($button . $image);
 

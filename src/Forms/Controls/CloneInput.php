@@ -36,7 +36,8 @@ class CloneInput extends BaseControl
     public function getControl()
     {
 
-        $el = parent::getControl()->addClass('form-control');
+
+        $el = parent::getControl()->appendAttribute('class', 'form-control');
 
         $name = $this->getHtmlName();
         $id   = $this->getHtmlId();
