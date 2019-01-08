@@ -103,7 +103,7 @@
     "yargs": "~11.0.0"
   },
   "dependencies": {
-    "bootstrap": "v3.3.7",
+    "bootstrap": "v3.4.0",
     "chosen-js": "^1.8.7",
     "dm-file-uploader": "^1.0.2",
     "ion-rangeslider": "^2.2.0",
