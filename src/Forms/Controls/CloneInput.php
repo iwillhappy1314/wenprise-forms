@@ -69,13 +69,14 @@ class CloneInput extends BaseControl
         if (count($value) > 0) {
 
             // 设置第一个值
-            $el->setValue($value[ 0 ]);
+            $el->setAttribute('value', $value[ 0 ]);
             unset($value[ 0 ]);
 
             // 设置其他值
             foreach ($value as $k => $v) {
                 if ($k != 0) {
-                    $el .= $input_group->setHtml($input_control->setValue($v) . $action_button);
+                    $el .= $input_group
+                        ->setHtml($input_control->setAttribute('value', $v) . $action_button);
                 }
             }
 
