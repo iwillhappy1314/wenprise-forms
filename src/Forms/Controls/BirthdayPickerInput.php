@@ -5,7 +5,7 @@ namespace Wenprise\Forms\Controls;
 use Nette\Forms\Controls\TextInput;
 
 /**
- * 颜色选择
+ * BirthdayPicker Input
  */
 class BirthdayPickerInput extends TextInput
 {

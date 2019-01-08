@@ -5,7 +5,7 @@ namespace Wenprise\Forms\Controls;
 use Nette\Forms\Controls\TextInput;
 
 /**
- * Multiline text input control.
+ * DatePicker input control.
  */
 class DatePickerInput extends TextInput
 {
@@ -33,6 +33,11 @@ class DatePickerInput extends TextInput
     public function getControl()
     {
 
+        if (function_exists('wp_enqueue_script')) {
+            wp_enqueue_style('jquery-ui-datepicker');
+            wp_enqueue_script('jquery-ui-datepicker');
+        }
+
         $el = parent::getControl();
         $el->setAttribute('autocomplete', 'off');
 
@@ -42,11 +47,6 @@ class DatePickerInput extends TextInput
         $settings_default = [
             'dateFormat' => 'yy-mm-dd',
         ];
-
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_style('jquery-ui-datepicker');
-            wp_enqueue_script('jquery-ui-datepicker');
-        }
 
         $settings = array_merge($settings_default, $settings);
 

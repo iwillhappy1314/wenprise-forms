@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\BaseControl;
+use Nette\Utils\Html;
 
 /**
  * 链式选择输入
@@ -53,15 +54,22 @@ class ChainedInput extends BaseControl
 
         $settings = array_merge($settings_default, $settings);
 
-        $html = '<div id="' . $id . '" class="input-group frm-chained">';
+        $html = Html::el('div')
+                    ->setAttribute('id', $id)
+                    ->setAttribute('class', 'input-group frm-chained');
 
         $i = 0;
         foreach ($fields as $field) {
-            $html .= '<select name="' . $name . '" class="form-control ' . $field . '" data-value="' . $default_value[ $i ] . '"></select>';
+
+            $html->addHtml(
+                Html::el('select class=form-control')
+                    ->appendAttribute('class', $field)
+                    ->setAttribute('name', $name)
+                    ->data('value', $default_value[ $i ])
+            );
+
             $i++;
         }
-
-        $html .= '</div>';
 
         $html .= "<script>
 		    jQuery(document).ready(function($){

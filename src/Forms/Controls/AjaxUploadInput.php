@@ -101,17 +101,41 @@ class  AjaxUploadInput extends BaseControl
             }
         }
 
-        $html = '<div id="' . $id . '" class="js-uploader c-uploader" data-name="' . $name . '" data-multiple="' . $multiple . '">
-            <div class="c-uploader__text">' . __('Drag &amp; Drop Images Here', 'wprs') . '</div>
-            <div class="c-uploader__browser">
-              <label class="c-uploader__button">
-                <span>' . $placeholder . '</span>
-                <input class="c-uploader__shadow" type="file" data-url="' . $data_url . '" name="js-input-shadow" ' . ($this->control->multiple ? 'multiple="multiple"' : '') . ' title="' . $placeholder . '">
-              </label>
-              <div class="c-uploader__value">' . $el . '</div>
-              <div class="c-uploader__preview ' . $hide . '">' . $preview . '</div>
-            </div>
-        </div>';
+        $html = Html::el('div')
+                    ->setAttribute('id', $id)
+                    ->setAttribute('class', 'js-uploader c-uploader')
+                    ->data('name', $name)
+                    ->data('multiple', $multiple);
+
+        $html
+            ->addHtml(
+                Html::el('div class=c-uploader__text')
+                    ->addText(__('Drag &amp; Drop Images Here', 'wprs'))
+            )->addHtml(
+                Html::el('div class=c-uploader__browser')
+                    ->addHtml(
+                        Html::el('label class=c-uploader__button')
+                            ->addHtml(
+                                Html::el('span')->addHtml($placeholder)
+                            )
+                            ->addHtml(
+                                Html::el('input type=file class=c-uploader__shadow')
+                                    ->setAttribute('name', 'js-input-shadow')
+                                    ->setAttribute('title', $placeholder)
+                                    ->setAttribute('multiple', $this->control->multiple ? 'multiple="multiple"' : '')
+                                    ->data('url', $data_url)
+                            )
+                    )
+                    ->addHtml(
+                        Html::el('div class=c-uploader__value')
+                            ->addText($el)
+                    )
+                    ->addHtml(
+                        Html::el('div class=c-uploader__preview')
+                            ->appendAttribute('class', $hide)
+                            ->addText($preview)
+                    )
+            );
 
         return $html;
     }
@@ -134,8 +158,12 @@ class  AjaxUploadInput extends BaseControl
         }
 
         $preview = Html::el('div class="c-uploader__thumbnail"');
-        $button  = Html::el('button type=button class=close data-value="' . $value . '"')
-                       ->addHtml(Html::el('span')->setText('x'));
+        $button  = Html::el('button type=button class=close')
+                       ->data('value', $value)
+                       ->addHtml(
+                           Html::el('span')
+                               ->setText('x')
+                       );
 
         $image = Html::el('img')->setAttribute('src', $thumb);
 

@@ -42,7 +42,12 @@ class SmsInput extends TextInput
 
         $input_group   = Html::el('div class=input-group');
         $action_button = Html::el('span class=input-group-btn')
-                             ->addHtml(Html::el('input type=button class="btn btn-primary" id="' . $action_id . '" value="' . __('Get Code', 'wprs') . '"'));
+                             ->addHtml(
+                                 Html::el('input type=button')
+                                     ->setAttribute('id', $action_id)
+                                     ->setAttribute('class', 'btn btn-primary')
+                                     ->setAttribute('value', __('Get Code', 'wprs'))
+                             );
 
         $input_group->addHtml($el);
         $input_group->addHtml($action_button);

@@ -48,8 +48,15 @@ class CaptchaInput extends TextInput
 
         $input_group   = Html::el('div class=input-group');
         $action_button = Html::el('span class=input-group-btn')
-                             ->addHtml(Html::el('img alt="Captcha" onclick="refresh_code(this)" id="' . $action_id . '" data-toggle="tooltip" title="点击刷新验证码"')
-                                           ->setAttribute('src', $data_url));
+                             ->addHtml(
+                                 Html::el('img')
+                                     ->data('toggle', 'tooltip')
+                                     ->setAttribute('id', $action_id)
+                                     ->setAttribute('title', __('Click to refresh', 'wprs'))
+                                     ->setAttribute('onclick', 'refresh_code(this)')
+                                     ->setAttribute('alt', 'Captcha')
+                                     ->setAttribute('src', $data_url)
+                             );
 
         $input_group->addHtml($el->setAttribute('class', 'form-control'));
         $input_group->addHtml($action_button);
