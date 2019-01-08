@@ -5,7 +5,6 @@ namespace Wenprise\Forms;
 class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 {
 
-
     /**
      * 添加 Csrf 跨站保护控件
      *
@@ -196,7 +195,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
      *
      * @return \Wenprise\Forms\Controls\SmsInput
      */
-    public function AddSms($name, $label = null, array $settings = null)
+    public function AddSmsInput($name, $label = null, array $settings = null)
     {
         return $this[ $name ] = (new Controls\SmsInput($label, $settings));
     }
@@ -273,7 +272,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
      *
      * @return \Wenprise\Forms\Controls\SignatureInput
      */
-    public function addSignaturePicker($name, $label = null, array $settings = null)
+    public function addSignature($name, $label = null, array $settings = null)
     {
         return $this[ $name ] = (new Controls\SignatureInput($label, $settings));
     }

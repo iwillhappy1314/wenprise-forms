@@ -34,12 +34,18 @@ class SignatureInput extends TextInput
     public function getControl()
     {
 
-        $el = parent::getControl();
+        if (function_exists('wp_enqueue_script')) {
+            wp_enqueue_script('wprs-signature');
+        }
 
-        $id       = $this->getHtmlId()->addClass('u-hide');
+        $el = parent::getControl();
+        $el->addClass('u-hide');
+
+        $id       = $this->getHtmlId();
         $settings = $this->settings;
 
-        $holder = Html::el('div id=' . 'js-' . $id);
+        $holder = Html::el('div')
+                      ->setAttribute('id', "js-$id");
 
         $settings_default = [
             'width'      => '500',
@@ -47,10 +53,6 @@ class SignatureInput extends TextInput
             'border'     => '#999',
             'background' => '#f3f3f3',
         ];
-
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_script('js-signature');
-        }
 
         $settings = array_merge($settings_default, $settings);
 
