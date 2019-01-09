@@ -13,6 +13,8 @@ use Nette\Utils\Html;
 class CloneInput extends BaseControl
 {
 
+    private $settings = [];
+
     /**
      * CloneInput constructor.
      *
@@ -43,7 +45,7 @@ class CloneInput extends BaseControl
         $id   = $this->getHtmlId();
 
         // 模拟下拉选择默认值
-        $value = $this->value;
+        $value = (array)$this->value;
 
         $input_group = Html::el('div class=input-group');
 
@@ -56,14 +58,14 @@ class CloneInput extends BaseControl
         $action_button = Html::el('span class=input-group-btn')
                              ->addHtml(
                                  Html::el('a class="btn btn-default js-remove-button"')
-                                     ->setText('Remove')
+                                     ->setText(__('Remove', 'wprs'))
                              );
 
         $clone_group = Html::el('div class=frm-group-input')
                            ->setAttribute('id', $id);
 
         $add_button = Html::el('button class="btn btn-default btn-sm js-more-button"')
-                          ->setText('Add More Fields');
+                          ->setText(__('Add More Fields', 'wprs'));
 
         // 设置默认值
         if (count($value) > 0) {

@@ -28,8 +28,7 @@ class HtmlContent extends BaseControl {
 	 */
 	public function getLabel( $caption = null ) {
 	}
-
-
+	
 	/**
 	 * 输出 HTML 内容
 	 *
