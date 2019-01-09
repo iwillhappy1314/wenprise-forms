@@ -41,16 +41,6 @@ class TableInput extends BaseControl
 
 
     /**
-     * Loads HTTP data.
-     * @return mixed
-     */
-    protected function getHttpData($type, $htmlTail = null)
-    {
-        return $this->getForm()->getHttpData($type, $this->getHtmlName() . $htmlTail);
-    }
-
-
-    /**
      *  生成 html
      *
      * @return string
