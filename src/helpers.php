@@ -24,7 +24,7 @@ if (function_exists('load_textdomain')) {
  * @param  Form   $form Nette 表单
  * @param  string $type 表单显示类型
  *
- * @return string 订单号字符串
+ * @return \Wenprise\Forms\Form
  */
 if ( ! function_exists('wprs_form')) {
     function wprs_form(Form $form, $type = 'horizontal')
@@ -79,6 +79,8 @@ if ( ! function_exists('wprs_form')) {
             }
         };
 
+        return $form;
+
     }
 }
 
@@ -88,6 +90,8 @@ if ( ! function_exists('wprs_form')) {
  *
  * @param Form   $form
  * @param string $type
+ *
+ * @return \Wenprise\Forms\Form
  */
 if ( ! function_exists('wprs_admin_form')) {
     function wprs_admin_form(Form $form, $type = 'horizontal')
@@ -153,6 +157,8 @@ if ( ! function_exists('wprs_admin_form')) {
 
             }
         };
+
+        return $form;
 
     }
 }
