@@ -32,26 +32,11 @@ class TableInput extends BaseControl
 
     /**
      * Loads HTTP data.
-     *
      * @return void
      */
     public function loadHttpData()
     {
-        $this->setValue($this->getHttpData(Form::DATA_LINE));
-    }
-
-
-    /**
-     * Sets control's value.
-     *
-     * @return static
-     * @internal
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
+        $this->setValue(array_values($this->getHttpData(Form::DATA_TEXT)));
     }
 
 
@@ -102,17 +87,6 @@ class TableInput extends BaseControl
 			</script>";
 
         return $html;
-    }
-
-
-    /**
-     * 获取 HTML 名称
-     *
-     * @return mixed
-     */
-    public function getHtmlName()
-    {
-        return parent::getHtmlName() . '[]';
     }
 
 }
