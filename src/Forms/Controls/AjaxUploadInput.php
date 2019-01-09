@@ -113,7 +113,7 @@ class  AjaxUploadInput extends BaseControl
                     ->addHtml(
                         Html::el('div class=c-uploader__preview')
                             ->appendAttribute('class', $hide)
-                            ->addText($preview)
+                            ->addHtml($preview)
                     )
             );
 
