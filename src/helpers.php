@@ -295,8 +295,13 @@ if (function_exists('wp_register_style')) {
         // 颜色选择
         wp_enqueue_style('wp-color-picker');
 
+        $colorpicker_l10n = [
+            'clear'         => __('Clear', 'wprs'),
+            'defaultString' => __('Default', 'wprs'),
+            'pick'          => __('Select Color', 'wprs'),
+            'current'       => __('Current Color', 'wprs'),
+        ];
 
-        $colorpicker_l10n = ['clear' => __('Clear'), 'defaultString' => __('Default'), 'pick' => __('Select Color'), 'current' => __('Current Color'),];
         wp_localize_script('wp-color-picker', 'wpColorPickerL10n', $colorpicker_l10n);
 
         // 注册公共样式和脚本

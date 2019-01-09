@@ -2,43 +2,56 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Wenprise Shortcode 1.0\n"
+"Project-Id-Version: Wenprise Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-12-07 11:46+0800\n"
-"PO-Revision-Date: 2018-12-07 11:47+0800\n"
+"POT-Creation-Date: 2019-01-09 11:55+0800\n"
+"PO-Revision-Date: 2019-01-09 11:55+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: Forms/Controls/AjaxUploadInput.php:81
 msgid "Select File"
 msgstr "选择文件"
 
-#: Forms/Controls/AjaxUploadInput.php:105
+#: Forms/Controls/AjaxUploadInput.php:113
 msgid "Drag &amp; Drop Images Here"
 msgstr "拖放图像到这里"
 
-#: Forms/Controls/SmsInput.php:45
+#: Forms/Controls/CaptchaInput.php:55
+msgid "Click to refresh"
+msgstr "点击刷新"
+
+#: Forms/Controls/CloneInput.php:61
+msgid "Remove"
+msgstr "删除"
+
+#: Forms/Controls/CloneInput.php:68
+msgid "Add More Fields"
+msgstr "添加更多字段"
+
+#: Forms/Controls/SmsInput.php:49
 msgid "Get Code"
 msgstr "获取验证码"
 
-#: Forms/Controls/SmsInput.php:64 Forms/Controls/SmsInput.php:68
+#: Forms/Controls/SmsInput.php:69 Forms/Controls/SmsInput.php:73
 msgid "Get Again"
 msgstr "重新获取"
 
-#: Forms/Controls/SmsInput.php:91
+#: Forms/Controls/SmsInput.php:96
 msgid "minutes Later Get Again"
 msgstr "秒后再次获取"
 
-#: Forms/Controls/SmsInput.php:99
+#: Forms/Controls/SmsInput.php:104
 msgid "Send failed"
 msgstr "发送失败"
 
@@ -140,15 +153,15 @@ msgstr "上传时出现了一些错误。"
 msgid "Clear"
 msgstr "清除"
 
-#: helpers.php:299
+#: helpers.php:300
 msgid "Default"
 msgstr "默认"
 
-#: helpers.php:299
+#: helpers.php:301
 msgid "Select Color"
 msgstr "选择颜色"
 
-#: helpers.php:299
+#: helpers.php:302
 msgid "Current Color"
 msgstr "当前颜色"
 
