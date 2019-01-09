@@ -38,7 +38,7 @@ class TextEditor extends TextArea
         $name     = $this->getHtmlName();
         $settings = $this->settings;
 
-        $default_value = $this->value ? $this->value : '';
+        $default_value = $this->getValue() ? $this->getValue() : '';
 
         $settings_default = [
             'textarea_name' => $name,

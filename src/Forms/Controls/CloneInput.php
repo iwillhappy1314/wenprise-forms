@@ -129,7 +129,6 @@ class CloneInput extends BaseControl
         return parent::getHtmlName() . '[]';
     }
 
-
     /**
      * 只要输入不为空，即为验证通过
      *

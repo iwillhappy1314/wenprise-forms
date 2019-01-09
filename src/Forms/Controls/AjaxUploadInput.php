@@ -42,26 +42,6 @@ class  AjaxUploadInput extends BaseControl
 
 
     /**
-     * This method will be called when the component (or component's parent)
-     * becomes attached to a monitored object. Do not call this method yourself.
-     *
-     * @param  Nette\ComponentModel\IComponent
-     *
-     * @return void
-     */
-    protected function attached($form)
-    {
-        if ($form instanceof Nette\Forms\Form) {
-            if ( ! $form->isMethod('post')) {
-                throw new Nette\InvalidStateException('File upload requires method POST.');
-            }
-            $form->getElementPrototype()->enctype = 'multipart/form-data';
-        }
-        parent::attached($form);
-    }
-
-
-    /**
      * 显示上传控件
      *
      * @return string
@@ -80,12 +60,12 @@ class  AjaxUploadInput extends BaseControl
         $id          = $this->getHtmlId();
         $placeholder = $this->control->getAttribute('placeholder') ? $this->control->getAttribute('placeholder') : __('Select File', 'wprs');
         $data_url    = $this->control->getAttribute('data-url');
-        $value       = $this->value;
+        $value       = $this->getValue();
         $preview     = '';
         $hide        = 'u-hide';
         $multiple    = $this->control->multiple ? 'true' : 'false';
 
-        $el->class[] = $hide;
+        $el->appendAttribute('class', $hide);
 
         // 如果有默认值，设置隐藏的真实表单
         if ($value && ! empty($value)) {
@@ -171,40 +151,6 @@ class  AjaxUploadInput extends BaseControl
 
         return $preview;
 
-    }
-
-
-    /**
-     * Loads HTTP data.
-     *
-     * @return void
-     */
-    public function loadHttpData()
-    {
-        $this->setValue($this->getHttpData(Form::DATA_LINE));
-    }
-
-
-    /**
-     * 返回表单值
-     *
-     * @return mixed
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-
-    /**
-     * @return static
-     * @internal
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
     }
 
     /**

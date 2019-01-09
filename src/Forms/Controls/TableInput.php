@@ -55,7 +55,7 @@ class TableInput extends BaseControl
         $name          = $this->getName();
         $settings      = $this->settings;
         $fields        = $this->fields;
-        $default_value = $this->value ? $this->value : [];
+        $default_value = $this->getValue() ? $this->getValue() : [];
 
         $default = [
             'caption'          => '',

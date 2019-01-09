@@ -45,7 +45,7 @@ class ChainedInput extends BaseControl
         $name          = $this->getHtmlName();
         $settings      = $this->settings;
         $fields        = $this->fields;
-        $default_value = $this->value ? $this->value : [];
+        $default_value = $this->getValue() ? $this->getValue() : [];
 
         $settings_default = [
             'selects'    => $fields,
