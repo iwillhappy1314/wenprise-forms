@@ -23,8 +23,7 @@ class BirthdayPickerInput extends TextInput
 
         $this->setOption('type', 'birthday');
     }
-
-
+    
     /**
      * 生成控件 HTML 内容
      *
