@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/app/themes/sage/assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 131);
+/******/ 	return __webpack_require__(__webpack_require__.s = 132);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -72,27 +72,27 @@ module.exports = jQuery;
 
 /***/ }),
 
-/***/ 131:
+/***/ 132:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(132);
-module.exports = __webpack_require__(134);
-
-
-/***/ }),
-
-/***/ 132:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ion_rangeslider__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ion_rangeslider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ion_rangeslider__);
+__webpack_require__(133);
+module.exports = __webpack_require__(135);
 
 
 /***/ }),
 
 /***/ 133:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ion_rangeslider__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ion_rangeslider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ion_rangeslider__);
+
+
+/***/ }),
+
+/***/ 134:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Ion.RangeSlider
@@ -2550,7 +2550,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Ion.RangeSlid
 
 /***/ }),
 
-/***/ 134:
+/***/ 135:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

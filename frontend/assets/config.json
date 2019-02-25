@@ -2,6 +2,7 @@
   "entry": {
     "main": [
       "./scripts/main.js",
+      "./scripts/modules/conditionize.js",
       "./scripts/modules/nette-forms.js",
       "./styles/main.scss"
     ],

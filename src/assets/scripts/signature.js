@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/app/themes/sage/assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 151);
+/******/ 	return __webpack_require__(__webpack_require__.s = 152);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -72,26 +72,26 @@ module.exports = jQuery;
 
 /***/ }),
 
-/***/ 151:
+/***/ 152:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(152);
-
-
-/***/ }),
-
-/***/ 152:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jq_signature__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jq_signature___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jq_signature__);
+module.exports = __webpack_require__(153);
 
 
 /***/ }),
 
 /***/ 153:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jq_signature__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jq_signature___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jq_signature__);
+
+
+/***/ }),
+
+/***/ 154:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {(function(window, document, $) {
