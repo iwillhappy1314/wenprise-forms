@@ -86,9 +86,16 @@ module.exports = __webpack_require__(129);
 /***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(jQuery) {jQuery(document).ready(function($){
+/* WEBPACK VAR INJECTION */(function(jQuery) {jQuery(document).ready(function($) {
   $('form').conditionize({
-    selector: '[data-cond]'
+    selector    : '[data-cond]',
+    customToggle: function($item, show) {
+      if (show) {
+        $item.parent().parent().show();
+      } else {
+        $item.parent().parent().hide();
+      }
+    },
   });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
