@@ -11,64 +11,86 @@ use Nette\Forms\Controls\TextInput;
 class GroupInput extends TextInput
 {
 
-	/**
-	 * @var string
-	 */
-	public $prefix;
+    /**
+     * @var string
+     */
+    public $prefix;
 
-	/**
-	 * @var string
-	 */
-	public $suffix;
+    /**
+     * @var string
+     */
+    public $suffix;
 
 
-	/**
-	 * GroupInput constructor.
-	 *
-	 * @param null   $label     string|object
-	 * @param null   $maxLength int
-	 * @param string $prefix    string|object
-	 * @param string $suffix    string|object
-	 */
-	public function __construct( $label = null, $maxLength = null, $prefix = null, $suffix = null )
-	{
-		parent::__construct( $label, $maxLength );
+    /**
+     * GroupInput constructor.
+     *
+     * @param null   $label     string|object
+     * @param null   $maxLength int
+     * @param string $prefix    string|object
+     * @param string $suffix    string|object
+     */
+    public function __construct($label = null, $maxLength = null, $prefix = null, $suffix = null)
+    {
+        parent::__construct($label, $maxLength);
 
-		$this->prefix = $prefix;
-		$this->suffix = $suffix;
+        $this->prefix = $prefix;
+        $this->suffix = $suffix;
 
         $this->setOption('type', 'group');
-	}
+    }
 
 
-	/**
-	 * 设置前缀
-	 *
-	 * @param string $prefix
-	 *
-	 * @return $this
-	 */
-	public function setPrefix( $prefix )
-	{
-		$this->prefix = $prefix;
+    /**
+     * 设置前缀
+     *
+     * @param string $prefix
+     *
+     * @return $this
+     */
+    public function setPrefix($prefix)
+    {
+        $this->prefix = $prefix;
 
-		return $this;
-	}
+        return $this;
+    }
 
 
-	/**
-	 * 设置后缀
-	 *
-	 * @param string $suffix
-	 *
-	 * @return $this
-	 */
-	public function setSuffix( $suffix )
-	{
-		$this->suffix = $suffix;
+    /**
+     * 设置后缀
+     *
+     * @param string $suffix
+     *
+     * @return $this
+     */
+    public function setSuffix($suffix)
+    {
+        $this->suffix = $suffix;
 
-		return $this;
-	}
+        return $this;
+    }
+
+
+    /**
+     * 获取前缀
+     *
+     * @return string|null
+     */
+    public function getPrefix()
+    {
+        return $this->prefix;
+    }
+
+
+    /**
+     * 获取后缀
+     *
+     * @return string|null
+     */
+    public function getSuffix()
+    {
+        return $this->suffix;
+    }
 
 
 }

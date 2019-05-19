@@ -2,7 +2,6 @@
 
 namespace Wenprise\Forms\Controls;
 
-use Nette\Forms\Form;
 use Nette\Forms\Controls\HiddenField;
 
 /**
@@ -27,32 +26,11 @@ class CsrfInput extends HiddenField
     }
 
     /**
-     * @return static
-     * @internal
-     */
-    public function setValue($value)
-    {
-        return $this;
-    }
-
-
-    /**
-     * 加载 HTTP 数据
-     *
-     * @return void
-     */
-    public function loadHttpData()
-    {
-        $this->value = $this->getHttpData(Form::DATA_TEXT);
-    }
-
-
-    /**
      * 生成 Csrf 令牌
      *
      * @return string
      */
-    private function generateToken($random = null)
+    public function generateToken($random = null)
     {
         if ($random === null) {
             $name   = $this->getHtmlName();
