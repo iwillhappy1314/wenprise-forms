@@ -21,5 +21,10 @@
       "email": "iwillhappy1314@gmail.com"
     }
   ],
-  "minimum-stability": "stable"
+  "minimum-stability": "stable",
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    }
+  }
 }
