@@ -19,12 +19,12 @@ if (function_exists('load_textdomain')) {
 /**
  * 格式化 Nette Form
  *
- * @package   helper
- *
- * @param  Form   $form Nette 表单
- * @param  string $type 表单显示类型
+ * @param Form   $form Nette 表单
+ * @param string $type 表单显示类型
  *
  * @return string 订单号字符串
+ * @package   helper
+ *
  */
 if ( ! function_exists('wprs_form')) {
     function wprs_form(Form $form, $type = 'horizontal')
@@ -87,10 +87,10 @@ if ( ! function_exists('wprs_form')) {
  * 为 WordPress 仪表盘格式化表单
  *
  * @param Form   $form
- * @param string $type
+ * @param string $type post_meta|term_meta|user_meta|options
  */
 if ( ! function_exists('wprs_admin_form')) {
-    function wprs_admin_form(Form $form, $type = 'horizontal')
+    function wprs_admin_form(Form $form, $type = 'post_meta')
     {
 
         $screen = get_current_screen();
