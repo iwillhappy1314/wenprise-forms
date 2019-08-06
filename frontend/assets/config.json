@@ -23,6 +23,9 @@
       "./scripts/modules/ajax-uploader.js",
       "./styles/ajax-uploader.scss"
     ],
+    "autocomplete": [
+      "./scripts/modules/autocomplete.js"
+    ],
     "chosen": [
       "./scripts/modules/chosen-js.js",
       "./styles/chosen.scss"

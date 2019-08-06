@@ -1,0 +1,1 @@
+import 'devbridge-autocomplete';

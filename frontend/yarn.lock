@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@types/jquery@^2.0.32":
+  version "2.0.53"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.53.tgz#89c53bc83d820e50c3b667ae2fdf4276df8b3aba"
+  integrity sha512-MZKPWUhp5TKkoJ/58NSq6io+CSUCOHm2b3Z6U4+r9v70kktB0JM+eRjdp6YmDHtw0kK2XB7L2K7/FMIoziHjUA==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -727,10 +732,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bootstrap@v3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.0.tgz#f8d77540dd3062283d2ae7687e21c1e691961640"
-  integrity sha512-F1yTDO9OHKH0xjl03DsOe8Nu1OWBIeAugGMhy3UTIYDdbbIPesQIhCEbj+HEr6wqlwweGAlP8F3OBC6kEuhFuw==
+bootstrap@v3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
+  integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
 
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.11"
@@ -2521,6 +2526,14 @@ dev-ip@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/dev-ip/-/dev-ip-1.0.1.tgz#a76a3ed1855be7a012bb8ac16cb80f3c00dc28f0"
   integrity sha1-p2o+0YVb56ASu4rBbLgPPADcKPA=
+
+devbridge-autocomplete@^1.4.10:
+  version "1.4.10"
+  resolved "https://registry.yarnpkg.com/devbridge-autocomplete/-/devbridge-autocomplete-1.4.10.tgz#9bef5ad98a5aa83b950103a71f168e6a90b3dac9"
+  integrity sha512-8g4+vK5Le6EUkqsY3zbbxN93yoxKfUAdH985m00ucnTONCEMiIwCibXt67mHVMSwKn+ETsYD5eEyyzGRdCjuhw==
+  dependencies:
+    "@types/jquery" "^2.0.32"
+    jquery ">=1.7"
 
 diffie-hellman@^5.0.0:
   version "5.0.3"
@@ -5367,6 +5380,11 @@ jq-signature@^2.0.0:
     grunt-contrib-jshint "^0.11.2"
     grunt-contrib-uglify "^0.9.1"
     matchdep "^0.3.0"
+
+jquery@>=1.7:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
 
 jquery@>=1.7.0, jquery@>=1.8, jquery@^3.3.1:
   version "3.3.1"

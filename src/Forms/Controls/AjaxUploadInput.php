@@ -6,7 +6,6 @@
 
 namespace Wenprise\Forms\Controls;
 
-use Nette;
 use Nette\Forms\Controls\BaseControl;
 use Nette\Forms\Form;
 use Nette\Forms\Validator;

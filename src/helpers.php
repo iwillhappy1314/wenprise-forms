@@ -275,7 +275,10 @@ if (function_exists('wp_register_style')) {
         wp_register_script('wprs-combodate', WENPRISE_FORM_URL . '/assets/scripts/combodate.js', ['jquery', 'moment'], WENPRISE_FORM_VERSION, true);
 
         // Datepicker 样式
-        wp_register_style('jquery-ui-datepicker', WENPRISE_FORM_URL . '/assets/styles/datepicker.css', [], WENPRISE_FORM_VERSION);
+        wp_register_style('jquery-ui-datepicker', WENPRISE_FORM_URL . '/assets/styles/datepicker.css', ['jquery'], WENPRISE_FORM_VERSION);
+
+        // jQuery AutoComplete
+	    wp_register_script('wprs-autocomplete', WENPRISE_FORM_URL . '/assets/scripts/autocomplete.js', ['jquery'], WENPRISE_FORM_VERSION);
 
         // 表格输入
         wp_register_script('wprs-table-input', WENPRISE_FORM_URL . '/assets/scripts/table-input.js', ['jquery', 'jquery-ui-button'], WENPRISE_FORM_VERSION,
@@ -294,6 +297,8 @@ if (function_exists('wp_register_style')) {
 
         // 颜色选择
         wp_enqueue_style('wp-color-picker');
+
+	    wp_dequeue_script('jquery-ui-autocomplete');
 
         $colorpicker_l10n = [
             'clear'         => __('Clear', 'wprs'),
