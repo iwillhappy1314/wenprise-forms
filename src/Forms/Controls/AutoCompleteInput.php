@@ -56,7 +56,7 @@ class AutoCompleteInput extends TextInput
 
         $script = "<script>
 			jQuery(document).ready(function($) {
-				$('#$id').autocomplete($settings);
+				$('#$id').devbridgeAutocomplete($settings);
 			});
 		</script>";
 

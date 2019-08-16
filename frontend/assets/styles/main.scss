@@ -5,3 +5,21 @@
 .chosen-container{
     width: 100% !important;
 }
+
+.autocomplete-suggestions {
+  overflow: auto;
+  border: 1px solid #eee;
+  background: #fff;
+}
+
+.autocomplete-suggestion {
+  display: block;
+  overflow: hidden;
+  padding: 5px 15px;
+  white-space: nowrap;
+
+  strong {
+    color: #029cca;
+    font-weight: normal;
+  }
+}
