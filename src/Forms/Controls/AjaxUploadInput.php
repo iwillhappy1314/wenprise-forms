@@ -62,7 +62,7 @@ class  AjaxUploadInput extends BaseControl
         $value       = $this->getValue();
         $preview     = '';
         $hide        = 'u-hide';
-        $multiple    = $this->control->multiple ? 'true' : 'false';
+        $multiple    = $this->control->multiple ? true : false;
 
         $el->appendAttribute('class', $hide);
 
@@ -101,7 +101,7 @@ class  AjaxUploadInput extends BaseControl
                                 Html::el('input type=file class=c-uploader__shadow')
                                     ->setAttribute('name', 'js-input-shadow')
                                     ->setAttribute('title', $placeholder)
-                                    ->setAttribute('multiple', $this->control->multiple ? 'multiple="multiple"' : '')
+                                    ->setAttribute('multiple', $multiple)
                                     ->data('url', $data_url)
                             )
                     )
