@@ -1,4 +1,4 @@
-.c-uploader {
+.rs-uploader {
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -16,18 +16,18 @@
   }
 }
 
-.c-uploader__text {
+.rs-uploader__text {
   color: #999;
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-size: 2rem;
 }
 
-.c-uploader__browser {
+.rs-uploader__browser {
   
 }
 
-.c-uploader__button {
+.rs-uploader__button {
   box-sizing: content-box;
   position: relative;
   overflow: hidden;
@@ -53,11 +53,11 @@
   }
 }
 
-.c-uploader__value {
+.rs-uploader__value {
   display: none;
 }
 
-.c-uploader__shadow {
+.rs-uploader__shadow {
   position: absolute;
   top: 0;
   right: 0;
@@ -70,7 +70,7 @@
   cursor: pointer;
 }
 
-.c-uploader__thumbnail {
+.rs-uploader__thumbnail {
   display: inline-block;
   border: 1px solid #ccc;
   padding: 3px;

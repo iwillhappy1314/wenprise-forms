@@ -25,8 +25,8 @@ class  AjaxUploadInput extends BaseControl
     const VALID = ':uploadControlValid';
 
     /**
-     * @param  string|object
-     * @param  bool
+     * @param string|object
+     * @param bool
      */
     public function __construct($label = null, $multiple = false)
     {
@@ -61,7 +61,7 @@ class  AjaxUploadInput extends BaseControl
         $data_url    = $this->control->getAttribute('data-url');
         $value       = $this->getValue();
         $preview     = '';
-        $hide        = 'u-hide';
+        $hide        = 'rs-hide';
         $multiple    = $this->control->multiple ? true : false;
 
         $el->appendAttribute('class', $hide);
@@ -82,35 +82,37 @@ class  AjaxUploadInput extends BaseControl
 
         $html = Html::el('div')
                     ->setAttribute('id', $id)
-                    ->setAttribute('class', 'js-uploader c-uploader')
+                    ->setAttribute('class', 'js-uploader rs-uploader')
                     ->data('name', $name)
                     ->data('multiple', $multiple);
 
         $html
             ->addHtml(
-                Html::el('div class=c-uploader__text')
+                Html::el('div class=rs-uploader__text')
                     ->addText(__('Drag &amp; Drop Images Here', 'wprs'))
-            )->addHtml(
-                Html::el('div class=c-uploader__browser')
+            )
+            ->addHtml(
+                Html::el('div class=rs-uploader__browser')
                     ->addHtml(
-                        Html::el('label class=c-uploader__button')
+                        Html::el('label class=rs-uploader__button')
                             ->addHtml(
-                                Html::el('span')->addHtml($placeholder)
+                                Html::el('span')
+                                    ->addHtml($placeholder)
                             )
                             ->addHtml(
-                                Html::el('input type=file class=c-uploader__shadow')
+                                Html::el('input type="file" class=rs-uploader__shadow')
                                     ->setAttribute('name', 'js-input-shadow')
-                                    ->setAttribute('title', $placeholder)
                                     ->setAttribute('multiple', $multiple)
+                                    ->setAttribute('title', $placeholder)
                                     ->data('url', $data_url)
                             )
                     )
                     ->addHtml(
-                        Html::el('div class=c-uploader__value')
+                        Html::el('div class=rs-uploader__value')
                             ->addText($el)
                     )
                     ->addHtml(
-                        Html::el('div class=c-uploader__preview')
+                        Html::el('div class=rs-uploader__preview')
                             ->appendAttribute('class', $hide)
                             ->addHtml($preview)
                     )
@@ -136,7 +138,7 @@ class  AjaxUploadInput extends BaseControl
             $thumb = $value;
         }
 
-        $preview = Html::el('div class="c-uploader__thumbnail"');
+        $preview = Html::el('div class="rs-uploader__thumbnail"');
         $button  = Html::el('button type=button class=close')
                        ->data('value', $value)
                        ->addHtml(
@@ -144,7 +146,8 @@ class  AjaxUploadInput extends BaseControl
                                ->setText('x')
                        );
 
-        $image = Html::el('img')->setAttribute('src', $thumb);
+        $image = Html::el('img')
+                     ->setAttribute('src', $thumb);
 
         $preview->addHtml($button . $image);
 

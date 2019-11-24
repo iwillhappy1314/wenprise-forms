@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
    * 初始化文件上传组件
    */
   $('.js-uploader').dmUploader({
-    url            : $('.js-uploader .c-uploader__shadow').data('url'),
+    url            : $('.js-uploader .rs-uploader__shadow').data('url'),
     type           : 'POST',
     dataType       : 'json',
     multiple       : ($(this).data('multiple') === true),
@@ -28,29 +28,29 @@ jQuery(document).ready(function($) {
           remove();
 
       if (!is_multiple) {
-        $(this).find('.c-uploader__text').hide();
-        $(this).find('.c-uploader__button').hide();
+        $(this).find('.rs-uploader__text').hide();
+        $(this).find('.rs-uploader__button').hide();
 
         $(this).
-            find('.c-uploader__value').
+            find('.rs-uploader__value').
             empty().
             append('<input type="hidden" name="' + name + '" value="' + data.id + '">');
 
         $(this).
-            find('.c-uploader__preview').
+            find('.rs-uploader__preview').
             empty().
             show().
-            append('<div class="c-uploader__thumbnail">' + button + thumb + '</div>');
+            append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
       } else {
 
         $(this).
-            find('.c-uploader__value').
+            find('.rs-uploader__value').
             append('<input type="hidden" name="' + name + '" value="' + data.id + '">');
 
         $(this).
-            find('.c-uploader__preview').
+            find('.rs-uploader__preview').
             show().
-            append('<div class="c-uploader__thumbnail">' + button + thumb + '</div>');
+            append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
       }
 
     },
@@ -68,11 +68,11 @@ jQuery(document).ready(function($) {
     // 移除值
     if (!is_multiple) {
 
-      $('.c-uploader__value input').attr('value', '');
+      $('.rs-uploader__value input').attr('value', '');
 
       uploader.show();
-      uploader.find('.c-uploader__text').show();
-      uploader.find('.c-uploader__button').show();
+      uploader.find('.rs-uploader__text').show();
+      uploader.find('.rs-uploader__button').show();
 
     } else {
 
@@ -92,10 +92,10 @@ jQuery(document).ready(function($) {
 
     var uploader = $(this).closest('.js-uploader'),
         is_multiple = (uploader.data('multiple') === true),
-        thumbnails = uploader.find('.c-uploader__preview').children().length;
+        thumbnails = uploader.find('.rs-uploader__preview').children().length;
 
     if (!is_multiple && thumbnails > 0) {
-      uploader.find('.c-uploader__text').hide();
+      uploader.find('.rs-uploader__text').hide();
       $(this).parent().hide();
     }
 
