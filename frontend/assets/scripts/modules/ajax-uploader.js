@@ -56,6 +56,7 @@ jQuery(document).ready(function($) {
     },
   });
 
+
   /**
    * 删除缩略图
    */

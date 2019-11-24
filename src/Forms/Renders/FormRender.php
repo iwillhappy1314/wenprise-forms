@@ -95,8 +95,8 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             '.file'     => 'text',
             '.email'    => 'text',
             '.number'   => 'text',
-            '.submit'   => 'button',
-            '.image'    => 'imagebutton',
+            '.submit'   => 'rs-button',
+            '.image'    => 'rs-button--image',
             '.button'   => 'button',
         ],
 
@@ -115,7 +115,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     /**
      * 渲染控件组
      *
-     * @param  Nette\Forms\Container|Nette\Forms\ControlGroup
+     * @param Nette\Forms\Container|Nette\Forms\ControlGroup
      *
      * @return string
      */
@@ -180,20 +180,24 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         // Add prefix and suffix
         if (isset($control->prefix) || isset($control->suffix)) {
 
+            $group_parent = Html::el('div')
+                                ->setAttribute('class', 'col-md-9');
+
             $group = Html::el('div')
-                         ->class($this->getValue('pair .addon'));
+                         ->setAttribute('class', [$this->getValue('pair .addon')]);
 
             if (isset($control->prefix)) {
                 $group->insert(1, $control->prefix);
             }
 
-            $group->addHtml($this->renderControl($control));
+            $group->addHtml(str_replace('class="text"', 'class="form-control"', $this->renderControl($control)
+                                                                                     ->getChildren()[ 0 ]));
 
             if (isset($control->suffix)) {
                 $group->addHtml($control->suffix);
             }
 
-            $pair->addHtml($group);
+            $pair->addHtml($group_parent->addHtml($group));
 
         } else {
 
@@ -212,7 +216,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     /**
      * 在一行中渲染多个控件
      *
-     * @param  Nette\Forms\IControl[]
+     * @param Nette\Forms\IControl[]
      *
      * @return string
      */
@@ -231,7 +235,8 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
                 if ($control instanceof Nette\Forms\Controls\BaseControl) {
                     $description = $control->translate($description);
                 }
-                $description = ' ' . $this->getWrapper('control description')->setText($description);
+                $description = ' ' . $this->getWrapper('control description')
+                                          ->setText($description);
 
             } else {
                 $description = '';
@@ -249,7 +254,8 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
         // wrapper class
         $pair->class($control->getOption('class'), true);
-        $pair->addHtml($this->getWrapper('control container')->setHtml(implode(' ', $s)));
+        $pair->addHtml($this->getWrapper('control container')
+                            ->setHtml(implode(' ', $s)));
 
         return $pair->render(0);
     }

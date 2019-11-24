@@ -57,14 +57,14 @@ class CloneInput extends BaseControl
 
         $action_button = Html::el('span class=input-group-btn')
                              ->addHtml(
-                                 Html::el('a class="btn btn-default js-remove-button"')
+                                 Html::el('a class="rs-button js-remove-button"')
                                      ->setText(__('Remove', 'wprs'))
                              );
 
         $clone_group = Html::el('div class=frm-group-input')
                            ->setAttribute('id', $id);
 
-        $add_button = Html::el('button class="btn btn-default btn-sm js-more-button"')
+        $add_button = Html::el('button class="rs-button rs-button--sm js-more-button"')
                           ->setText(__('Add More Fields', 'wprs'));
 
         // 设置默认值

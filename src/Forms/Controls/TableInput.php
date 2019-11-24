@@ -68,8 +68,8 @@ class TableInput extends BaseControl
                 'moveDown' => true,
             ],
             'buttonClasses'    => [
-                'append'     => 'btn btn-sm btn-primary',
-                'removeLast' => 'btn btn-sm btn-danger',
+                'append'     => 'rs-button rs-button--sm rs-button--primary',
+                'removeLast' => 'rs-button rs-button--sm rs-button--danger',
             ],
             'columns'          => $fields,
             'initData'         => $default_value,
@@ -78,7 +78,7 @@ class TableInput extends BaseControl
         $settings = wp_parse_args($settings, $default);
 
         $html = Html::el('table id=' . $name);
-        $html->setAttribute('class', 'table table-bordered c-table-input');
+        $html->setAttribute('class', 'table table-bordered rs-table-input');
 
         $html .= "<script>
 			jQuery(document).ready(function ($) {

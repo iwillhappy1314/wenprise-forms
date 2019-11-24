@@ -57,7 +57,7 @@ if ( ! function_exists('wprs_form')) {
                 $type = $control->getOption('type');
 
                 if ( ! $control->getOption('class')) {
-                    $control->setOption('class', 'col-md-12 c-form--' . $type);
+                    $control->setOption('class', 'col-md-12 rs-form--' . $type);
                 }
 
                 $control->setOption('id', 'grp-' . $control->name);
@@ -65,7 +65,7 @@ if ( ! function_exists('wprs_form')) {
                 if ($type === 'button') {
 
                     $control->getControlPrototype()
-                            ->addClass(empty($usedPrimary) ? 'btn btn-primary' : 'btn btn-default');
+                            ->addClass(empty($usedPrimary) ? 'rs-button rs-button--primary' : 'rs-button');
                     $usedPrimary = true;
 
                 } elseif (in_array($type, $text_control_type, true)) {
@@ -112,7 +112,7 @@ if ( ! function_exists('wprs_admin_form')) {
             case 'term_meta':
                 if ($screen->base == 'term') {
                     $renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-                    $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=c-form-field';
+                    $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=rs-form-field';
                 } else {
                     $renderer->wrappers[ 'controls' ][ 'container' ] = '';
                     $renderer->wrappers[ 'pair' ][ 'container' ]     = 'div class="form-field wprs-form-field"';
@@ -120,7 +120,7 @@ if ( ! function_exists('wprs_admin_form')) {
                 break;
             default:
                 $renderer->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
-                $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=c-form-field';
+                $renderer->wrappers[ 'pair' ][ 'container' ]     = 'tr class=rs-form-field';
         }
 
         $renderer->wrappers[ 'label' ][ 'container' ]   = 'th class=row scope=row';
@@ -136,7 +136,7 @@ if ( ! function_exists('wprs_admin_form')) {
                 $type = $control->getOption('type');
 
                 if ( ! $control->getOption('class')) {
-                    $control->setOption('class', 'c-form--' . $type);
+                    $control->setOption('class', 'rs-form--' . $type);
                 }
 
                 $control->setOption('id', 'grp-' . $control->name);
@@ -144,7 +144,7 @@ if ( ! function_exists('wprs_admin_form')) {
                 if ($type === 'button') {
 
                     $control->getControlPrototype()
-                            ->addClass(empty($usedPrimary) ? 'button button-primary' : 'button');
+                            ->addClass(empty($usedPrimary) ? 'rs-button rs-button-primary' : 'rs-button');
                     $usedPrimary = true;
 
                 } elseif (in_array($type, $text_control_type, true)) {
@@ -288,9 +288,9 @@ if (function_exists('wp_register_style')) {
 
         // Birthday Picker
         wp_register_script('wprs-combodate',  $enqueue->getUrl( $assets['combodate.js'] ), ['jquery', 'moment'], WENPRISE_FORM_VERSION, true);
-        //
+
         // Datepicker 样式
-        wp_register_style('jquery-ui-datepicker', $enqueue->getUrl( $assets['datepicker.js'] ), ['jquery'], WENPRISE_FORM_VERSION);
+        wp_register_style('wprs-datepicker', $enqueue->getUrl( $assets['datepicker.css'] ), [], WENPRISE_FORM_VERSION);
 
         // jQuery AutoComplete
         wp_register_script('wprs-autocomplete', $enqueue->getUrl( $assets['autocomplete.js'] ), ['jquery'], WENPRISE_FORM_VERSION);
