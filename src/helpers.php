@@ -242,6 +242,51 @@ if ( ! function_exists('wprs_dir_to_url')) {
 
 
 /**
+ * 获取资源列表
+ *
+ * @param $dir
+ * @param $root_path
+ * @param $out_put_path
+ *
+ * @return mixed
+ */
+if ( ! function_exists('wpack_get_manifest')) {
+    function wpack_get_manifest($dir)
+    {
+        $filepath = realpath(__DIR__ . '/' . $dir . '/manifest.json');
+
+        if (file_exists($filepath)) {
+            $manifest = json_decode(file_get_contents($filepath), true);
+
+            return $manifest;
+        }
+
+        return false;
+    }
+}
+
+
+/**
+ * 获取资源 URL
+ *
+ * @param $assets
+ *
+ * @return string
+ */
+if ( ! function_exists('wpack_get_url')) {
+    function wpack_get_url($assets)
+    {
+        # 设置根目录 Url
+        if ( ! defined('WENPRISE_FORM_URL')) {
+            define('WENPRISE_FORM_URL', wprs_dir_to_url(__DIR__));
+        }
+
+        return WENPRISE_FORM_URL . '/assets/' . $assets;
+    }
+}
+
+
+/**
  * 在 WordPress 中按需加载前端文件
  */
 if (function_exists('wp_register_style')) {
@@ -251,57 +296,50 @@ if (function_exists('wp_register_style')) {
         define('WENPRISE_FORM_VERSION', '1.6');
     }
 
-    # 设置根目录 Url
-    if ( ! defined('WENPRISE_FORM_URL')) {
-        define('WENPRISE_FORM_URL', wprs_dir_to_url(__DIR__));
-    }
-
     /**
      * Register stylesheet and scripts.
      */
     add_action('wp_enqueue_scripts', function ()
     {
-
-        $enqueue = new \WPackio\Enqueue('wenprise-forms', 'assets', '1.0.0', 'plugin', __FILE__);
-        $assets = $enqueue->getManifest( 'app' );
+        $assets = wpack_get_manifest('assets/app');
 
         // 运行环境
-        wp_enqueue_script('wprs-forms-runtime', $enqueue->getUrl( $assets['runtime.js'] ), [], WENPRISE_FORM_VERSION);
+        wp_enqueue_script('wprs-forms-runtime', wpack_get_url($assets[ 'runtime.js' ]), [], WENPRISE_FORM_VERSION);
 
         // 主样式
-        wp_register_style('wprs-forms-main', $enqueue->getUrl( $assets['main.css'] ), [], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-forms-main', $enqueue->getUrl( $assets['main.js'] ), ['jquery'], WENPRISE_FORM_VERSION, true);
+        wp_register_style('wprs-forms-main', wpack_get_url($assets[ 'main.css' ]), [], WENPRISE_FORM_VERSION);
+        wp_register_script('wprs-forms-main', wpack_get_url($assets[ 'main.js' ]), ['jquery'], WENPRISE_FORM_VERSION, true);
 
         // Chosen 样式和脚本
-        wp_register_style('wprs-chosen', $enqueue->getUrl( $assets['chosen.css'] ), [], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-chosen', $enqueue->getUrl( $assets['chosen.js'] ), ['jquery'], WENPRISE_FORM_VERSION, true);
+        wp_register_style('wprs-chosen', wpack_get_url($assets[ 'chosen.css' ]), [], WENPRISE_FORM_VERSION);
+        wp_register_script('wprs-chosen', wpack_get_url($assets[ 'chosen.js' ]), ['jquery'], WENPRISE_FORM_VERSION, true);
 
         // ion-rangeslider 样式
-        wp_register_style('wprs-ion-rangeslider', $enqueue->getUrl( $assets['rangeslider.css'] ), [], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-ion-rangeslider', $enqueue->getUrl( $assets['rangeslider.js'] ), ['jquery'], WENPRISE_FORM_VERSION, true);
+        wp_register_style('wprs-ion-rangeslider', wpack_get_url($assets[ 'rangeslider.css' ]), [], WENPRISE_FORM_VERSION);
+        wp_register_script('wprs-ion-rangeslider', wpack_get_url($assets[ 'rangeslider.js' ]), ['jquery'], WENPRISE_FORM_VERSION, true);
 
         // Moment Js 日期处理
-        wp_register_script('wprs-moment',  $enqueue->getUrl( $assets['moment.js'] ), ['jquery'], WENPRISE_FORM_VERSION, true);
+        wp_register_script('wprs-moment', wpack_get_url($assets[ 'moment.js' ]), ['jquery'], WENPRISE_FORM_VERSION, true);
 
         // 签字/签名
-        wp_register_script('wprs-signature', $enqueue->getUrl( $assets['signature.js'] ), ['jquery'], WENPRISE_FORM_VERSION, true);
+        wp_register_script('wprs-signature', wpack_get_url($assets[ 'signature.js' ]), ['jquery'], WENPRISE_FORM_VERSION, true);
 
         // Birthday Picker
-        wp_register_script('wprs-combodate',  $enqueue->getUrl( $assets['combodate.js'] ), ['jquery', 'moment'], WENPRISE_FORM_VERSION, true);
+        wp_register_script('wprs-combodate', wpack_get_url($assets[ 'combodate.js' ]), ['jquery', 'moment'], WENPRISE_FORM_VERSION, true);
 
         // Datepicker 样式
-        wp_register_style('wprs-datepicker', $enqueue->getUrl( $assets['datepicker.css'] ), [], WENPRISE_FORM_VERSION);
+        wp_register_style('wprs-datepicker', wpack_get_url($assets[ 'datepicker.css' ]), [], WENPRISE_FORM_VERSION);
 
         // jQuery AutoComplete
-        wp_register_script('wprs-autocomplete', $enqueue->getUrl( $assets['autocomplete.js'] ), ['jquery'], WENPRISE_FORM_VERSION);
+        wp_register_script('wprs-autocomplete', wpack_get_url($assets[ 'autocomplete.js' ]), ['jquery'], WENPRISE_FORM_VERSION);
 
         // 表格输入
-        wp_register_script('wprs-table-input', $enqueue->getUrl( $assets['tableinput.js'] ), ['jquery', 'jquery-ui-button'], WENPRISE_FORM_VERSION,
+        wp_register_script('wprs-table-input', wpack_get_url($assets[ 'tableinput.js' ]), ['jquery', 'jquery-ui-button'], WENPRISE_FORM_VERSION,
             true);
 
         // Ajax 上传
-        wp_register_style('wprs-ajax-uploader', $enqueue->getUrl( $assets['uploader.css'] ), [], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-ajax-uploader', $enqueue->getUrl( $assets['uploader.js'] ), ['jquery'], WENPRISE_FORM_VERSION, true);
+        wp_register_style('wprs-ajax-uploader', wpack_get_url($assets[ 'uploader.css' ]), [], WENPRISE_FORM_VERSION);
+        wp_register_script('wprs-ajax-uploader', wpack_get_url($assets[ 'uploader.js' ]), ['jquery'], WENPRISE_FORM_VERSION, true);
 
         // 颜色选择
         wp_register_script('wp-color-picker', admin_url('js/color-picker.min.js'), ['iris'], false, true);
@@ -329,4 +367,3 @@ if (function_exists('wp_register_style')) {
 
 
 }
-
