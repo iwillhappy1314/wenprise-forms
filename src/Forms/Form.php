@@ -22,9 +22,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 添加 WordPress Tinymce 可视化编辑器控件
      *
-     * @param  string
-     * @param  string|object
-     * @param  int
+     * @param string        $name
+     * @param string|object $label
+     * @param array         $settings
      *
      * @return Controls\TextEditor
      */
@@ -37,15 +37,16 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * Ajax 上传，支持单文件和多文件控件
      *
-     * @param      $name
-     * @param null $label
-     * @param bool $multiple
+     * @param       $name
+     * @param null  $label
+     * @param bool  $multiple
+     * @param array $settings
      *
      * @return \Wenprise\Forms\Controls\AjaxUploadInput
      */
-    public function addAjaxUpload($name, $label = null, $multiple = false)
+    public function addAjaxUpload($name, $label = null, $multiple = false, array $settings = null)
     {
-        return $this[ $name ] = (new Controls\AjaxUploadInput($label, $multiple));
+        return $this[ $name ] = (new Controls\AjaxUploadInput($label, $multiple, $settings));
     }
 
 
@@ -262,18 +263,18 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     }
 
 
-	/**
-	 * jQuery Autocomplete 输入提示
-	 *
-	 * @param      $name     string  表单名称
-	 * @param      $label    string  表单标签
-	 * @param      $settings array   表单设置
-	 *
-	 * @return \Wenprise\Forms\Controls\AutoCompleteInput
-	 */
-	public function addAutocomplete($name, $label = null, array $settings = null)
-	{
-		return $this[ $name ] = (new Controls\AutocompleteInput($label, $settings));
-	}
+    /**
+     * jQuery Autocomplete 输入提示
+     *
+     * @param      $name     string  表单名称
+     * @param      $label    string  表单标签
+     * @param      $settings array   表单设置
+     *
+     * @return \Wenprise\Forms\Controls\AutoCompleteInput
+     */
+    public function addAutocomplete($name, $label = null, array $settings = null)
+    {
+        return $this[ $name ] = (new Controls\AutocompleteInput($label, $settings));
+    }
 
 }

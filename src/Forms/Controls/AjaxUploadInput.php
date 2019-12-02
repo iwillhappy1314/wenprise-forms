@@ -23,16 +23,19 @@ class  AjaxUploadInput extends BaseControl
 
     /** validation rule */
     const VALID = ':uploadControlValid';
+    private $settings = [];
 
     /**
      * @param string|object
      * @param bool
+     * @param array $settings Chosen 设置
      */
-    public function __construct($label = null, $multiple = false)
+    public function __construct($label = null, $multiple = false, array $settings = null)
     {
         parent::__construct($label);
         $this->control->multiple = (bool)$multiple;
         $this->control->type     = 'text';
+        $this->settings          = (array)$settings;
 
         $this->setOption('type', 'uploader');
         $this->addCondition(Form::BLANK)
@@ -57,6 +60,7 @@ class  AjaxUploadInput extends BaseControl
 
         $name        = $this->getHtmlName();
         $id          = $this->getHtmlId();
+        $settings    = $this->settings;
         $placeholder = $this->control->getAttribute('placeholder') ? $this->control->getAttribute('placeholder') : __('Select File', 'wprs');
         $data_url    = $this->control->getAttribute('data-url');
         $value       = $this->getValue();
@@ -84,7 +88,8 @@ class  AjaxUploadInput extends BaseControl
                     ->setAttribute('id', $id)
                     ->setAttribute('class', 'js-uploader rs-uploader')
                     ->data('name', $name)
-                    ->data('multiple', $multiple);
+                    ->data('multiple', $multiple)
+                    ->data('settings', json_encode($settings));
 
         $html
             ->addHtml(
@@ -115,6 +120,9 @@ class  AjaxUploadInput extends BaseControl
                         Html::el('div class=rs-uploader__preview')
                             ->appendAttribute('class', $hide)
                             ->addHtml($preview)
+                    )
+                    ->addHtml(
+                        Html::el('div class="js-uploader-message rs-uploader__message"')
                     )
             );
 

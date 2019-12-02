@@ -2,19 +2,32 @@
 
 jQuery(document).ready(function($) {
 
-  /**
-   * 初始化文件上传组件
-   */
-  $('.js-uploader').dmUploader({
-    url            : $('.js-uploader .rs-uploader__shadow').data('url'),
-    type           : 'POST',
-    dataType       : 'json',
-    multiple       : ($(this).data('multiple') === true),
-    onUploadSuccess: function(id, data) {
+  var wprs_uploader = $('.js-uploader');
+  var wprs_msg_el = $('.js-uploader-message');
+  var options = wprs_uploader.data('settings');
 
-      var name = $(this).data('name'),
-          is_multiple = ($(this).data('multiple') === true),
-          button = '<button type=button class="close" data-value=' + data.id + '>x</button>',
+  var settings = {
+    url             : $('.js-uploader .rs-uploader__shadow').data('url'),
+    type            : 'POST',
+    dataType        : 'json',
+    maxFileSize     : 2000000,
+    auto            : true,
+    queue           : false,
+    multiple        : (wprs_uploader.data('multiple') === true),
+    onBeforeUpload  : function() {
+      wprs_msg_el.empty();
+    },
+    onDragEnter     : function() {
+      wprs_uploader.addClass('active');
+    },
+    onDragLeave     : function() {
+      wprs_uploader.removeClass('active');
+    },
+    onUploadSuccess : function(id, data) {
+      var name = wprs_uploader.data('name'),
+          is_multiple = (wprs_uploader.data('multiple') === true),
+          button = '<button type=button class="close" data-value=' + data.id +
+              '><svg t="1575261098184" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3639" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg></button>',
           thumb = '<img src="' + data.thumb + '" alt="Thumbnail">';
 
       if (!data.thumb) {
@@ -22,40 +35,65 @@ jQuery(document).ready(function($) {
             data.title;
       }
 
-      $(this).
+      wprs_uploader.
           find('input:text').
           filter(function() { return this.value === ''; }).
           remove();
 
       if (!is_multiple) {
-        $(this).find('.rs-uploader__text').hide();
-        $(this).find('.rs-uploader__button').hide();
+        wprs_uploader.find('.rs-uploader__text').hide();
+        wprs_uploader.find('.rs-uploader__button').hide();
 
-        $(this).
+        wprs_uploader.
             find('.rs-uploader__value').
             empty().
             append('<input type="hidden" name="' + name + '" value="' + data.id + '">');
 
-        $(this).
+        wprs_uploader.
             find('.rs-uploader__preview').
             empty().
             show().
             append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
       } else {
 
-        $(this).
+        wprs_uploader.
             find('.rs-uploader__value').
             append('<input type="hidden" name="' + name + '" value="' + data.id + '">');
 
-        $(this).
+        wprs_uploader.
             find('.rs-uploader__preview').
             show().
             append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
       }
 
     },
-  });
+    onUploadError   : function(id, xhr, status, errorThrown) {
+    },
+    onUploadComplete: function(id) {
+    },
+    onUploadCanceled: function(id) {
+      wprs_msg_el.html('您已取消上传文件');
+    },
+    onUploadProgress: function(id, percent) {
+      wprs_msg_el.addClass('js-progress').css('width', percent + '%');
+    },
+    onFileTypeError : function(file) {
+      wprs_msg_el.html('文件类型错误');
+    },
+    onFileSizeError : function(file) {
+      wprs_msg_el.html('文件尺寸超过限制');
+    },
+    onFileExtError  : function(file) {
+      wprs_msg_el.html('文件类型错误');
+    },
+  };
 
+  $.extend(settings, options);
+
+  /**
+   * 初始化文件上传组件
+   */
+  wprs_uploader.dmUploader(settings);
 
   /**
    * 删除缩略图
@@ -68,17 +106,13 @@ jQuery(document).ready(function($) {
 
     // 移除值
     if (!is_multiple) {
-
       $('.rs-uploader__value input').attr('value', '');
 
       uploader.show();
       uploader.find('.rs-uploader__text').show();
       uploader.find('.rs-uploader__button').show();
-
     } else {
-
       uploader.find('input[value=' + value + ']').remove();
-
     }
 
     // 移除缩略图
