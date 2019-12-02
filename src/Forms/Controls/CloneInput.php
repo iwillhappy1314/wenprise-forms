@@ -39,7 +39,7 @@ class CloneInput extends BaseControl
     {
 
 
-        $el = parent::getControl()->appendAttribute('class', 'form-control');
+        $el = parent::getControl()->appendAttribute('class', 'rs-form-control');
 
         $name = $this->getHtmlName();
         $id   = $this->getHtmlId();
@@ -47,24 +47,24 @@ class CloneInput extends BaseControl
         // 模拟下拉选择默认值
         $value = (array)$this->value;
 
-        $input_group = Html::el('div class=input-group');
+        $input_group = Html::el('div class=rs-input-group');
 
-        $input_control = Html::el('input class=form-control')
+        $input_control = Html::el('input class=rs-form-control')
                              ->setAttribute('name', $name);
 
-        $input_control_raw = Html::el('input class=form-control')
+        $input_control_raw = Html::el('input class=rs-form-control')
                                  ->setAttribute('name', $name);
 
-        $action_button = Html::el('span class=input-group-btn')
+        $action_button = Html::el('span class=rs-input-group-btn')
                              ->addHtml(
-                                 Html::el('a class="rs-button js-remove-button"')
+                                 Html::el('a class="rs-btn js-remove-button"')
                                      ->setText(__('Remove', 'wprs'))
                              );
 
         $clone_group = Html::el('div class=frm-group-input')
                            ->setAttribute('id', $id);
 
-        $add_button = Html::el('button class="rs-button rs-button--sm js-more-button"')
+        $add_button = Html::el('button class="rs-btn rs-btn--sm js-more-button"')
                           ->setText(__('Add More Fields', 'wprs'));
 
         // 设置默认值
@@ -107,7 +107,7 @@ class CloneInput extends BaseControl
                             $(wrapper).on("click", ".js-remove-button", function(e){
                                 e.preventDefault();
                                 
-                                $(this).closest(".input-group").remove(); 
+                                $(this).closest(".rs-input-group").remove(); 
                                 x--;
                                 
                                 return false;

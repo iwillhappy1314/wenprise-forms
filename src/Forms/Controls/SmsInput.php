@@ -14,8 +14,8 @@ class SmsInput extends TextInput
     private $settings = [];
 
     /**
-     * @param  string|object Html      标签
-     * @param  array $settings TinyMce 设置
+     * @param string|object Html      标签
+     * @param array $settings TinyMce 设置
      */
     public function __construct($label = null, array $settings = null)
     {
@@ -40,13 +40,13 @@ class SmsInput extends TextInput
         $action_id = $this->getHtmlId() . '-action';
         $data_url  = $this->control->getAttribute('data-url');
 
-        $input_group   = Html::el('div class=input-group');
-        $action_button = Html::el('span class=input-group-btn')
+        $input_group   = Html::el('div class=rs-input-group');
+        $action_button = Html::el('span class=rs-input-group-append')
                              ->addHtml(
-                                 Html::el('input type=button')
+                                 Html::el('button type=button')
                                      ->setAttribute('id', $action_id)
-                                     ->setAttribute('class', 'rs-button rs-button--primary')
-                                     ->setAttribute('value', __('Get Code', 'wprs'))
+                                     ->setAttribute('class', 'rs-btn rs-btn-outline-secondary')
+                                     ->addText('value', __('Get Code', 'wprs'))
                              );
 
         $input_group->addHtml($el);

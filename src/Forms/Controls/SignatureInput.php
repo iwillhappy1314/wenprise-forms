@@ -39,7 +39,7 @@ class SignatureInput extends TextInput
         }
 
         $el = parent::getControl();
-        $el->appendAttribute('class', 'u-hide');
+        $el->appendAttribute('class', 'rs-hide');
 
         $id       = $this->getHtmlId();
         $settings = $this->settings;

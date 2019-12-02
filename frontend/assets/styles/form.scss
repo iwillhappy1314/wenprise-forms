@@ -1,0 +1,29 @@
+@import "../../node_modules/bootstrap/scss/forms";
+@import "../../node_modules/bootstrap/scss/input-group";
+
+.rs-form-legend {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.combodate {
+  display: flex;
+  align-items: center;
+
+  select {
+    &:not(:first-of-type) {
+      margin-left: .5rem;
+    }
+
+    &:not(:last-of-type) {
+      margin-right: .5rem;
+    }
+  }
+
+}
+
+.chosen-container-single .chosen-single {
+  background: transparent !important;
+  box-shadow: none !important;
+}

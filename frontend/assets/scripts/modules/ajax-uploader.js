@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
     onUploadSuccess : function(id, data) {
       var name = wprs_uploader.data('name'),
           is_multiple = (wprs_uploader.data('multiple') === true),
-          button = '<button type=button class="close" data-value=' + data.id +
+          button = '<button type="button" class="rs-uploader__close" data-value=' + data.id +
               '><svg t="1575261098184" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3639" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg></button>',
           thumb = '<img src="' + data.thumb + '" alt="Thumbnail">';
 
@@ -98,7 +98,7 @@ jQuery(document).ready(function($) {
   /**
    * 删除缩略图
    */
-  $('.js-uploader button.close').live('click', function() {
+  $('.rs-uploader__close').live('click', function() {
 
     var value = $(this).data('value'),
         uploader = $(this).closest('.js-uploader'),

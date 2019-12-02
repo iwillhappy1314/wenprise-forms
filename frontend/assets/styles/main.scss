@@ -1,9 +1,18 @@
-.rs-hide{
-    display: none;
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/tables";
+@import "../../node_modules/bootstrap/scss/bootstrap-grid";
+
+@import "form";
+@import "button";
+
+.rs-hide {
+  display: none;
 }
 
-.chosen-container{
-    width: 100% !important;
+.chosen-container {
+  width: 100% !important;
 }
 
 .autocomplete-suggestions {

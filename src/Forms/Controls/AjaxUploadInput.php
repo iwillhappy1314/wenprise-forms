@@ -99,7 +99,7 @@ class  AjaxUploadInput extends BaseControl
             ->addHtml(
                 Html::el('div class=rs-uploader__browser')
                     ->addHtml(
-                        Html::el('label class=rs-uploader__button')
+                        Html::el('label class="rs-btn rs-uploader__button"')
                             ->addHtml(
                                 Html::el('span')
                                     ->addHtml($placeholder)
@@ -147,7 +147,7 @@ class  AjaxUploadInput extends BaseControl
         }
 
         $preview = Html::el('div class="rs-uploader__thumbnail"');
-        $button  = Html::el('button type=button class=close')
+        $button  = Html::el('button type=button class=rs-uploader__close')
                        ->data('value', $value)
                        ->addHtml(
                            Html::el('span')

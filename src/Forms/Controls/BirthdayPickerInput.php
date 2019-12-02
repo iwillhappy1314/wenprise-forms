@@ -13,8 +13,8 @@ class BirthdayPickerInput extends TextInput
     private $settings = [];
 
     /**
-     * @param  string|object Html      标签
-     * @param  array $settings TinyMce 设置
+     * @param string|object Html      标签
+     * @param array $settings TinyMce 设置
      */
     public function __construct($label = null, array $settings = null)
     {
@@ -23,7 +23,7 @@ class BirthdayPickerInput extends TextInput
 
         $this->setOption('type', 'birthday');
     }
-    
+
     /**
      * 生成控件 HTML 内容
      *
@@ -41,9 +41,11 @@ class BirthdayPickerInput extends TextInput
         $settings = $this->settings;
 
         $settings_default = [
-            'format'   => 'YYYY-MM-DD',
-            'template' => 'YYYY-MM-DD',
-            'maxYear'  => date("Y"),
+            'format'      => 'YYYY-MM-DD',
+            'template'    => 'YYYY-MM-DD',
+            'maxYear'     => date("Y"),
+            'customClass' => 'rs-form-control',
+            'errorClass'  => 'rs-was-validated',
         ];
 
         $settings = array_merge($settings_default, $settings);

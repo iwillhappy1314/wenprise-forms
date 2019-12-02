@@ -8,6 +8,11 @@ use Wenprise\Forms\Form;
 use Wenprise\Forms\Renders\FormRender;
 use Wenprise\Forms\Translator;
 
+// 插件版本
+if ( ! defined('WENPRISE_FORM_VERSION')) {
+    define('WENPRISE_FORM_VERSION', '1.6');
+}
+
 /**
  * 加载多语言文件
  */
@@ -35,15 +40,15 @@ if ( ! function_exists('wprs_form')) {
         $form->setTranslator(new Translator());
 
         $renderer                                            = $form->getRenderer();
-        $renderer->wrappers[ 'group' ][ 'container' ]        = 'fieldset class=row';
-        $renderer->wrappers[ 'group' ][ 'label' ]            = 'legend class=col-md-12';
+        $renderer->wrappers[ 'group' ][ 'container' ]        = 'fieldset class=rs-row';
+        $renderer->wrappers[ 'group' ][ 'label' ]            = 'legend class="rs-form-legend rs-col-md-12"';
         $renderer->wrappers[ 'controls' ][ 'container' ]     = null;
-        $renderer->wrappers[ 'pair' ][ 'container' ]         = 'div class=form-group';
-        $renderer->wrappers[ 'pair' ][ '.error' ]            = 'has-error';
-        $renderer->wrappers[ 'control' ][ 'container' ]      = $type == 'horizontal' ? 'div class=col-sm-9' : '';
-        $renderer->wrappers[ 'label' ][ 'container' ]        = $type == 'horizontal' ? 'div class="col-sm-3 control-label"' : '';
-        $renderer->wrappers[ 'control' ][ 'description' ]    = 'span class=help-block';
-        $renderer->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=help-block';
+        $renderer->wrappers[ 'pair' ][ 'container' ]         = 'div class=rs-form-group';
+        $renderer->wrappers[ 'pair' ][ '.error' ]            = 'rs-has-error';
+        $renderer->wrappers[ 'control' ][ 'container' ]      = $type == 'horizontal' ? 'div class="rs-col-sm-9 rs-control-input"' : '';
+        $renderer->wrappers[ 'label' ][ 'container' ]        = $type == 'horizontal' ? 'div class="rs-col-sm-3 rs-control-label"' : '';
+        $renderer->wrappers[ 'control' ][ 'description' ]    = 'span class=rs-help-block';
+        $renderer->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=rs-help-block';
         $form->getElementPrototype()
              ->class($type == 'horizontal' ? 'form-horizontal' : '');
 
@@ -57,7 +62,7 @@ if ( ! function_exists('wprs_form')) {
                 $type = $control->getOption('type');
 
                 if ( ! $control->getOption('class')) {
-                    $control->setOption('class', 'col-md-12 rs-form--' . $type);
+                    $control->setOption('class', 'rs-col-md-12 rs-row rs-form--' . $type);
                 }
 
                 $control->setOption('id', 'grp-' . $control->name);
@@ -65,13 +70,13 @@ if ( ! function_exists('wprs_form')) {
                 if ($type === 'button') {
 
                     $control->getControlPrototype()
-                            ->addClass(empty($usedPrimary) ? 'rs-button rs-button--primary' : 'rs-button');
+                            ->addClass(empty($usedPrimary) ? 'rs-btn rs-btn-primary' : 'rs-btn');
                     $usedPrimary = true;
 
                 } elseif (in_array($type, $text_control_type, true)) {
 
                     $control->getControlPrototype()
-                            ->addClass('form-control');
+                            ->addClass('rs-form-control');
 
                 } elseif (in_array($type, ['checkbox', 'radio'], true)) {
 
@@ -144,7 +149,7 @@ if ( ! function_exists('wprs_admin_form')) {
                 if ($type === 'button') {
 
                     $control->getControlPrototype()
-                            ->addClass(empty($usedPrimary) ? 'rs-button rs-button-primary' : 'rs-button');
+                            ->addClass(empty($usedPrimary) ? 'rs-btn rs-btn-primary' : 'rs-btn');
                     $usedPrimary = true;
 
                 } elseif (in_array($type, $text_control_type, true)) {
@@ -278,10 +283,10 @@ if ( ! function_exists('wpack_get_url')) {
     {
         # 设置根目录 Url
         if ( ! defined('WENPRISE_FORM_URL')) {
-            define('WENPRISE_FORM_URL', wprs_dir_to_url(__DIR__));
+            define('WENPRISE_FORM_URL', wprs_dir_to_url(realpath(__DIR__ . '/../')));
         }
 
-        return WENPRISE_FORM_URL . '/assets/' . $assets;
+        return esc_url(WENPRISE_FORM_URL . '/frontend/dist/' . $assets);
     }
 }
 
@@ -291,17 +296,14 @@ if ( ! function_exists('wpack_get_url')) {
  */
 if (function_exists('wp_register_style')) {
 
-    // 插件版本
-    if ( ! defined('WENPRISE_FORM_VERSION')) {
-        define('WENPRISE_FORM_VERSION', '1.6');
-    }
-
     /**
      * Register stylesheet and scripts.
      */
     add_action('wp_enqueue_scripts', function ()
     {
-        $assets = wpack_get_manifest('assets/app');
+        $assets = wpack_get_manifest('../frontend/dist/app');
+
+        // dd($assets);
 
         // 运行环境
         wp_enqueue_script('wprs-forms-runtime', wpack_get_url($assets[ 'runtime.js' ]), [], WENPRISE_FORM_VERSION);

@@ -6,15 +6,15 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  border: 0.25rem dashed #A0AEC0;
+  border: 0.25rem dashed #a0aec0;
   border-radius: 6px;
   text-align: center;
   padding: 2rem;
 
   &.active {
-    border-color: #4A5568;
+    border-color: #4a5568;
     border-style: solid;
-    background: #EDF2F7;
+    background: #edf2f7;
   }
 
   &__thumbnail {
@@ -28,31 +28,39 @@
       max-width: 100%;
       height: auto;
     }
+  }
 
-    .close {
-      position: absolute;
-      font-weight: normal;
-      top: 1rem;
-      right: 1rem;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 2.5rem;
-      line-height: 1;
-      opacity: .5;
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    font-weight: normal;
+    background: rgba(0, 0, 0, 1);
+    border: 0;
+    border-radius: 5rem;
+    color: #fff;
+    line-height: 1;
+    opacity: .5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: 1;
       background: rgba(0, 0, 0, 1);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    }
 
-      &:hover {
-        opacity: 1;
-      }
+    &:active {
+      outline: 0;
+      box-shadow: none;
     }
   }
 
   &__text {
-    color: #4A5568;
+    color: #4a5568;
     margin-top: 2rem;
     margin-bottom: 1.5rem;
     font-size: 2rem;
@@ -75,8 +83,8 @@
     height: 34px;
     line-height: 34px;
     font-size: 14px;
-    border: 1px solid #CBD5E0;
-    background-color: #F7FAFC;
+    border: 1px solid #cbd5e0;
+    background-color: #f7fafc;
     color: #333;
     text-align: center;
     vertical-align: middle;
@@ -90,8 +98,8 @@
     &:hover {
       color: #333;
       outline: 0;
-      background-color: #EDF2F7;
-      border-color: #A0AEC0;
+      background-color: #edf2f7;
+      border-color: #a0aec0;
     }
   }
 
@@ -113,12 +121,7 @@
   }
 
   &__message {
-    color: #E53E3E;
+    color: #e53e3e;
   }
 
 }
-
-.u-hide {
-  display: none;
-}
-

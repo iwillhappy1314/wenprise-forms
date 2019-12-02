@@ -62,7 +62,7 @@ class ChainedInput extends BaseControl
         foreach ($fields as $field) {
 
             $html->addHtml(
-                Html::el('select class=form-control')
+                Html::el('select class=rs-form-control')
                     ->appendAttribute('class', $field)
                     ->setAttribute('name', $name)
                     ->data('value', $default_value[ $i ])

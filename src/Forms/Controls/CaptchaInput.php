@@ -46,8 +46,8 @@ class CaptchaInput extends TextInput
 		        obj.src = obj.src + '?code=' + Math.random();
 		    }</script>";
 
-        $input_group   = Html::el('div class=input-group');
-        $action_button = Html::el('span class=input-group-btn')
+        $input_group   = Html::el('div class=rs-input-group');
+        $action_button = Html::el('span class=rs-input-group-btn')
                              ->addHtml(
                                  Html::el('img')
                                      ->data('toggle', 'tooltip')
@@ -58,7 +58,7 @@ class CaptchaInput extends TextInput
                                      ->setAttribute('src', $data_url)
                              );
 
-        $input_group->addHtml($el->setAttribute('class', 'form-control'));
+        $input_group->addHtml($el->setAttribute('class', 'rs-form-control'));
         $input_group->addHtml($action_button);
 
         return $script . $input_group;

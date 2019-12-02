@@ -73,7 +73,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
         'pair' => [
             'container' => 'tr',
-            '.addon'    => 'input-group',
+            '.addon'    => 'rs-input-group',
             '.required' => 'required',
             '.optional' => null,
             '.odd'      => null,
@@ -95,8 +95,8 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             '.file'     => 'text',
             '.email'    => 'text',
             '.number'   => 'text',
-            '.submit'   => 'rs-button',
-            '.image'    => 'rs-button--image',
+            '.submit'   => 'rs-btn',
+            '.image'    => 'rs-btn--image',
             '.button'   => 'button',
         ],
 
@@ -181,7 +181,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         if (isset($control->prefix) || isset($control->suffix)) {
 
             $group_parent = Html::el('div')
-                                ->setAttribute('class', 'col-md-9');
+                                ->setAttribute('class', 'rs-col-md-9');
 
             $group = Html::el('div')
                          ->setAttribute('class', [$this->getValue('pair .addon')]);
@@ -190,7 +190,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
                 $group->insert(1, $control->prefix);
             }
 
-            $group->addHtml(str_replace('class="text"', 'class="form-control"', $this->renderControl($control)
+            $group->addHtml(str_replace('class="text"', 'class="rs-form-control"', $this->renderControl($control)
                                                                                      ->getChildren()[ 0 ]));
 
             if (isset($control->suffix)) {
