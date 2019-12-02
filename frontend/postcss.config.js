@@ -10,6 +10,9 @@ module.exports = {
   // There is no need to use cssnano, webpack takes care of it!
   plugins: [
     require('autoprefixer'),
+    require('cssnano')({
+      preset: 'default',
+    }),
     classPrfx('rs-', {
       ignore: [
         /rs-/,
