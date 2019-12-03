@@ -21,7 +21,6 @@ module.exports = {
         /state_/,
         /admin-/,
         /chosen-/,
-        /group-/,
         /search-/,
         /result-/,
         /autocomplete-/,
