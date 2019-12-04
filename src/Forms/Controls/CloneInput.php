@@ -55,7 +55,7 @@ class CloneInput extends BaseControl
         $input_control_raw = Html::el('input class=rs-form-control')
                                  ->setAttribute('name', $name);
 
-        $action_button = Html::el('span class=rs-input-group-btn')
+        $action_button = Html::el('span class=rs-input-group-append')
                              ->addHtml(
                                  Html::el('a class="rs-btn js-remove-button"')
                                      ->setText(__('Remove', 'wprs'))

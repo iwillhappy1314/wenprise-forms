@@ -17,6 +17,7 @@ module.exports = {
       ignore: [
         /rs-/,
         /ui-/,
+        /js-/,
         /irs/,
         /state_/,
         /admin-/,
@@ -25,6 +26,9 @@ module.exports = {
         /result-/,
         /autocomplete-/,
         /combodate/,
+        'group-name',
+        'group-result',
+        'group-option',
         'type_last',
         'lt-ie9',
         'small',

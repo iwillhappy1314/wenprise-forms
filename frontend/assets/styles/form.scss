@@ -1,6 +1,31 @@
 @import "../../node_modules/bootstrap/scss/forms";
 @import "../../node_modules/bootstrap/scss/input-group";
 
+.rs-input-group > .rs-custom-select:not(:first-child),
+.rs-input-group > .rs-form-control:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0
+}
+
+textarea.rs-form-control.rs-is-invalid {
+  padding-right: calc(1.5em + .75rem);
+  background-position: top calc(.375em + .1875rem) right calc(.375em + .1875rem);
+}
+
+select.rs-form-control:focus::-ms-value {
+  color: #495057;
+  background-color: #fff
+}
+
+select.rs-form-control[multiple], select.rs-form-control[size], textarea.rs-form-control {
+  height: auto
+}
+
+.ui-datepicker td .ui-state-default {
+  padding: 8px 10px !important;
+  line-height: normal;
+}
+
 .rs-form-legend {
   margin-bottom: 2rem;
   font-size: 1.5rem;
@@ -26,4 +51,24 @@
 .chosen-container-single .chosen-single {
   background: transparent !important;
   box-shadow: none !important;
+}
+
+input + .iris-picker {
+  position: absolute;
+  z-index: 999;
+}
+
+.rs-form--clone {
+  .rs-input-group {
+    margin-bottom: .5rem;
+    &:first-of-type{
+      margin-top: .5rem;
+    }
+    &:last-of-type{
+      margin-bottom: 0;
+    }
+  }
+  .js-more-button{
+    margin-top: .5rem;
+  }
 }

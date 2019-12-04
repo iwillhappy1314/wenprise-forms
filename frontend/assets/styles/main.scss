@@ -22,6 +22,43 @@ html {
   display: none;
 }
 
+.rs-order-first {
+  -webkit-box-ordinal-group: 0;
+  order: -1
+}
+
+a.rs-btn.disabled, fieldset:disabled a.rs-btn {
+  pointer-events: none
+}
+
+@media (min-width: 576px) {
+  .order-sm-first {
+    -webkit-box-ordinal-group: 0;
+    order: -1
+  }
+}
+
+@media (min-width: 768px) {
+  .order-md-first {
+    -webkit-box-ordinal-group: 0;
+    order: -1
+  }
+}
+
+@media (min-width: 992px) {
+  .order-lg-first {
+    -webkit-box-ordinal-group: 0;
+    order: -1
+  }
+}
+
+@media (min-width: 1200px) {
+  .order-xl-first {
+    -webkit-box-ordinal-group: 0;
+    order: -1
+  }
+}
+
 .chosen-container {
   width: 100% !important;
 }
