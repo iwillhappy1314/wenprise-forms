@@ -29,8 +29,8 @@
   "signature.js.map": "app/signature-97b8b5e7.js.map",
   "tableinput.js": "app/tableinput-5047df4c.js",
   "tableinput.js.map": "app/tableinput-5047df4c.js.map",
-  "uploader.css": "app/uploader-64e7c382.css",
-  "uploader.css.map": "app/uploader-64e7c382.css.map",
+  "uploader.css": "app/uploader-b7c0f1e1.css",
+  "uploader.css.map": "app/uploader-b7c0f1e1.css.map",
   "uploader.js": "app/uploader-afbbbc8e.js",
   "uploader.js.map": "app/uploader-afbbbc8e.js.map",
   "wpackioEp": {
@@ -106,10 +106,10 @@
         "app/uploader-afbbbc8e.js.map"
       ],
       "css": [
-        "app/uploader-64e7c382.css"
+        "app/uploader-b7c0f1e1.css"
       ],
       "css.map": [
-        "app/uploader-64e7c382.css.map"
+        "app/uploader-b7c0f1e1.css.map"
       ]
     },
     "autocomplete": {

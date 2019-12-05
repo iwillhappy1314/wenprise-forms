@@ -47,6 +47,8 @@ class SliderInput extends TextBase
         $el       = parent::getControl();
         $id       = $this->getHtmlId();
         $settings = $this->settings;
+        $value    = $this->getValue();
+        $values   = explode(';', $value);
 
         $settings_default = [
             'type' => 'single',
@@ -57,9 +59,15 @@ class SliderInput extends TextBase
 
         $settings = array_merge($settings_default, $settings);
 
+        $settings[ 'from' ] = $values[ 0 ];
+
+        if ($settings[ 'type' ] == 'double') {
+            $settings[ 'to' ] = $values[ 1 ];
+        }
+
         $script = "<script>
 	        jQuery(document).ready(function($) {
-	            $('#$id').ionRangeSlider('" . json_encode($settings) . "');
+	            $('#$id').ionRangeSlider(" . json_encode($settings) . ");
 	        });
 	    </script>";
 
