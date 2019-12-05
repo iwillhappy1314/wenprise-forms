@@ -4,7 +4,6 @@ namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\BaseControl;
 use Nette\Utils\Html;
-use Wenprise\Forms\Form;
 
 /**
  * 链式选择输入
@@ -16,9 +15,9 @@ class TableInput extends BaseControl
     private $fields = [];
 
     /**
-     * @param  string|object $label    Html 标签
-     * @param  array         $settings TinyMce 设置
-     * @param  array         $fields   TinyMce 设置
+     * @param string|object $label    Html 标签
+     * @param array         $settings TinyMce 设置
+     * @param array         $fields   TinyMce 设置
      */
     public function __construct($label = null, array $settings = null, array $fields = null)
     {
@@ -32,11 +31,16 @@ class TableInput extends BaseControl
 
     /**
      * Loads HTTP data.
-     * @return void
      */
     public function loadHttpData()
     {
-        $this->setValue(array_values($this->getHttpData(Form::DATA_TEXT)));
+        $values = isset($_POST[ $this->getName() ]) ? $_POST[ $this->getName() ] : false;
+        $values = array_map(function ($value)
+        {
+            return array_map('esc_attr', $value);
+        }, $values);
+
+        $this->setValue($values);
     }
 
 
