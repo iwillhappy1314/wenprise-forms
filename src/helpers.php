@@ -70,7 +70,7 @@ if ( ! function_exists('wprs_form')) {
                 if ($type === 'button') {
 
                     $control->getControlPrototype()
-                            ->addClass(empty($usedPrimary) ? 'rs-btn rs-btn-primary' : 'rs-btn');
+                            ->addClass(empty($usedPrimary) ? 'rs-btn rs-btn-primary' : 'rs-btn rs-btn-default');
                     $usedPrimary = true;
 
                 } elseif (in_array($type, $text_control_type, true)) {
@@ -149,7 +149,7 @@ if ( ! function_exists('wprs_admin_form')) {
                 if ($type === 'button') {
 
                     $control->getControlPrototype()
-                            ->addClass(empty($usedPrimary) ? 'rs-btn rs-btn-primary' : 'rs-btn');
+                            ->addClass(empty($usedPrimary) ? 'rs-btn rs-btn-primary' : 'rs-rs-btn rs-btn-default');
                     $usedPrimary = true;
 
                 } elseif (in_array($type, $text_control_type, true)) {
@@ -336,8 +336,8 @@ if (function_exists('wp_register_style')) {
         wp_register_script('wprs-autocomplete', wpack_get_url($assets[ 'autocomplete.js' ]), ['jquery'], WENPRISE_FORM_VERSION);
 
         // 表格输入
-        wp_register_script('wprs-table-input', wpack_get_url($assets[ 'tableinput.js' ]), ['jquery', 'jquery-ui-button'], WENPRISE_FORM_VERSION,
-            true);
+        wp_register_script('wprs-table-input', wpack_get_url($assets[ 'tableinput.js' ]), [], WENPRISE_FORM_VERSION,
+            false);
 
         // Ajax 上传
         wp_register_style('wprs-ajax-uploader', wpack_get_url($assets[ 'uploader.css' ]), [], WENPRISE_FORM_VERSION);

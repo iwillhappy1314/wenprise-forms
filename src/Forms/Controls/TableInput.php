@@ -34,11 +34,23 @@ class TableInput extends BaseControl
      */
     public function loadHttpData()
     {
-        $values = isset($_POST[ $this->getName() ]) ? $_POST[ $this->getName() ] : false;
-        $values = array_map(function ($value)
-        {
-            return array_map('esc_attr', $value);
-        }, $values);
+        $name        = $this->getName();
+        $fields      = $this->fields;
+        $values      = [];
+        $row_numbers = isset($_POST[ $name . '_rowOrder' ]) ? $_POST[ $name . '_rowOrder' ] : false;
+
+        if ( ! empty($row_numbers)) {
+            $row_numbers = explode(',', $row_numbers);
+
+            foreach ($row_numbers as $row_number) {
+                $vs = [];
+                foreach ($fields as $field) {
+                    $vs[ $field[ 'name' ] ] = esc_attr($_POST[ $name . '_' . $field[ 'name' ] . '_' . $row_number ]);
+                }
+
+                $values[] = $vs;
+            }
+        }
 
         $this->setValue($values);
     }
@@ -56,13 +68,15 @@ class TableInput extends BaseControl
             wp_enqueue_script('wprs-table-input');
         }
 
-        $name          = $this->getName();
-        $settings      = $this->settings;
-        $fields        = $this->fields;
-        $default_value = $this->getValue() ? $this->getValue() : [];
+        $name     = $this->getName();
+        $settings = $this->settings;
+        $fields   = $this->fields;
+        $value    = $this->getValue();
 
         $default = [
+            'element'          => $name,
             'caption'          => '',
+            'uiFramework'      => 'bootstrap4',
             'initRows'         => '',
             'rowDragging'      => '',
             'hideRowNumColumn' => '',
@@ -75,8 +89,16 @@ class TableInput extends BaseControl
                 'append'     => 'rs-btn rs-btn--sm rs-btn--primary',
                 'removeLast' => 'rs-btn rs-btn--sm rs-btn--danger',
             ],
+            'sectionClasses'   => [
+                'table'       => "rs-table",
+                'buttonGroup' => "rs-btn-group",
+                'control'     => "rs-form-control",
+                'append'      => "rs-btn rs-btn-primary",
+                'remove'      => "rs-btn rs-btn-default",
+                'removeLast'  => "rs-btn rs-btn-default",
+            ],
             'columns'          => $fields,
-            'initData'         => $default_value,
+            'initData'         => $value,
         ];
 
         $settings = wp_parse_args($settings, $default);
@@ -85,8 +107,8 @@ class TableInput extends BaseControl
         $html->setAttribute('class', 'rs-table rs-table-bordered rs-table-input');
 
         $html .= "<script>
-			jQuery(document).ready(function ($) {
-			    $('#$name').appendGrid(" . json_encode($settings) . ");
+			document.addEventListener('DOMContentLoaded', function () {
+			    window.AppendGrid = new AppendGrid(" . json_encode($settings) . ");
 			});
 			</script>";
 

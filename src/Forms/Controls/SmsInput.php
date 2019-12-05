@@ -45,7 +45,7 @@ class SmsInput extends TextInput
                              ->addHtml(
                                  Html::el('button type=button')
                                      ->setAttribute('id', $action_id)
-                                     ->setAttribute('class', 'rs-btn rs-btn-outline-secondary')
+                                     ->setAttribute('class', 'rs-btn rs-btn-default')
                                      ->addText('value', __('Get Code', 'wprs'))
                              );
 

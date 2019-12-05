@@ -180,7 +180,7 @@ $chosen-sprite-retina: url('../images/chosen-sprite@2x.png') !default;
   li {
     display: none;
     margin: 0;
-    padding: 5px 6px;
+    padding: .5rem;
     list-style: none;
     line-height: 15px;
     word-wrap: break-word;
@@ -310,16 +310,12 @@ $chosen-sprite-retina: url('../images/chosen-sprite@2x.png') !default;
 
     &.search-choice {
       position: relative;
-      top: -3px;
-      margin: 3px 5px 3px 0;
+      margin: 0 5px 0 0;
       padding: 3px 20px 3px 5px;
       border: 1px solid $input-border-color;
       max-width: 100%;
       border-radius: 3px;
       background-color: #eee;
-      background-size: 100% 19px;
-      background-repeat: repeat-x;
-      background-clip: padding-box;
       box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(#000, .05);
       color: #333;
       line-height: 13px;

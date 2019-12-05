@@ -95,7 +95,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             '.file'     => 'text',
             '.email'    => 'text',
             '.number'   => 'text',
-            '.submit'   => 'rs-btn',
+            '.submit'   => 'rs-btn rs-btn-default',
             '.image'    => 'rs-btn--image',
             '.button'   => 'button',
         ],

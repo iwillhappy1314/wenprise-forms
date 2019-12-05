@@ -37,7 +37,7 @@ module.exports = {
           './assets/styles/main.scss',
         ],
         tableinput    : [
-          './assets/scripts/modules/jquery.appendGrid-1.7.1.js',
+          './assets/scripts/modules/table-input.js',
           './assets/scripts/modules/bootstrap-button.js',
         ],
         rangeslider: [
