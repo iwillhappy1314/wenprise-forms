@@ -32,7 +32,7 @@ if (function_exists('load_textdomain')) {
  *
  */
 if ( ! function_exists('wprs_form')) {
-    function wprs_form(Form $form, $type = 'horizontal')
+    function wprs_form(Form $form, $layout = 'horizontal')
     {
 
         // 设置自定义 Render 方法
@@ -40,20 +40,20 @@ if ( ! function_exists('wprs_form')) {
         $form->setTranslator(new Translator());
 
         $renderer                                            = $form->getRenderer();
-        $renderer->wrappers[ 'group' ][ 'container' ]        = 'fieldset class=rs-row';
+        $renderer->wrappers[ 'group' ][ 'container' ]        = 'div class=rs-form-row';
         $renderer->wrappers[ 'group' ][ 'label' ]            = 'legend class="rs-form-legend rs-col-md-12"';
         $renderer->wrappers[ 'controls' ][ 'container' ]     = null;
         $renderer->wrappers[ 'pair' ][ 'container' ]         = 'div class=rs-form-group';
         $renderer->wrappers[ 'pair' ][ '.error' ]            = 'rs-has-error';
-        $renderer->wrappers[ 'control' ][ 'container' ]      = $type == 'horizontal' ? 'div class="rs-col-sm-9 rs-control-input"' : '';
-        $renderer->wrappers[ 'label' ][ 'container' ]        = $type == 'horizontal' ? 'div class="rs-col-sm-3 rs-control-label"' : '';
+        $renderer->wrappers[ 'label' ][ 'container' ]        = $layout == 'horizontal' ? 'div class="rs-col-sm-3 rs-control-label"' : '';
+        $renderer->wrappers[ 'control' ][ 'container' ]      = $layout == 'horizontal' ? 'div class="rs-col-sm-9 rs-control-input"' : '';
         $renderer->wrappers[ 'control' ][ 'description' ]    = 'span class=rs-help-block';
         $renderer->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=rs-help-block';
+
         $form->getElementPrototype()
-             ->class($type == 'horizontal' ? 'form-horizontal' : '');
+             ->class($layout == 'horizontal' ? 'rs-form--horizontal' : 'rs-form--vertical');
 
-
-        $form->onRender[] = function ($form)
+        $form->onRender[] = function ($form) use ($layout)
         {
             $text_control_type = ['text', 'textarea', 'select', 'sms', 'datepicker', 'color-picker'];
 
@@ -61,9 +61,21 @@ if ( ! function_exists('wprs_form')) {
 
                 $type = $control->getOption('type');
 
-                if ( ! $control->getOption('class')) {
-                    $control->setOption('class', 'rs-col-md-12 rs-row rs-form--' . $type);
+                $row_class   = ['rs-form--' . $type];
+                $group_class = [];
+
+                if ($layout == 'horizontal') {
+                    $row_class[]   = 'rs-row';
+                    $group_class[] = 'rs-col-md-12';
+                } else {
+                    if ( ! empty($control->getOption('class'))) {
+                        $group_class[] = $control->getOption('class');
+                    } else {
+                        $group_class[] = 'rs-col-md-12';
+                    }
                 }
+
+                $control->setOption('class', implode(' ', $row_class) . ' ' . implode(' ', $group_class));
 
                 $control->setOption('id', 'grp-' . $control->name);
 
@@ -71,6 +83,7 @@ if ( ! function_exists('wprs_form')) {
 
                     $control->getControlPrototype()
                             ->addClass(empty($usedPrimary) ? 'rs-btn rs-btn-primary' : 'rs-btn rs-btn-default');
+
                     $usedPrimary = true;
 
                 } elseif (in_array($type, $text_control_type, true)) {

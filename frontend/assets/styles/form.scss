@@ -1,6 +1,27 @@
 @import "../../node_modules/bootstrap/scss/forms";
 @import "../../node_modules/bootstrap/scss/input-group";
 
+.rs-form-row {
+  > .rs-col,
+  > [class*="rs-col-"] {
+    padding-right: $form-grid-gutter-width / 2;
+    padding-left: $form-grid-gutter-width / 2;
+  }
+}
+
+.rs-form-group{
+  label{
+    display: block;
+    margin-bottom: .5rem;
+  }
+}
+
+.rs-form-legend {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
 .rs-input-group > .rs-custom-select:not(:first-child),
 .rs-input-group > .rs-form-control:not(:first-child) {
   border-top-left-radius: 0;
@@ -24,12 +45,6 @@ select.rs-form-control[multiple], select.rs-form-control[size], textarea.rs-form
 .ui-datepicker td .ui-state-default {
   padding: 8px 10px !important;
   line-height: normal;
-}
-
-.rs-form-legend {
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-  font-weight: 500;
 }
 
 .combodate {

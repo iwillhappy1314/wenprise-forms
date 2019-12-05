@@ -167,7 +167,6 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
      */
     public function renderPair(Nette\Forms\IControl $control)
     {
-
         $pair = $this->getWrapper('pair container');
         $pair->addHtml($this->renderLabel($control));
 
@@ -180,8 +179,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         // Add prefix and suffix
         if (isset($control->prefix) || isset($control->suffix)) {
 
-            $group_parent = Html::el('div')
-                                ->setAttribute('class', 'rs-col-md-9');
+            $group_parent = $this->getWrapper('control container');
 
             $group = Html::el('div')
                          ->setAttribute('class', [$this->getValue('pair .addon')]);
