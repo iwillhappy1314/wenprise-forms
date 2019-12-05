@@ -97,6 +97,15 @@ class TableInput extends BaseControl
                 'remove'      => "rs-btn rs-btn-default",
                 'removeLast'  => "rs-btn rs-btn-default",
             ],
+            'i18n'             => [
+                'append'     => __('Append Row', 'wprs'),
+                'removeLast' => __('Remove Last Row', 'wprs'),
+                'insert'     => __('Insert Row Above', 'wprs'),
+                'remove'     => __('Remove Current Row', 'wprs'),
+                'moveUp'     => __('Move Up', 'wprs'),
+                'moveDown'   => __('Move Down', 'wprs'),
+                'rowEmpty'   => __('This Grid Is Empty', 'wprs'),
+            ],
             'columns'          => $fields,
             'initData'         => $value,
         ];

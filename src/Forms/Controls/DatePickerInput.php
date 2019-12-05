@@ -13,8 +13,8 @@ class DatePickerInput extends TextInput
     private $settings = [];
 
     /**
-     * @param  string|object $label    Html 标签
-     * @param  array         $settings TinyMce 设置
+     * @param string|object $label    Html 标签
+     * @param array         $settings TinyMce 设置
      */
     public function __construct($label = null, array $settings = null)
     {
@@ -32,10 +32,8 @@ class DatePickerInput extends TextInput
      */
     public function getControl()
     {
-
-            wp_enqueue_style('wprs-datepicker');
-            wp_enqueue_script('jquery-ui-datepicker');
-
+        wp_enqueue_style('wprs-datepicker');
+        wp_enqueue_script('jquery-ui-datepicker');
 
         $el = parent::getControl();
         $el->setAttribute('autocomplete', 'off');
