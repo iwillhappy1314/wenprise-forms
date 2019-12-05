@@ -59,7 +59,7 @@ class SliderInput extends TextBase
 
         $script = "<script>
 	        jQuery(document).ready(function($) {
-	            $('$id').ionRangeSlider('" . json_encode($settings) . "');
+	            $('#$id').ionRangeSlider('" . json_encode($settings) . "');
 	        });
 	    </script>";
 
