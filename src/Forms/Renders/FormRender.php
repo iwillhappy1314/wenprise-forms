@@ -179,22 +179,53 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         // Add prefix and suffix
         if (isset($control->prefix) || isset($control->suffix)) {
 
+            $prefix = $control->prefix;
+            $suffix = $control->suffix;
+
+            // 群组 wrap
             $group_parent = $this->getWrapper('control container');
 
+            // 群组 HTML
             $group = Html::el('div')
                          ->setAttribute('class', [$this->getValue('pair .addon')]);
 
-            if (isset($control->prefix)) {
-                $group->insert(1, $control->prefix);
+            // 前缀
+            if (isset($prefix)) {
+
+                if (is_object($prefix)) {
+                    $prefix_html = $prefix->getControl();
+                } else {
+                    $prefix_html = Html::el('span class=rs-input-group-text')
+                                       ->addHtml($prefix);
+                }
+
+                $group->addHtml(
+                    Html::el('div class=rs-input-group-prepend')
+                        ->addHtml($prefix_html)
+                );
             }
 
-            $group->addHtml(str_replace('class="text"', 'class="rs-form-control"', $this->renderControl($control)
-                                                                                     ->getChildren()[ 0 ]));
+            // 中间
+            $group->addHtml($this->renderControl($control->setAttribute('class', 'rs-form-control'))
+                                 ->getChildren()[ 0 ]);
 
-            if (isset($control->suffix)) {
-                $group->addHtml($control->suffix);
+            // 后缀
+            if (isset($suffix)) {
+
+                if (is_object($suffix)) {
+                    $suffix_html = $suffix->getControl();
+                } else {
+                    $suffix_html = Html::el('span class=rs-input-group-text')
+                                       ->addHtml($suffix);
+                }
+
+                $group->addHtml(
+                    Html::el('div class=rs-input-group-append')
+                        ->addHtml($suffix_html)
+                );
             }
 
+            // 前缀后缀组
             $pair->addHtml($group_parent->addHtml($group));
 
         } else {
@@ -247,6 +278,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             }
             $s[] = $el . $description;
         }
+
         $pair = $this->getWrapper('pair container');
         $pair->addHtml($this->renderLabel($control));
 
