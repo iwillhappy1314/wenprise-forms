@@ -69,16 +69,16 @@
         },
         {
             "name": "nette/forms",
-            "version": "v2.4.9",
+            "version": "v2.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/forms.git",
-                "reference": "787a924d09f507c44ead60f3822c31d61d909b65"
+                "reference": "c38d0bc1d627c983075bf64560f8528c8e265d87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/forms/zipball/787a924d09f507c44ead60f3822c31d61d909b65",
-                "reference": "787a924d09f507c44ead60f3822c31d61d909b65",
+                "url": "https://api.github.com/repos/nette/forms/zipball/c38d0bc1d627c983075bf64560f8528c8e265d87",
+                "reference": "c38d0bc1d627c983075bf64560f8528c8e265d87",
                 "shasum": ""
             },
             "require": {
@@ -133,7 +133,7 @@
                 "nette",
                 "validation"
             ],
-            "time": "2018-09-16T18:32:29+00:00"
+            "time": "2019-11-19T15:39:27+00:00"
         },
         {
             "name": "nette/http",
@@ -209,16 +209,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v2.5.3",
+            "version": "v2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "17b9f76f2abd0c943adfb556e56f2165460b15ce"
+                "reference": "b343b5749f8c2daa0d15f30380ccdba0579c2ed1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/17b9f76f2abd0c943adfb556e56f2165460b15ce",
-                "reference": "17b9f76f2abd0c943adfb556e56f2165460b15ce",
+                "url": "https://api.github.com/repos/nette/utils/zipball/b343b5749f8c2daa0d15f30380ccdba0579c2ed1",
+                "reference": "b343b5749f8c2daa0d15f30380ccdba0579c2ed1",
                 "shasum": ""
             },
             "require": {
@@ -269,7 +269,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "? Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
+            "description": "🛠 Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
             "homepage": "https://nette.org",
             "keywords": [
                 "array",
@@ -287,7 +287,7 @@
                 "utility",
                 "validation"
             ],
-            "time": "2018-09-18T10:22:16+00:00"
+            "time": "2019-11-19T00:32:02+00:00"
         }
     ],
     "packages-dev": [],
