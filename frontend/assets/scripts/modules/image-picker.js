@@ -264,7 +264,7 @@
       if (this.option.data("img-label")) {
         return this.option.data("img-label");
       } else {
-        return this.option.text();
+        return this.option.val();
       }
     };
 
@@ -297,7 +297,7 @@
       thumbnail.on("click", this.clicked);
       thumbnail.append(image);
       if (this.opts.show_label) {
-        thumbnail.append(jQuery("<p/>").html(this.label()));
+        thumbnail.append(jQuery("<p/>").addClass('rs-thumbnail__label').html(this.label()));
       }
       this.node.append(thumbnail);
       return this.node;
