@@ -13,61 +13,63 @@
   "datepicker.css.map": "app/datepicker-d5892d69.css.map",
   "datepicker.js": "app/datepicker-6e04cbd8.js",
   "datepicker.js.map": "app/datepicker-6e04cbd8.js.map",
-  "main.css": "app/main-896fe003.css",
-  "main.css.map": "app/main-896fe003.css.map",
-  "main.js": "app/main-921af484.js",
-  "main.js.map": "app/main-921af484.js.map",
-  "moment.js": "app/moment-967e9270.js",
-  "moment.js.map": "app/moment-967e9270.js.map",
+  "image_picker.js": "app/image_picker-088a5879.js",
+  "image_picker.js.map": "app/image_picker-088a5879.js.map",
+  "main.css": "app/main-477df198.css",
+  "main.css.map": "app/main-477df198.css.map",
+  "main.js": "app/main-a1bdaeed.js",
+  "main.js.map": "app/main-a1bdaeed.js.map",
+  "moment.js": "app/moment-eb509cf4.js",
+  "moment.js.map": "app/moment-eb509cf4.js.map",
   "rangeslider.css": "app/rangeslider-6d02f2a8.css",
   "rangeslider.css.map": "app/rangeslider-6d02f2a8.css.map",
-  "rangeslider.js": "app/rangeslider-dd24fabc.js",
-  "rangeslider.js.map": "app/rangeslider-dd24fabc.js.map",
+  "rangeslider.js": "app/rangeslider-2d4702e8.js",
+  "rangeslider.js.map": "app/rangeslider-2d4702e8.js.map",
   "runtime.js": "app/runtime-b9921ffa.js",
   "runtime.js.map": "app/runtime-b9921ffa.js.map",
-  "signature.js": "app/signature-c8fab883.js",
-  "signature.js.map": "app/signature-c8fab883.js.map",
-  "tableinput.js": "app/tableinput-e7d8c2b1.js",
-  "tableinput.js.map": "app/tableinput-e7d8c2b1.js.map",
+  "signature.js": "app/signature-32543309.js",
+  "signature.js.map": "app/signature-32543309.js.map",
+  "tableinput.js": "app/tableinput-3a0e5132.js",
+  "tableinput.js.map": "app/tableinput-3a0e5132.js.map",
   "uploader.css": "app/uploader-b7c0f1e1.css",
   "uploader.css.map": "app/uploader-b7c0f1e1.css.map",
-  "uploader.js": "app/uploader-86c50aab.js",
-  "uploader.js.map": "app/uploader-86c50aab.js.map",
+  "uploader.js": "app/uploader-28320870.js",
+  "uploader.js.map": "app/uploader-28320870.js.map",
   "wpackioEp": {
     "main": {
       "js": [
         "app/runtime-b9921ffa.js",
-        "app/main-921af484.js"
+        "app/main-a1bdaeed.js"
       ],
       "js.map": [
         "app/runtime-b9921ffa.js.map",
-        "app/main-921af484.js.map"
+        "app/main-a1bdaeed.js.map"
       ],
       "css": [
-        "app/main-896fe003.css"
+        "app/main-477df198.css"
       ],
       "css.map": [
-        "app/main-896fe003.css.map"
+        "app/main-477df198.css.map"
       ]
     },
     "tableinput": {
       "js": [
         "app/runtime-b9921ffa.js",
-        "app/tableinput-e7d8c2b1.js"
+        "app/tableinput-3a0e5132.js"
       ],
       "js.map": [
         "app/runtime-b9921ffa.js.map",
-        "app/tableinput-e7d8c2b1.js.map"
+        "app/tableinput-3a0e5132.js.map"
       ]
     },
     "rangeslider": {
       "js": [
         "app/runtime-b9921ffa.js",
-        "app/rangeslider-dd24fabc.js"
+        "app/rangeslider-2d4702e8.js"
       ],
       "js.map": [
         "app/runtime-b9921ffa.js.map",
-        "app/rangeslider-dd24fabc.js.map"
+        "app/rangeslider-2d4702e8.js.map"
       ],
       "css": [
         "app/rangeslider-6d02f2a8.css"
@@ -79,11 +81,11 @@
     "moment": {
       "js": [
         "app/runtime-b9921ffa.js",
-        "app/moment-967e9270.js"
+        "app/moment-eb509cf4.js"
       ],
       "js.map": [
         "app/runtime-b9921ffa.js.map",
-        "app/moment-967e9270.js.map"
+        "app/moment-eb509cf4.js.map"
       ]
     },
     "combodate": {
@@ -99,11 +101,11 @@
     "uploader": {
       "js": [
         "app/runtime-b9921ffa.js",
-        "app/uploader-86c50aab.js"
+        "app/uploader-28320870.js"
       ],
       "js.map": [
         "app/runtime-b9921ffa.js.map",
-        "app/uploader-86c50aab.js.map"
+        "app/uploader-28320870.js.map"
       ],
       "css": [
         "app/uploader-b7c0f1e1.css"
@@ -157,11 +159,21 @@
     "signature": {
       "js": [
         "app/runtime-b9921ffa.js",
-        "app/signature-c8fab883.js"
+        "app/signature-32543309.js"
       ],
       "js.map": [
         "app/runtime-b9921ffa.js.map",
-        "app/signature-c8fab883.js.map"
+        "app/signature-32543309.js.map"
+      ]
+    },
+    "image_picker": {
+      "js": [
+        "app/runtime-b9921ffa.js",
+        "app/image_picker-088a5879.js"
+      ],
+      "js.map": [
+        "app/runtime-b9921ffa.js.map",
+        "app/image_picker-088a5879.js.map"
       ]
     }
   }

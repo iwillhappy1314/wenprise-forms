@@ -277,4 +277,20 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
         return $this[ $name ] = (new Controls\AutocompleteInput($label, $settings));
     }
 
+
+    /**
+     * Chosen 输入空间
+     *
+     * @param            $name
+     * @param null       $label
+     * @param array|null $items
+     * @param array|null $settings
+     *
+     * @return \Wenprise\Forms\Controls\ImagePickerInput
+     */
+    public function addImagePicker($name, $label = null, array $items = null, array $settings = null)
+    {
+        return $this[ $name ] = (new Controls\ImagePickerInput($label, $items, $settings));
+    }
+
 }

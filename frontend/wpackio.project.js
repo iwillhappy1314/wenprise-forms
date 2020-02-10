@@ -2,11 +2,11 @@ const pkg = require('./package.json');
 
 module.exports = {
   // Project Identity
-  appName            : 'wenpriseForms', // Unique name of your project
-  type               : 'plugin', // Plugin or theme
-  slug               : 'wenprise-forms', // Plugin or Theme slug, basically the directory name under `wp-content/<themes|plugins>`
+  appName                                    : 'wenpriseForms', // Unique name of your project
+  type                                       : 'plugin', // Plugin or theme
+  slug                                       : 'wenprise-forms', // Plugin or Theme slug, basically the directory name under `wp-content/<themes|plugins>`
   // Used to generate banners on top of compiled stuff
-  bannerConfig       : {
+  bannerConfig                               : {
     name         : 'wenpriseForms',
     author       : '',
     license      : 'UNLICENSED',
@@ -17,7 +17,7 @@ module.exports = {
     credit       : true,
   },
   // Files we need to compile, and where to put
-  files              : [
+  files                                      : [
     // If this has length === 1, then single compiler
     {
       name         : 'app',
@@ -30,42 +30,45 @@ module.exports = {
         // You do not need to worry about file-size, because we would do
         // code splitting automatically. When using ES6 modules, forget
         // global namespace pollutions 😉
-        main           : [
+        main        : [
           './assets/scripts/main.js',
           './assets/scripts/modules/conditionize.js',
           './assets/scripts/modules/nette-forms.js',
           './assets/styles/main.scss',
         ],
-        tableinput    : [
+        tableinput  : [
           './assets/scripts/modules/table-input.js',
           './assets/scripts/modules/bootstrap-button.js',
         ],
-        rangeslider: [
+        rangeslider : [
           './assets/scripts/modules/ion-rangeslider.js',
           './assets/styles/ion-rangeslider.scss',
         ],
-        moment         : [
+        moment      : [
           './assets/scripts/modules/moment.js',
         ],
-        combodate      : [
+        combodate   : [
           './assets/scripts/modules/combodate.js',
         ],
-        uploader  : [
+        uploader    : [
           './assets/scripts/modules/ajax-uploader.js',
           './assets/styles/ajax-uploader.scss',
         ],
-        autocomplete   : [
+        autocomplete: [
           './assets/scripts/modules/autocomplete.js',
         ],
-        chosen         : [
+        chosen      : [
           './assets/scripts/modules/chosen-js.js',
           './assets/styles/chosen.scss',
         ],
-        datepicker     : [
+        datepicker  : [
           './assets/styles/datepicker.scss',
         ],
-        signature      : [
+        signature   : [
           './assets/scripts/modules/jq-signature.js',
+        ],
+        image_picker: [
+          './assets/scripts/modules/image-picker.js',
         ],
       },
       // Extra webpack config to be passed directly
@@ -75,37 +78,37 @@ module.exports = {
   ],
   // Output path relative to the context directory
   // We need relative path here, else, we can not map to publicPath
-  outputPath         : 'dist',
+  outputPath                                 : 'dist',
   // Project specific config
   // Needs react(jsx)?
-  hasReact           : false,
+  hasReact                                   : false,
   // Needs sass?
-  hasSass            : true,
+  hasSass                                    : true,
   // Needs less?
-  hasLess            : false,
+  hasLess                                    : false,
   // Needs flowtype?
-  hasFlow            : false,
+  hasFlow                                    : false,
   // Externals
   // <https://webpack.js.org/configuration/externals/>
-  externals          : {
+  externals                                  : {
     jquery: 'jQuery',
   },
   // Webpack Aliases
   // <https://webpack.js.org/configuration/resolve/#resolve-alias>
-  alias              : undefined,
+  alias                                      : undefined,
   // Show overlay on development
-  errorOverlay       : true,
+  errorOverlay                               : true,
   // Auto optimization by webpack
   // Split all common chunks with default config
   // <https://webpack.js.org/plugins/split-chunks-plugin/#optimization-splitchunks>
   // Won't hurt because we use PHP to automate loading
-  optimizeSplitChunks: false,
+  optimizeSplitChunks                        : false,
   // Usually PHP and other files to watch and reload when changed
-  watch              : './inc|includes/**/*.php',
+  watch                                      : './inc|includes/**/*.php',
   // Files that you want to copy to your ultimate theme/plugin package
   // Supports glob matching from minimatch
   // @link <https://github.com/isaacs/minimatch#usage>
-  packageFiles       : [
+  packageFiles                               : [
     'inc/**',
     'vendor/**',
     'dist/**',
@@ -118,6 +121,6 @@ module.exports = {
     '*.css',
   ],
   // Path to package directory, relative to the root
-  packageDirPath     : 'package',
+  packageDirPath                             : 'package',
   dangerouslyAllowCleanPatternsOutsideProject: true,
 };

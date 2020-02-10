@@ -80,3 +80,26 @@ a.rs-btn.disabled, fieldset:disabled a.rs-btn {
     font-weight: normal;
   }
 }
+
+.rs-thumbnails{
+  li{
+    margin: 0px .75rem .75rem 0px;
+    float: left;
+  }
+}
+
+.rs-thumbnail{
+  &__img{
+    padding: .25rem;
+    border: 1px solid #dddddd;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+    border-radius: 4px;
+    &.rs-selected{
+      background: #0088cc;
+    }
+
+    img{
+      vertical-align: middle;
+    }
+  }
+}

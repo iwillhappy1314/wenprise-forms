@@ -316,8 +316,6 @@ if (function_exists('wp_register_style')) {
     {
         $assets = wpack_get_manifest('../frontend/dist/app');
 
-        // dd($assets);
-
         // 运行环境
         wp_enqueue_script('wprs-forms-runtime', wpack_get_url($assets[ 'runtime.js' ]), [], WENPRISE_FORM_VERSION);
 
@@ -349,7 +347,10 @@ if (function_exists('wp_register_style')) {
         wp_register_script('wprs-autocomplete', wpack_get_url($assets[ 'autocomplete.js' ]), ['jquery'], WENPRISE_FORM_VERSION);
 
         // 表格输入
-        wp_register_script('wprs-table-input', wpack_get_url($assets[ 'tableinput.js' ]), [], WENPRISE_FORM_VERSION,
+        wp_register_script('wprs-table-input', wpack_get_url($assets[ 'tableinput.js' ]), ['jquery'], WENPRISE_FORM_VERSION,
+            false);
+
+        wp_register_script('wprs-image-picker', wpack_get_url($assets[ 'image_picker.js' ]), ['jquery'], WENPRISE_FORM_VERSION,
             false);
 
         // Ajax 上传
