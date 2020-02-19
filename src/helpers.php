@@ -40,7 +40,7 @@ if ( ! function_exists('wprs_form')) {
         $form->setTranslator(new Translator());
 
         $renderer                                            = $form->getRenderer();
-        $renderer->wrappers[ 'group' ][ 'container' ]        = 'div class=rs-form-row';
+        $renderer->wrappers[ 'group' ][ 'container' ]        = 'fieldset class=rs-form-row';
         $renderer->wrappers[ 'group' ][ 'label' ]            = 'legend class="rs-form-legend rs-col-md-12"';
         $renderer->wrappers[ 'controls' ][ 'container' ]     = null;
         $renderer->wrappers[ 'pair' ][ 'container' ]         = 'div class=rs-form-group';
