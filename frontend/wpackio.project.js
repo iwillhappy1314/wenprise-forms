@@ -67,6 +67,10 @@ module.exports = {
         signature   : [
           './assets/scripts/modules/jq-signature.js',
         ],
+        star_rating   : [
+          './assets/scripts/modules/star-rating.js',
+          './assets/styles/star-rating.scss',
+        ],
         image_picker: [
           './assets/scripts/modules/image-picker.js',
         ],

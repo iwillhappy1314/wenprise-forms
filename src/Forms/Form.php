@@ -279,7 +279,7 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 
 
     /**
-     * Chosen 输入空间
+     * Chosen 输入控件
      *
      * @param            $name
      * @param null       $label
@@ -291,6 +291,21 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     public function addImagePicker($name, $label = null, array $items = null, array $settings = null)
     {
         return $this[ $name ] = (new Controls\ImagePickerInput($label, $items, $settings));
+    }
+
+
+    /**
+     * 星级评分输入控件
+     *
+     * @param      $name     string  表单名称
+     * @param      $label    string  表单标签
+     * @param      $settings array   表单设置
+     *
+     * @return \Wenprise\Forms\Controls\StarRatingInput
+     */
+    public function addStarRating($name, $label = null, array $settings = null)
+    {
+        return $this[ $name ] = (new Controls\StarRatingInput($label, $settings));
     }
 
 }

@@ -357,6 +357,10 @@ if (function_exists('wp_register_style')) {
         wp_register_style('wprs-ajax-uploader', wpack_get_url($assets[ 'uploader.css' ]), [], WENPRISE_FORM_VERSION);
         wp_register_script('wprs-ajax-uploader', wpack_get_url($assets[ 'uploader.js' ]), ['jquery'], WENPRISE_FORM_VERSION, true);
 
+        // 五星评分
+        wp_register_style('wprs-star-rating', wpack_get_url($assets[ 'star_rating.css' ]), [], WENPRISE_FORM_VERSION);
+        wp_register_script('wprs-star-rating', wpack_get_url($assets[ 'star_rating.js' ]), ['jquery'], WENPRISE_FORM_VERSION, true);
+
         // 颜色选择
         wp_register_script('wp-color-picker', admin_url('js/color-picker.min.js'), ['iris'], false, true);
         wp_register_script('iris', admin_url('js/iris.min.js'), ['jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch'], false, true);

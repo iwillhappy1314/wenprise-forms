@@ -13,10 +13,10 @@
   "datepicker.css.map": "app/datepicker-d5892d69.css.map",
   "datepicker.js": "app/datepicker-6e04cbd8.js",
   "datepicker.js.map": "app/datepicker-6e04cbd8.js.map",
-  "image_picker.js": "app/image_picker-8096de88.js",
-  "image_picker.js.map": "app/image_picker-8096de88.js.map",
-  "main.css": "app/main-6fb57903.css",
-  "main.css.map": "app/main-6fb57903.css.map",
+  "image_picker.js": "app/image_picker-015a802a.js",
+  "image_picker.js.map": "app/image_picker-015a802a.js.map",
+  "main.css": "app/main-31a1f901.css",
+  "main.css.map": "app/main-31a1f901.css.map",
   "main.js": "app/main-a1bdaeed.js",
   "main.js.map": "app/main-a1bdaeed.js.map",
   "moment.js": "app/moment-eb509cf4.js",
@@ -29,12 +29,16 @@
   "runtime.js.map": "app/runtime-b9921ffa.js.map",
   "signature.js": "app/signature-32543309.js",
   "signature.js.map": "app/signature-32543309.js.map",
-  "tableinput.js": "app/tableinput-3a0e5132.js",
-  "tableinput.js.map": "app/tableinput-3a0e5132.js.map",
+  "star_rating.css": "app/star_rating-363ea0db.css",
+  "star_rating.css.map": "app/star_rating-363ea0db.css.map",
+  "star_rating.js": "app/star_rating-894f6fb7.js",
+  "star_rating.js.map": "app/star_rating-894f6fb7.js.map",
+  "tableinput.js": "app/tableinput-ef1e8c70.js",
+  "tableinput.js.map": "app/tableinput-ef1e8c70.js.map",
   "uploader.css": "app/uploader-b7c0f1e1.css",
   "uploader.css.map": "app/uploader-b7c0f1e1.css.map",
-  "uploader.js": "app/uploader-28320870.js",
-  "uploader.js.map": "app/uploader-28320870.js.map",
+  "uploader.js": "app/uploader-ba0e0eff.js",
+  "uploader.js.map": "app/uploader-ba0e0eff.js.map",
   "wpackioEp": {
     "main": {
       "js": [
@@ -46,20 +50,20 @@
         "app/main-a1bdaeed.js.map"
       ],
       "css": [
-        "app/main-6fb57903.css"
+        "app/main-31a1f901.css"
       ],
       "css.map": [
-        "app/main-6fb57903.css.map"
+        "app/main-31a1f901.css.map"
       ]
     },
     "tableinput": {
       "js": [
         "app/runtime-b9921ffa.js",
-        "app/tableinput-3a0e5132.js"
+        "app/tableinput-ef1e8c70.js"
       ],
       "js.map": [
         "app/runtime-b9921ffa.js.map",
-        "app/tableinput-3a0e5132.js.map"
+        "app/tableinput-ef1e8c70.js.map"
       ]
     },
     "rangeslider": {
@@ -101,11 +105,11 @@
     "uploader": {
       "js": [
         "app/runtime-b9921ffa.js",
-        "app/uploader-28320870.js"
+        "app/uploader-ba0e0eff.js"
       ],
       "js.map": [
         "app/runtime-b9921ffa.js.map",
-        "app/uploader-28320870.js.map"
+        "app/uploader-ba0e0eff.js.map"
       ],
       "css": [
         "app/uploader-b7c0f1e1.css"
@@ -166,14 +170,30 @@
         "app/signature-32543309.js.map"
       ]
     },
-    "image_picker": {
+    "star_rating": {
       "js": [
         "app/runtime-b9921ffa.js",
-        "app/image_picker-8096de88.js"
+        "app/star_rating-894f6fb7.js"
       ],
       "js.map": [
         "app/runtime-b9921ffa.js.map",
-        "app/image_picker-8096de88.js.map"
+        "app/star_rating-894f6fb7.js.map"
+      ],
+      "css": [
+        "app/star_rating-363ea0db.css"
+      ],
+      "css.map": [
+        "app/star_rating-363ea0db.css.map"
+      ]
+    },
+    "image_picker": {
+      "js": [
+        "app/runtime-b9921ffa.js",
+        "app/image_picker-015a802a.js"
+      ],
+      "js.map": [
+        "app/runtime-b9921ffa.js.map",
+        "app/image_picker-015a802a.js.map"
       ]
     }
   }

@@ -16,6 +16,17 @@ module.exports = {
     classPrfx('rs-', {
       ignore: [
         /rs-/,
+        /rating-/,
+        /clear-/,
+        /theme-/,
+        /krajee-/,
+        /filled-/,
+        /empty-/,
+        /is-heart/,
+        /is-display-only/,
+        /star/,
+        /caption/,
+        /label/,
         /ui-/,
         /js-/,
         /irs/,
