@@ -6,7 +6,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  border: 0.25rem dashed #a0aec0;
+  border: 3px dashed #a0aec0;
   border-radius: 6px;
   text-align: center;
   padding: 2rem;
@@ -28,6 +28,10 @@
       max-width: 100%;
       height: auto;
     }
+  }
+
+  &__image{
+    margin-bottom: 1rem;
   }
 
   &__close {
@@ -78,6 +82,7 @@
   }
 
   &__button {
+    display: inline-block !important;
     box-sizing: content-box;
     position: relative;
     overflow: hidden;
