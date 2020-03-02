@@ -34,6 +34,7 @@ class DatePickerInput extends TextInput
     {
         wp_enqueue_style('wprs-datepicker');
         wp_enqueue_script('jquery-ui-datepicker');
+        wp_enqueue_script('wprs-datepicker-zh');
 
         $el = parent::getControl();
         $el->setAttribute('autocomplete', 'off');

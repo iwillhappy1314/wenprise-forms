@@ -64,6 +64,9 @@ module.exports = {
         datepicker  : [
           './assets/styles/datepicker.scss',
         ],
+        datepicker_zh  : [
+          './assets/scripts/modules/datepicker-zh.js',
+        ],
         signature   : [
           './assets/scripts/modules/jq-signature.js',
         ],

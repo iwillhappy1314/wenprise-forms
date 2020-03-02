@@ -342,6 +342,7 @@ if (function_exists('wp_register_style')) {
 
         // Datepicker 样式
         wp_register_style('wprs-datepicker', wpack_get_url($assets[ 'datepicker.css' ]), [], WENPRISE_FORM_VERSION);
+        wp_register_script('wprs-datepicker-zh', wpack_get_url($assets[ 'datepicker_zh.js' ]), ['jquery', 'jquery-ui-datepicker'], WENPRISE_FORM_VERSION);
 
         // jQuery AutoComplete
         wp_register_script('wprs-autocomplete', wpack_get_url($assets[ 'autocomplete.js' ]), ['jquery'], WENPRISE_FORM_VERSION);
@@ -350,6 +351,7 @@ if (function_exists('wp_register_style')) {
         wp_register_script('wprs-table-input', wpack_get_url($assets[ 'tableinput.js' ]), ['jquery'], WENPRISE_FORM_VERSION,
             false);
 
+        // 图像选择
         wp_register_script('wprs-image-picker', wpack_get_url($assets[ 'image_picker.js' ]), ['jquery'], WENPRISE_FORM_VERSION,
             false);
 
