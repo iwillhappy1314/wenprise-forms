@@ -13,9 +13,11 @@ class CaptchaInput extends TextInput
 
     private $settings = [];
 
+    public $url = '';
+
     /**
-     * @param  string|object Html      标签
-     * @param  array $settings TinyMce 设置
+     * @param string|object Html      标签
+     * @param array $settings TinyMce 设置
      */
     public function __construct($label = null, $settings = [])
     {
@@ -38,11 +40,10 @@ class CaptchaInput extends TextInput
 
         $id        = $this->getHtmlId();
         $action_id = $id . '-action';
-        $data_url  = $this->control->getAttribute('data-url');
 
         $script = "<script>
             // 刷新验证码
-		    function refresh_code(obj) {
+		    function wprs_refresh_code(obj) {
 		        obj.src = obj.src + '?code=' + Math.random();
 		    }</script>";
 
@@ -53,14 +54,29 @@ class CaptchaInput extends TextInput
                                      ->data('toggle', 'tooltip')
                                      ->setAttribute('id', $action_id)
                                      ->setAttribute('title', __('Click to refresh', 'wprs'))
-                                     ->setAttribute('onclick', 'refresh_code(this)')
+                                     ->setAttribute('onclick', 'wprs_refresh_code(this)')
                                      ->setAttribute('alt', 'Captcha')
-                                     ->setAttribute('src', $data_url)
+                                     ->setAttribute('src', $this->url)
                              );
 
         $input_group->addHtml($el->setAttribute('class', 'rs-form-control'));
         $input_group->addHtml($action_button);
 
         return $script . $input_group;
+    }
+
+
+    /**
+     * Set backend data url
+     *
+     * @param $url
+     *
+     * @return $this
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }
