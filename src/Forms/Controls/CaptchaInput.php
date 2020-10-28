@@ -44,7 +44,9 @@ class CaptchaInput extends TextInput
         $script = "<script>
             // 刷新验证码
 		    function wprs_refresh_code(obj) {
-		        obj.src = obj.src + '?code=' + Math.random();
+		        var href = new URL(obj.src);
+                href.searchParams.set('code', Math.random());
+		        obj.src = href;
 		    }</script>";
 
         $input_group   = Html::el('div class=rs-input-group');

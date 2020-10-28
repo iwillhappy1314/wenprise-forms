@@ -254,3 +254,29 @@ $form->addGroupInput('day1', 'Day')
      ->setPrefix('Email')
      ->setSuffix('gmail.com');
 ````
+
+### Captcha Input
+
+````php
+ $form->AddCaptcha('captcha', 'Captcha')
+             ->setUrl(admin_url('admin-ajax.php?action=captcha'));
+````
+
+````php
+#### Uploader backend sample.
+add_action('wp_ajax_captcha', 'get_captcha');
+add_action('wp_ajax_nopriv_captcha', 'get_captcha');
+function get_captcha($type)
+{
+
+    header('Content-type: image/jpeg');
+
+    // use gregwar/captcha to generate captcha.
+    $builder                             = new Gregwar\Captcha\CaptchaBuilder();
+    $_SESSION[ 'wprs-security-captcha' ] = $builder->build(150, 36)->getPhrase();
+
+    $builder->build()
+            ->output();
+
+}
+````
