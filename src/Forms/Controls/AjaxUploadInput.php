@@ -23,12 +23,15 @@ class  AjaxUploadInput extends BaseControl
 
     /** validation rule */
     const VALID = ':uploadControlValid';
+
     private $settings = [];
 
+    public $url;
+
     /**
-     * @param string|object
+     * @param null       $label
      * @param bool
-     * @param array $settings Chosen 设置
+     * @param array|null $settings Chosen 设置
      */
     public function __construct($label = null, $multiple = false, array $settings = null)
     {
@@ -62,7 +65,6 @@ class  AjaxUploadInput extends BaseControl
         $id          = $this->getHtmlId();
         $settings    = $this->settings;
         $placeholder = $this->control->getAttribute('placeholder') ? $this->control->getAttribute('placeholder') : __('Select File', 'wprs');
-        $data_url    = $this->control->getAttribute('data-url');
         $value       = $this->getValue();
         $preview     = '';
         $hide        = 'rs-hide';
@@ -71,7 +73,7 @@ class  AjaxUploadInput extends BaseControl
         $el->appendAttribute('class', $hide);
 
         // 如果有默认值，设置隐藏的真实表单
-        if ($value && ! empty($value)) {
+        if ($value) {
             $hide = '';
             if (is_array($value)) {
                 foreach ($value as $v) {
@@ -112,7 +114,7 @@ class  AjaxUploadInput extends BaseControl
                                     ->setAttribute('name', 'js-input-shadow')
                                     ->setAttribute('multiple', $multiple)
                                     ->setAttribute('title', $placeholder)
-                                    ->data('url', $data_url)
+                                    ->data('url', $this->url)
                             )
                     )
                     ->addHtml(
@@ -174,6 +176,21 @@ class  AjaxUploadInput extends BaseControl
     public function getHtmlName()
     {
         return parent::getHtmlName() . ($this->control->multiple ? '[]' : '');
+    }
+
+
+    /**
+     * 设置后端 URL
+     *
+     * @param $url
+     *
+     * @return $this
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
     }
 
 

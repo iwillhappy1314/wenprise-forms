@@ -36,6 +36,7 @@ class ColorPickerInput extends TextInput
         if ( function_exists( 'wp_enqueue_script' ) ) {
             wp_enqueue_script( 'iris' );
             wp_enqueue_script( 'wp-color-picker' );
+            wp_enqueue_style('wp-color-picker');
         }
 
 		$el = parent::getControl();
