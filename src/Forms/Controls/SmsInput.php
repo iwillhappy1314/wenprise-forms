@@ -13,9 +13,11 @@ class SmsInput extends TextInput
 
     private $settings = [];
 
+    public $url;
+
     /**
-     * @param string|object Html      标签
-     * @param array $settings TinyMce 设置
+     * @param null       $label
+     * @param array|null $settings TinyMce 设置
      */
     public function __construct($label = null, array $settings = null)
     {
@@ -38,7 +40,6 @@ class SmsInput extends TextInput
 
         $name      = $this->getName();
         $action_id = $this->getHtmlId() . '-action';
-        $data_url  = $this->control->getAttribute('data-url');
 
         $input_group   = Html::el('div class=rs-input-group');
         $action_button = Html::el('span class=rs-input-group-append')
@@ -46,7 +47,7 @@ class SmsInput extends TextInput
                                  Html::el('button type=button')
                                      ->setAttribute('id', $action_id)
                                      ->setAttribute('class', 'rs-btn rs-btn-default')
-                                     ->addText('value', __('Get Code', 'wprs'))
+                                     ->addText(__('Get Code', 'wprs'))
                              );
 
         $input_group->addHtml($el);
@@ -78,7 +79,7 @@ class SmsInput extends TextInput
                     $.ajax({
                         type      : 'POST',
                         dataType  : 'json',
-                        url       : '$data_url',
+                        url       : '$this->url',
                         data      : {
                             '$name': $('input[name=$name]').val()
                         },
@@ -109,5 +110,20 @@ class SmsInput extends TextInput
         </script>";
 
         return $input_group . $script;
+    }
+
+
+    /**
+     * 设置后端 URL
+     *
+     * @param $url
+     *
+     * @return $this
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }

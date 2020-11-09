@@ -255,6 +255,74 @@ $form->addGroupInput('day1', 'Day')
      ->setSuffix('gmail.com');
 ````
 
+### SMS input
+Send SMS code
+
+```php
+$form->addSmsInput('photo11', '短信', )
+             ->setUrl(admin_url('admin-ajax.php?action=captcha'));
+```
+
+Backend Example
+```php
+
+/**
+ * 发送短信验证码
+ */
+add_action('wp_ajax_captcha', 'get_validate_code');
+add_action('wp_ajax_nopriv_captcha', 'get_validate_code');
+function get_validate_code()
+{
+	$phone = Input::get( 'phone', null );
+
+	if ( ! $phone && is_user_logged_in() ) {
+		$phone = OpenAuth::get_open_id( 'phone', get_current_user_id() );
+	}
+
+	$random = mt_rand( 100000, 999999 );
+
+	// 发送验证码之前，保存验证码到数据库
+	$code       = PhoneCode::query()->firstOrCreate( [ 'phone' => $phone ] );
+	$code->code = $random;
+	$code->save();
+
+	$msg = Helper::send_sms( $phone, $code->code );
+
+	wp_send_json( $msg, '200' );
+};
+
+/**
+ * 发送短信
+ */
+function send_sms( $mobile, $content )
+{
+
+    $config = Config::get( 'sms' );
+
+    // 模板接口网关
+    $url = "https://sms.yunpian.com/v2/sms/tpl_single_send.json";
+
+    $args = [
+        'body' => [
+            'apikey'    => $config[ 'apikey' ],
+            'mobile'    => $mobile,
+
+            // 如果是模板短信
+            'tpl_id'    => $config[ 'tpl_id' ],
+            'tpl_value' => "#code#=$content",
+        ],
+    ];
+
+    $result = json_decode( wp_remote_retrieve_body( wp_remote_post( $url, $args ) ) );
+
+    // 根据网关返回的数据返回消息
+    return [
+        'code' => $result->code,
+        'msg'  => $result->msg,
+    ];
+}
+```
+
 ### Captcha Input
 
 ````php
