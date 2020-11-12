@@ -12,12 +12,13 @@ class ChainedInput extends BaseControl
 {
 
     private $settings = [];
+
     private $fields = [];
 
     /**
-     * @param  string|object $label    Html 标签
-     * @param  array         $settings TinyMce 设置
-     * @param  array         $fields   TinyMce 设置
+     * @param null $label    Html 标签
+     * @param null $settings TinyMce 设置
+     * @param null $fields   TinyMce 设置
      */
     public function __construct($label = null, $settings = null, $fields = null)
     {
@@ -78,6 +79,11 @@ class ChainedInput extends BaseControl
 		</script>";
 
         return $html;
+    }
+
+
+    public function addFields(){
+
     }
 
 

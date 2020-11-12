@@ -28,6 +28,8 @@ class CsrfInput extends HiddenField
     /**
      * 生成 Csrf 令牌
      *
+     * @param null $random
+     *
      * @return string
      */
     public function generateToken($random = null)

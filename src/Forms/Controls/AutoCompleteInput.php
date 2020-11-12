@@ -15,8 +15,8 @@ class AutoCompleteInput extends TextInput
     public $source = '';
 
     /**
-     * @param  string|object Html      标签
-     * @param  array $settings TinyMce 设置
+     * @param null       $label
+     * @param array|null $settings TinyMce 设置
      */
     public function __construct($label = null, array $settings = null)
     {
