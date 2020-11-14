@@ -198,6 +198,16 @@ $form->addAutocomplete('name', 'Name')->setSource([
 ]);
 ```
 
+If Source is an ajax url, the backend need return data as bellow.
+
+```php
+suggestions: [
+  { "value": "United Arab Emirates", "data": "AE" },
+  { "value": "United Kingdom",       "data": "UK" },
+  { "value": "United States",        "data": "US" }
+]
+```
+
 ### Table input
 
 ````php
