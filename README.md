@@ -6,6 +6,7 @@ Basic usage: [Nette Form](https://doc.nette.org/en/2.4/forms)
 
 ## Usage
 
+### Quick start
 
 ````php
 use Wenprise\Forms\Form;
@@ -15,9 +16,12 @@ wprs_form( $form );
 
 // Set form method
 $form->setMethod( 'POST' );
+$form->setAction('https://www.example.com');
 
 // Set form field
 $form->addText('first_name', 'First Name');
+
+// Set submit button
 $form->addSubmit( 'send', 'Save' );
 
 // Validate form and get form data
@@ -29,6 +33,22 @@ if ( $form->isSuccess() ) {
 			
 }	
 ````
+
+### Set Required
+
+```php
+$form->addText('first_name', 'First Name')
+     ->setRequired();
+```
+
+### Add field description
+
+```php
+$form->addText('first_name', 'First Name')
+     ->setOption('description', 'This is your first name.');
+```
+
+## Fields
 
 ### nonce field
 
@@ -44,7 +64,6 @@ Settings: https://codex.wordpress.org/Function_Reference/wp_editor
 $form->addEditor('post_extra', 'Extra content', []);
 ````
 
-
 ### Ajax uploader
 
 ```php
@@ -53,6 +72,7 @@ $form->addAjaxUpload('photos', 'Photos', true, )
 ```
 
 #### Uploader backend sample.
+
 ````php
 add_action('wp_ajax_upload', 'ajax_uploader');
 add_action('wp_ajax_nopriv_upload', 'ajax_uploader');
@@ -87,7 +107,6 @@ function ajax_uploader()
     return false;
 }
 ````
-
 
 ### Slider input
 
@@ -137,7 +156,6 @@ $form->addChosen('category', 'Category', $choices);
 $form->addMultiChosen('post_tags', 'Tags', $choices);
 ````
 
-
 ### Signature Filed
 
 ````php
@@ -166,7 +184,6 @@ $options = [
 $form->addStarRating('rating', 'Rating', $options);
 ````
 
-
 ### Image Select
 
 ````php
@@ -179,6 +196,7 @@ $form->addImagePicker('theme', 'Theme', $options);
 ````
 
 ### Autocomplete Input
+
 Source is an array or a url returns an array.
 
 ```php
@@ -247,16 +265,16 @@ $form->addTableInput('table', 'Table', [], $fields)
      ->setDefaultValue($values);
 ````
 
-
 ### Clone Input
+
 Allow input multi text value.
 
 ````php
 $form->addCloneInput('photo1', 'Photo');
 ````
 
+### Group Input
 
-###Group Input
 Set a prefix or suffix for text input.
 
 ````php
@@ -266,6 +284,7 @@ $form->addGroupInput('day1', 'Day')
 ````
 
 ### SMS input
+
 Send SMS code
 
 ```php
@@ -274,6 +293,7 @@ $form->addSmsInput('photo11', '短信', )
 ```
 
 Backend Example
+
 ```php
 
 /**
