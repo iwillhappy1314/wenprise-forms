@@ -58,6 +58,39 @@ $form->addText('first_name', 'First Name')
      ->setOption('description', 'This is your first name.');
 ```
 
+With Html
+
+```php
+$form->setOption('description', Html::el('p')
+	->setHtml('This number remains hidden. <a href="...">Terms of service.</a>')
+	);
+```
+
+### Set condition display
+
+```php
+$form->addColorPicker('first_name3', 'First Name')
+     ->setHtmlAttribute('data-cond', '[name=first_name2] == 2');
+```
+
+
+### Multiple Submit Button
+
+```php
+$form->addSubmit('save', 'Save');
+$form->addSubmit('delete', 'Delete');
+
+if ($form->isSuccess()) {
+	if ($form['save']->isSubmittedBy()) {
+		....
+	}
+
+	if ($form['delete']->isSubmittedBy()) {
+		....
+	}
+}
+```
+
 ## Fields
 
 ### nonce field

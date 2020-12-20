@@ -111,6 +111,22 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
         return $this[ $name ] = (new Controls\DatePickerInput($label, $settings));
     }
 
+
+    /**
+     * 日期选择
+     *
+     * @param      $name     string  表单名称
+     * @param      $label    string  表单标签
+     * @param      $settings array   表单设置
+     *
+     * @return \Wenprise\Forms\Controls\DateRangePickerInput
+     */
+    public function addDateRangePicker($name, $label = null, array $settings = null)
+    {
+        return $this[ $name ] = (new Controls\DateRangePickerInput($label, $settings));
+    }
+
+
     /**
      * 颜色选择
      *

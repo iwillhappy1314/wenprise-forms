@@ -87,3 +87,9 @@ input + .iris-picker {
     margin-top: .5rem;
   }
 }
+
+.rs-form--daterangepicker{
+  input[type=text]{
+    @extend .form-control;
+  }
+}

@@ -344,6 +344,10 @@ if (function_exists('wp_register_style')) {
         wp_register_style('wprs-datepicker', wpack_get_url($assets[ 'datepicker.css' ]), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
         wp_register_script('wprs-datepicker-zh', wpack_get_url($assets[ 'datepicker_zh.js' ]), ['jquery', 'jquery-ui-datepicker', 'wprs-forms-main'], WENPRISE_FORM_VERSION);
 
+        wp_register_style('wprs-daterangepicker', wpack_get_url($assets[ 'daterangepicker.css' ]), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
+
+        wp_register_script('wprs-daterangepicker', wpack_get_url($assets[ 'daterangepicker.js' ]), ['jquery'], WENPRISE_FORM_VERSION);
+
         // jQuery AutoComplete
         wp_register_script('wprs-autocomplete', wpack_get_url($assets[ 'autocomplete.js' ]), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION);
 
