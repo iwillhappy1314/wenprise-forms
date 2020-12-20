@@ -41,6 +41,16 @@ $form->addText('first_name', 'First Name')
      ->setRequired();
 ```
 
+### Add rule
+
+```php
+$form->addPassword('re_password', 'Password again:')
+     ->addRule($form::EQUAL, 'Password mismatch', $form['password']);
+```
+
+[Rule Documation](https://doc.nette.org/en/3.0/form-validation)
+
+
 ### Add field description
 
 ```php
@@ -58,7 +68,7 @@ $form->addCsrf('post-form', 'Nonce invaliadte');
 
 ### WordPress Tinymce editor
 
-Settings: https://codex.wordpress.org/Function_Reference/wp_editor
+[Settings](https://codex.wordpress.org/Function_Reference/wp_editor)
 
 ````php
 $form->addEditor('post_extra', 'Extra content', []);
@@ -110,7 +120,7 @@ function ajax_uploader()
 
 ### Slider input
 
-Setting: http://ionden.com/a/plugins/ion.rangeSlider/en.html
+[Setting](http://ionden.com/a/plugins/ion.rangeSlider/en.html) 
 
 ````php
 $form->addSlider('price', 'Price', []);
@@ -118,7 +128,7 @@ $form->addSlider('price', 'Price', []);
 
 ### Data Picker
 
-Setting: https://jqueryui.com/datepicker/
+[Setting](https://jqueryui.com/datepicker/)
 
 ````php
 $form->AddBirthdaypicker('_birthday', 'Date of Birth', [
@@ -131,7 +141,7 @@ $form->AddBirthdaypicker('_birthday', 'Date of Birth', [
 
 ### Color Picker
 
-Setting: http://automattic.github.io/Iris/
+[Setting](http://automattic.github.io/Iris/)
 
 ````php
 $form->addColorPicker('color', 'Color', []);
