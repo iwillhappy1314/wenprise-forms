@@ -44,7 +44,7 @@ module.exports = {
         /^active\.*/,
         /^minute\.*/,
         /^disable\.*/,
-        /^in\.*/,
+        /^in-range\.*/,
         /^available\.*/,
         /^range\.*/,
         /^calendar\.*/,
