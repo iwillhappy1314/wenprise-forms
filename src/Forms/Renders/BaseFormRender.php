@@ -23,7 +23,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     }
 
     /**
-     * 渲染控件组
+     * 渲染控件组，主要添加 Html render
      *
      * @param Nette\Forms\Container|Nette\Forms\ControlGroup
      *
@@ -69,7 +69,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
 
     /**
-     * 在一行中渲染多个控件
+     * 在一行中渲染多个控件，主要添加 wrapper class
      *
      * @param Nette\Forms\IControl[]
      *
@@ -116,12 +116,75 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         $pair = $this->getWrapper('pair container');
         $pair->addHtml($this->renderLabel($control));
 
-        // wrapper class
+        // 允许添加Class到Wrapper上
         $pair->class($control->getOption('class'), true);
-        $pair->addHtml($this->getWrapper('control container')
-                            ->setHtml(implode(' ', $s)));
+        $pair->addHtml($this->getWrapper('control container')->setHtml(implode(' ', $s)));
 
         return $pair->render(0);
     }
 
+
+    /**
+     * @param $control
+     *
+     * @return \Nette\Utils\Html|string
+     */
+    public function renderControlGroup($control)
+    {
+        $html = '';
+
+        if (isset($control->prefix) || isset($control->suffix)) {
+
+            $prefix = $control->prefix;
+            $suffix = $control->suffix;
+
+            // 群组 wrap
+            $group_parent = $this->getWrapper('control container');
+
+            // 群组 HTML
+            $group = Html::el('div')
+                         ->setAttribute('class', [$this->getValue('pair .addon')]);
+
+            // 前缀
+            if (isset($prefix)) {
+
+                if (is_object($prefix)) {
+                    $prefix_html = $prefix->getControl();
+                } else {
+                    $prefix_html = Html::el('span class=rs-input-group-text')
+                                       ->addHtml($prefix);
+                }
+
+                $group->addHtml(
+                    Html::el('div class=rs-input-group-prepend')
+                        ->addHtml($prefix_html)
+                );
+            }
+
+            // 中间
+            $group->addHtml($this->renderControl($control->setAttribute('class', 'rs-form-control'))
+                                 ->getChildren()[ 0 ]);
+
+            // 后缀
+            if (isset($suffix)) {
+
+                if (is_object($suffix)) {
+                    $suffix_html = $suffix->getControl();
+                } else {
+                    $suffix_html = Html::el('span class=rs-input-group-text')
+                                       ->addHtml($suffix);
+                }
+
+                $group->addHtml(
+                    Html::el('div class=rs-input-group-append')
+                        ->addHtml($suffix_html)
+                );
+            }
+
+            $html = $group_parent->addHtml($group);
+
+        }
+
+        return $html;
+    }
 }

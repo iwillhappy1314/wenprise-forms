@@ -3,7 +3,6 @@
 namespace Wenprise\Forms\Renders;
 
 use Nette;
-use Nette\Utils\Html;
 
 /**
  * 转到表单到 HTML 输出
@@ -93,58 +92,9 @@ class DefaultFormRender extends BaseFormRender
 
         $pair->id = $control->getOption('id');
 
-        // Add prefix and suffix
-        if (isset($control->prefix) || isset($control->suffix)) {
-
-            $prefix = $control->prefix;
-            $suffix = $control->suffix;
-
-            // 群组 wrap
-            $group_parent = $this->getWrapper('control container');
-
-            // 群组 HTML
-            $group = Html::el('div')
-                         ->setAttribute('class', [$this->getValue('pair .addon')]);
-
-            // 前缀
-            if (isset($prefix)) {
-
-                if (is_object($prefix)) {
-                    $prefix_html = $prefix->getControl();
-                } else {
-                    $prefix_html = Html::el('span class=rs-input-group-text')
-                                       ->addHtml($prefix);
-                }
-
-                $group->addHtml(
-                    Html::el('div class=rs-input-group-prepend')
-                        ->addHtml($prefix_html)
-                );
-            }
-
-            // 中间
-            $group->addHtml($this->renderControl($control->setAttribute('class', 'rs-form-control'))
-                                 ->getChildren()[ 0 ]);
-
-            // 后缀
-            if (isset($suffix)) {
-
-                if (is_object($suffix)) {
-                    $suffix_html = $suffix->getControl();
-                } else {
-                    $suffix_html = Html::el('span class=rs-input-group-text')
-                                       ->addHtml($suffix);
-                }
-
-                $group->addHtml(
-                    Html::el('div class=rs-input-group-append')
-                        ->addHtml($suffix_html)
-                );
-            }
-
-            // 前缀后缀组
-            $pair->addHtml($group_parent->addHtml($group));
-
+        if ( ! empty($this->renderControlGroup($control))) {
+            $pair->addHtml($this->renderControlGroup($control));
+            $control->setOption('rendered', true);
         } else {
             $pair->addHtml($this->renderControl($control));
         }
