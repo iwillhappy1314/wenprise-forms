@@ -128,3 +128,11 @@ fieldset:disabled a.rs-btn {
     text-transform: capitalize;
   }
 }
+
+.rs-captcha__img{
+  height: 33px;
+  border: 1px solid $input-border-color;
+  border-left: 0;
+  border-top-right-radius: $border-radius-sm;
+  border-bottom-right-radius: $border-radius-sm;
+}

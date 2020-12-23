@@ -21,8 +21,8 @@
   "daterangepicker.js.map": "app/daterangepicker-e9ba9d9e.js.map",
   "image_picker.js": "app/image_picker-8201b88e.js",
   "image_picker.js.map": "app/image_picker-8201b88e.js.map",
-  "main.css": "app/main-951c1e70.css",
-  "main.css.map": "app/main-951c1e70.css.map",
+  "main.css": "app/main-f82385a7.css",
+  "main.css.map": "app/main-f82385a7.css.map",
   "main.js": "app/main-72e29803.js",
   "main.js.map": "app/main-72e29803.js.map",
   "moment.js": "app/moment-abbd5075.js",
@@ -56,10 +56,10 @@
         "app/main-72e29803.js.map"
       ],
       "css": [
-        "app/main-951c1e70.css"
+        "app/main-f82385a7.css"
       ],
       "css.map": [
-        "app/main-951c1e70.css.map"
+        "app/main-f82385a7.css.map"
       ]
     },
     "tableinput": {

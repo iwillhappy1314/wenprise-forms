@@ -55,6 +55,7 @@ class CaptchaInput extends TextInput
                                  Html::el('img')
                                      ->data('toggle', 'tooltip')
                                      ->setAttribute('id', $action_id)
+                                     ->setAttribute('class', 'rs-captcha__img')
                                      ->setAttribute('title', __('Click to refresh', 'wprs'))
                                      ->setAttribute('onclick', 'wprs_refresh_code(this)')
                                      ->setAttribute('alt', 'Captcha')
