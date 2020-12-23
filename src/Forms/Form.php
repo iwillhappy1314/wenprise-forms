@@ -2,7 +2,9 @@
 
 namespace Wenprise\Forms;
 
-class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
+use Nette\Utils\IHtmlString;
+
+class Form extends \Nette\Forms\Form implements IHtmlString
 {
 
     /**
@@ -22,9 +24,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 添加 WordPress Tinymce 可视化编辑器控件
      *
-     * @param string        $name
-     * @param string|object $label
-     * @param array         $settings
+     * @param string      $name
+     * @param null|string $label
+     * @param array|null  $settings
      *
      * @return Controls\TextEditor
      */
@@ -37,10 +39,10 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * Ajax 上传，支持单文件和多文件控件
      *
-     * @param       $name
-     * @param null  $label
-     * @param bool  $multiple
-     * @param array $settings
+     * @param string      $name
+     * @param null|string $label
+     * @param bool        $multiple
+     * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\AjaxUploadInput
      */
@@ -70,9 +72,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 添加文本克隆输入控件
      *
-     * @param      $name        string  表单名称
-     * @param      $label       string  表单标签
-     * @param      $settings    array  设置
+     * @param string      $name     表单名称
+     * @param null|string $label    表单标签
+     * @param array|null  $settings 设置
      *
      * @return \Wenprise\Forms\Controls\CloneInput
      */
@@ -85,9 +87,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 添加 Slider 滑动输入控件
      *
-     * @param      $name        string  表单名称
-     * @param      $label       string  表单标签
-     * @param      $settings    array  Slider 设置
+     * @param string      $name     表单名称
+     * @param null|string $label    表单标签
+     * @param array|null  $settings Slider 设置
      *
      * @return \Wenprise\Forms\Controls\SliderInput
      */
@@ -100,9 +102,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 日期选择
      *
-     * @param      $name     string  表单名称
-     * @param      $label    string  表单标签
-     * @param      $settings array   表单设置
+     * @param string      $name     表单名称
+     * @param null|string $label    表单标签
+     * @param array|null  $settings array   表单设置
      *
      * @return \Wenprise\Forms\Controls\DatePickerInput
      */
@@ -115,9 +117,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 日期选择
      *
-     * @param      $name     string  表单名称
-     * @param      $label    string  表单标签
-     * @param      $settings array   表单设置
+     * @param string      $name     表单名称
+     * @param null|string $label    表单标签
+     * @param array|null  $settings 表单设置
      *
      * @return \Wenprise\Forms\Controls\DateRangePickerInput
      */
@@ -130,9 +132,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 颜色选择
      *
-     * @param      $name     string  表单名称
-     * @param      $label    string  表单标签
-     * @param      $settings array   表单设置
+     * @param string      $name     string  表单名称
+     * @param null|string $label    string  表单标签
+     * @param array|null  $settings array   表单设置
      *
      * @return \Wenprise\Forms\Controls\BirthdayPickerInput
      */
@@ -145,9 +147,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 颜色选择
      *
-     * @param      $name     string  表单名称
-     * @param      $label    string  表单标签
-     * @param      $settings array   表单设置
+     * @param string      $name     string  表单名称
+     * @param null|string $label    string  表单标签
+     * @param array|null  $settings array   表单设置
      *
      * @return \Wenprise\Forms\Controls\ColorpickerInput
      */
@@ -160,10 +162,10 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 关联选择
      *
-     * @param      $name
-     * @param null $label
-     * @param      $settings
-     * @param      $field
+     * @param string      $name
+     * @param null|string $label
+     * @param array|null  $settings
+     * @param array|null  $field
      *
      * @return \Wenprise\Forms\Controls\ChainedInput
      */
@@ -176,8 +178,8 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 添加 Html 控件
      *
-     * @param      $name
-     * @param null $caption
+     * @param string      $name
+     * @param null|string $caption
      *
      * @return \Wenprise\Forms\Controls\HtmlContent
      */
@@ -190,9 +192,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 获取 SMS 验证码
      *
-     * @param       $name
-     * @param null  $label
-     * @param array $settings
+     * @param string      $name
+     * @param null|string $label
+     * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\SmsInput
      */
@@ -205,8 +207,8 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 添加 Captcha 验证码
      *
-     * @param       $name
-     * @param null  $label
+     * @param string      $name
+     * @param null|string $label
      *
      * @return \Wenprise\Forms\Controls\CaptchaInput
      */
@@ -219,10 +221,10 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 表格输入
      *
-     * @param      $name
-     * @param null $label
-     * @param      $settings
-     * @param      $field
+     * @param string      $name
+     * @param null|string $label
+     * @param array|null  $settings
+     * @param array|null  $field
      *
      * @return \Wenprise\Forms\Controls\TableInput
      */
@@ -233,12 +235,12 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
 
 
     /**
-     * Chosen 输入空间
+     * Chosen 输入控件
      *
-     * @param            $name
-     * @param null       $label
-     * @param array|null $items
-     * @param array|null $settings
+     * @param string      $name
+     * @param null|string $label
+     * @param array|null  $items
+     * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\ChosenInput
      */
@@ -251,10 +253,10 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * Chosen 多选输入控件
      *
-     * @param            $name
-     * @param null       $label
-     * @param array|null $items
-     * @param array|null $settings
+     * @param string      $name
+     * @param null|string $label
+     * @param array|null  $items
+     * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\MultiChosenInput
      */
@@ -267,9 +269,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 签字/签名
      *
-     * @param      $name     string  表单名称
-     * @param      $label    string  表单标签
-     * @param      $settings array   表单设置
+     * @param string      $name     表单名称
+     * @param null|string $label    表单标签
+     * @param array|null  $settings 表单设置
      *
      * @return \Wenprise\Forms\Controls\SignatureInput
      */
@@ -282,9 +284,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * jQuery Autocomplete 输入提示
      *
-     * @param      $name     string  表单名称
-     * @param      $label    string  表单标签
-     * @param      $settings array   表单设置
+     * @param string      $name     表单名称
+     * @param null|string $label    表单标签
+     * @param array|null  $settings 表单设置
      *
      * @return \Wenprise\Forms\Controls\AutoCompleteInput
      */
@@ -297,10 +299,10 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * Chosen 输入控件
      *
-     * @param            $name
-     * @param null       $label
-     * @param array|null $items
-     * @param array|null $settings
+     * @param             $name
+     * @param null|string $label
+     * @param array|null  $items
+     * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\ImagePickerInput
      */
@@ -313,9 +315,9 @@ class Form extends \Nette\Forms\Form implements \Nette\Utils\IHtmlString
     /**
      * 星级评分输入控件
      *
-     * @param      $name     string  表单名称
-     * @param      $label    string  表单标签
-     * @param      $settings array   表单设置
+     * @param string      $name     表单名称
+     * @param null|string $label    string  表单标签
+     * @param array|null  $settings array   表单设置
      *
      * @return \Wenprise\Forms\Controls\StarRatingInput
      */
