@@ -9,10 +9,25 @@
   }
 }
 
-.rs-form-group{
-  label{
+.rs-form-group {
+  label {
     display: block;
     margin-bottom: .5rem;
+
+    &.rs-required {
+      &:after {
+        content: '*';
+        color: #f30;
+        font-size: 1.2em;
+        margin-left: 3px;
+      }
+    }
+  }
+
+  .rs-help-block{
+    display: block;
+    margin-top: 5px;
+    color: #6a6b6c;
   }
 }
 
@@ -76,20 +91,31 @@ input + .iris-picker {
 .rs-form--clone {
   .rs-input-group {
     margin-bottom: .5rem;
-    &:first-of-type{
+
+    &:first-of-type {
       margin-top: .5rem;
     }
-    &:last-of-type{
+
+    &:last-of-type {
       margin-bottom: 0;
     }
   }
-  .js-more-button{
+
+  .js-more-button {
     margin-top: .5rem;
   }
 }
 
-.rs-form--daterangepicker{
-  input[type=text]{
+.rs-form--daterangepicker {
+  input[type=text] {
     @extend .form-control;
+  }
+}
+
+.rs-has-error {
+  .rs-help-block {
+    display: block;
+    margin-top: 5px;
+    color: #f30;
   }
 }

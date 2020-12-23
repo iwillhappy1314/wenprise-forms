@@ -39,14 +39,17 @@ if ( ! function_exists('wprs_form')) {
         $form->setRenderer(new FormRender);
         $form->setTranslator(new Translator());
 
-        $renderer                                            = $form->getRenderer();
-        $renderer->wrappers[ 'group' ][ 'container' ]        = 'fieldset class=rs-form-row';
-        $renderer->wrappers[ 'group' ][ 'label' ]            = 'legend class="rs-form-legend rs-col-md-12"';
-        $renderer->wrappers[ 'controls' ][ 'container' ]     = null;
-        $renderer->wrappers[ 'pair' ][ 'container' ]         = 'div class=rs-form-group';
-        $renderer->wrappers[ 'pair' ][ '.error' ]            = 'rs-has-error';
-        $renderer->wrappers[ 'label' ][ 'container' ]        = $layout == 'horizontal' ? 'div class="rs-col-sm-3 rs-control-label"' : '';
+        $renderer                                          = $form->getRenderer();
+        $renderer->wrappers[ 'group' ][ 'container' ]      = 'fieldset class=rs-form-row';
+        $renderer->wrappers[ 'group' ][ 'label' ]          = 'legend class="rs-form-legend rs-col-md-12"';
+        $renderer->wrappers[ 'controls' ][ 'container' ]   = null;
+        $renderer->wrappers[ 'pair' ][ 'container' ]       = 'div class=rs-form-group';
+        $renderer->wrappers[ 'pair' ][ '.required' ]       = 'rs-form--required';
+        $renderer->wrappers[ 'pair' ][ '.error' ]          = 'rs-has-error';
+        $renderer->wrappers[ 'label' ][ 'container' ]      = $layout == 'horizontal' ? 'div class="rs-col-sm-3 rs-control-label"' : '';
+
         $renderer->wrappers[ 'control' ][ 'container' ]      = $layout == 'horizontal' ? 'div class="rs-col-sm-9 rs-control-input"' : '';
+        $renderer->wrappers[ 'control' ][ '.required' ]      = 'rs-required';
         $renderer->wrappers[ 'control' ][ 'description' ]    = 'span class=rs-help-block';
         $renderer->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=rs-help-block';
 
@@ -77,7 +80,7 @@ if ( ! function_exists('wprs_form')) {
 
                 $control->setOption('class', implode(' ', $row_class) . ' ' . implode(' ', $group_class));
 
-                $control->setOption('id', 'grp-' . $control->name);
+                $control->setOption('id', 'rs-form-' . $control->name);
 
                 if ($type === 'button') {
 

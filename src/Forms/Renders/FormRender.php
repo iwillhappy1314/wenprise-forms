@@ -256,14 +256,20 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             if ( ! $control instanceof Nette\Forms\IControl) {
                 throw new Nette\InvalidArgumentException('Argument must be array of Nette\Forms\IControl instances.');
             }
+
             $description = $control->getOption('description');
+
             if ($description instanceof IHtmlString) {
+
                 $description = ' ' . $description;
 
-            } elseif ($description != null) { // intentionally ==
+            } elseif ($description != null) {
+
+                // intentionally ==
                 if ($control instanceof Nette\Forms\Controls\BaseControl) {
                     $description = $control->translate($description);
                 }
+
                 $description = ' ' . $this->getWrapper('control description')
                                           ->setText($description);
 
@@ -273,9 +279,11 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
             $control->setOption('rendered', true);
             $el = $control->getControl();
+
             if ($el instanceof Html && $el->getName() === 'input') {
                 $el->class($this->getValue("control .$el->type"), true);
             }
+
             $s[] = $el . $description;
         }
 

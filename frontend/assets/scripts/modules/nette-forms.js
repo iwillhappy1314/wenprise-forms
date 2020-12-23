@@ -738,8 +738,8 @@
         function showErrors(errors, focus) {
             errors.forEach(function (error) {
                 if (error.message) {
-                    $(error.element).parent().addClass('has-error').find('.help-block').remove();
-                    $('<span class=help-block>').text(error.message).insertAfter(error.element);
+                    $(error.element).parent().addClass('rs-has-error').find('.rs-help-block').remove();
+                    $('<span class=rs-help-block>').text(error.message).insertAfter(error.element);
                 }
                 if (focus && error.element.focus) {
                     error.element.focus();
@@ -751,10 +751,10 @@
         // 移除错误信息
         function removeErrors(elem) {
             if ($(elem).is('form')) {
-                $('.has-error', elem).removeClass('has-error');
-                $('.help-block', elem).remove();
+                $('.rs-has-error', elem).removeClass('rs-has-error');
+                $('.rs-help-block', elem).remove();
             } else {
-                $(elem).parent().removeClass('has-error').find('.help-block').remove();
+                $(elem).parent().removeClass('rs-has-error').find('.rs-help-block').remove();
             }
         }
 
