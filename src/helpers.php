@@ -1,7 +1,6 @@
 <?php
 /**
  * 主题辅助函数
- *
  */
 
 use Wenprise\Forms\Form;
@@ -10,7 +9,7 @@ use Wenprise\Forms\Translator;
 
 // 插件版本
 if ( ! defined('WENPRISE_FORM_VERSION')) {
-    define('WENPRISE_FORM_VERSION', '1.6');
+    define('WENPRISE_FORM_VERSION', '1.8');
 }
 
 /**
@@ -98,7 +97,7 @@ if ( ! function_exists('wprs_form')) {
 
                     $control->getSeparatorPrototype()
                             ->setName('div')
-                            ->addClass($type . ' ' . $type . '-inline');
+                            ->addClass($type . ' rs-' . $type . '-inline');
 
                 }
 
@@ -387,6 +386,5 @@ if (function_exists('wp_register_style')) {
         wp_localize_script('wp-color-picker', 'wpColorPickerL10n', $color_picker_l10n);
 
     });
-
 
 }
