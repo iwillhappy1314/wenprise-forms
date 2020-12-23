@@ -8,7 +8,7 @@ use Nette\Utils\Html;
 /**
  * 转到表单到 HTML 输出
  */
-class AdminFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
+class AdminFormRender extends BaseFormRender
 {
     use Nette\SmartObject;
 
@@ -36,6 +36,8 @@ class AdminFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
         $this->wrappers[ 'label' ][ 'container' ]   = 'th class=row scope=row';
         $this->wrappers[ 'control' ][ 'container' ] = 'td';
+
+        parent::__construct();
     }
 
     /**

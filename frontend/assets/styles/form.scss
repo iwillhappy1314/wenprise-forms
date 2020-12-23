@@ -119,3 +119,23 @@ input + .iris-picker {
     color: #f30;
   }
 }
+
+.rs-radio{
+  input[type="radio"]{
+    margin: 0 5px 0 0;
+  }
+}
+
+.rs-checkbox{
+  input[type="checkbox"]{
+    margin: 0 5px 0 0;
+  }
+}
+
+.rs-captcha__img{
+  height: 34px;
+  border: 1px solid $input-border-color;
+  border-left: 0;
+  border-top-right-radius: $border-radius-sm;
+  border-bottom-right-radius: $border-radius-sm;
+}

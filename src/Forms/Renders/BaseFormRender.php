@@ -13,6 +13,15 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 {
     use Nette\SmartObject;
 
+    public function __construct()
+    {
+        $this->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=rs-has-error';
+        $this->wrappers[ 'control' ][ '.submit' ]        = 'rs-btn rs-btn-default';
+        $this->wrappers[ 'control' ][ '.image' ]         = 'rs-btn--image';
+
+        $this->wrappers[ 'error' ][ '.container' ] = 'ul class=rs-alert--danger';
+    }
+
     /**
      * 渲染控件组
      *

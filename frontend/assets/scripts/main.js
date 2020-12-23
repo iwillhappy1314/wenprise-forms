@@ -3,9 +3,9 @@ jQuery(document).ready(function($) {
     selector    : '[data-cond]',
     customToggle: function($item, show) {
       if (show) {
-        $item.parent().parent().show();
+        $item.parents('.rs-form-group').show();
       } else {
-        $item.parent().parent().hide();
+        $item.parents('.rs-form-group').hide();
       }
     },
   });

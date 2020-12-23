@@ -373,9 +373,6 @@ if (function_exists('wp_register_style')) {
         // 移除jQuery自动完成
         wp_dequeue_script('jquery-ui-autocomplete');
 
-        // 颜色选择
-        // wp_enqueue_style('wp-color-picker');
-
         $color_picker_l10n = [
             'clear'         => __('Clear', 'wprs'),
             'defaultString' => __('Default', 'wprs'),
