@@ -4,153 +4,208 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-12-07 11:47+0800\n"
-"PO-Revision-Date: 2019-01-09 11:52+0800\n"
+"POT-Creation-Date: 2020-12-23 20:06+0800\n"
+"PO-Revision-Date: 2020-12-23 20:08+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.4\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Forms/Controls/AjaxUploadInput.php:81
+#: Forms/Controls/AjaxUploadInput.php:67
 msgid "Select File"
 msgstr "選擇文件"
 
-#: Forms/Controls/AjaxUploadInput.php:105
-msgid "Drag &amp; Drop Images Here"
+#: Forms/Controls/AjaxUploadInput.php:102
+msgid "Drag & Drop Images Here"
 msgstr "拖放圖像到這裡"
 
-#: Forms/Controls/SmsInput.php:45
+#: Forms/Controls/CaptchaInput.php:58
+msgid "Click to refresh"
+msgstr "單擊以刷新"
+
+#: Forms/Controls/ChosenInput.php:43
+msgid "Select Some Options"
+msgstr "選擇一些選項"
+
+#: Forms/Controls/ChosenInput.php:44
+msgid "Select an Option"
+msgstr "選擇一項"
+
+#: Forms/Controls/ChosenInput.php:45
+msgid "No results match"
+msgstr "沒有符合的結果"
+
+#: Forms/Controls/CloneInput.php:61
+msgid "Remove"
+msgstr "刪除"
+
+#: Forms/Controls/CloneInput.php:68
+msgid "Add More Fields"
+msgstr "添加更多欄位"
+
+#: Forms/Controls/SmsInput.php:50
 msgid "Get Code"
 msgstr "獲取認證碼"
 
-#: Forms/Controls/SmsInput.php:64 Forms/Controls/SmsInput.php:68
+#: Forms/Controls/SmsInput.php:70 Forms/Controls/SmsInput.php:74
 msgid "Get Again"
 msgstr "重新獲取"
 
-#: Forms/Controls/SmsInput.php:91
+#: Forms/Controls/SmsInput.php:97
 msgid "minutes Later Get Again"
 msgstr "秒後重新獲取"
 
-#: Forms/Controls/SmsInput.php:99
+#: Forms/Controls/SmsInput.php:105
 msgid "Send failed"
 msgstr "發送失敗"
 
-#: helpers.php:171
+#: Forms/Controls/TableInput.php:101
+msgid "Append Row"
+msgstr "复制行"
+
+#: Forms/Controls/TableInput.php:102
+msgid "Remove Last Row"
+msgstr "移除最後一行"
+
+#: Forms/Controls/TableInput.php:103
+msgid "Insert Row Above"
+msgstr "在下面插入一行"
+
+#: Forms/Controls/TableInput.php:104
+msgid "Remove Current Row"
+msgstr "移除當前行"
+
+#: Forms/Controls/TableInput.php:105
+msgid "Move Up"
+msgstr "向上移動"
+
+#: Forms/Controls/TableInput.php:106
+msgid "Move Down"
+msgstr "向下移動"
+
+#: Forms/Controls/TableInput.php:107
+msgid "This Grid Is Empty"
+msgstr "内容為空"
+
+#: helpers.php:201
 msgid "Your session has expired. Please return to the home page and try again."
 msgstr ""
 
-#: helpers.php:172
+#: helpers.php:202
 #, php-format
 msgid "Please enter %s."
 msgstr "請輸入 %s。"
 
-#: helpers.php:173
+#: helpers.php:203
 #, php-format
 msgid "This value should not be %s."
 msgstr ""
 
-#: helpers.php:174
+#: helpers.php:204
 msgid "This field is required."
 msgstr ""
 
-#: helpers.php:175
+#: helpers.php:205
 msgid "This field should be blank."
 msgstr ""
 
-#: helpers.php:176
+#: helpers.php:206
 #, php-format
 msgid "Please enter at least %d characters."
 msgstr ""
 
-#: helpers.php:177
+#: helpers.php:207
 #, php-format
 msgid "Please enter no more than %d characters."
 msgstr ""
 
-#: helpers.php:178
+#: helpers.php:208
 #, php-format
 msgid "Please enter a value between %d and %d characters long."
 msgstr ""
 
-#: helpers.php:179
+#: helpers.php:209
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: helpers.php:180
+#: helpers.php:210
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: helpers.php:181
+#: helpers.php:211
 msgid "Please enter a valid integer."
 msgstr "請輸入一個正確的整數。"
 
-#: helpers.php:182
+#: helpers.php:212
 msgid "Please enter a valid number."
 msgstr ""
 
-#: helpers.php:183
+#: helpers.php:213
 #, php-format
 msgid "Please enter a value greater than or equal to %d."
 msgstr ""
 
-#: helpers.php:184
+#: helpers.php:214
 #, php-format
 msgid "Please enter a value less than or equal to %d."
 msgstr ""
 
-#: helpers.php:185
+#: helpers.php:215
 #, php-format
 msgid "Please enter a value between %d and %d."
 msgstr ""
 
-#: helpers.php:186
+#: helpers.php:216
 #, php-format
 msgid "The size of the uploaded file can be up to %d bytes."
 msgstr ""
 
-#: helpers.php:187
+#: helpers.php:217
 #, php-format
 msgid "The uploaded data exceeds the limit of %d bytes."
 msgstr ""
 
-#: helpers.php:188
+#: helpers.php:218
 msgid "The uploaded file is not in the expected format."
 msgstr ""
 
-#: helpers.php:189
+#: helpers.php:219
 msgid "The uploaded file must be image in format JPEG, GIF or PNG."
 msgstr ""
 
-#: helpers.php:190
+#: helpers.php:220
 msgid "Please select a valid option."
 msgstr ""
 
-#: helpers.php:191
+#: helpers.php:221
 msgid "An error occurred during file upload."
 msgstr ""
 
-#: helpers.php:299
+#: helpers.php:381
 msgid "Clear"
 msgstr "清除"
 
-#: helpers.php:299
+#: helpers.php:382
 msgid "Default"
 msgstr "默認"
 
-#: helpers.php:299
+#: helpers.php:383
 msgid "Select Color"
 msgstr "選擇顏色"
 
-#: helpers.php:299
+#: helpers.php:384
 msgid "Current Color"
 msgstr "當前顏色"
+
+#~ msgid "Drag &amp; Drop Images Here"
+#~ msgstr "拖放圖像到這裡"
 
 #~ msgid "-or-"
 #~ msgstr "- 或 -"
