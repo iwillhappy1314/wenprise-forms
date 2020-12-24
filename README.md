@@ -91,6 +91,14 @@ if ($form->isSuccess()) {
 }
 ```
 
+### Use html in label or description
+
+```php
+$confirm = Html::el('span')->setHtml('I agree the <a href="#">Terms of service.</a>');
+
+$form->addCheckbox('confirm', $confirm)->setOption('description', $confirm);
+```
+
 ## Fields
 
 ### nonce field
