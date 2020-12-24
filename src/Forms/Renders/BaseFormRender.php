@@ -28,6 +28,8 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
         $this->wrappers[ 'error' ][ '.container' ] = 'ul class=rs-alert--danger';
 
+        wp_enqueue_style('wprs-forms-main');
+        wp_enqueue_script('wprs-forms-main');
     }
 
     /**
