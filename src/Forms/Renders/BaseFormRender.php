@@ -15,11 +15,19 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
     public function __construct()
     {
-        $this->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=rs-has-error';
         $this->wrappers[ 'control' ][ '.submit' ]        = 'rs-btn rs-btn-default';
         $this->wrappers[ 'control' ][ '.image' ]         = 'rs-btn--image';
+        $this->wrappers[ 'control' ][ '.required' ]      = 'rs-required';
+        $this->wrappers[ 'control' ][ 'description' ]    = 'span class=rs-help-block';
+        $this->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=rs-has-error';
+
+        $this->wrappers[ 'pair' ][ 'container' ]     = 'div class=rs-form-group';
+        $this->wrappers[ 'pair' ][ '.required' ]     = 'rs-form--required';
+        $this->wrappers[ 'pair' ][ '.error' ]        = 'rs-has-error';
+        $this->wrappers[ 'pair' ][ '.addon' ]        = 'rs-input-group';
 
         $this->wrappers[ 'error' ][ '.container' ] = 'ul class=rs-alert--danger';
+
     }
 
     /**

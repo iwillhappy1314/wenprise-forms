@@ -20,16 +20,9 @@ class DefaultFormRender extends BaseFormRender
         $this->wrappers[ 'group' ][ 'container' ]    = 'fieldset class=rs-form-row';
         $this->wrappers[ 'group' ][ 'label' ]        = 'legend class="rs-form-legend rs-col-md-12"';
         $this->wrappers[ 'controls' ][ 'container' ] = null;
-        $this->wrappers[ 'pair' ][ 'container' ]     = 'div class=rs-form-group';
-        $this->wrappers[ 'pair' ][ '.required' ]     = 'rs-form--required';
-        $this->wrappers[ 'pair' ][ '.error' ]        = 'rs-has-error';
-        $this->wrappers[ 'pair' ][ '.addon' ]        = 'rs-input-group';
-        $this->wrappers[ 'label' ][ 'container' ]    = ($this->layout === 'horizontal') ? 'div class="rs-col-sm-3 rs-control-label"' : '';
 
+        $this->wrappers[ 'label' ][ 'container' ]    = ($this->layout === 'horizontal') ? 'div class="rs-col-sm-3 rs-control-label"' : '';
         $this->wrappers[ 'control' ][ 'container' ]      = ($this->layout === 'horizontal') ? 'div class="rs-col-sm-9 rs-control-input"' : '';
-        $this->wrappers[ 'control' ][ '.required' ]      = 'rs-required';
-        $this->wrappers[ 'control' ][ 'description' ]    = 'span class=rs-help-block';
-        $this->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=rs-help-block';
 
         parent::__construct();
     }
