@@ -34,7 +34,6 @@ class AdminFormRender extends BaseFormRender
         }
 
         $this->wrappers[ 'label' ][ 'container' ]   = 'th class=row scope=row';
-        $this->wrappers[ 'control' ][ 'container' ] = 'td';
 
         parent::__construct();
     }

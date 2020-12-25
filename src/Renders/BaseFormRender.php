@@ -21,7 +21,6 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         $this->wrappers[ 'control' ][ 'description' ]    = 'span class=rs-help-block';
         $this->wrappers[ 'control' ][ 'errorcontainer' ] = 'span class=rs-has-error';
 
-        $this->wrappers[ 'pair' ][ 'container' ] = 'div class=rs-form-group';
         $this->wrappers[ 'pair' ][ '.required' ] = 'rs-form--required';
         $this->wrappers[ 'pair' ][ '.error' ]    = 'rs-has-error';
         $this->wrappers[ 'pair' ][ '.addon' ]    = 'rs-input-group';

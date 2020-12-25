@@ -24,6 +24,8 @@ class DefaultFormRender extends BaseFormRender
         $this->wrappers[ 'label' ][ 'container' ]    = ($this->layout === 'horizontal') ? 'div class="rs-col-sm-3 rs-control-label"' : '';
         $this->wrappers[ 'control' ][ 'container' ]      = ($this->layout === 'horizontal') ? 'div class="rs-col-sm-9 rs-control-input"' : '';
 
+        $this->wrappers[ 'pair' ][ 'container' ] = 'div class=rs-form-group';
+
         parent::__construct();
     }
 
