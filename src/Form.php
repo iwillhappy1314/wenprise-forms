@@ -3,9 +3,20 @@
 namespace Wenprise\Forms;
 
 use Nette\Utils\IHtmlString;
+use Wenprise\Forms\Renders\DefaultFormRender;
 
 class Form extends \Nette\Forms\Form implements IHtmlString
 {
+
+    public function __construct($name = null)
+    {
+        new init();
+
+        $this->setRenderer(new DefaultFormRender());
+        $this->setTranslator(new Translator());
+
+        parent::__construct($name);
+    }
 
     /**
      * 添加 Csrf 跨站保护控件

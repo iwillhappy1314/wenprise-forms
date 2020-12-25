@@ -8,11 +8,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Wenprise\\": "src/"
-    },
-    "files": [
-      "src/helpers.php"
-    ]
+      "Wenprise\\Forms\\": "src/"
+    }
   },
   "license": "MIT",
   "authors": [
