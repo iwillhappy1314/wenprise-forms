@@ -12,15 +12,9 @@ class init
             define('WENPRISE_FORM_VERSION', '1.8');
         }
 
-        /**
-         * 加载多语言文件
-         */
-        if (function_exists('load_textdomain')) {
-            $locale = apply_filters('theme_locale', is_admin() ? get_user_locale() : get_locale(), 'wprs');
-            load_textdomain('wprs', dirname(__FILE__) . '/languages/wprs-' . $locale . '.mo');
-        }
-
+        $this->register_locals();
         $this->register_assets();
+
         add_action('wp_enqueue_scripts', [$this, 'register_assets']);
     }
 
@@ -127,6 +121,16 @@ class init
         }
 
         return esc_url(WENPRISE_FORM_URL . '/frontend/dist/' . $assets);
+    }
+
+
+    /**
+     * 注册多语言文件
+     */
+    function register_locals()
+    {
+        $locale = apply_filters('theme_locale', is_admin() ? get_user_locale() : get_locale(), 'wprs');
+        load_textdomain('wprs', dirname(__FILE__) . '/languages/wprs-' . $locale . '.mo');
     }
 
 

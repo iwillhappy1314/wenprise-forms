@@ -262,6 +262,21 @@ class Form extends \Nette\Forms\Form implements IHtmlString
 
 
     /**
+     * Chosen 输入控件
+     *
+     * @param string      $name
+     * @param null|string $label
+     * @param array|null  $items
+     *
+     * @return \Wenprise\Forms\Controls\SwitchInput
+     */
+    public function addSwitch($name, $label = null, array $items = null)
+    {
+        return $this[ $name ] = (new Controls\SwitchInput($label, $items));
+    }
+
+
+    /**
      * Chosen 多选输入控件
      *
      * @param string      $name

@@ -31,6 +31,10 @@
   }
 }
 
+.rs-control-input .rs-has-error{
+  display: block;
+}
+
 .rs-form-legend {
   margin-bottom: 2rem;
   font-size: 1.5rem;
@@ -138,4 +142,58 @@ input + .iris-picker {
   border-left: 0;
   border-top-right-radius: $border-radius-sm;
   border-bottom-right-radius: $border-radius-sm;
+}
+
+/**
+ * Radio Switch
+ */
+.rs-form--switch .rs-switch {
+  margin-bottom: 0;
+}
+
+.rs-switch__control {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.rs-switch__options{
+  display: flex;
+}
+
+.rs-switch__text {
+  display: block;
+  background-color: #e4e4e4;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  padding: 8px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.1s ease-in-out;
+}
+
+.rs-switch__text:hover {
+  cursor: pointer;
+}
+
+.rs-switch__control:checked + .rs-switch__text {
+  background-color: #a5dc86;
+  box-shadow: none;
+}
+
+.rs-switch:first-of-type .rs-switch__text {
+  border-radius: 4px 0 0 4px;
+}
+
+.rs-switch:not(:last-of-type) .rs-switch__text {
+  margin-right: -1px;
+}
+
+.rs-switch:last-of-type .rs-switch__text {
+  border-radius: 0 4px 4px 0;
 }

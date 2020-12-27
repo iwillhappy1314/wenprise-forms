@@ -33,7 +33,6 @@
     Nette.formErrors = [];
     Nette.version = '2.4';
 
-
     /**
      * Attaches a handler to an event for the element.
      */
@@ -51,13 +50,11 @@
         }
     };
 
-
     function getHandler(callback) {
         return function(e) {
             return callback.call(this, e);
         };
     }
-
 
     /**
      * Returns the value of form element.
@@ -113,13 +110,12 @@
             return elem.checked;
 
         } else if (elem.tagName.toLowerCase() === 'textarea') {
-            return elem.value.replace("\r", '');
+            return elem.value.replace('\r', '');
 
         } else {
-            return elem.value.replace("\r", '').replace(/^\s+|\s+$/g, '');
+            return elem.value.replace('\r', '').replace(/^\s+|\s+$/g, '');
         }
     };
-
 
     /**
      * Returns the effective value of form element.
@@ -133,7 +129,6 @@
         }
         return val;
     };
-
 
     /**
      * Validates form element against given rules.
@@ -172,7 +167,8 @@
             }
 
             if (rule.condition && success) {
-                if (!Nette.validateControl(elem, rule.rules, onlyCheck, value, rule.op === ':blank' ? false : emptyOptional)) {
+                if (!Nette.validateControl(elem, rule.rules, onlyCheck, value,
+                    rule.op === ':blank' ? false : emptyOptional)) {
                     return false;
                 }
             } else if (!rule.condition && !success) {
@@ -182,7 +178,8 @@
                 if (!onlyCheck) {
                     var arr = Nette.isArray(rule.arg) ? rule.arg : [rule.arg],
                         message = rule.msg.replace(/%(value|\d+)/g, function(foo, m) {
-                            return Nette.getValue(m === 'value' ? curElem : elem.form.elements.namedItem(arr[m].control));
+                            return Nette.getValue(
+                                m === 'value' ? curElem : elem.form.elements.namedItem(arr[m].control));
                         });
                     Nette.addError(curElem, message);
                 }
@@ -199,7 +196,6 @@
 
         return true;
     };
-
 
     /**
      * Validates whole form.
@@ -225,7 +221,12 @@
         for (i = 0; i < form.elements.length; i++) {
             elem = form.elements[i];
 
-            if (elem.tagName && !(elem.tagName.toLowerCase() in {input: 1, select: 1, textarea: 1, button: 1})) {
+            if (elem.tagName && !(elem.tagName.toLowerCase() in {
+                input   : 1,
+                select  : 1,
+                textarea: 1,
+                button  : 1,
+            })) {
                 continue;
 
             } else if (elem.type === 'radio') {
@@ -248,7 +249,6 @@
         return success;
     };
 
-
     /**
      * Check if input is disabled.
      */
@@ -264,17 +264,15 @@
         return elem.disabled;
     };
 
-
     /**
      * Adds error message to the queue.
      */
     Nette.addError = function(elem, message) {
         Nette.formErrors.push({
             element: elem,
-            message: message
+            message: message,
         });
     };
-
 
     /**
      * Display error messages.
@@ -305,7 +303,6 @@
         }
     };
 
-
     /**
      * Expand rule argument.
      */
@@ -318,7 +315,6 @@
         }
         return arg;
     };
-
 
     /**
      * Validates single rule.
@@ -340,7 +336,6 @@
             ? Nette.validators[op](elem, Nette.isArray(arg) ? arr : arr[0], value.value, value)
             : null;
     };
-
 
     Nette.validators = {
         filled: function(elem, arg, val) {
@@ -394,7 +389,7 @@
         minLength: function(elem, arg, val) {
             if (elem.type === 'number') {
                 if (elem.validity.tooShort) {
-                    return false
+                    return false;
                 } else if (elem.validity.badInput) {
                     return null;
                 }
@@ -405,7 +400,7 @@
         maxLength: function(elem, arg, val) {
             if (elem.type === 'number') {
                 if (elem.validity.tooLong) {
-                    return false
+                    return false;
                 } else if (elem.validity.badInput) {
                     return null;
                 }
@@ -416,7 +411,7 @@
         length: function(elem, arg, val) {
             if (elem.type === 'number') {
                 if (elem.validity.tooShort || elem.validity.tooLong) {
-                    return false
+                    return false;
                 } else if (elem.validity.badInput) {
                     return null;
                 }
@@ -426,14 +421,16 @@
         },
 
         email: function(elem, arg, val) {
-            return (/^("([ !#-[\]-~]|\\[ -~])+"|[-a-z0-9!#$%&'*+\/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+\/=?^_`{|}~]+)*)@([0-9a-z\u00C0-\u02FF\u0370-\u1EFF]([-0-9a-z\u00C0-\u02FF\u0370-\u1EFF]{0,61}[0-9a-z\u00C0-\u02FF\u0370-\u1EFF])?\.)+[a-z\u00C0-\u02FF\u0370-\u1EFF]([-0-9a-z\u00C0-\u02FF\u0370-\u1EFF]{0,17}[a-z\u00C0-\u02FF\u0370-\u1EFF])?$/i).test(val);
+            return (/^("([ !#-[\]-~]|\\[ -~])+"|[-a-z0-9!#$%&'*+\/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+\/=?^_`{|}~]+)*)@([0-9a-z\u00C0-\u02FF\u0370-\u1EFF]([-0-9a-z\u00C0-\u02FF\u0370-\u1EFF]{0,61}[0-9a-z\u00C0-\u02FF\u0370-\u1EFF])?\.)+[a-z\u00C0-\u02FF\u0370-\u1EFF]([-0-9a-z\u00C0-\u02FF\u0370-\u1EFF]{0,17}[a-z\u00C0-\u02FF\u0370-\u1EFF])?$/i).test(
+                val);
         },
 
         url: function(elem, arg, val, value) {
             if (!(/^[a-z\d+.-]+:/).test(val)) {
                 val = 'http://' + val;
             }
-            if ((/^https?:\/\/((([-_0-9a-z\u00C0-\u02FF\u0370-\u1EFF]+\.)*[0-9a-z\u00C0-\u02FF\u0370-\u1EFF]([-0-9a-z\u00C0-\u02FF\u0370-\u1EFF]{0,61}[0-9a-z\u00C0-\u02FF\u0370-\u1EFF])?\.)?[a-z\u00C0-\u02FF\u0370-\u1EFF]([-0-9a-z\u00C0-\u02FF\u0370-\u1EFF]{0,17}[a-z\u00C0-\u02FF\u0370-\u1EFF])?|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|\[[0-9a-f:]{3,39}\])(:\d{1,5})?(\/\S*)?$/i).test(val)) {
+            if ((/^https?:\/\/((([-_0-9a-z\u00C0-\u02FF\u0370-\u1EFF]+\.)*[0-9a-z\u00C0-\u02FF\u0370-\u1EFF]([-0-9a-z\u00C0-\u02FF\u0370-\u1EFF]{0,61}[0-9a-z\u00C0-\u02FF\u0370-\u1EFF])?\.)?[a-z\u00C0-\u02FF\u0370-\u1EFF]([-0-9a-z\u00C0-\u02FF\u0370-\u1EFF]{0,17}[a-z\u00C0-\u02FF\u0370-\u1EFF])?|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|\[[0-9a-f:]{3,39}\])(:\d{1,5})?(\/\S*)?$/i).test(
+                val)) {
                 value.value = val;
                 return true;
             }
@@ -475,7 +472,7 @@
         min: function(elem, arg, val) {
             if (elem.type === 'number') {
                 if (elem.validity.rangeUnderflow) {
-                    return false
+                    return false;
                 } else if (elem.validity.badInput) {
                     return null;
                 }
@@ -486,7 +483,7 @@
         max: function(elem, arg, val) {
             if (elem.type === 'number') {
                 if (elem.validity.rangeOverflow) {
-                    return false
+                    return false;
                 } else if (elem.validity.badInput) {
                     return null;
                 }
@@ -497,13 +494,15 @@
         range: function(elem, arg, val) {
             if (elem.type === 'number') {
                 if (elem.validity.rangeUnderflow || elem.validity.rangeOverflow) {
-                    return false
+                    return false;
                 } else if (elem.validity.badInput) {
                     return null;
                 }
             }
-            return Nette.isArray(arg) ?
-                ((arg[0] === null || parseFloat(val) >= arg[0]) && (arg[1] === null || parseFloat(val) <= arg[1])) : null;
+            return Nette.isArray(arg)
+                ?
+                ((arg[0] === null || parseFloat(val) >= arg[0]) && (arg[1] === null || parseFloat(val) <= arg[1]))
+                : null;
         },
 
         submitted: function(elem, arg, val) {
@@ -521,7 +520,7 @@
             return true;
         },
 
-        image: function (elem, arg, val) {
+        image: function(elem, arg, val) {
             if (window.FileList && val instanceof window.FileList) {
                 for (var i = 0; i < val.length; i++) {
                     var type = val[i].type;
@@ -531,9 +530,8 @@
                 }
             }
             return true;
-        }
+        },
     };
-
 
     /**
      * Process all toggles in form.
@@ -542,7 +540,12 @@
         var i;
         Nette.toggles = {};
         for (i = 0; i < form.elements.length; i++) {
-            if (form.elements[i].tagName.toLowerCase() in {input: 1, select: 1, textarea: 1, button: 1}) {
+            if (form.elements[i].tagName.toLowerCase() in {
+                input   : 1,
+                select  : 1,
+                textarea: 1,
+                button  : 1,
+            }) {
                 Nette.toggleControl(form.elements[i], null, null, !elem);
             }
         }
@@ -551,7 +554,6 @@
             Nette.toggle(i, Nette.toggles[i], elem);
         }
     };
-
 
     /**
      * Process toggles on form element.
@@ -562,7 +564,7 @@
 
         var has = false,
             handled = [],
-            handler = function () {
+            handler = function() {
                 Nette.toggleForm(elem.form, elem);
             },
             curSuccess;
@@ -602,7 +604,10 @@
 
                     for (var i = 0; i < els.length; i++) {
                         if (els[i].name === name && !Nette.inArray(handled, els[i])) {
-                            Nette.addEvent(els[i], oldIE && els[i].type in {checkbox: 1, radio: 1} ? 'click' : 'change', handler);
+                            Nette.addEvent(els[i], oldIE && els[i].type in {
+                                checkbox: 1,
+                                radio   : 1,
+                            } ? 'click' : 'change', handler);
                             handled.push(els[i]);
                         }
                     }
@@ -617,13 +622,11 @@
         return has;
     };
 
-
     Nette.parseJSON = function(s) {
         return (s || '').substr(0, 3) === '{op'
             ? eval('[' + s + ']') // backward compatibility with Nette 2.0.x
             : JSON.parse(s || '[]');
     };
-
 
     /**
      * Displays or hides HTML element.
@@ -634,7 +637,6 @@
             elem.style.display = visible ? '' : 'none';
         }
     };
-
 
     /**
      * Setup handlers.
@@ -661,7 +663,6 @@
         });
     };
 
-
     /**
      * @private
      */
@@ -680,7 +681,10 @@
             Nette.addEvent(document.body, 'click', function(e) {
                 var target = e.target || e.srcElement;
                 while (target) {
-                    if (target.form && target.type in {submit: 1, image: 1}) {
+                    if (target.form && target.type in {
+                        submit: 1,
+                        image : 1,
+                    }) {
                         target.form['nette-submittedBy'] = target;
                         break;
                     }
@@ -690,14 +694,12 @@
         });
     };
 
-
     /**
      * Determines whether the argument is an array.
      */
     Nette.isArray = function(arg) {
         return Object.prototype.toString.call(arg) === '[object Array]';
     };
-
 
     /**
      * Search for a specified value within an array.
@@ -715,7 +717,6 @@
         }
     };
 
-
     /**
      * Converts string to web safe characters [a-z0-9-] text.
      */
@@ -729,17 +730,39 @@
         return res.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     };
 
-    Nette.webalizeTable = {\u00e1: 'a', \u00e4: 'a', \u010d: 'c', \u010f: 'd', \u00e9: 'e', \u011b: 'e', \u00ed: 'i', \u013e: 'l', \u0148: 'n', \u00f3: 'o', \u00f4: 'o', \u0159: 'r', \u0161: 's', \u0165: 't', \u00fa: 'u', \u016f: 'u', \u00fd: 'y', \u017e: 'z'};
+    Nette.webalizeTable = {
+        \u00e1: 'a',
+        \u00e4: 'a',
+        \u010d: 'c',
+        \u010f: 'd',
+        \u00e9: 'e',
+        \u011b: 'e',
+        \u00ed: 'i',
+        \u013e: 'l',
+        \u0148: 'n',
+        \u00f3: 'o',
+        \u00f4: 'o',
+        \u0159: 'r',
+        \u0161: 's',
+        \u0165: 't',
+        \u00fa: 'u',
+        \u016f: 'u',
+        \u00fd: 'y',
+        \u017e: 'z',
+    };
 
     // 输入时显示错误信息
-    jQuery(document).ready(function ($) {
+    jQuery(document).ready(function($) {
 
         // 显示错误信息
         function showErrors(errors, focus) {
-            errors.forEach(function (error) {
+            errors.forEach(function(error) {
                 if (error.message) {
-                    $(error.element).parent().addClass('rs-has-error').find('.rs-help-block').remove();
-                    $('<span class=rs-help-block>').text(error.message).insertAfter(error.element);
+                    $(error.element).parents('.rs-control-input').addClass('rs-has-error').
+                                     find('.rs-help-block').remove();
+
+                    $(error.element).parents('.rs-control-input').append($('<span class=rs-help-block>').
+                            text(error.message));
                 }
                 if (focus && error.element.focus) {
                     error.element.focus();
@@ -759,17 +782,17 @@
         }
 
         // 显示表单错误信息
-        Nette.showFormErrors = function (form, errors) {
+        Nette.showFormErrors = function(form, errors) {
             removeErrors(form);
             showErrors(errors, true);
         };
 
         var input = $(':input');
-        input.keypress(function () {
+        input.keypress(function() {
             removeErrors(this);
         });
 
-        input.blur(function () {
+        input.blur(function() {
             Nette.formErrors = [];
             Nette.validateControl(this);
             showErrors(Nette.formErrors);

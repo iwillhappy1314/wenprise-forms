@@ -134,6 +134,8 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
 
     /**
+     * 渲染标签组
+     *
      * @param $control
      *
      * @return \Nette\Utils\Html|string
