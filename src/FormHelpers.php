@@ -2,7 +2,7 @@
 
 namespace Wenprise\Forms;
 
-class Helpers
+class FormHelpers
 {
 
     /**
