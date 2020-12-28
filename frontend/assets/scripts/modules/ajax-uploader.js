@@ -7,25 +7,25 @@ jQuery(document).ready(function($) {
     var options = wprs_uploader.data('settings');
 
     var settings = {
-        url             : $('.js-uploader .rs-uploader__shadow').data('url'),
+        url             : $(this).find('.rs-uploader__shadow').data('url'),
         type            : 'POST',
         dataType        : 'json',
         maxFileSize     : 2000000,
         auto            : true,
         queue           : false,
-        multiple        : (wprs_uploader.data('multiple') === true),
+        multiple        : ($(this).data('multiple') === true),
         onBeforeUpload  : function() {
             wprs_msg_el.empty();
         },
         onDragEnter     : function() {
-            wprs_uploader.addClass('active');
+            $(this).addClass('active');
         },
         onDragLeave     : function() {
-            wprs_uploader.removeClass('active');
+            $(this).removeClass('active');
         },
         onUploadSuccess : function(id, data) {
-            var name = wprs_uploader.data('name'),
-                is_multiple = (wprs_uploader.data('multiple') === true),
+            var name = $(this).data('name'),
+                is_multiple = ($(this).data('multiple') === true),
                 button = '<button type="button" class="rs-uploader__close" data-value=' + data.id +
                     '><svg t="1575261098184" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3639" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg></button>',
                 thumb = '<img src="' + data.thumb + '" alt="Thumbnail">';
@@ -35,32 +35,34 @@ jQuery(document).ready(function($) {
                     data.title;
             }
 
-            wprs_uploader.
+            console.log(this);
+
+            this.
                 find('input:text').
                 filter(function() { return this.value === ''; }).
                 remove();
 
             if (!is_multiple) {
-                wprs_uploader.find('.rs-uploader__text').hide();
-                wprs_uploader.find('.rs-uploader__button').hide();
+                this.find('.rs-uploader__text').hide();
+                this.find('.rs-uploader__button').hide();
 
-                wprs_uploader.
+                this.
                     find('.rs-uploader__value').
                     empty().
                     append('<input type="hidden" name="' + name + '" value="' + data.id + '">');
 
-                wprs_uploader.
+                this.
                     find('.rs-uploader__preview').
                     empty().
                     show().
                     append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
             } else {
 
-                wprs_uploader.
+                this.
                     find('.rs-uploader__value').
                     append('<input type="hidden" name="' + name + '" value="' + data.id + '">');
 
-                wprs_uploader.
+                this.
                     find('.rs-uploader__preview').
                     show().
                     append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
@@ -106,7 +108,7 @@ jQuery(document).ready(function($) {
 
         // 移除值
         if (!is_multiple) {
-            $('.rs-uploader__value input').attr('value', '');
+            uploader.find('.rs-uploader__value input').attr('value', '');
 
             uploader.show();
             uploader.find('.rs-uploader__text').show();
