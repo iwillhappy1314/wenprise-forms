@@ -8,6 +8,22 @@ use Wenprise\Forms\Renders\DefaultFormRender;
 class Form extends \Nette\Forms\Form implements IHtmlString
 {
 
+    public $datastore = null;
+
+    public function setDatastore($datastore)
+    {
+        $this->datastore = $datastore;
+    }
+
+
+    public function save()
+    {
+        if ($this->isSuccess()) {
+            $this->datastore->save();
+        }
+    }
+
+
     public function __construct($name = null)
     {
         new init();
