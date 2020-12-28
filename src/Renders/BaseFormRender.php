@@ -13,9 +13,13 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 {
     use Nette\SmartObject;
 
-    public function __construct()
+    var string $layout = 'horizontal';
+
+    public function __construct($type = 'horizontal')
     {
-        $this->wrappers[ 'control' ][ '.submit' ]        = 'rs-btn rs-btn-default';
+        $this->layout = $type;
+
+        $this->wrappers[ 'control' ][ '.submit' ]        = 'rs-btn rs-btn-primary';
         $this->wrappers[ 'control' ][ '.image' ]         = 'rs-btn--image';
         $this->wrappers[ 'control' ][ '.required' ]      = 'rs-required';
         $this->wrappers[ 'control' ][ 'description' ]    = 'span class=rs-help-block';
@@ -130,6 +134,10 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             $group_class[] = $control->getOption('class');
         } else {
             $group_class[] = 'rs-col-md-12';
+
+            if ($this->layout === 'horizontal') {
+                $group_class[] = 'rs-form-group rs-row';
+            }
         }
 
         // 允许添加Class到Wrapper上

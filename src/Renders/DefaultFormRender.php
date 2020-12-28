@@ -11,7 +11,7 @@ class DefaultFormRender extends BaseFormRender
 {
     use Nette\SmartObject;
 
-    var $layout = 'horizontal';
+    var string $layout = 'horizontal';
 
     public function __construct($type = 'horizontal')
     {
@@ -21,12 +21,12 @@ class DefaultFormRender extends BaseFormRender
         $this->wrappers[ 'group' ][ 'label' ]        = 'legend class="rs-form-legend rs-col-md-12"';
         $this->wrappers[ 'controls' ][ 'container' ] = null;
 
-        $this->wrappers[ 'label' ][ 'container' ]    = ($this->layout === 'horizontal') ? 'div class="rs-col-sm-3 rs-control-label"' : '';
-        $this->wrappers[ 'control' ][ 'container' ]      = ($this->layout === 'horizontal') ? 'div class="rs-col-sm-9 rs-control-input"' : '';
+        $this->wrappers[ 'label' ][ 'container' ]   = ($this->layout === 'horizontal') ? 'div class="rs-col-sm-3 rs-control-label"' : '';
+        $this->wrappers[ 'control' ][ 'container' ] = ($this->layout === 'horizontal') ? 'div class="rs-col-sm-9 rs-control-input"' : '';
 
         $this->wrappers[ 'pair' ][ 'container' ] = 'div class=rs-form-group';
 
-        parent::__construct();
+        parent::__construct($type);
     }
 
 
