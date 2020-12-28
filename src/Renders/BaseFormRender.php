@@ -123,10 +123,18 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         }
 
         $pair = $this->getWrapper('pair container');
+
         $pair->addHtml($this->renderLabel($control));
 
+        if ( ! empty($control->getOption('class'))) {
+            $group_class[] = $control->getOption('class');
+        } else {
+            $group_class[] = 'rs-col-md-12';
+        }
+
         // 允许添加Class到Wrapper上
-        $pair->class($control->getOption('class'), true);
+        $pair->class($group_class, true);
+
         $pair->addHtml($this->getWrapper('control container')->setHtml(implode(' ', $s)));
 
         return $pair->render(0);
