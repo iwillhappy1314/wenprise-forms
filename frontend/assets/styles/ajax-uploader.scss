@@ -1,15 +1,10 @@
 .rs-uploader {
   cursor: default;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  border: 3px dashed #a0aec0;
+  border: 2px dashed #a0aec0;
   border-radius: 6px;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
 
   &.active {
     border-color: #4a5568;
@@ -65,9 +60,9 @@
 
   &__text {
     color: #4a5568;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
   }
 
   &__preview {

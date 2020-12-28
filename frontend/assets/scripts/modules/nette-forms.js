@@ -758,11 +758,13 @@
         function showErrors(errors, focus) {
             errors.forEach(function(error) {
                 if (error.message) {
-                    $(error.element).parents('.rs-control-input').addClass('rs-has-error').
-                                     find('.rs-help-block').remove();
+                    $(error.element).parents('.rs-control-input').
+                                     addClass('rs-has-error').
+                                     find('.rs-error-msg').
+                                     remove();
 
-                    $(error.element).parents('.rs-control-input').append($('<span class=rs-help-block>').
-                            text(error.message));
+                    $(error.element).parents('.rs-control-input').
+                                     append($('<span class=rs-error-msg>').text(error.message));
                 }
                 if (focus && error.element.focus) {
                     error.element.focus();
@@ -775,9 +777,12 @@
         function removeErrors(elem) {
             if ($(elem).is('form')) {
                 $('.rs-has-error', elem).removeClass('rs-has-error');
-                $('.rs-help-block', elem).remove();
+                $('.rs-error-msg', elem).remove();
             } else {
-                $(elem).parent().removeClass('rs-has-error').find('.rs-help-block').remove();
+                $(elem).parent().
+                        removeClass('rs-has-error').
+                        find('.rs-error-msg').
+                        remove();
             }
         }
 
