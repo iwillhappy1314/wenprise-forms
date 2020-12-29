@@ -74,6 +74,9 @@ module.exports = {
                 signature      : [
                     './assets/scripts/modules/jq-signature.js',
                 ],
+                sweetalert      : [
+                    './assets/scripts/modules/sweet-alert.js',
+                ],
                 star_rating    : [
                     './assets/scripts/modules/star-rating.js',
                     './assets/styles/star-rating.scss',

@@ -15,6 +15,8 @@ class PostMetaDatastore extends \Wenprise\Forms\Datastores\IDatastore
 
     function save()
     {
+        wp_enqueue_script('wprs-sweetalert');
+
         $values = $this->form->getValues();
         $fields = $this->getFields();
 

@@ -162,6 +162,9 @@ class init
         // 签字/签名
         wp_register_script('wprs-signature', $this->get_assets_url($assets[ 'signature.js' ]), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
 
+        // Sweet Alert 弹窗美化
+        wp_register_script('wprs-sweetalert', $this->get_assets_url($assets[ 'sweetalert.js' ]), ['jquery'], WENPRISE_FORM_VERSION, true);
+
         // Birthday Picker
         wp_register_script('wprs-combodate', $this->get_assets_url($assets[ 'combodate.js' ]), ['jquery', 'moment', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
 
@@ -169,8 +172,8 @@ class init
         wp_register_style('wprs-datepicker', $this->get_assets_url($assets[ 'datepicker.css' ]), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
         wp_register_script('wprs-datepicker-zh', $this->get_assets_url($assets[ 'datepicker_zh.js' ]), ['jquery', 'jquery-ui-datepicker', 'wprs-forms-main'], WENPRISE_FORM_VERSION);
 
+        // 日期区间选择器
         wp_register_style('wprs-daterangepicker', $this->get_assets_url($assets[ 'daterangepicker.css' ]), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
-
         wp_register_script('wprs-daterangepicker', $this->get_assets_url($assets[ 'daterangepicker.js' ]), ['jquery'], WENPRISE_FORM_VERSION);
 
         // jQuery AutoComplete

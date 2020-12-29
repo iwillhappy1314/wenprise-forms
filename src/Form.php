@@ -31,8 +31,12 @@ class Form extends \Nette\Forms\Form implements IHtmlString
         $this->setRenderer(new DefaultFormRender());
         $this->setTranslator(new Translator());
 
+        wp_enqueue_script('jquery-form');
+        wp_enqueue_script('wprs-sweetalert');
+
         parent::__construct($name);
     }
+
 
     /**
      * 添加 Csrf 跨站保护控件
