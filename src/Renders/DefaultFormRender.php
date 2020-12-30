@@ -11,7 +11,7 @@ class DefaultFormRender extends BaseFormRender
 {
     use Nette\SmartObject;
 
-    var string $layout = 'horizontal';
+    var $layout = 'horizontal';
 
     public function __construct($type = 'horizontal')
     {
@@ -28,7 +28,6 @@ class DefaultFormRender extends BaseFormRender
 
         parent::__construct($type);
     }
-
 
     /**
      * 渲染一行
