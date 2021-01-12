@@ -5,7 +5,7 @@ namespace Wenprise\Forms\Datastores;
 
 class PostMetaDatastore extends \Wenprise\Forms\Datastores\IDatastore
 {
-    var int $post_id = 0;
+    var $post_id = 0;
 
     public function __construct($post_id, $form)
     {

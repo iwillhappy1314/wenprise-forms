@@ -99,6 +99,14 @@ $confirm = Html::el('span')->setHtml('I agree the <a href="#">Terms of service.<
 $form->addCheckbox('confirm', $confirm)->setOption('description', $confirm);
 ```
 
+### Set Datastore
+
+```php
+$form->setDatastore(new \Wenprise\Forms\Datastores\PostMetaDatastore(1, $form));
+
+$form->save();
+```
+
 ## Fields
 
 ### nonce field
