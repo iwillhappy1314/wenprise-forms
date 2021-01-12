@@ -37,6 +37,29 @@ fieldset:disabled a.rs-btn {
   border-collapse: collapse;
 }
 
+.rs-table-input .rs-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+}
+
+.rs-signature--control{
+  position: relative;
+  overflow: hidden;
+}
+
+.rs-clear-signature{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-decoration: underline;
+
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
 @media (min-width: 576px) {
   .order-sm-first {
     -webkit-box-ordinal-group: 0;

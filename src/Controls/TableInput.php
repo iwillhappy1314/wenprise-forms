@@ -95,17 +95,11 @@ class TableInput extends BaseControl
                 'moveUp'   => true,
                 'moveDown' => true,
             ],
-            'buttonClasses'    => [
-                'append'     => 'rs-btn rs-btn--sm rs-btn--primary',
-                'removeLast' => 'rs-btn rs-btn--sm rs-btn--danger',
-            ],
             'sectionClasses'   => [
                 'table'       => "rs-table",
                 'buttonGroup' => "rs-btn-group",
+                'button'      => "rs-btn rs-btn-sm rs-btn-default",
                 'control'     => "rs-form-control",
-                'append'      => "rs-btn rs-btn-default",
-                'remove'      => "rs-btn rs-btn-default",
-                'removeLast'  => "rs-btn rs-btn-default",
             ],
             'i18n'             => [
                 'append'     => __('Append Row', 'wprs'),

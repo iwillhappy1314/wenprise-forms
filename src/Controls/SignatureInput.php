@@ -14,8 +14,8 @@ class SignatureInput extends TextInput
     private $settings = [];
 
     /**
-     * @param  string|object $label    Html 标签
-     * @param  array         $settings TinyMce 设置
+     * @param string|object $label    Html 标签
+     * @param array         $settings TinyMce 设置
      */
     public function __construct($label = null, array $settings = null)
     {
@@ -44,8 +44,12 @@ class SignatureInput extends TextInput
         $id       = $this->getHtmlId();
         $settings = $this->settings;
 
-        $holder = Html::el('div')
-                      ->setAttribute('id', "js-$id");
+        $holder = Html::el('div class="rs-signature--control"')
+                      ->setAttribute('id', "js-$id")
+                      ->addHtml(Html::el('span')
+                                    ->setAttribute('class', 'rs-btn rs-clear-signature')
+                                    ->setText(__('Clear', 'wprs'))
+                      );
 
         $settings_default = [
             'width'      => '500',
@@ -64,6 +68,10 @@ class SignatureInput extends TextInput
 		        	pad.on('jq.signature.changed', function() {
 		        	  el.val(pad.jqSignature('getDataURL'));
                     });
+		        	
+		        	$('.rs-clear-signature').click(function(){
+		        	    pad.jqSignature('clearCanvas');
+		        	})
 		        });
 		    </script>";
 

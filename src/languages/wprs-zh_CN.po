@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2020-12-23 20:06+0800\n"
-"PO-Revision-Date: 2020-12-29 10:52+0800\n"
+"POT-Creation-Date: 2021-01-12 14:35+0800\n"
+"PO-Revision-Date: 2021-01-12 14:35+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
@@ -19,189 +19,189 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: Forms/Controls/AjaxUploadInput.php:67
+#: Controls/AjaxUploadInput.php:67
 msgid "Select File"
 msgstr "选择文件"
 
-#: Forms/Controls/AjaxUploadInput.php:102
+#: Controls/AjaxUploadInput.php:102
 msgid "Drag & Drop Images Here"
 msgstr "拖放文件到这里"
 
-#: Forms/Controls/CaptchaInput.php:58
+#: Controls/CaptchaInput.php:59
 msgid "Click to refresh"
 msgstr "点击刷新"
 
-#: Forms/Controls/ChosenInput.php:43
+#: Controls/ChosenInput.php:43
 msgid "Select Some Options"
 msgstr "请选择一项或几项"
 
-#: Forms/Controls/ChosenInput.php:44
+#: Controls/ChosenInput.php:44
 msgid "Select an Option"
 msgstr "请选择一项"
 
-#: Forms/Controls/ChosenInput.php:45
+#: Controls/ChosenInput.php:45
 msgid "No results match"
 msgstr "没有匹配的结果"
 
-#: Forms/Controls/CloneInput.php:61
+#: Controls/CloneInput.php:60
 msgid "Remove"
 msgstr "删除"
 
-#: Forms/Controls/CloneInput.php:68
+#: Controls/CloneInput.php:67
 msgid "Add More Fields"
 msgstr "添加字段"
 
-#: Forms/Controls/SmsInput.php:50
+#: Controls/SignatureInput.php:51 init.php:203
+msgid "Clear"
+msgstr "清除"
+
+#: Controls/SmsInput.php:50
 msgid "Get Code"
 msgstr "获取验证码"
 
-#: Forms/Controls/SmsInput.php:70 Forms/Controls/SmsInput.php:74
+#: Controls/SmsInput.php:70 Controls/SmsInput.php:74
 msgid "Get Again"
 msgstr "重新获取"
 
-#: Forms/Controls/SmsInput.php:97
+#: Controls/SmsInput.php:97
 msgid "minutes Later Get Again"
 msgstr "秒后再次获取"
 
-#: Forms/Controls/SmsInput.php:105
+#: Controls/SmsInput.php:105
 msgid "Send failed"
 msgstr "发送失败"
 
-#: Forms/Controls/TableInput.php:101
+#: Controls/TableInput.php:109
 msgid "Append Row"
 msgstr "添加行"
 
-#: Forms/Controls/TableInput.php:102
+#: Controls/TableInput.php:110
 msgid "Remove Last Row"
 msgstr "删除最后一行"
 
-#: Forms/Controls/TableInput.php:103
+#: Controls/TableInput.php:111
 msgid "Insert Row Above"
 msgstr "在上面插入行"
 
-#: Forms/Controls/TableInput.php:104
+#: Controls/TableInput.php:112
 msgid "Remove Current Row"
 msgstr "删除当前行"
 
-#: Forms/Controls/TableInput.php:105
+#: Controls/TableInput.php:113
 msgid "Move Up"
 msgstr "上移"
 
-#: Forms/Controls/TableInput.php:106
+#: Controls/TableInput.php:114
 msgid "Move Down"
 msgstr "下移"
 
-#: Forms/Controls/TableInput.php:107
+#: Controls/TableInput.php:115
 msgid "This Grid Is Empty"
 msgstr "这个表格没有数据"
 
-#: helpers.php:201
+#: init.php:31
 msgid "Your session has expired. Please return to the home page and try again."
 msgstr "您的会话已过期，请返回或刷新重试。"
 
-#: helpers.php:202
+#: init.php:32
 #, php-format
 msgid "Please enter %s."
 msgstr "请输入 %s 。"
 
-#: helpers.php:203
+#: init.php:33
 #, php-format
 msgid "This value should not be %s."
 msgstr "这个字段的值不应为 %s。"
 
-#: helpers.php:204
+#: init.php:34
 msgid "This field is required."
 msgstr "此字段为必填项。"
 
-#: helpers.php:205
+#: init.php:35
 msgid "This field should be blank."
 msgstr "这个字段应该留空。"
 
-#: helpers.php:206
+#: init.php:36
 #, php-format
 msgid "Please enter at least %d characters."
 msgstr "请输入至少为 %d 个字符。"
 
-#: helpers.php:207
+#: init.php:37
 #, php-format
 msgid "Please enter no more than %d characters."
 msgstr "请输入不超过 %d 个字符。"
 
-#: helpers.php:208
+#: init.php:38
 #, php-format
 msgid "Please enter a value between %d and %d characters long."
 msgstr "请输入一个 %d 到 %d 位的字符。"
 
-#: helpers.php:209
+#: init.php:39
 msgid "Please enter a valid email address."
 msgstr "请输入一个有效的电子邮件地址。"
 
-#: helpers.php:210
+#: init.php:40
 msgid "Please enter a valid URL."
 msgstr "请输入一个正确的 URL。"
 
-#: helpers.php:211
+#: init.php:41
 msgid "Please enter a valid integer."
 msgstr "请输入一个整数。"
 
-#: helpers.php:212
+#: init.php:42
 msgid "Please enter a valid number."
 msgstr "请输入一个有效的数字。"
 
-#: helpers.php:213
+#: init.php:43
 #, php-format
 msgid "Please enter a value greater than or equal to %d."
 msgstr "请输入至少为 %d 个字符。"
 
-#: helpers.php:214
+#: init.php:44
 #, php-format
 msgid "Please enter a value less than or equal to %d."
 msgstr "请输入一个小于等于 %d 的数字。"
 
-#: helpers.php:215
+#: init.php:45
 #, php-format
 msgid "Please enter a value between %d and %d."
 msgstr "请输入一个处于 %d 和 %d 之间的数字。"
 
-#: helpers.php:216
+#: init.php:46
 #, php-format
 msgid "The size of the uploaded file can be up to %d bytes."
 msgstr "上传的文件尺寸最大为 %d 字节。"
 
-#: helpers.php:217
+#: init.php:47
 #, php-format
 msgid "The uploaded data exceeds the limit of %d bytes."
 msgstr "上传的数据超过了 %d 字节的限制。"
 
-#: helpers.php:218
+#: init.php:48
 msgid "The uploaded file is not in the expected format."
 msgstr "上传的文件不是有效的格式。"
 
-#: helpers.php:219
+#: init.php:49
 msgid "The uploaded file must be image in format JPEG, GIF or PNG."
 msgstr "上传的文件必须为 JPED、GIF 或 PNG 格式。"
 
-#: helpers.php:220
+#: init.php:50
 msgid "Please select a valid option."
 msgstr "请选择一个有效的选项。"
 
-#: helpers.php:221
+#: init.php:51
 msgid "An error occurred during file upload."
 msgstr "上传时出现了一些错误。"
 
-#: helpers.php:381
-msgid "Clear"
-msgstr "清除"
-
-#: helpers.php:382
+#: init.php:204
 msgid "Default"
 msgstr "默认"
 
-#: helpers.php:383
+#: init.php:205
 msgid "Select Color"
 msgstr "选择颜色"
 
-#: helpers.php:384
+#: init.php:206
 msgid "Current Color"
 msgstr "当前颜色"
 
