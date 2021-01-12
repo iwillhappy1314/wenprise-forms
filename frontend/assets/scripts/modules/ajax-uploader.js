@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
     var wprs_uploader = $('.js-uploader'),
         options = wprs_uploader.data('settings'),
 
-        settings = {
+        defaults = {
             url             : $(this).find('.rs-uploader__shadow').data('url'),
             type            : 'POST',
             dataType        : 'json',
@@ -15,6 +15,7 @@ jQuery(document).ready(function($) {
             multiple        : ($(this).data('multiple') === true),
             onBeforeUpload  : function() {
                 this.find('.js-uploader-message').empty();
+                console.log($(this).data('settings'));
             },
             onDragEnter     : function() {
                 this.addClass('active');
@@ -67,29 +68,29 @@ jQuery(document).ready(function($) {
 
             },
             onUploadError   : function(id, xhr, status, errorThrown) {
-                this.find('.js-uploader-message').html('上传错误，请重试。');
+                this.find('.js-uploader-message').html(wprsUploaderL10n.error);
             },
             onUploadComplete: function(id) {
                 this.find('.js-progress').remove();
             },
             onUploadCanceled: function(id) {
-                this.find('.js-uploader-message').html('您已取消上传文件');
+                this.find('.js-uploader-message').html(wprsUploaderL10n.canceled);
             },
             onUploadProgress: function(id, percent) {
                 this.find('.js-uploader-message').html($('<div class="js-progress">').css('width', percent + '%'));
             },
             onFileTypeError : function(file) {
-                this.find('.js-uploader-message').html('文件类型错误');
+                this.find('.js-uploader-message').html(wprsUploaderL10n.file_type_error);
             },
             onFileSizeError : function(file) {
-                this.find('.js-uploader-message').html('文件尺寸超过限制');
+                this.find('.js-uploader-message').html(wprsUploaderL10n.file_size_error);
             },
             onFileExtError  : function(file) {
-                this.find('.js-uploader-message').html('文件类型错误');
+                this.find('.js-uploader-message').html(wprsUploaderL10n.file_ext_error);
             },
         };
 
-    $.extend(settings, options);
+    var settings = $.extend({}, defaults, options);
 
     /**
      * 初始化文件上传组件

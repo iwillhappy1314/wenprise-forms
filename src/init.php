@@ -189,6 +189,14 @@ class init
         wp_register_style('wprs-ajax-uploader', $this->get_assets_url($assets[ 'uploader.css' ]), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
         wp_register_script('wprs-ajax-uploader', $this->get_assets_url($assets[ 'uploader.js' ]), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
 
+        wp_localize_script('wprs-ajax-uploader', 'wprsUploaderL10n', [
+            'error'           => __('Upload error, please try again.', 'wprs'),
+            'canceled'        => __('Upload canceled.', 'wprs'),
+            'file_type_error' => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
+            'file_size_error' => __('The file you have uploaded exceeds the file size limit. Please try again.', 'wprs'),
+            'file_ext_error'  => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
+        ]);
+
         // 五星评分
         wp_register_style('wprs-star-rating', $this->get_assets_url($assets[ 'star_rating.css' ]), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
         wp_register_script('wprs-star-rating', $this->get_assets_url($assets[ 'star_rating.js' ]), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
@@ -199,14 +207,12 @@ class init
         // 移除jQuery自动完成
         wp_dequeue_script('jquery-ui-autocomplete');
 
-        $color_picker_l10n = [
+        wp_localize_script('wp-color-picker', 'wpColorPickerL10n', [
             'clear'         => __('Clear', 'wprs'),
             'defaultString' => __('Default', 'wprs'),
             'pick'          => __('Select Color', 'wprs'),
             'current'       => __('Current Color', 'wprs'),
-        ];
-
-        wp_localize_script('wp-color-picker', 'wpColorPickerL10n', $color_picker_l10n);
+        ]);
 
     }
 

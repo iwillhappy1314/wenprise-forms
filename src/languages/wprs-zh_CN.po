@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2021-01-12 14:35+0800\n"
-"PO-Revision-Date: 2021-01-12 14:35+0800\n"
+"POT-Creation-Date: 2021-01-12 20:06+0800\n"
+"PO-Revision-Date: 2021-01-12 20:07+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
@@ -51,7 +51,7 @@ msgstr "删除"
 msgid "Add More Fields"
 msgstr "添加字段"
 
-#: Controls/SignatureInput.php:51 init.php:203
+#: Controls/SignatureInput.php:51 init.php:211
 msgid "Clear"
 msgstr "清除"
 
@@ -71,31 +71,31 @@ msgstr "秒后再次获取"
 msgid "Send failed"
 msgstr "发送失败"
 
-#: Controls/TableInput.php:109
+#: Controls/TableInput.php:105
 msgid "Append Row"
 msgstr "添加行"
 
-#: Controls/TableInput.php:110
+#: Controls/TableInput.php:106
 msgid "Remove Last Row"
 msgstr "删除最后一行"
 
-#: Controls/TableInput.php:111
+#: Controls/TableInput.php:107
 msgid "Insert Row Above"
 msgstr "在上面插入行"
 
-#: Controls/TableInput.php:112
+#: Controls/TableInput.php:108
 msgid "Remove Current Row"
 msgstr "删除当前行"
 
-#: Controls/TableInput.php:113
+#: Controls/TableInput.php:109
 msgid "Move Up"
 msgstr "上移"
 
-#: Controls/TableInput.php:114
+#: Controls/TableInput.php:110
 msgid "Move Down"
 msgstr "下移"
 
-#: Controls/TableInput.php:115
+#: Controls/TableInput.php:111
 msgid "This Grid Is Empty"
 msgstr "这个表格没有数据"
 
@@ -193,15 +193,31 @@ msgstr "请选择一个有效的选项。"
 msgid "An error occurred during file upload."
 msgstr "上传时出现了一些错误。"
 
-#: init.php:204
+#: init.php:193
+msgid "Upload error, please try again."
+msgstr "上传错误，请重试。"
+
+#: init.php:194
+msgid "Upload canceled."
+msgstr "已取消上传。"
+
+#: init.php:195 init.php:197
+msgid "You have uploaded an incorrect file type. Please try again."
+msgstr "文件类型不正确，请重试。"
+
+#: init.php:196
+msgid "The file you have uploaded exceeds the file size limit. Please try again."
+msgstr "文件过大，请重试。"
+
+#: init.php:212
 msgid "Default"
 msgstr "默认"
 
-#: init.php:205
+#: init.php:213
 msgid "Select Color"
 msgstr "选择颜色"
 
-#: init.php:206
+#: init.php:214
 msgid "Current Color"
 msgstr "当前颜色"
 
