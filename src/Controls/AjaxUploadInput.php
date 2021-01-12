@@ -131,7 +131,13 @@ class  AjaxUploadInput extends BaseControl
                     )
             );
 
-        return $html;
+        $script = "<script>
+			jQuery(document).ready(function($) {
+				$('#$id').wprsAjaxUploader();
+			});
+		</script>";
+
+        return $html . $script;
     }
 
 
