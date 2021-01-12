@@ -115,14 +115,21 @@
     margin: 0;
     border: solid transparent;
     width: 100%;
-    opacity: .0;
+    opacity: 0;
     border: 0;
+    height: 34px;
     filter: alpha(opacity=0);
     cursor: pointer;
   }
 
   &__message {
     color: #e53e3e;
+
+    .js-progress{
+      background: #0f9d58;
+      height: 5px;
+      border-radius: 3px;
+    }
   }
 
 }
