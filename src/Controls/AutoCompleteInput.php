@@ -64,7 +64,6 @@ class AutoCompleteInput extends TextInput
         return $el . $script;
     }
 
-
     /**
      * 设置输入提示源
      */

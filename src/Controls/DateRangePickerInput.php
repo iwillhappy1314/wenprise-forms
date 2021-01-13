@@ -46,6 +46,9 @@ class DateRangePickerInput extends TextInput
             "buttonClasses"       => 'rs-btn rs-btn-sm',
             "applyButtonClasses"  => 'rs-btn-primary',
             "cancelButtonClasses" => 'rs-btn-default',
+            "locale"              => [
+                "format" => "YYYY-MM-DD",
+            ],
         ];
 
         $settings = array_merge($settings_default, $settings);
