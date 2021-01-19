@@ -40,6 +40,7 @@ fieldset:disabled a.rs-btn {
 .rs-table-input .rs-btn{
   display: inline-flex;
   align-items: center;
+  flex: none;
   justify-content: center;
   height: 2rem;
 }
