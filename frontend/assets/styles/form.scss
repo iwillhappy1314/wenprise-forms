@@ -32,6 +32,25 @@
   }
 }
 
+.rs-form--horizontal{
+  .rs-form-row{
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  .rs-row{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .rs-form-legend{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .rs-form-group.rs-row{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .rs-has-error {
   .rs-error-msg {
     display: inline-block;

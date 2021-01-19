@@ -19,6 +19,8 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     {
         $this->layout = $type;
 
+        $this->wrappers[ 'form' ][ 'container' ]        = "div class=rs-form--$this->layout";
+
         $this->wrappers[ 'control' ][ '.submit' ]        = 'rs-btn rs-btn-primary';
         $this->wrappers[ 'control' ][ '.image' ]         = 'rs-btn--image';
         $this->wrappers[ 'control' ][ '.required' ]      = 'rs-required';
