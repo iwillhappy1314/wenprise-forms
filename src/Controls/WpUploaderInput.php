@@ -18,15 +18,13 @@ use Nette\Utils\Html;
  *
  * todo: 考虑增加上传进度, 增加上传出错时的提示
  */
-class AjaxUploadInput extends BaseControl
+class WpUploaderInput extends BaseControl
 {
 
     /** validation rule */
     const VALID = ':uploadControlValid';
 
     private $settings = [];
-
-    public $url;
 
     /**
      * @param null       $label
@@ -40,7 +38,7 @@ class AjaxUploadInput extends BaseControl
         $this->control->type     = 'text';
         $this->settings          = (array)$settings;
 
-        $this->setOption('type', 'uploader');
+        $this->setOption('type', 'wp-uploader');
         $this->addCondition(Form::BLANK)
              ->addRule([$this, 'isOk'], Validator::$messages[ self::VALID ]);
     }
@@ -57,6 +55,7 @@ class AjaxUploadInput extends BaseControl
         $el = parent::getControl();
 
         if (function_exists('wp_enqueue_script')) {
+            wp_enqueue_media();
             wp_enqueue_style('wprs-ajax-uploader');
             wp_enqueue_script('wprs-ajax-uploader');
         }
@@ -64,15 +63,10 @@ class AjaxUploadInput extends BaseControl
         $name        = $this->getHtmlName();
         $id          = $this->getHtmlId();
         $settings    = $this->settings;
-        $placeholder = $this->control->getAttribute('placeholder') ? $this->control->getAttribute('placeholder') : __('Select File', 'wprs');
         $value       = $this->getValue();
         $preview     = '';
         $hide        = 'rs-hide';
         $multiple    = $this->control->multiple ? true : false;
-
-        $close_icon = '<svg width="103" height="76" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M43 60v16H24v-.007C11.218 75.723.998 65.283.998 52.499.998 40.1 10.628 29.836 23 29.047c0-.205-.005-.384-.005-.546 0-15.74 12.76-28.5 28.5-28.5s28.5 12.76 28.5 28.5c0 .182 0 .366-.005.546 12.379.781 22.019 11.049 22.019 23.453 0 12.4-9.635 22.666-22.01 23.452V76H61V60h9.2a5 5 0 0 0 3.6-8.479l-18.2-18.81a5 5 0 0 0-7.187 0L30.2 51.522A5 5 0 0 0 33.8 60H43z" fill="#9a9a9a"></path>
-                    </svg>';
 
         $el->appendAttribute('class', $hide);
 
@@ -91,55 +85,33 @@ class AjaxUploadInput extends BaseControl
         }
 
         $html = Html::el('div')
-                    ->setAttribute('id', $id)
-                    ->setAttribute('class', 'js-uploader rs-uploader')
+                    ->setAttribute('class', 'js-wp-uploader rs-wp-uploader')
                     ->data('name', $name)
                     ->data('multiple', $multiple)
                     ->data('settings', json_encode($settings));
 
-        $html
-            ->addHtml(
-                Html::el('div class=rs-uploader__text')
-                    ->addHtml('<div class="rs-uploader__image">'. $close_icon .'</div>')
-                    ->addText(__('Drag & Drop Images Here', 'wprs'))
-            )
-            ->addHtml(
-                Html::el('div class=rs-uploader__browser')
-                    ->addHtml(
-                        Html::el('label class="rs-btn rs-uploader__button"')
-                            ->addHtml(
-                                Html::el('span')
-                                    ->addHtml($placeholder)
-                            )
-                            ->addHtml(
-                                Html::el('input type="file" class=rs-uploader__shadow')
-                                    ->setAttribute('name', 'js-input-shadow')
-                                    ->setAttribute('multiple', $multiple)
-                                    ->setAttribute('title', $placeholder)
-                                    ->data('url', $this->url)
-                            )
-                    )
-                    ->addHtml(
-                        Html::el('div class=rs-uploader__value')
-                            ->addText($el)
-                    )
-                    ->addHtml(
-                        Html::el('div class=rs-uploader__preview')
-                            ->appendAttribute('class', $hide)
-                            ->addHtml($preview)
-                    )
-                    ->addHtml(
-                        Html::el('div class="js-uploader-message rs-uploader__message"')
-                    )
-            );
+        $html->addHtml(
+            Html::el('div class=rs-wp-uploader__field')
+                ->addHtml(
+                    Html::el('div class=rs-uploader__value')
+                        ->setAttribute('id', $id)
+                        ->addText($el)
+                )
+                ->addHtml(
+                    Html::el('input type=button class=rs-wp-uploader__button')
+                        ->setAttribute('value', __('Upload Image', 'wprs'))
+                )
+                ->addHtml(
+                    Html::el('div class=rs-uploader__preview')
+                        ->appendAttribute('class', $hide)
+                        ->addHtml($preview)
+                )
+                ->addHtml(
+                    Html::el('div class=rs-wp-uploader__message')
+                ));
 
-        $script = "<script>
-			jQuery(document).ready(function($) {
-				$('#$id').wprsAjaxUploader();
-			});
-		</script>";
 
-        return $html . $script;
+        return $html;
     }
 
 
@@ -188,27 +160,13 @@ class AjaxUploadInput extends BaseControl
 
 
     /**
-     * 设置后端 URL
-     *
-     * @param $url
-     *
-     * @return $this
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-
-    /**
      * 只要输入不为空，即为验证通过
      *
      * @return bool
      */
     public function isOk()
     {
+
         return $this->isDisabled()
                || $this->getValue() == 0
                || $this->getValue() !== null;

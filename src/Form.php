@@ -84,6 +84,22 @@ class Form extends \Nette\Forms\Form implements IHtmlString
 
 
     /**
+     * WordPress 上传，支持单文件和多文件控件
+     *
+     * @param string      $name
+     * @param null|string $label
+     * @param bool        $multiple
+     * @param array|null  $settings
+     *
+     * @return \Wenprise\Forms\Controls\WpUploaderInput
+     */
+    public function addWpUploader($name, $label = null, $multiple = false, array $settings = null)
+    {
+        return $this[ $name ] = (new Controls\WpUploaderInput($label, $multiple, $settings));
+    }
+
+
+    /**
      * 带前缀或者后缀的文本输入
      *
      * @param      $name

@@ -45,8 +45,8 @@
   "tableinput.js.map": "app/tableinput-2b106339.js.map",
   "uploader.css": "app/uploader-1fe1cc2d.css",
   "uploader.css.map": "app/uploader-1fe1cc2d.css.map",
-  "uploader.js": "app/uploader-12d19674.js",
-  "uploader.js.map": "app/uploader-12d19674.js.map",
+  "uploader.js": "app/uploader-27988162.js",
+  "uploader.js.map": "app/uploader-27988162.js.map",
   "wpackioEp": {
     "main": {
       "js": [
@@ -113,11 +113,11 @@
     "uploader": {
       "js": [
         "app/runtime-10224b83.js",
-        "app/uploader-12d19674.js"
+        "app/uploader-27988162.js"
       ],
       "js.map": [
         "app/runtime-10224b83.js.map",
-        "app/uploader-12d19674.js.map"
+        "app/uploader-27988162.js.map"
       ],
       "css": [
         "app/uploader-1fe1cc2d.css"

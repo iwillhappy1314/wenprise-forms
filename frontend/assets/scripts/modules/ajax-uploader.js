@@ -1,6 +1,10 @@
 ﻿import 'dm-file-uploader';
 
 (function($) {
+    var close_icon = '<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg>',
+
+        file_icon = '<svg class="icon" style="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="128" height="128"><defs><style type="text/css"></style></defs><path d="M768 426.666667H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333zM341.333333 324.266667h170.666667a17.066667 17.066667 0 1 0 0-34.133334H341.333333a17.066667 17.066667 0 1 0 0 34.133334zM768 563.2H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333zM768 699.733333H341.333333a17.066667 17.066667 0 1 0 0 34.133334h426.666667a17.066667 17.066667 0 1 0 0-34.133334zM768 836.266667H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333z" p-id="2458" fill="#666666"></path><path d="M836.266667 248.9344V0H102.4v938.666667h85.333333v85.333333h733.866667V334.267733l-85.333333-85.333333z m-153.6-105.335467l153.6 153.6L863.3344 324.266667H682.666667V143.598933zM136.533333 904.533333V34.133333h665.6v180.667734L672.6656 85.333333H187.733333v819.2H136.533333z m85.333334 85.333334V119.466667h426.666666v238.933333h238.933334v631.466667H221.866667z" p-id="2459" fill="#666666"></path></svg>';
+
     $.fn.wprsAjaxUploader = function() {
         var options = this.data('settings'),
             el = this,
@@ -25,13 +29,13 @@
                 onUploadSuccess : function(id, data) {
                     var name = el.data('name'),
                         is_multiple = (el.data('multiple') === true),
-                        button = '<button type="button" class="rs-uploader__close" data-value=' + data.id +
-                            '><svg t="1575261098184" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3639" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg></button>',
+
+                        // @formatter:off
+                        button = '<button type="button" class="rs-uploader__close" data-value=' + data.id + '>' + close_icon + '</button>',
                         thumb = '<img src="' + data.thumb + '" alt="Thumbnail">';
 
                     if (!data.thumb) {
-                        thumb = '<svg t="1540194811704" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2457" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128"><defs><style type="text/css"></style></defs><path d="M768 426.666667H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333zM341.333333 324.266667h170.666667a17.066667 17.066667 0 1 0 0-34.133334H341.333333a17.066667 17.066667 0 1 0 0 34.133334zM768 563.2H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333zM768 699.733333H341.333333a17.066667 17.066667 0 1 0 0 34.133334h426.666667a17.066667 17.066667 0 1 0 0-34.133334zM768 836.266667H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333z" p-id="2458" fill="#666666"></path><path d="M836.266667 248.9344V0H102.4v938.666667h85.333333v85.333333h733.866667V334.267733l-85.333333-85.333333z m-153.6-105.335467l153.6 153.6L863.3344 324.266667H682.666667V143.598933zM136.533333 904.533333V34.133333h665.6v180.667734L672.6656 85.333333H187.733333v819.2H136.533333z m85.333334 85.333334V119.466667h426.666666v238.933333h238.933334v631.466667H221.866667z" p-id="2459" fill="#666666"></path></svg><br>' +
-                            data.title;
+                        thumb = file_icon + data.title;
                     }
 
                     el.
@@ -137,4 +141,74 @@
 
         });
     };
+
+    /**
+     * WordPress Uploader
+     */
+    $('.rs-wp-uploader__button').on('click', function(e) {
+        e.preventDefault();
+
+        var wprs_wp_media_uploader,
+            wprs_wp_media_target_input = $(this).prev().attr('id'),
+            uploader = $(this).closest('.rs-wp-uploader'),
+            name = uploader.data('name'),
+            is_multiple = (uploader.data('multiple') === true);
+
+        if (wprs_wp_media_uploader) {
+            wprs_wp_media_uploader.open();
+            return;
+        }
+
+        wprs_wp_media_uploader = wp.media.frames.file_frame = wp.media({
+            title   : wprsUploaderL10n.choose_image,
+            button  : {
+                text: wprsUploaderL10n.insert_image,
+            },
+            multiple: is_multiple,
+        });
+
+        wprs_wp_media_uploader.on('select', function() {
+            var target_input = $('#' + wprs_wp_media_target_input).parent(),
+                attachments = wprs_wp_media_uploader.state().get('selection').toJSON();
+
+            attachments.forEach(function(attachment){
+                var button = '<button type="button" class="rs-uploader__close rs-wp-uploader__close" data-value=' + attachment.id + '>' + close_icon + '</button>',
+                    thumb = '<div class="rs-uploader__thumbnail">' + button + '<img src="' + attachment.url + '" alt="Thumbnail"></div>',
+                    el_preview = target_input.find('.rs-uploader__preview'),
+                    el_value = target_input.find('.rs-uploader__value');
+
+                target_input.find('input:text').remove();
+
+                if(is_multiple){
+                    el_value.append('<input type="hidden" name="' + name + '" value="' + attachment.id + '">');
+
+                    el_preview.append(thumb).show();
+                } else{
+                    el_value.html('<input type="hidden" name="' + name + '" value="' + attachment.id + '">');
+
+                    el_preview.html(thumb).show();
+                }
+
+            });
+        });
+
+        /**
+         * 删除缩略图
+         */
+        $('body').on('click', '.rs-wp-uploader__close', function() {
+
+            var value = $(this).data('value'),
+                wp_uploader = $(this).closest('.rs-wp-uploader');
+
+            // 移除值
+            wp_uploader.find('input[value=' + value + ']').remove();
+
+            // 移除缩略图
+            $(this).parent().remove();
+
+        });
+
+        wprs_wp_media_uploader.open();
+    });
+
 })(jQuery);

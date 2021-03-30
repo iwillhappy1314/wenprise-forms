@@ -195,6 +195,8 @@ class init
             'file_type_error' => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
             'file_size_error' => __('The file you have uploaded exceeds the file size limit. Please try again.', 'wprs'),
             'file_ext_error'  => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
+            'choose_image'    => __('Choose Image', 'wprs'),
+            'insert_image'    => __('Insert Image', 'wprs'),
         ]);
 
         // 五星评分
