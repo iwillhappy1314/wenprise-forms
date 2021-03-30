@@ -60,13 +60,14 @@ class WpUploaderInput extends BaseControl
             wp_enqueue_script('wprs-ajax-uploader');
         }
 
-        $name        = $this->getHtmlName();
-        $id          = $this->getHtmlId();
-        $settings    = $this->settings;
-        $value       = $this->getValue();
-        $preview     = '';
-        $hide        = 'rs-hide';
-        $multiple    = $this->control->multiple ? true : false;
+        $name     = $this->getHtmlName();
+        $id       = $this->getHtmlId();
+        $settings = $this->settings;
+        $value    = $this->getValue();
+        $preview  = '';
+        $values   = '';
+        $hide     = 'rs-hide';
+        $multiple = $this->control->multiple ? true : false;
 
         $el->appendAttribute('class', $hide);
 
@@ -77,10 +78,14 @@ class WpUploaderInput extends BaseControl
                 foreach ($value as $v) {
                     $el->setAttribute('value', $v);
                     $preview .= $this->getPreview($v);
+                    $values  .= "<input type='hidden' name='$name' value='$v'>";
+
                 }
             } else {
                 $el->setAttribute('value', $value);
                 $preview .= $this->getPreview($value);
+
+                $values  .= "<input type='hidden' name='$name' value='$value'>";
             }
         }
 
@@ -95,7 +100,7 @@ class WpUploaderInput extends BaseControl
                 ->addHtml(
                     Html::el('div class=rs-uploader__value')
                         ->setAttribute('id', $id)
-                        ->addText($el)
+                        ->addHtml($values)
                 )
                 ->addHtml(
                     Html::el('input type=button class=rs-wp-uploader__button')

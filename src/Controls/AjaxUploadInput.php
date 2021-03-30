@@ -67,6 +67,7 @@ class AjaxUploadInput extends BaseControl
         $placeholder = $this->control->getAttribute('placeholder') ? $this->control->getAttribute('placeholder') : __('Select File', 'wprs');
         $value       = $this->getValue();
         $preview     = '';
+        $values     = '';
         $hide        = 'rs-hide';
         $multiple    = $this->control->multiple ? true : false;
 
@@ -83,10 +84,14 @@ class AjaxUploadInput extends BaseControl
                 foreach ($value as $v) {
                     $el->setAttribute('value', $v);
                     $preview .= $this->getPreview($v);
+
+                    $values  .= "<input type='hidden' name='$name' value='$v'>";
                 }
             } else {
                 $el->setAttribute('value', $value);
                 $preview .= $this->getPreview($value);
+
+                $values  .= "<input type='hidden' name='$name' value='$value'>";
             }
         }
 
@@ -121,7 +126,7 @@ class AjaxUploadInput extends BaseControl
                     )
                     ->addHtml(
                         Html::el('div class=rs-uploader__value')
-                            ->addText($el)
+                            ->addHtml($values)
                     )
                     ->addHtml(
                         Html::el('div class=rs-uploader__preview')
