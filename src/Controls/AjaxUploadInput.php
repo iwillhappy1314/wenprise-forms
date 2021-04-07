@@ -67,7 +67,7 @@ class AjaxUploadInput extends BaseControl
         $placeholder = $this->control->getAttribute('placeholder') ? $this->control->getAttribute('placeholder') : __('Select File', 'wprs');
         $value       = $this->getValue();
         $preview     = '';
-        $values     = '';
+        $values      = '';
         $hide        = 'rs-hide';
         $multiple    = $this->control->multiple ? true : false;
 
@@ -85,13 +85,13 @@ class AjaxUploadInput extends BaseControl
                     $el->setAttribute('value', $v);
                     $preview .= $this->getPreview($v);
 
-                    $values  .= "<input type='hidden' name='$name' value='$v'>";
+                    $values .= "<input type='hidden' name='$name' value='$v'>";
                 }
             } else {
                 $el->setAttribute('value', $value);
                 $preview .= $this->getPreview($value);
 
-                $values  .= "<input type='hidden' name='$name' value='$value'>";
+                $values .= "<input type='hidden' name='$name' value='$value'>";
             }
         }
 
@@ -105,7 +105,7 @@ class AjaxUploadInput extends BaseControl
         $html
             ->addHtml(
                 Html::el('div class=rs-uploader__text')
-                    ->addHtml('<div class="rs-uploader__image">'. $close_icon .'</div>')
+                    ->addHtml('<div class="rs-uploader__image">' . $close_icon . '</div>')
                     ->addText(__('Drag & Drop Images Here', 'wprs'))
             )
             ->addHtml(
@@ -164,13 +164,12 @@ class AjaxUploadInput extends BaseControl
             $thumb = $value;
         }
 
+        $close_icon = '<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg>';
+
         $preview = Html::el('div class="rs-uploader__thumbnail"');
         $button  = Html::el('button type=button class=rs-uploader__close')
                        ->data('value', $value)
-                       ->addHtml(
-                           Html::el('span')
-                               ->setText('x')
-                       );
+                       ->setHtml($close_icon);
 
         $image = Html::el('img')
                      ->setAttribute('src', $thumb);

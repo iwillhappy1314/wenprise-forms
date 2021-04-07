@@ -43,10 +43,10 @@
   "sweetalert.js.map": "app/sweetalert-2afde622.js.map",
   "tableinput.js": "app/tableinput-2b106339.js",
   "tableinput.js.map": "app/tableinput-2b106339.js.map",
-  "uploader.css": "app/uploader-1fe1cc2d.css",
-  "uploader.css.map": "app/uploader-1fe1cc2d.css.map",
-  "uploader.js": "app/uploader-27988162.js",
-  "uploader.js.map": "app/uploader-27988162.js.map",
+  "uploader.css": "app/uploader-bd9bf65f.css",
+  "uploader.css.map": "app/uploader-bd9bf65f.css.map",
+  "uploader.js": "app/uploader-72375fa3.js",
+  "uploader.js.map": "app/uploader-72375fa3.js.map",
   "wpackioEp": {
     "main": {
       "js": [
@@ -113,17 +113,17 @@
     "uploader": {
       "js": [
         "app/runtime-10224b83.js",
-        "app/uploader-27988162.js"
+        "app/uploader-72375fa3.js"
       ],
       "js.map": [
         "app/runtime-10224b83.js.map",
-        "app/uploader-27988162.js.map"
+        "app/uploader-72375fa3.js.map"
       ],
       "css": [
-        "app/uploader-1fe1cc2d.css"
+        "app/uploader-bd9bf65f.css"
       ],
       "css.map": [
-        "app/uploader-1fe1cc2d.css.map"
+        "app/uploader-bd9bf65f.css.map"
       ]
     },
     "autocomplete": {

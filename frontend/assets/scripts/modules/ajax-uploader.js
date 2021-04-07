@@ -149,7 +149,7 @@
         e.preventDefault();
 
         var wprs_wp_media_uploader,
-            wprs_wp_media_target_input = $(this).prev().attr('id'),
+            wprs_wp_media_target_input = $(this).next().attr('id'),
             uploader = $(this).closest('.rs-wp-uploader'),
             name = uploader.data('name'),
             is_multiple = (uploader.data('multiple') === true);
@@ -188,24 +188,23 @@
 
                     el_preview.html(thumb).show();
                 }
-
             });
         });
 
         /**
          * 删除缩略图
          */
-        $('body').on('click', '.rs-wp-uploader__close', function() {
-
+        $('.rs-form--wp-uploader').on('click', 'button.rs-wp-uploader__close', function(el) {
             var value = $(this).data('value'),
-                wp_uploader = $(this).closest('.rs-wp-uploader');
+                wp_uploader = $('body').find('.rs-wp-uploader__field');
+
+            console.log(wp_uploader.find('input[value=' + value + ']'));
 
             // 移除值
             wp_uploader.find('input[value=' + value + ']').remove();
 
             // 移除缩略图
             $(this).parent().remove();
-
         });
 
         wprs_wp_media_uploader.open();

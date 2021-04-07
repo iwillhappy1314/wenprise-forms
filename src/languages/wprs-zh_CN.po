@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2021-01-12 20:06+0800\n"
-"PO-Revision-Date: 2021-01-12 20:07+0800\n"
+"POT-Creation-Date: 2021-04-07 10:42+0800\n"
+"PO-Revision-Date: 2021-04-07 10:42+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Select File"
 msgstr "选择文件"
 
-#: Controls/AjaxUploadInput.php:102
+#: Controls/AjaxUploadInput.php:109
 msgid "Drag & Drop Images Here"
 msgstr "拖放文件到这里"
 
@@ -51,7 +51,7 @@ msgstr "删除"
 msgid "Add More Fields"
 msgstr "添加字段"
 
-#: Controls/SignatureInput.php:51 init.php:211
+#: Controls/SignatureInput.php:51 init.php:213
 msgid "Clear"
 msgstr "清除"
 
@@ -98,6 +98,10 @@ msgstr "下移"
 #: Controls/TableInput.php:111
 msgid "This Grid Is Empty"
 msgstr "这个表格没有数据"
+
+#: Controls/WpUploaderInput.php:101
+msgid "Upload Image"
+msgstr "上传图像"
 
 #: init.php:31
 msgid "Your session has expired. Please return to the home page and try again."
@@ -209,15 +213,23 @@ msgstr "文件类型不正确，请重试。"
 msgid "The file you have uploaded exceeds the file size limit. Please try again."
 msgstr "文件过大，请重试。"
 
-#: init.php:212
+#: init.php:198
+msgid "Choose Image"
+msgstr "选择图像"
+
+#: init.php:199
+msgid "Insert Image"
+msgstr "插入图像"
+
+#: init.php:214
 msgid "Default"
 msgstr "默认"
 
-#: init.php:213
+#: init.php:215
 msgid "Select Color"
 msgstr "选择颜色"
 
-#: init.php:214
+#: init.php:216
 msgid "Current Color"
 msgstr "当前颜色"
 
