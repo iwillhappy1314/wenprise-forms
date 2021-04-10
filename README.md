@@ -12,7 +12,8 @@ Basic usage: [Nette Form](https://doc.nette.org/en/2.4/forms)
 use Wenprise\Forms\Form;
 
 $form = new Form;
-wprs_form( $form );
+
+$form->setRenderer(new \Wenprise\Forms\Renders\DefaultFormRender('horizontal'));
 
 // Set form method
 $form->setMethod( 'POST' );
