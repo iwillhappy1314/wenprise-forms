@@ -87,7 +87,6 @@ class SmsInput extends TextInput
                             $(this).addClass('loading');
                         },
                         success   : function (data) {
-                            alert(data.message);
                             if (parseInt(data.success) === 1) {
                                 // 验证码发送成功后，启动计时器
                                 current_count = count;

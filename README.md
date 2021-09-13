@@ -348,8 +348,8 @@ $form->addGroupInput('day1', 'Day')
 Send SMS code
 
 ```php
-$form->addSmsInput('photo11', '短信', )
-             ->setUrl(admin_url('admin-ajax.php?action=captcha'));
+$form->addSmsInput('phone', 'Cellphone', )
+             ->setUrl(admin_url('admin-ajax.php?action=validate_cellpone'));
 ```
 
 Backend Example
@@ -359,9 +359,9 @@ Backend Example
 /**
  * 发送短信验证码
  */
-add_action('wp_ajax_captcha', 'get_validate_code');
-add_action('wp_ajax_nopriv_captcha', 'get_validate_code');
-function get_validate_code()
+add_action('wp_ajax_validate_cellpone', 'validate_cellpone');
+add_action('wp_ajax_nopriv_validate_cellpone', 'validate_cellpone');
+function validate_cellpone()
 {
 	$phone = Input::get( 'phone', null );
 
@@ -386,7 +386,6 @@ function get_validate_code()
  */
 function send_sms( $mobile, $content )
 {
-
     $config = Config::get( 'sms' );
 
     // 模板接口网关
@@ -417,13 +416,13 @@ function send_sms( $mobile, $content )
 
 ````php
  $form->AddCaptcha('captcha', 'Captcha')
-             ->setUrl(admin_url('admin-ajax.php?action=captcha'));
+             ->setUrl(admin_url('admin-ajax.php?action=get_captcha'));
 ````
 
 ````php
 #### Uploader backend sample.
-add_action('wp_ajax_captcha', 'get_captcha');
-add_action('wp_ajax_nopriv_captcha', 'get_captcha');
+add_action('wp_ajax_get_captcha', 'get_captcha');
+add_action('wp_ajax_nopriv_get_captcha', 'get_captcha');
 function get_captcha($type)
 {
 
