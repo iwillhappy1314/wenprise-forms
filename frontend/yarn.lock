@@ -2029,10 +2029,12 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap-star-rating@^4.0.6:
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/bootstrap-star-rating/-/bootstrap-star-rating-4.0.6.tgz#4ec4cc3a8fdc126b8495454c9e640d3fc6b2a193"
-  integrity sha512-i/m2HuIWEQWoqxrlXohvnsiM2Vv77eaaS26/EjmMD4sUb79W+yDKbzEjtiVbGLNdGFaaRyVfdxZONELzqWca0g==
+bootstrap-star-rating@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/bootstrap-star-rating/-/bootstrap-star-rating-4.1.2.tgz#448b9c4d8795671a5238ec6e5392b36d7fde9ae9"
+  integrity sha512-ddx3Akar9RhC2yKR1722KqdD7KMvn9AkqG+Nk+w/ECoSmZNHOxbq9aQ+s1V1VeiYhfKoL20FJYUYmAC1RXyssw==
+  dependencies:
+    opencollective-postinstall "^2.0.2"
 
 bootstrap@^4.4.1:
   version "4.5.3"
@@ -6768,6 +6770,11 @@ open@^7.0.2:
   dependencies:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
+
+opencollective-postinstall@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
+  integrity sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==
 
 openurl@1.1.1:
   version "1.1.1"
