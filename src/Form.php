@@ -26,7 +26,7 @@ class Form extends \Nette\Forms\Form implements IHtmlString
 
     public function __construct($name = null)
     {
-        new init();
+        new Init();
 
         $this->setRenderer(new DefaultFormRender());
         $this->setTranslator(new Translator());
