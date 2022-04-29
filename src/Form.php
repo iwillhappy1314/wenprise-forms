@@ -31,8 +31,10 @@ class Form extends \Nette\Forms\Form implements IHtmlString
         $this->setRenderer(new DefaultFormRender());
         $this->setTranslator(new Translator());
 
-        wp_enqueue_script('jquery-form');
-        wp_enqueue_script('wprs-sweetalert');
+        add_action('wp_enqueue_scripts', function(){
+            wp_enqueue_script('jquery-form');
+            wp_enqueue_script('wprs-sweetalert');
+        });
 
         parent::__construct($name);
     }

@@ -2,7 +2,7 @@
 
 namespace Wenprise\Forms;
 
-class init
+class Init
 {
 
     public function __construct()
@@ -12,9 +12,7 @@ class init
             define('WENPRISE_FORM_VERSION', '1.8');
         }
 
-        $this->register_locals();
-        $this->register_assets();
-
+        add_action('init', [$this, 'register_locals']);
         add_action('wp_enqueue_scripts', [$this, 'register_assets']);
     }
 
