@@ -14,6 +14,7 @@ class Init
 
         add_action('init', [$this, 'register_locals']);
         add_action('wp_enqueue_scripts', [$this, 'register_assets']);
+        add_action('admin_enqueue_scripts', [$this, 'register_assets']);
     }
 
 
