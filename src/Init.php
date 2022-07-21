@@ -231,6 +231,7 @@ class Init
     {
         $data = $_POST;
 
+        // 基本文章数据
         $post_data = [
             'post_type'  => FormHelpers::data_get($data, 'post_type', 'inquiry'),
             'post_title' => FormHelpers::data_get($data, 'name', '') . FormHelpers::data_get($data, 'phone', '') . FormHelpers::data_get($data, 'subject', ''),
@@ -239,6 +240,7 @@ class Init
         $post_id_or_error = wp_insert_post($post_data);
 
         if ( ! is_wp_error($post_id_or_error)) {
+            // 其他数据添加到自定义子字段中
             foreach ($data as $key => $value) {
                 update_post_meta($post_id_or_error, $key, $value);
             }

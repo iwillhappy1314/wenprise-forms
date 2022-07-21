@@ -24,7 +24,6 @@ class PostMetaDatastore extends \Wenprise\Forms\Datastores\IDatastore
             'ID'          => $this->post_id,
             'post_title'  => $values->post_title,
             'post_type'   => 'post',
-            'post_status' => 'publish',
         ]);
 
         unset($fields[ 'post_title' ], $fields[ 'post_type' ], $fields[ 'post_status' ]);
