@@ -208,6 +208,10 @@ class Init
         // 移除jQuery自动完成
         wp_dequeue_script('jquery-ui-autocomplete');
 
+        wp_localize_script('wp-color-picker', 'wenpriseFormsSettings', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+        ]);
+
         wp_localize_script('wp-color-picker', 'wpColorPickerL10n', [
             'clear'         => __('Clear', 'wprs'),
             'defaultString' => __('Default', 'wprs'),
@@ -217,4 +221,33 @@ class Init
 
     }
 
+
+    /**
+     * 保存Ajax提交的表单数据
+     *
+     * @return void
+     */
+    function save_form_data()
+    {
+        $data = $_POST;
+
+        $post_data = [
+            'post_type'  => FormHelpers::data_get($data, 'post_type', 'inquiry'),
+            'post_title' => FormHelpers::data_get($data, 'name', '') . FormHelpers::data_get($data, 'phone', '') . FormHelpers::data_get($data, 'subject', ''),
+        ];
+
+        $post_id_or_error = wp_insert_post($post_data);
+
+        if ( ! is_wp_error($post_id_or_error)) {
+            foreach ($data as $key => $value) {
+                update_post_meta($post_id_or_error, $key, $value);
+            }
+
+            wp_send_json_success('Post submitted successfully.');
+        } else {
+            wp_send_json_error($post_id_or_error->get_error_message());
+        }
+
+        exit();
+    }
 }
