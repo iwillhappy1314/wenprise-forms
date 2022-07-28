@@ -62,7 +62,7 @@ $form->addText('first_name', 'First Name')
 With Html
 
 ```php
-$form->setOption('description', Html::el('p')
+$form->addTextArea('description', Html::el('p')
 	->setHtml('This number remains hidden. <a href="...">Terms of service.</a>')
 	);
 ```
@@ -113,7 +113,7 @@ $form->save();
 ### nonce field
 
 ````php
-$form->addCsrf('post-form', 'Nonce invaliadte');
+$form->addCsrf('postform', 'Nonce invaliadte');
 ````
 
 ### WordPress Tinymce editor
