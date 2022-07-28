@@ -382,11 +382,14 @@ function validate_cellpone()
 };
 
 /**
- * 发送短信
+ * 发送短信后端示例，使用云片网API
  */
 function send_sms( $mobile, $content )
 {
-    $config = Config::get( 'sms' );
+    $config = [
+        'apikey' => 'xxxxx',
+        'tpl_id' => '123456',
+    ];
 
     // 模板接口网关
     $url = "https://sms.yunpian.com/v2/sms/tpl_single_send.json";
@@ -420,16 +423,19 @@ function send_sms( $mobile, $content )
 ````
 
 ````php
-#### Uploader backend sample.
+/**
+ * Captcha backend sample.
+ *
+ * Run composer require gregwar/captcha to install requirement
+ */
 add_action('wp_ajax_get_captcha', 'get_captcha');
 add_action('wp_ajax_nopriv_get_captcha', 'get_captcha');
 function get_captcha($type)
 {
-
     header('Content-type: image/jpeg');
 
     // use gregwar/captcha to generate captcha.
-    $builder                             = new Gregwar\Captcha\CaptchaBuilder();
+    $builder                             = new \Gregwar\Captcha\CaptchaBuilder();
     $_SESSION[ 'wprs-security-captcha' ] = $builder->build(150, 36)->getPhrase();
 
     $builder->build()
