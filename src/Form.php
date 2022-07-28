@@ -390,4 +390,18 @@ class Form extends \Nette\Forms\Form implements IHtmlString
         return $this[ $name ] = (new Controls\StarRatingInput($label, $settings));
     }
 
+    /**
+     * 星级评分输入控件
+     *
+     * @param string      $name     表单名称
+     * @param null|string $label    string  表单标签
+     * @param array|null  $settings array   表单设置
+     *
+     * @return \Wenprise\Forms\Controls\CheckboxTreeInput
+     */
+    public function addCheckboxTree($name, $label = null, array $settings = null)
+    {
+        return $this[ $name ] = (new Controls\CheckboxTreeInput($label, $settings));
+    }
+
 }

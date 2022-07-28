@@ -37,7 +37,7 @@ fieldset:disabled a.rs-btn {
   border-collapse: collapse;
 }
 
-.rs-table-input .rs-btn{
+.rs-table-input .rs-btn {
   display: inline-flex;
   align-items: center;
   flex: none;
@@ -45,18 +45,18 @@ fieldset:disabled a.rs-btn {
   height: 2rem;
 }
 
-.rs-signature--control{
+.rs-signature--control {
   position: relative;
   overflow: hidden;
 }
 
-.rs-clear-signature{
+.rs-clear-signature {
   position: absolute;
   right: 0;
   bottom: 0;
   text-decoration: underline;
 
-  &:hover{
+  &:hover {
     text-decoration: underline;
   }
 }
@@ -86,6 +86,21 @@ fieldset:disabled a.rs-btn {
   .order-xl-first {
     -webkit-box-ordinal-group: 0;
     order: -1
+  }
+}
+
+ul.rs-checkbox-tree {
+  margin-left: 2em;
+
+  li {
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+
+    label {
+      margin-bottom: 0;
+      margin-left: 4px;
+    }
   }
 }
 
