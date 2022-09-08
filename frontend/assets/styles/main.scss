@@ -90,7 +90,9 @@ fieldset:disabled a.rs-btn {
 }
 
 ul.rs-checkbox-tree {
-  margin-left: 2em;
+  ul{
+    margin-left: 1.5em;
+  }
 
   li {
     display: flex;
