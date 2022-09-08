@@ -35,7 +35,10 @@ class AdminFormRender extends BaseFormRender
 
         $this->wrappers[ 'label' ][ 'container' ]   = 'th class=row scope=row';
 
-        parent::__construct();
+        add_action('wp_enqueue_scripts', function(){
+            wp_enqueue_style('wprs-forms-main');
+            wp_enqueue_script('wprs-forms-main');
+        });
     }
 
     /**
@@ -67,7 +70,7 @@ class AdminFormRender extends BaseFormRender
         if ($type === 'button') {
 
             $control->getControlPrototype()
-                    ->addClass(empty($usedPrimary) ? 'rs-btn rs-btn-primary' : 'rs-rs-btn rs-btn-default');
+                    ->addClass(empty($usedPrimary) ? 'button button-primary' : 'button');
 
         } elseif (in_array($type, $text_control_type, true)) {
 
