@@ -79,7 +79,7 @@ class TableInput extends BaseControl
             'uiFramework'      => 'bootstrap4',
             'iconFramework'    => 'bootstrapicons',
             'iconParams'       => [
-                'baseUrl' => "https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/",
+                'baseUrl' => WENPRISE_FORMS_URL . 'frontend/assets/images/',
                 'icons'   => [
                     'append'     => 'plus',
                     'insert'     => 'plus',

@@ -10,6 +10,8 @@ License:            MIT License
 License URI:        http://opensource.org/licenses/MIT
 */
 
+define('WENPRISE_FORMS_URL', plugin_dir_url(__FILE__));
+
 require_once(plugin_dir_path(__FILE__) . 'vendor/autoload.php');
 
 new \Wenprise\Forms\Init();
