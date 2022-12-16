@@ -32,6 +32,10 @@ fieldset:disabled a.rs-btn {
   pointer-events: none
 }
 
+.rs-table{
+  border-collapse: collapse;
+}
+
 .rs-table-bordered td,
 .rs-table-bordered th {
   border-collapse: collapse;
