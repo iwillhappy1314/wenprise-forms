@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\SelectBox;
+use Nette\Utils\Html;
 
 /**
  * Chosen 增加选择
@@ -25,7 +26,7 @@ class ChosenInput extends SelectBox
         $this->setOption('type', 'chosen');
     }
 
-    public function getControl()
+    public function getControl(): Html
     {
 
         if (function_exists('wp_enqueue_script')) {
@@ -53,7 +54,7 @@ class ChosenInput extends SelectBox
 		        });
 		    </script>";
 
-        return $el . $script;
+        return $el->addHtml($script);
 
     }
 

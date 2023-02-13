@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\TextInput;
+use Nette\Utils\Html;
 
 /**
  * AutoComplete Input
@@ -25,15 +26,15 @@ class AutoCompleteInput extends TextInput
 
         $this->setOption('type', 'birthday');
     }
-    
+
     /**
      * 生成控件 HTML 内容
      *
-     * @return string
+     * @return \Nette\Utils\Html
      *
      * @todo: 解决和内置 autocomplete 的冲突
      */
-    public function getControl()
+    public function getControl(): Html
     {
         if (function_exists('wp_enqueue_script')) {
 	        wp_dequeue_script('jquery-ui-autocomplete');
@@ -61,7 +62,7 @@ class AutoCompleteInput extends TextInput
 			});
 		</script>";
 
-        return $el . $script;
+        return $el->addHtml($script);
     }
 
     /**

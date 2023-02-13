@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\TextInput;
+use Nette\Utils\Html;
 
 /**
  * BirthdayPicker Input
@@ -29,7 +30,7 @@ class BirthdayPickerInput extends TextInput
      *
      * @return string
      */
-    public function getControl()
+    public function getControl(): Html
     {
         if (function_exists('wp_enqueue_script')) {
             wp_enqueue_script('wprs-combodate');
@@ -56,6 +57,6 @@ class BirthdayPickerInput extends TextInput
 			});
 		</script>";
 
-        return $el . $script;
+        return $el->addHtml($script);
     }
 }

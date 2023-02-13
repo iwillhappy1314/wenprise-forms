@@ -4,6 +4,7 @@ namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\TextBase;
 use Nette\Forms\Form;
+use Nette\Utils\Html;
 
 
 /**
@@ -36,7 +37,7 @@ class SliderInput extends TextBase
      *
      * @return string
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         if (function_exists('wp_enqueue_script')) {
@@ -71,7 +72,7 @@ class SliderInput extends TextBase
 	        });
 	    </script>";
 
-        return $el . $script;
+        return $el->addHtml($script);
 
     }
 

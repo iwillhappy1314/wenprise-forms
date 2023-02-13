@@ -161,11 +161,11 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     /**
      * 渲染一行
      *
-     * @param \Nette\Forms\IControl $control
+     * @param \Nette\Forms\Control $control
      *
      * @return string
      */
-    public function renderPair(Nette\Forms\IControl $control)
+    public function renderPair(Nette\Forms\Control $control): string
     {
         $pair = $this->getWrapper('pair container');
         $pair->addHtml($this->renderLabel($control));
@@ -249,7 +249,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
      *
      * @return string
      */
-    public function renderPairMulti(array $controls)
+    public function renderPairMulti(array $controls) :string
     {
         $s = [];
         foreach ($controls as $control) {

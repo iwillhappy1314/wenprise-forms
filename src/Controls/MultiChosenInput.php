@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\MultiSelectBox;
+use Nette\Utils\Html;
 
 /**
  * Chosen 增加选择
@@ -25,7 +26,7 @@ class MultiChosenInput extends MultiSelectBox
         $this->setOption('type', 'multi-chosen');
     }
 
-    public function getControl()
+    public function getControl(): Html
     {
 
         if (function_exists('wp_enqueue_script')) {
@@ -50,7 +51,7 @@ class MultiChosenInput extends MultiSelectBox
 		        });
 		    </script>";
 
-        return $el . $script;
+        return $el->addHtml($script);
 
     }
 

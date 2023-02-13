@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\TextInput;
+use Nette\Utils\Html;
 
 /**
  * 颜色选择
@@ -25,12 +26,12 @@ class ColorPickerInput extends TextInput
 	}
 
 
-	/**
-	 * 生成控件 HTML 内容
-	 *
-	 * @return string
-	 */
-	public function getControl()
+    /**
+     * 生成控件 HTML 内容
+     *
+     * @return \Nette\Utils\Html
+     */
+	public function getControl(): Html
 	{
 
         if ( function_exists( 'wp_enqueue_script' ) ) {
@@ -70,6 +71,6 @@ class ColorPickerInput extends TextInput
 			});
 		</script>";
 
-		return $el . $script;
+		return $el->addHtml($script);
 	}
 }

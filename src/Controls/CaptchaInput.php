@@ -31,9 +31,9 @@ class CaptchaInput extends TextInput
     /**
      * 生成控件 HTML 内容
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         $el = parent::getControl();
@@ -65,7 +65,7 @@ class CaptchaInput extends TextInput
         $input_group->addHtml($el->setAttribute('class', 'rs-form-control'));
         $input_group->addHtml($action_button);
 
-        return $script . $input_group;
+        return $input_group->addHtml($script);
     }
 
 

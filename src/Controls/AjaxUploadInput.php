@@ -49,9 +49,9 @@ class AjaxUploadInput extends BaseControl
     /**
      * 显示上传控件
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         $el = parent::getControl();
@@ -144,7 +144,7 @@ class AjaxUploadInput extends BaseControl
 			});
 		</script>";
 
-        return $html . $script;
+        return $html->addHtml($script);
     }
 
 
@@ -155,7 +155,7 @@ class AjaxUploadInput extends BaseControl
      *
      * @return string
      */
-    public function getPreview($value)
+    public function getPreview($value): string
     {
 
         if (function_exists('wp_get_attachment_thumb_url')) {
@@ -185,7 +185,7 @@ class AjaxUploadInput extends BaseControl
      *
      * @return string
      */
-    public function getHtmlName()
+    public function getHtmlName(): string
     {
         return parent::getHtmlName() . ($this->control->multiple ? '[]' : '');
     }

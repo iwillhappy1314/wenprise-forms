@@ -2,10 +2,10 @@
 
 namespace Wenprise\Forms;
 
-use Nette\Utils\IHtmlString;
+use Nette\HtmlStringable;
 use Wenprise\Forms\Renders\DefaultFormRender;
 
-class Form extends \Nette\Forms\Form implements IHtmlString
+class Form extends \Nette\Forms\Form implements HtmlStringable
 {
 
     public $datastore = null;
@@ -29,7 +29,7 @@ class Form extends \Nette\Forms\Form implements IHtmlString
         new Init();
 
         $this->setRenderer(new DefaultFormRender());
-        $this->setTranslator(new Translator());
+        $this->setTranslator(new FormTranslator());
 
         wp_enqueue_style('wprs-forms-main');
 

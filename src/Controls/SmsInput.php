@@ -31,9 +31,9 @@ class SmsInput extends TextInput
     /**
      * 生成控件 HTML 内容
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         $el = parent::getControl();
@@ -108,7 +108,7 @@ class SmsInput extends TextInput
             });
         </script>";
 
-        return $input_group . $script;
+        return $input_group->addHtml($script);
     }
 
 

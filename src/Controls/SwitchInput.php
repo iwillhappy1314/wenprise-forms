@@ -32,7 +32,7 @@ class SwitchInput extends RadioList
      * Generates control's HTML element.
      * @return Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         $grandparent = FormHelpers::get_grandparent_class($this);

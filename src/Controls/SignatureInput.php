@@ -29,9 +29,9 @@ class SignatureInput extends TextInput
     /**
      * Generates control's HTML element.
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         if (function_exists('wp_enqueue_script')) {
@@ -75,6 +75,6 @@ class SignatureInput extends TextInput
 		        });
 		    </script>";
 
-        return $el . $holder . $script;
+        return $el->addHtml($holder . $script);
     }
 }

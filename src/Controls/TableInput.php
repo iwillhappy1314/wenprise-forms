@@ -15,9 +15,9 @@ class TableInput extends BaseControl
     private $fields = [];
 
     /**
-     * @param string|object $label    Html 标签
-     * @param array         $settings TinyMce 设置
-     * @param array         $fields   TinyMce 设置
+     * @param null       $label    Html 标签
+     * @param array|null $settings TinyMce 设置
+     * @param array|null $fields   TinyMce 设置
      */
     public function __construct($label = null, array $settings = null, array $fields = null)
     {
@@ -32,7 +32,7 @@ class TableInput extends BaseControl
     /**
      * Loads HTTP data.
      */
-    public function loadHttpData()
+    public function loadHttpData(): void
     {
         $name        = $this->getName();
         $fields      = $this->fields;
@@ -59,9 +59,9 @@ class TableInput extends BaseControl
     /**
      *  生成 html
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         if (function_exists('wp_enqueue_script')) {
@@ -119,13 +119,13 @@ class TableInput extends BaseControl
         $html = Html::el('table id=' . $name);
         $html->setAttribute('class', 'rs-table rs-table-bordered rs-table-input');
 
-        $html .= "<script>
+        $script = "<script>
 			document.addEventListener('DOMContentLoaded', function () {
 			    window.AppendGrid = new AppendGrid(" . json_encode($settings) . ");
 			});
 			</script>";
 
-        return $html;
+        return $html->addHtml($script);
     }
 
 }

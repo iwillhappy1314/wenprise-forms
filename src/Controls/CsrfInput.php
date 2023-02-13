@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\HiddenField;
+use Nette\Utils\Html;
 
 /**
  * CSRF 保护字段
@@ -46,9 +47,9 @@ class CsrfInput extends HiddenField
     /**
      * 创建控件 HTML 元素
      *
-     * @return String 获取生成的令牌
+     * @return \Nette\Utils\Html 获取生成的令牌
      */
-    public function getControl()
+    public function getControl(): Html
     {
         return parent::getControl()->setAttribute('value', $this->generateToken());
     }

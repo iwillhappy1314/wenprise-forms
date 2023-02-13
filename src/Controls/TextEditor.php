@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\TextArea;
+use Nette\Utils\Html;
 
 
 /**
@@ -31,7 +32,7 @@ class TextEditor extends TextArea
      *
      * @return string
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         $id       = $this->getHtmlId();
@@ -55,6 +56,6 @@ class TextEditor extends TextArea
         $html = ob_get_contents();
         ob_end_clean();
 
-        return $html;
+        return parent::getControl()->addHtml($html);
     }
 }

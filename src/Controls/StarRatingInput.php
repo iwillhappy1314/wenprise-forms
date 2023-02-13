@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\TextInput;
+use Nette\Utils\Html;
 
 /**
  * DatePicker input control.
@@ -28,9 +29,9 @@ class StarRatingInput extends TextInput
     /**
      * Generates control's HTML element.
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
         wp_enqueue_style('wprs-star-rating');
         wp_enqueue_script('wprs-star-rating');
@@ -60,6 +61,6 @@ class StarRatingInput extends TextInput
 		        });
 		    </script>";
 
-        return $el . $script;
+        return $el->addHtml($script);
     }
 }

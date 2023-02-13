@@ -4,7 +4,7 @@ namespace Wenprise\Forms\Renders;
 
 use Nette;
 use Nette\Utils\Html;
-use Nette\Utils\IHtmlString;
+use Nette\HtmlStringable;
 
 /**
  * 转到表单到 HTML 输出
@@ -19,7 +19,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     {
         $this->layout = $type;
 
-        $this->wrappers[ 'form' ][ 'container' ]        = "div class=rs-form--$this->layout";
+        $this->wrappers[ 'form' ][ 'container' ] = "div class=rs-form--$this->layout";
 
         $this->wrappers[ 'control' ][ '.submit' ]        = 'rs-btn rs-btn-primary';
         $this->wrappers[ 'control' ][ '.image' ]         = 'rs-btn--image';
@@ -33,7 +33,8 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
         $this->wrappers[ 'error' ][ '.container' ] = 'ul class=rs-alert--danger';
 
-        add_action('wp_enqueue_scripts', function(){
+        add_action('wp_enqueue_scripts', function ()
+        {
             wp_enqueue_style('wprs-forms-main');
             wp_enqueue_script('wprs-forms-main');
         });
@@ -46,10 +47,10 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
      *
      * @return string
      */
-    public function renderControls($parent)
+    public function renderControls($parent): string
     {
         if ( ! ($parent instanceof Nette\Forms\Container || $parent instanceof Nette\Forms\ControlGroup)) {
-            throw new Nette\InvalidArgumentException('Argument must be Nette\Forms\Container or Nette\Forms\ControlGroup instance.');
+            throw new \Nette\InvalidArgumentException('Argument must be Nette\Forms\Container or Nette\Forms\ControlGroup instance.');
         }
 
         $container = $this->getWrapper('controls container');
@@ -92,7 +93,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
      *
      * @return string
      */
-    public function renderPairMulti(array $controls)
+    public function renderPairMulti(array $controls): string
     {
         $s = [];
         foreach ($controls as $control) {
@@ -102,7 +103,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
             $description = $control->getOption('description');
 
-            if ($description instanceof IHtmlString) {
+            if ($description instanceof HtmlStringable) {
 
                 $description = ' ' . $description;
 

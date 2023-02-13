@@ -47,9 +47,9 @@ class WpUploaderInput extends BaseControl
     /**
      * 显示上传控件
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         $el = parent::getControl();

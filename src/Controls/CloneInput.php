@@ -33,9 +33,9 @@ class CloneInput extends BaseControl
     /**
      * 生成 HTML 元素
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         $el = parent::getControl()->appendAttribute('class', 'rs-form-control');
@@ -114,7 +114,7 @@ class CloneInput extends BaseControl
                         });
                     </script>';
 
-        return $html . $add_button . $scripts;
+        return $html->addHtml($add_button . $scripts);
 
     }
 
@@ -123,7 +123,7 @@ class CloneInput extends BaseControl
      *
      * @return mixed
      */
-    public function getHtmlName()
+    public function getHtmlName(): string
     {
         return parent::getHtmlName() . '[]';
     }

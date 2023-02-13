@@ -21,7 +21,7 @@ class CheckboxTreeInput extends MultiChoiceControl
         $this->control->type = 'checkbox';
     }
 
-    public function getControl()
+    public function getControl(): Html
     {
         return $this->recursiveRender($this->getItems());
     }
@@ -83,7 +83,7 @@ class CheckboxTreeInput extends MultiChoiceControl
         return parent::getLabel($caption)->for(null);
     }
 
-    public function getControlPart()
+    public function getControlPart(): ?Html
     {
         $key = $this->item_key;
 
@@ -96,19 +96,19 @@ class CheckboxTreeInput extends MultiChoiceControl
         ]);
     }
 
-    public function getLabelPart()
+    public function getLabelPart(): ?Html
     {
         $key = $this->item_key;
 
         return parent::getLabel($this->items[ $key ])->for($this->getHtmlId() . '-' . $key);
     }
 
-    public function getSelectedItems()
+    public function getSelectedItems() :array
     {
         return array_intersect_key($this->recursiveJoin($this->items), array_flip($this->value));
     }
 
-    public function getValue()
+    public function getValue() :array
     {
         return array_values(array_intersect($this->value, array_keys($this->recursiveJoin($this->items))));
     }

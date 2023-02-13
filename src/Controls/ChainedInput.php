@@ -33,9 +33,9 @@ class ChainedInput extends BaseControl
     /**
      *  生成 html
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl()
+    public function getControl(): Html
     {
 
         if (function_exists('wp_enqueue_script')) {
