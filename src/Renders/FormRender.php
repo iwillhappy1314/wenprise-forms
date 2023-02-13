@@ -4,7 +4,7 @@ namespace Wenprise\Forms\Renders;
 
 use Nette;
 use Nette\Utils\Html;
-use Nette\Utils\IHtmlString;
+use Nette\HtmlStringable;
 
 /**
  * 转到表单到 HTML 输出
@@ -119,7 +119,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
      *
      * @return string
      */
-    public function renderControls($parent)
+    public function renderControls($parent): string
     {
         if ( ! ($parent instanceof Nette\Forms\Container || $parent instanceof Nette\Forms\ControlGroup)) {
             throw new Nette\InvalidArgumentException('Argument must be Nette\Forms\Container or Nette\Forms\ControlGroup instance.');
@@ -249,7 +249,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
      *
      * @return string
      */
-    public function renderPairMulti(array $controls) :string
+    public function renderPairMulti(array $controls): string
     {
         $s = [];
         foreach ($controls as $control) {
@@ -259,7 +259,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
             $description = $control->getOption('description');
 
-            if ($description instanceof IHtmlString) {
+            if ($description instanceof HtmlStringable) {
 
                 $description = ' ' . $description;
 

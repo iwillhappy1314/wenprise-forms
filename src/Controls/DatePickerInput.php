@@ -68,6 +68,6 @@ class DatePickerInput extends TextInput
 		        });
 		    </script>";
 
-        return $el . $script;
+        return $el->addHtml($script);
     }
 }

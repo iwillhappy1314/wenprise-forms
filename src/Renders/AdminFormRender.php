@@ -11,7 +11,7 @@ class AdminFormRender extends BaseFormRender
 {
     use Nette\SmartObject;
 
-    var $type = 'post_meta';
+    var mixed $type = 'post_meta';
 
     public function __construct($type = 'post_meta')
     {
@@ -44,11 +44,11 @@ class AdminFormRender extends BaseFormRender
     /**
      * 渲染一行
      *
-     * @param \Nette\Forms\IControl $control
+     * @param \Nette\Forms\Control $control
      *
      * @return string
      */
-    public function renderPair(Nette\Forms\IControl $control)
+    public function renderPair(Nette\Forms\Control $control): string
     {
         $pair = $this->getWrapper('pair container');
         $pair->addHtml($this->renderLabel($control));

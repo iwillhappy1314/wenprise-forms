@@ -97,7 +97,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     {
         $s = [];
         foreach ($controls as $control) {
-            if ( ! $control instanceof Nette\Forms\IControl) {
+            if ( ! $control instanceof Nette\Forms\Control) {
                 throw new Nette\InvalidArgumentException('Argument must be array of Nette\Forms\IControl instances.');
             }
 
@@ -161,7 +161,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
      *
      * @return \Nette\Utils\Html|string
      */
-    public function renderControlGroup($control)
+    public function renderControlGroup($control): Html|string
     {
         $html = '';
 
