@@ -53,8 +53,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      *
      * @return \Wenprise\Forms\Controls\CsrfInput
      */
-    public function addCsrf($name, $errorMessage = null)
-    {
+    public function addCsrf($name, $errorMessage = null): Controls\CsrfInput {
         return $this[ $name ] = (new Controls\CsrfInput($errorMessage));
     }
 
@@ -63,13 +62,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 添加 WordPress Tinymce 可视化编辑器控件
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      * @param array|null  $settings
      *
      * @return Controls\TextEditor
      */
-    public function addEditor($name, $label = null, array $settings = null)
-    {
+    public function addEditor($name, string $label = null, array $settings = null): Controls\TextEditor {
         return $this[ $name ] = (new Controls\TextEditor($label, $settings));
     }
 
@@ -78,14 +76,13 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * Ajax 上传，支持单文件和多文件控件
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      * @param bool        $multiple
      * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\AjaxUploadInput
      */
-    public function addAjaxUpload($name, $label = null, $multiple = false, array $settings = null)
-    {
+    public function addAjaxUpload( string $name, string $label = null, bool $multiple = false, array $settings = null): Controls\AjaxUploadInput {
         return $this[ $name ] = (new Controls\AjaxUploadInput($label, $multiple, $settings));
     }
 
@@ -94,14 +91,13 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * WordPress 上传，支持单文件和多文件控件
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      * @param bool        $multiple
      * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\WpUploaderInput
      */
-    public function addWpUploader($name, $label = null, $multiple = false, array $settings = null)
-    {
+    public function addWpUploader( string $name, string $label = null, bool $multiple = false, array $settings = null): Controls\WpUploaderInput {
         return $this[ $name ] = (new Controls\WpUploaderInput($label, $multiple, $settings));
     }
 
@@ -117,8 +113,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      *
      * @return \Wenprise\Forms\Controls\GroupInput
      */
-    public function addGroupInput($name, $label = null, $maxLength = null, $prefix = null, $suffix = null)
-    {
+    public function addGroupInput($name, $label = null, $maxLength = null, $prefix = null, $suffix = null): Controls\GroupInput {
         return $this[ $name ] = (new Controls\GroupInput($label, $maxLength, $prefix, $suffix));
     }
 
@@ -127,13 +122,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 添加文本克隆输入控件
      *
      * @param string      $name     表单名称
-     * @param null|string $label    表单标签
+     * @param string|null $label    表单标签
      * @param array|null  $settings 设置
      *
      * @return \Wenprise\Forms\Controls\CloneInput
      */
-    public function addCloneInput($name, $label = null, array $settings = null)
-    {
+    public function addCloneInput($name, string $label = null, array $settings = null): Controls\CloneInput {
         return $this[ $name ] = (new Controls\CloneInput($label, $settings));
     }
 
@@ -142,13 +136,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 添加 Slider 滑动输入控件
      *
      * @param string      $name     表单名称
-     * @param null|string $label    表单标签
+     * @param string|null $label    表单标签
      * @param array|null  $settings Slider 设置
      *
      * @return \Wenprise\Forms\Controls\SliderInput
      */
-    public function addSlider($name, $label = null, array $settings = null)
-    {
+    public function addSlider( string $name, string $label = null, array $settings = null): Controls\SliderInput {
         return $this[ $name ] = (new Controls\SliderInput($label, $settings));
     }
 
@@ -157,13 +150,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 日期选择
      *
      * @param string      $name     表单名称
-     * @param null|string $label    表单标签
+     * @param string|null $label    表单标签
      * @param array|null  $settings array   表单设置
      *
      * @return \Wenprise\Forms\Controls\DatePickerInput
      */
-    public function addDatePicker($name, $label = null, array $settings = null)
-    {
+    public function addDatePicker( string $name, string $label = null, array $settings = null): Controls\DatePickerInput {
         return $this[ $name ] = (new Controls\DatePickerInput($label, $settings));
     }
 
@@ -172,13 +164,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 日期选择
      *
      * @param string      $name     表单名称
-     * @param null|string $label    表单标签
+     * @param string|null $label    表单标签
      * @param array|null  $settings 表单设置
      *
      * @return \Wenprise\Forms\Controls\DateRangePickerInput
      */
-    public function addDateRangePicker($name, $label = null, array $settings = null)
-    {
+    public function addDateRangePicker( string $name, string $label = null, array $settings = null): Controls\DateRangePickerInput {
         return $this[ $name ] = (new Controls\DateRangePickerInput($label, $settings));
     }
 
@@ -187,13 +178,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 颜色选择
      *
      * @param string      $name     string  表单名称
-     * @param null|string $label    string  表单标签
+     * @param string|null $label    string  表单标签
      * @param array|null  $settings array   表单设置
      *
      * @return \Wenprise\Forms\Controls\BirthdayPickerInput
      */
-    public function addBirthdayPicker($name, $label = null, array $settings = null)
-    {
+    public function addBirthdayPicker( string $name, string $label = null, array $settings = null): Controls\BirthdayPickerInput {
         return $this[ $name ] = (new Controls\BirthdayPickerInput($label, $settings));
     }
 
@@ -202,13 +192,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 颜色选择
      *
      * @param string      $name     string  表单名称
-     * @param null|string $label    string  表单标签
+     * @param string|null $label    string  表单标签
      * @param array|null  $settings array   表单设置
      *
      * @return \Wenprise\Forms\Controls\ColorpickerInput
      */
-    public function addColorPicker($name, $label = null, array $settings = null)
-    {
+    public function addColorPicker( string $name, string $label = null, array $settings = null): Controls\ColorpickerInput {
         return $this[ $name ] = (new Controls\ColorpickerInput($label, $settings));
     }
 
@@ -217,14 +206,13 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 关联选择
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      * @param array|null  $settings
      * @param array|null  $field
      *
      * @return \Wenprise\Forms\Controls\ChainedInput
      */
-    public function addChainedSelect($name, $label = null, array $settings = null, array $field = null)
-    {
+    public function addChainedSelect( string $name, string $label = null, array $settings = null, array $field = null): Controls\ChainedInput {
         return $this[ $name ] = (new Controls\ChainedInput($label, $settings, $field));
     }
 
@@ -233,12 +221,11 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 添加 Html 控件
      *
      * @param string      $name
-     * @param null|string $caption
+     * @param string|null $caption
      *
      * @return \Wenprise\Forms\Controls\HtmlContent
      */
-    public function addHtml($name, $caption = null)
-    {
+    public function addHtml( string $name, string $caption = null): Controls\HtmlContent {
         return $this[ $name ] = (new Controls\HtmlContent($caption));
     }
 
@@ -247,13 +234,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 获取 SMS 验证码
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\SmsInput
      */
-    public function AddSmsInput($name, $label = null, array $settings = null)
-    {
+    public function AddSmsInput($name, string $label = null, array $settings = null): Controls\SmsInput {
         return $this[ $name ] = (new Controls\SmsInput($label, $settings));
     }
 
@@ -262,12 +248,11 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 添加 Captcha 验证码
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      *
      * @return \Wenprise\Forms\Controls\CaptchaInput
      */
-    public function AddCaptcha($name, $label = null)
-    {
+    public function AddCaptcha( string $name, string $label = null): Controls\CaptchaInput {
         return $this[ $name ] = (new Controls\CaptchaInput($label));
     }
 
@@ -276,14 +261,13 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 表格输入
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      * @param array|null  $settings
      * @param array|null  $field
      *
      * @return \Wenprise\Forms\Controls\TableInput
      */
-    public function addTableInput($name, $label = null, array $settings = null, $field = [])
-    {
+    public function addTableInput( string $name, string $label = null, array $settings = null, ?array $field = []): Controls\TableInput {
         return $this[ $name ] = (new Controls\TableInput($label, $settings, $field));
     }
 
@@ -292,14 +276,13 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * Chosen 输入控件
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      * @param array|null  $items
      * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\ChosenInput
      */
-    public function addChosen($name, $label = null, array $items = null, array $settings = null)
-    {
+    public function addChosen( string $name, string $label = null, array $items = null, array $settings = null): Controls\ChosenInput {
         return $this[ $name ] = (new Controls\ChosenInput($label, $items, $settings));
     }
 
@@ -308,13 +291,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * Chosen 输入控件
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      * @param array|null  $items
      *
      * @return \Wenprise\Forms\Controls\SwitchInput
      */
-    public function addSwitch($name, $label = null, array $items = null)
-    {
+    public function addSwitch( string $name, string $label = null, array $items = null): Controls\SwitchInput {
         return $this[ $name ] = (new Controls\SwitchInput($label, $items));
     }
 
@@ -323,14 +305,13 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * Chosen 多选输入控件
      *
      * @param string      $name
-     * @param null|string $label
+     * @param string|null $label
      * @param array|null  $items
      * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\MultiChosenInput
      */
-    public function addMultiChosen($name, $label = null, array $items = null, array $settings = null)
-    {
+    public function addMultiChosen( string $name, string $label = null, array $items = null, array $settings = null): Controls\MultiChosenInput {
         return $this[ $name ] = (new Controls\MultiChosenInput($label, $items, $settings));
     }
 
@@ -339,13 +320,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 签字/签名
      *
      * @param string      $name     表单名称
-     * @param null|string $label    表单标签
+     * @param string|null $label    表单标签
      * @param array|null  $settings 表单设置
      *
      * @return \Wenprise\Forms\Controls\SignatureInput
      */
-    public function addSignature($name, $label = null, array $settings = null)
-    {
+    public function addSignature( string $name, string $label = null, array $settings = null): Controls\SignatureInput {
         return $this[ $name ] = (new Controls\SignatureInput($label, $settings));
     }
 
@@ -354,13 +334,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * jQuery Autocomplete 输入提示
      *
      * @param string      $name     表单名称
-     * @param null|string $label    表单标签
+     * @param string|null $label    表单标签
      * @param array|null  $settings 表单设置
      *
      * @return \Wenprise\Forms\Controls\AutoCompleteInput
      */
-    public function addAutocomplete($name, $label = null, array $settings = null)
-    {
+    public function addAutocomplete( string $name, string $label = null, array $settings = null): Controls\AutoCompleteInput {
         return $this[ $name ] = (new Controls\AutocompleteInput($label, $settings));
     }
 
@@ -369,14 +348,13 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * Chosen 输入控件
      *
      * @param             $name
-     * @param null|string $label
+     * @param string|null $label
      * @param array|null  $items
      * @param array|null  $settings
      *
      * @return \Wenprise\Forms\Controls\ImagePickerInput
      */
-    public function addImagePicker($name, $label = null, array $items = null, array $settings = null)
-    {
+    public function addImagePicker($name, string $label = null, array $items = null, array $settings = null): Controls\ImagePickerInput {
         return $this[ $name ] = (new Controls\ImagePickerInput($label, $items, $settings));
     }
 
@@ -385,13 +363,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 星级评分输入控件
      *
      * @param string      $name     表单名称
-     * @param null|string $label    string  表单标签
+     * @param string|null $label    string  表单标签
      * @param array|null  $settings array   表单设置
      *
      * @return \Wenprise\Forms\Controls\StarRatingInput
      */
-    public function addStarRating($name, $label = null, array $settings = null)
-    {
+    public function addStarRating( string $name, string $label = null, array $settings = null): Controls\StarRatingInput {
         return $this[ $name ] = (new Controls\StarRatingInput($label, $settings));
     }
 
@@ -399,13 +376,12 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      * 星级评分输入控件
      *
      * @param string      $name     表单名称
-     * @param null|string $label    string  表单标签
+     * @param string|null $label    string  表单标签
      * @param array|null  $settings array   表单设置
      *
      * @return \Wenprise\Forms\Controls\CheckboxTreeInput
      */
-    public function addCheckboxTree($name, $label = null, array $settings = null)
-    {
+    public function addCheckboxTree( string $name, string $label = null, array $settings = null): Controls\CheckboxTreeInput {
         return $this[ $name ] = (new Controls\CheckboxTreeInput($label, $settings));
     }
 

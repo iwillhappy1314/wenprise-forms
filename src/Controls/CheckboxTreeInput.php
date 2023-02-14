@@ -26,8 +26,7 @@ class CheckboxTreeInput extends MultiChoiceControl
         return $this->recursiveRender($this->getItems());
     }
 
-    private function recursiveRender($list)
-    {
+    private function recursiveRender($list): Html {
         $html = Html::el('ul class=rs-checkbox-tree');
 
         foreach ($list as $key => $value) {
@@ -47,8 +46,7 @@ class CheckboxTreeInput extends MultiChoiceControl
         return $html;
     }
 
-    public function setValue($values)
-    {
+    public function setValue($values): CheckboxTreeInput|static {
         if (is_scalar($values) || $values === null) {
             $values = (array)$values;
         } elseif ( ! is_array($values)) {
@@ -78,8 +76,7 @@ class CheckboxTreeInput extends MultiChoiceControl
         return $this;
     }
 
-    public function getLabel($caption = null)
-    {
+    public function getLabel($caption = null): Html|string|null {
         return parent::getLabel($caption)->for(null);
     }
 

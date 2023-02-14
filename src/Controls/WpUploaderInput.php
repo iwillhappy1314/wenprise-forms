@@ -18,159 +18,153 @@ use Nette\Utils\Html;
  *
  * todo: 考虑增加上传进度, 增加上传出错时的提示
  */
-class WpUploaderInput extends BaseControl
-{
+class WpUploaderInput extends BaseControl {
 
-    /** validation rule */
-    const VALID = ':uploadControlValid';
+	/** validation rule */
+	const VALID = ':uploadControlValid';
 
-    private $settings = [];
+	private array $settings = [];
 
-    /**
-     * @param null       $label
-     * @param bool
-     * @param array|null $settings Chosen 设置
-     */
-    public function __construct($label = null, $multiple = false, array $settings = null)
-    {
-        parent::__construct($label);
-        $this->control->multiple = (bool)$multiple;
-        $this->control->type     = 'text';
-        $this->settings          = (array)$settings;
+	/**
+	 * @param null       $label
+	 * @param bool
+	 * @param array|null $settings Chosen 设置
+	 */
+	public function __construct( $label = null, $multiple = false, array $settings = null ) {
+		parent::__construct( $label );
+		$this->control->multiple = (bool) $multiple;
+		$this->control->type     = 'text';
+		$this->settings          = (array) $settings;
 
-        $this->setOption('type', 'wp-uploader');
-        $this->addCondition(Form::BLANK)
-             ->addRule([$this, 'isOk'], Validator::$messages[ self::VALID ]);
-    }
+		$this->setOption( 'type', 'wp-uploader' );
+		$this->addCondition( Form::BLANK )
+		     ->addRule( [ $this, 'isOk' ], Validator::$messages[ self::VALID ] );
+	}
 
 
-    /**
-     * 显示上传控件
-     *
-     * @return \Nette\Utils\Html
-     */
-    public function getControl(): Html
-    {
+	/**
+	 * 显示上传控件
+	 *
+	 * @return \Nette\Utils\Html
+	 */
+	public function getControl(): Html {
 
-        $el = parent::getControl();
+		$el = parent::getControl();
 
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_media();
-            wp_enqueue_style('wprs-ajax-uploader');
-            wp_enqueue_script('wprs-ajax-uploader');
-        }
+		if ( function_exists( 'wp_enqueue_script' ) ) {
+			wp_enqueue_media();
+			wp_enqueue_style( 'wprs-ajax-uploader' );
+			wp_enqueue_script( 'wprs-ajax-uploader' );
+		}
 
-        $name     = $this->getHtmlName();
-        $id       = $this->getHtmlId();
-        $settings = $this->settings;
-        $value    = $this->getValue();
-        $preview  = '';
-        $values   = '';
-        $hide     = 'rs-hide';
-        $multiple = $this->control->multiple ? true : false;
+		$name     = $this->getHtmlName();
+		$id       = $this->getHtmlId();
+		$settings = $this->settings;
+		$value    = $this->getValue();
+		$preview  = '';
+		$values   = '';
+		$hide     = 'rs-hide';
+		$multiple = (bool) $this->control->multiple;
 
-        $el->appendAttribute('class', $hide);
+		$el->appendAttribute( 'class', $hide );
 
-        // 如果有默认值，设置隐藏的真实表单
-        if ($value) {
-            $hide = '';
-            if (is_array($value)) {
-                foreach ($value as $v) {
-                    $el->setAttribute('value', $v);
-                    $preview .= $this->getPreview($v);
-                    $values  .= "<input type='hidden' name='$name' value='$v'>";
-                }
-            } else {
-                $el->setAttribute('value', $value);
-                $preview .= $this->getPreview($value);
+		// 如果有默认值，设置隐藏的真实表单
+		if ( $value ) {
+			$hide = '';
+			if ( is_array( $value ) ) {
+				foreach ( $value as $v ) {
+					$el->setAttribute( 'value', $v );
+					$preview .= $this->getPreview( $v );
+					$values  .= "<input type='hidden' name='$name' value='$v'>";
+				}
+			} else {
+				$el->setAttribute( 'value', $value );
+				$preview .= $this->getPreview( $value );
 
-                $values  .= "<input type='hidden' name='$name' value='$value'>";
-            }
-        }
+				$values .= "<input type='hidden' name='$name' value='$value'>";
+			}
+		}
 
-        $html = Html::el('div')
-                    ->setAttribute('class', 'js-wp-uploader rs-wp-uploader')
-                    ->data('name', $name)
-                    ->data('multiple', $multiple)
-                    ->data('settings', json_encode($settings));
+		$html = Html::el( 'div' )
+		            ->setAttribute( 'class', 'js-wp-uploader rs-wp-uploader' )
+		            ->data( 'name', $name )
+		            ->data( 'multiple', $multiple )
+		            ->data( 'settings', json_encode( $settings ) );
 
-        $html->addHtml(
-            Html::el('div class=rs-wp-uploader__field')
-                ->addHtml(
-                    Html::el('input type=button class=rs-wp-uploader__button')
-                        ->setAttribute('value', __('Upload Image', 'wprs'))
-                )
-                ->addHtml(
-                    Html::el('div class=rs-uploader__value')
-                        ->setAttribute('id', $id)
-                        ->addHtml($values)
-                )
-                ->addHtml(
-                    Html::el('div class=rs-uploader__preview')
-                        ->appendAttribute('class', $hide)
-                        ->addHtml($preview)
-                )
-                ->addHtml(
-                    Html::el('div class=rs-wp-uploader__message')
-                ));
+		$html->addHtml(
+			Html::el( 'div class=rs-wp-uploader__field' )
+			    ->addHtml(
+				    Html::el( 'input type=button class=rs-wp-uploader__button' )
+				        ->setAttribute( 'value', __( 'Upload Image', 'wprs' ) )
+			    )
+			    ->addHtml(
+				    Html::el( 'div class=rs-uploader__value' )
+				        ->setAttribute( 'id', $id )
+				        ->addHtml( $values )
+			    )
+			    ->addHtml(
+				    Html::el( 'div class=rs-uploader__preview' )
+				        ->appendAttribute( 'class', $hide )
+				        ->addHtml( $preview )
+			    )
+			    ->addHtml(
+				    Html::el( 'div class=rs-wp-uploader__message' )
+			    ) );
 
-        return $html;
-    }
-
-
-    /**
-     * 显示预览图片
-     *
-     * @param $value
-     *
-     * @return string
-     */
-    public function getPreview($value)
-    {
-        $close_icon = '<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg>';
-
-        if (function_exists('wp_get_attachment_thumb_url')) {
-            $thumb = wp_get_attachment_thumb_url($value);
-        } else {
-            $thumb = $value;
-        }
-
-        $preview = Html::el('div class="rs-uploader__thumbnail"');
-        $button  = Html::el('button type=button class="rs-uploader__close rs-wp-uploader__close"')
-                       ->data('value', $value)
-                       ->setHtml($close_icon);
-
-        $image = Html::el('img')
-                     ->setAttribute('src', $thumb);
-
-        $preview->addHtml($button . $image);
-
-        return $preview;
-
-    }
-
-    /**
-     * Returns HTML name of control.
-     *
-     * @return string
-     */
-    public function getHtmlName()
-    {
-        return parent::getHtmlName() . ($this->control->multiple ? '[]' : '');
-    }
+		return $html;
+	}
 
 
-    /**
-     * 只要输入不为空，即为验证通过
-     *
-     * @return bool
-     */
-    public function isOk()
-    {
+	/**
+	 * 显示预览图片
+	 *
+	 * @param $value
+	 *
+	 * @return string
+	 */
+	public function getPreview( $value ): string {
+		$close_icon = '<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg>';
 
-        return $this->isDisabled()
-               || $this->getValue() == 0
-               || $this->getValue() !== null;
-    }
+		if ( function_exists( 'wp_get_attachment_thumb_url' ) ) {
+			$thumb = wp_get_attachment_thumb_url( $value );
+		} else {
+			$thumb = $value;
+		}
+
+		$preview = Html::el( 'div class="rs-uploader__thumbnail"' );
+		$button  = Html::el( 'button type=button class="rs-uploader__close rs-wp-uploader__close"' )
+		               ->data( 'value', $value )
+		               ->setHtml( $close_icon );
+
+		$image = Html::el( 'img' )
+		             ->setAttribute( 'src', $thumb );
+
+		$preview->addHtml( $button . $image );
+
+		return $preview;
+
+	}
+
+	/**
+	 * Returns HTML name of control.
+	 *
+	 * @return string
+	 */
+	public function getHtmlName(): string {
+		return parent::getHtmlName() . ( $this->control->multiple ? '[]' : '' );
+	}
+
+
+	/**
+	 * 只要输入不为空，即为验证通过
+	 *
+	 * @return bool
+	 */
+	public function isOk(): bool {
+
+		return $this->isDisabled()
+		       || $this->getValue() == 0
+		       || $this->getValue() !== null;
+	}
 
 }

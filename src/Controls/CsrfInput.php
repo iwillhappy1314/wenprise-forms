@@ -26,15 +26,14 @@ class CsrfInput extends HiddenField
              ->addRule(self::PROTECTION, $errorMessage);
     }
 
-    /**
-     * 生成 Csrf 令牌
-     *
-     * @param null $random
-     *
-     * @return string
-     */
-    public function generateToken($random = null)
-    {
+	/**
+	 * 生成 Csrf 令牌
+	 *
+	 * @param null $random
+	 *
+	 * @return string|null
+	 */
+    public function generateToken($random = null): ?string {
         if ($random === null) {
             $name   = $this->getHtmlName();
             $random = wp_create_nonce($name);
@@ -62,8 +61,7 @@ class CsrfInput extends HiddenField
      *
      * @return bool
      */
-    public static function validateCsrf(CsrfInput $control)
-    {
+    public static function validateCsrf(CsrfInput $control): bool {
         $name  = $control->getHtmlName();
         $value = $control->getValue();
 

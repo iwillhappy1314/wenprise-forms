@@ -8,51 +8,48 @@ use Nette\Utils\Html;
 /**
  * Chosen 增加选择
  */
-class MultiChosenInput extends MultiSelectBox
-{
+class MultiChosenInput extends MultiSelectBox {
 
-    private $settings = [];
+	private array $settings = [];
 
-    /**
-     * @param null       $label    标签
-     * @param array|null $items    选择项
-     * @param array|null $settings Chosen 设置
-     */
-    public function __construct($label = null, array $items = null, array $settings = null)
-    {
-        parent::__construct($label, $items);
-        $this->settings = (array)$settings;
+	/**
+	 * @param null       $label    标签
+	 * @param array|null $items    选择项
+	 * @param array|null $settings Chosen 设置
+	 */
+	public function __construct( $label = null, array $items = null, array $settings = null ) {
+		parent::__construct( $label, $items );
+		$this->settings = (array) $settings;
 
-        $this->setOption('type', 'multi-chosen');
-    }
+		$this->setOption( 'type', 'multi-chosen' );
+	}
 
-    public function getControl(): Html
-    {
+	public function getControl(): Html {
 
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_style('wprs-chosen');
-            wp_enqueue_script('wprs-chosen');
-        }
+		if ( function_exists( 'wp_enqueue_script' ) ) {
+			wp_enqueue_style( 'wprs-chosen' );
+			wp_enqueue_script( 'wprs-chosen' );
+		}
 
-        $el = parent::getControl();
+		$el = parent::getControl();
 
-        $id       = $this->getHtmlId();
-        $settings = $this->settings;
+		$id       = $this->getHtmlId();
+		$settings = $this->settings;
 
-        $settings_default = [
-            'disable_search' => false,
-        ];
+		$settings_default = [
+			'disable_search' => false,
+		];
 
-        $settings = array_merge($settings_default, $settings);
+		$settings = array_merge( $settings_default, $settings );
 
-        $script = "<script>
+		$script = "<script>
 		        jQuery(document).ready(function($){
-		        	$( '#$id' ).chosen(" . json_encode($settings) . ");
+		        	$( '#$id' ).chosen(" . json_encode( $settings ) . ");
 		        });
 		    </script>";
 
-        return $el->addHtml($script);
+		return Html::fromHtml( $el . $script );
 
-    }
+	}
 
 }

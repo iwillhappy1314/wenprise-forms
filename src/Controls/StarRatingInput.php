@@ -11,12 +11,12 @@ use Nette\Utils\Html;
 class StarRatingInput extends TextInput
 {
 
-    private $settings = [];
+    private array $settings = [];
 
-    /**
-     * @param string|object $label    Html 标签
-     * @param array         $settings TinyMce 设置
-     */
+	/**
+	 * @param null       $label    Html 标签
+	 * @param array|null $settings TinyMce 设置
+	 */
     public function __construct($label = null, array $settings = null)
     {
         parent::__construct($label);
@@ -61,6 +61,6 @@ class StarRatingInput extends TextInput
 		        });
 		    </script>";
 
-        return $el->addHtml($script);
+        return Html::fromHtml( $el . $script);
     }
 }

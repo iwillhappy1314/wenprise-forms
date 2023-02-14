@@ -11,13 +11,13 @@ use Nette\Utils\Html;
 class ImagePickerInput extends SelectBox
 {
 
-    private $settings = [];
+    private array $settings = [];
 
-    /**
-     * @param string|object $label    标签
-     * @param array         $items    选择项
-     * @param array         $settings Chosen 设置
-     */
+	/**
+	 * @param null       $label    标签
+	 * @param array|null $items    选择项
+	 * @param array|null $settings Chosen 设置
+	 */
     public function __construct($label = null, array $items = null, array $settings = null)
     {
         parent::__construct($label, $items);
@@ -51,7 +51,7 @@ class ImagePickerInput extends SelectBox
 		        });
 		    </script>";
 
-        return $el->addHtml($script);
+        return Html::fromHtml($el . $script);
 
     }
 

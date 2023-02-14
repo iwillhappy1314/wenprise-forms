@@ -2,9 +2,9 @@
 
 namespace Wenprise\Forms\Datastores;
 
-class OptionsDatastore extends \Wenprise\Forms\Datastores\IDatastore
+class OptionsDatastore extends IDatastore
 {
-    var $post_id = 0;
+    var int $post_id = 0;
 
     public function __construct($form)
     {

@@ -11,7 +11,7 @@ use Nette\Utils\Html;
 class DateRangePickerInput extends TextInput
 {
 
-    private $settings = [];
+    private array $settings = [];
 
     /**
      * @param null       $label    Html 标签
@@ -60,6 +60,6 @@ class DateRangePickerInput extends TextInput
 		        });
 		    </script>";
 
-        return $el . $script;
+        return Html::fromHtml( $el. $script);
     }
 }

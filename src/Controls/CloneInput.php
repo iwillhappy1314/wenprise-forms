@@ -114,7 +114,7 @@ class CloneInput extends BaseControl
                         });
                     </script>';
 
-        return $html->addHtml($add_button . $scripts);
+        return Html::fromHtml( $html .$add_button . $scripts );
 
     }
 
@@ -133,8 +133,7 @@ class CloneInput extends BaseControl
      *
      * @return bool
      */
-    public function isOk()
-    {
+    public function isOk(): bool {
 
         return $this->isDisabled()
                || $this->getValue() == 0

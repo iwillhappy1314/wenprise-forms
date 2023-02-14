@@ -11,9 +11,9 @@ use Nette\Utils\Html;
 class SmsInput extends TextInput
 {
 
-    private $settings = [];
+    private array $settings = [];
 
-    public $url;
+    public string $url;
 
     /**
      * @param null       $label
@@ -108,7 +108,7 @@ class SmsInput extends TextInput
             });
         </script>";
 
-        return $input_group->addHtml($script);
+        return Html::fromHtml( $input_group . $script);
     }
 
 
@@ -119,8 +119,7 @@ class SmsInput extends TextInput
      *
      * @return $this
      */
-    public function setUrl($url)
-    {
+    public function setUrl($url): static {
         $this->url = $url;
 
         return $this;

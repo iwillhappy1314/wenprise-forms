@@ -11,7 +11,7 @@ use Nette\Utils\Html;
 class ChosenInput extends SelectBox
 {
 
-    private $settings = [];
+    private array $settings = [];
 
     /**
      * @param null       $label    标签
@@ -54,7 +54,7 @@ class ChosenInput extends SelectBox
 		        });
 		    </script>";
 
-        return $el->addHtml($script);
+        return Html::fromHtml( $el . $script);
 
     }
 

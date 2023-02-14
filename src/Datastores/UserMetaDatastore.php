@@ -3,9 +3,9 @@
 namespace Wenprise\Forms\Datastores;
 
 
-class UserMetaDatastore extends \Wenprise\Forms\Datastores\IDatastore
+class UserMetaDatastore extends IDatastore
 {
-    var $user_id = 0;
+    var int $user_id = 0;
 
     public function __construct($user_id, $form)
     {

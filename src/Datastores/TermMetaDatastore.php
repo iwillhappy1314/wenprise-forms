@@ -2,9 +2,9 @@
 
 namespace Wenprise\Forms\Datastores;
 
-class TermMetaDatastore extends \Wenprise\Forms\Datastores\IDatastore
+class TermMetaDatastore extends IDatastore
 {
-    var $term_id = 0;
+    var int $term_id = 0;
 
     public function __construct($term_id, $form)
     {

@@ -11,7 +11,7 @@ use Nette\Utils\Html;
 class BirthdayPickerInput extends TextInput
 {
 
-    private $settings = [];
+    private array $settings = [];
 
     /**
      * @param null       $label
@@ -25,11 +25,11 @@ class BirthdayPickerInput extends TextInput
         $this->setOption('type', 'birthday');
     }
 
-    /**
-     * 生成控件 HTML 内容
-     *
-     * @return string
-     */
+	/**
+	 * 生成控件 HTML 内容
+	 *
+	 * @return \Nette\Utils\Html
+	 */
     public function getControl(): Html
     {
         if (function_exists('wp_enqueue_script')) {
@@ -57,6 +57,6 @@ class BirthdayPickerInput extends TextInput
 			});
 		</script>";
 
-        return $el->addHtml($script);
+        return Html::fromHtml( $el . $script);
     }
 }

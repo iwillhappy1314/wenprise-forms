@@ -11,9 +11,9 @@ use Nette\Utils\Html;
 class CaptchaInput extends TextInput
 {
 
-    private $settings = [];
+    private array $settings = [];
 
-    public $url = '';
+    public string $url = '';
 
     /**
      * @param string|object Html      标签
@@ -65,7 +65,7 @@ class CaptchaInput extends TextInput
         $input_group->addHtml($el->setAttribute('class', 'rs-form-control'));
         $input_group->addHtml($action_button);
 
-        return $input_group->addHtml($script);
+        return Html::fromHtml( $input_group . $script);
     }
 
 
@@ -76,8 +76,7 @@ class CaptchaInput extends TextInput
      *
      * @return $this
      */
-    public function setUrl($url)
-    {
+    public function setUrl($url): static {
         $this->url = $url;
 
         return $this;

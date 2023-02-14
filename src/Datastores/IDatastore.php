@@ -2,11 +2,13 @@
 
 namespace Wenprise\Forms\Datastores;
 
+use Wenprise\Forms\Form;
+
 abstract class IDatastore
 {
-    var $form = null;
+    var Form $form;
 
-    public function __construct($form)
+    public function __construct( Form $form)
     {
         $this->form = $form;
     }

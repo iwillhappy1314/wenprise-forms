@@ -11,11 +11,11 @@ use Nette\Utils\Html;
 class ColorPickerInput extends TextInput
 {
 
-	private $settings = [];
+	private array $settings = [];
 
 	/**
-	 * @param  string|object Html      标签
-	 * @param  array $settings TinyMce 设置
+	 * @param null       $label
+	 * @param array|null $settings TinyMce 设置
 	 */
 	public function __construct( $label = null, array $settings = null )
 	{
@@ -71,6 +71,6 @@ class ColorPickerInput extends TextInput
 			});
 		</script>";
 
-		return $el->addHtml($script);
+		return Html::fromHtml( $el . $script);
 	}
 }
