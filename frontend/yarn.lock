@@ -2034,10 +2034,10 @@ bootstrap-star-rating@^4.0.6:
   resolved "https://registry.yarnpkg.com/bootstrap-star-rating/-/bootstrap-star-rating-4.0.6.tgz#4ec4cc3a8fdc126b8495454c9e640d3fc6b2a193"
   integrity sha512-i/m2HuIWEQWoqxrlXohvnsiM2Vv77eaaS26/EjmMD4sUb79W+yDKbzEjtiVbGLNdGFaaRyVfdxZONELzqWca0g==
 
-bootstrap@^4.4.1:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.3.tgz#c6a72b355aaf323920be800246a6e4ef30997fe6"
-  integrity sha512-o9ppKQioXGqhw8Z7mah6KdTYpNQY//tipnkxppWhPbiSWdD+1raYsnhwEZjkTHYbGee4cVQ0Rx65EhOY/HNLcQ==
+bootstrap@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.0.tgz#97b9f29ac98f98dfa43bf7468262d84392552fd7"
+  integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
 
 boxen@^4.2.0:
   version "4.2.0"
@@ -5643,10 +5643,10 @@ jq-signature@^2.0.0:
     grunt-contrib-uglify "^0.9.1"
     matchdep "^0.3.0"
 
-jquery.appendgrid@^2.0.3:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/jquery.appendgrid/-/jquery.appendgrid-2.0.8.tgz#cb8ca17771bf93077b85e80424185ceccb7a4575"
-  integrity sha512-VvHa04YyNIJj5i8rHy0SOfcZ+fkoW8z3QYVayg0neW1hJmrkejUy16gHWz2XxtvScOejtrHT5Z4ULQ113t6Suw==
+jquery.appendgrid@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/jquery.appendgrid/-/jquery.appendgrid-2.1.0.tgz#dc62e35144943ddd5d8ffb5640e0f8ea15939976"
+  integrity sha512-qHdyZYM9etsgZBN3n0avbe43wWn3LtvfAg+LLK9yf1vDZjNKtMDoe8ugQKNGYWWrZHru0N3WwgjN4B1a6lC80w==
   optionalDependencies:
     fsevents "^2.1.2"
 
