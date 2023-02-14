@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@babel/runtime": "^7.20.13",
     "@wpackio/entrypoint": "^4.2.0",
     "@wpackio/scripts": "^4.2.0",
     "cssnano": "^4.1.10",
@@ -26,11 +27,14 @@
     "dm-file-uploader": "^1.0.2",
     "ion-rangeslider": "^2.3.0",
     "jq-signature": "^2.0.0",
+    "jquery": ">=1.9.1 <4.0.0",
     "jquery.appendgrid": "^2.1.0",
+    "less": "^3.13.1",
     "moment": "^2.24.0",
     "nette-forms": "^3.0.3",
     "popper.js": "^1.16.0",
     "sweetalert": "^2.1.2",
-    "tailwindcss": "^1.1.4"
+    "tailwindcss": "^1.1.4",
+    "typescript": ">=2.7.0"
   }
 }

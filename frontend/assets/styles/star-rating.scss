@@ -29,7 +29,7 @@
   white-space: nowrap;
 }
 
-.rating-container .rating-input {
+.rating-container+.rating-input {
   position: absolute;
   cursor: pointer;
   width: 100%;
