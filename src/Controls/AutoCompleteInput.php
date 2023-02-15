@@ -65,7 +65,7 @@ class AutoCompleteInput extends TextInput {
 	/**
 	 * 设置输入提示源
 	 */
-	public function setSource( $source ) {
+	public function setSource( $source ): static {
 		$this->source = $source;
 
 		return $this;

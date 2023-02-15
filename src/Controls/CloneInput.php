@@ -13,7 +13,7 @@ use Nette\Utils\Html;
 class CloneInput extends BaseControl
 {
 
-    private $settings = [];
+    private array $settings = [];
 
     /**
      * CloneInput constructor.
@@ -45,6 +45,7 @@ class CloneInput extends BaseControl
 
         // 模拟下拉选择默认值
         $value = (array)$this->value;
+	    $settings = $this->settings;
 
         $input_group = Html::el('div class=rs-input-group');
 

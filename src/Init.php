@@ -120,7 +120,7 @@ class Init {
 	/**
 	 * 注册多语言文件
 	 */
-	function register_locals() {
+	function register_locals(): void {
 		$locale = apply_filters( 'theme_locale', is_admin() ? get_user_locale() : get_locale(), 'wprs' );
 		load_textdomain( 'wprs', dirname( __FILE__ ) . '/languages/wprs-' . $locale . '.mo' );
 	}
@@ -129,7 +129,7 @@ class Init {
 	/**
 	 * 在 WordPress 中按需加载前端文件
 	 */
-	function register_assets() {
+	function register_assets(): void {
 		$assets = $this->get_manifest( '../frontend/dist/app' );
 
 		// 运行环境
@@ -219,7 +219,7 @@ class Init {
 	 *
 	 * @return void
 	 */
-	function save_form_data() {
+	function save_form_data(): void {
 		$data = $_POST;
 
 		// 基本文章数据

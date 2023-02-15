@@ -4,56 +4,59 @@ namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\TextInput;
 use Nette\Utils\Html;
+use Wenprise\Forms\FormHelpers;
 
 /**
  * 颜色选择
  */
-class SmsInput extends TextInput
-{
+class SmsInput extends TextInput {
 
-    private array $settings = [];
+	private array $settings = [];
 
-    public string $url;
+	public string $url;
 
-    /**
-     * @param null       $label
-     * @param array|null $settings TinyMce 设置
-     */
-    public function __construct($label = null, array $settings = null)
-    {
-        parent::__construct($label);
-        $this->settings = (array)$settings;
+	/**
+	 * @param null       $label
+	 * @param array|null $settings TinyMce 设置
+	 */
+	public function __construct( $label = null, array $settings = null ) {
+		parent::__construct( $label );
+		$this->settings = (array) $settings;
 
-        $this->setOption('type', 'sms');
-    }
+		$this->setOption( 'type', 'sms' );
+	}
 
 
-    /**
-     * 生成控件 HTML 内容
-     *
-     * @return \Nette\Utils\Html
-     */
-    public function getControl(): Html
-    {
+	/**
+	 * 生成控件 HTML 内容
+	 *
+	 * @return \Nette\Utils\Html
+	 */
+	public function getControl(): Html {
 
-        $el = parent::getControl();
+		$el       = parent::getControl();
+		$settings = $this->settings;
 
-        $name      = $this->getName();
-        $action_id = $this->getHtmlId() . '-action';
+		if ( ! $url = FormHelpers::data_get( $settings, 'url' ) ) {
+			$url = $this->url;
+		}
 
-        $input_group   = Html::el('div class=rs-input-group');
-        $action_button = Html::el('span class=rs-input-group-append')
-                             ->addHtml(
-                                 Html::el('button type=button')
-                                     ->setAttribute('id', $action_id)
-                                     ->setAttribute('class', 'rs-btn rs-btn-default')
-                                     ->addText(__('Get Code', 'wprs'))
-                             );
+		$name      = $this->getName();
+		$action_id = $this->getHtmlId() . '-action';
 
-        $input_group->addHtml($el);
-        $input_group->addHtml($action_button);
+		$input_group   = Html::el( 'div class=rs-input-group' );
+		$action_button = Html::el( 'span class=rs-input-group-append' )
+		                     ->addHtml(
+			                     Html::el( 'button type=button' )
+			                         ->setAttribute( 'id', $action_id )
+			                         ->setAttribute( 'class', 'rs-btn rs-btn-default' )
+			                         ->addText( __( 'Get Code', 'wprs' ) )
+		                     );
 
-        $script = "<script>
+		$input_group->addHtml( $el );
+		$input_group->addHtml( $action_button );
+
+		$script = "<script>
             jQuery(document).ready(function ($) {
                 //timer处理函数
                 var InterValObj; //timer 变量，控制时间
@@ -67,11 +70,11 @@ class SmsInput extends TextInput
                     if (current_count === 0) {
                         window.clearInterval(InterValObj);//停止计时器
                         action_id.removeAttr('disabled');//启用按钮
-                        action_id.val('" . __('Get Again', 'wprs') . "');
+                        action_id.val('" . __( 'Get Again', 'wprs' ) . "');
                     }
                     else {
                         current_count--;
-                        action_id.val(current_count + '" . __('Get Again', 'wprs') . "');
+                        action_id.val(current_count + '" . __( 'Get Again', 'wprs' ) . "');
                     }
                 }
                 
@@ -79,7 +82,7 @@ class SmsInput extends TextInput
                     $.ajax({
                         type      : 'POST',
                         dataType  : 'json',
-                        url       : '$this->url',
+                        url       : '$url',
                         data      : {
                             '$name': $('input[name=$name]').val()
                         },
@@ -93,7 +96,7 @@ class SmsInput extends TextInput
             
                                 // 设置button效果，开始计时
                                 action_id.prop('disabled', true);
-                                action_id.val(current_count + '" . __('minutes Later Get Again', 'wprs') . "');
+                                action_id.val(current_count + '" . __( 'minutes Later Get Again', 'wprs' ) . "');
                                 
                                 InterValObj = window.setInterval(set_count_down, 1000); //启动计时器，1秒执行一次
                                 $(this).removeClass('loading');
@@ -101,27 +104,27 @@ class SmsInput extends TextInput
                         },
                         error     : function (data) {
                             $(this).removeClass('loading');
-                            alert('" . __('Send failed', 'wprs') . "');
+                            alert('" . __( 'Send failed', 'wprs' ) . "');
                         }
                     });
                 })
             });
         </script>";
 
-        return Html::fromHtml( $input_group . $script);
-    }
+		return Html::fromHtml( $input_group . $script );
+	}
 
 
-    /**
-     * 设置后端 URL
-     *
-     * @param $url
-     *
-     * @return $this
-     */
-    public function setUrl($url): static {
-        $this->url = $url;
+	/**
+	 * 设置后端 URL
+	 *
+	 * @param $url
+	 *
+	 * @return $this
+	 */
+	public function setUrl( $url ): static {
+		$this->url = $url;
 
-        return $this;
-    }
+		return $this;
+	}
 }

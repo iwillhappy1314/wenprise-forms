@@ -26,7 +26,7 @@ class HtmlContent extends BaseControl {
 	 *
 	 * @return void
 	 */
-	public function getLabel( $caption = null ) {
+	public function getLabel( $caption = null ): void {
 	}
 	
 	/**
@@ -39,7 +39,7 @@ class HtmlContent extends BaseControl {
 	public function getControl( $caption = null ): string {
 		$this->setOption( 'rendered', true );
 
-		return $this->caption;
+		return $this->getCaption();
 	}
 
 }
