@@ -65,7 +65,7 @@ class DefaultFormRender extends BaseFormRender
 
         $control->setOption('class', implode(' ', $row_class) . ' ' . implode(' ', $group_class));
 
-        $control->setOption('id', 'rs-form-' . $control->name);
+        $control->setOption('id', 'rs-form-' . $control->getName());
 
         if ($type === 'button') {
 

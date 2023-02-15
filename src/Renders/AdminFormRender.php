@@ -65,7 +65,7 @@ class AdminFormRender extends BaseFormRender
             $control->setOption('class', 'rs-form--' . $type);
         }
 
-        $control->setOption('id', 'grp-' . $control->name);
+        $control->setOption('id', 'grp-' . $control->getName());
 
         if ($type === 'button') {
 
