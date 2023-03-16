@@ -2,6 +2,8 @@
 
 namespace Wenprise\Forms;
 
+use JetBrains\PhpStorm\NoReturn;
+
 class Init {
 
 	public function __construct() {
@@ -219,7 +221,7 @@ class Init {
 	 *
 	 * @return void
 	 */
-	function save_form_data(): void {
+	#[NoReturn] function save_form_data(): void {
 		$data = $_POST;
 
 		// 基本文章数据

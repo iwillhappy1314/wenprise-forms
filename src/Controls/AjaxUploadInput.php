@@ -30,10 +30,10 @@ class AjaxUploadInput extends BaseControl
 
     /**
      * @param null       $label
-     * @param bool
+     * @param bool       $multiple
      * @param array|null $settings Chosen 设置
      */
-    public function __construct($label = null, $multiple = false, array $settings = null)
+    public function __construct($label = null, bool $multiple = false, array $settings = null)
     {
         parent::__construct($label);
         $this->control->multiple = (bool)$multiple;

@@ -3,18 +3,19 @@
 namespace Wenprise\Forms;
 
 use Nette\HtmlStringable;
+use Wenprise\Forms\Datastores\IDatastore;
 use Wenprise\Forms\Renders\DefaultFormRender;
 
 class Form extends \Nette\Forms\Form implements HtmlStringable {
 
-	public \Wenprise\Forms\Datastores\IDatastore|null $datastore = null;
+	public IDatastore|null $datastore = null;
 
 	/**
 	 * @param \Wenprise\Forms\Datastores\IDatastore $datastore
 	 *
 	 * @return void
 	 */
-	public function setDatastore( \Wenprise\Forms\Datastores\IDatastore $datastore ): void {
+	public function setDatastore( IDatastore $datastore ): void {
 		$this->datastore = $datastore;
 	}
 

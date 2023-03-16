@@ -18,3 +18,4 @@ Temporary Items
 .publish/
 .idea/
 vendor/
+frontend/node_modules
