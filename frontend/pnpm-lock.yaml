@@ -1,6 +1,12 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@fylgja/alpinejs-dialog':
+    specifier: ^1.0.1
+    version: 1.0.1
+  alpinejs:
+    specifier: ^3.12.1
+    version: 3.12.1
   bootstrap:
     specifier: ^4.6.0
     version: 4.6.0(jquery@1.9.1)(popper.js@1.16.1)
@@ -1353,6 +1359,10 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: true
 
+  /@fylgja/alpinejs-dialog@1.0.1:
+    resolution: {integrity: sha512-QxrOckuaVOX6M3+kEIRyWBOmnMupL3KyrWfWBHAwrsM19086VMpq1IX4XUT1EQDDZklScA4qgbaGk92RTwgwNg==}
+    dev: false
+
   /@jimp/bmp@0.16.13(@jimp/custom@0.16.13):
     resolution: {integrity: sha512-9edAxu7N2FX7vzkdl5Jo1BbACfycUtBQX+XBMcHA2bk62P8R0otgkHg798frgAk/WxQIzwxqOH6wMiCwrlAzdQ==}
     peerDependencies:
@@ -2086,6 +2096,16 @@ packages:
     resolution: {integrity: sha512-AZU7vQcy/4WFEuwnwsNsJnFwupIpbllH1++LXScN6uxT1Z4zPzdrWG97w4/I7eFKFTvfy/bHFStWjdBAg2Vjug==}
     dev: true
 
+  /@vue/reactivity@3.1.5:
+    resolution: {integrity: sha512-1tdfLmNjWG6t/CsPldh+foumYFo3cpyCHgBYQ34ylaMsJ+SNHQ1kApMIa8jN+i593zQuaw3AdWH0nJTARzCFhg==}
+    dependencies:
+      '@vue/shared': 3.1.5
+    dev: false
+
+  /@vue/shared@3.1.5:
+    resolution: {integrity: sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==}
+    dev: false
+
   /@webassemblyjs/ast@1.11.6:
     resolution: {integrity: sha512-IN1xI7PwOvLPgjcf180gC1bqn3q/QaOCwYUahIOhbYUu8KA/3tw2RT/T0Gidi1l7Hhj5D/INhJxiICObqpMu4Q==}
     dependencies:
@@ -2341,6 +2361,12 @@ packages:
       kind-of: 3.2.2
       longest: 1.0.1
       repeat-string: 1.6.1
+    dev: false
+
+  /alpinejs@3.12.1:
+    resolution: {integrity: sha512-GjEmZscHuCPv/XRbzabQLFH3I1+M3TbZqEsLDuYai/Yw+pE1IL7DK4ejRfqBSaysi4wWZ1k5IqVG2aefhWWqsQ==}
+    dependencies:
+      '@vue/reactivity': 3.1.5
     dev: false
 
   /ansi-colors@4.1.3:

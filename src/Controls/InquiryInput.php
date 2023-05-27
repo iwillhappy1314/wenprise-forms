@@ -41,14 +41,14 @@ class InquiryInput extends BaseControl
     public function loadHttpData(): void
     {
         $fields = $this->fields;
-        $names = wp_list_pluck($fields, 'name');
+        $names  = wp_list_pluck($fields, 'name');
         $values = [];
 
-        $data_length = count($_POST[$names[0]]);
+        $data_length = count($_POST[ $names[ 0 ] ]);
 
-        for ($i=0; $i < $data_length; $i++){
+        for ($i = 0; $i < $data_length; $i++) {
             foreach ($names as $field) {
-                $values[$i][$field] = $_POST[ $field ][$i];
+                $values[ $i ][ $field ] = $_POST[ $field ][ $i ];
             }
         }
 
@@ -63,6 +63,8 @@ class InquiryInput extends BaseControl
      */
     public function getControl(): string
     {
+        wp_enqueue_script('wprs-alpinejs');
+
         $id    = $this->getHtmlId();
         $js_id = str_replace('-', '_', $id);
 
@@ -71,9 +73,11 @@ class InquiryInput extends BaseControl
         $value    = $this->getValue();
 
         $field_names = [];
+        $_field_names = [];
 
         foreach ($fields as $field) {
             $field_names[ $field[ 'name' ] ] = '';
+            $_field_names[ '_' . $field[ 'name' ] ] = '';
         }
 
         ob_start();
@@ -81,7 +85,7 @@ class InquiryInput extends BaseControl
         <div x-data="<?= $js_id; ?>_handler()">
 
             <div>
-                <table class="rs-table rs-table-bordered rs-inquiry-input table">
+                <table class="table rs-table rs-table-bordered rs-inquiry-input">
                     <thead class="thead-light">
                     <tr>
                         <?php foreach (wp_list_pluck($fields, 'label') as $label): ?>
@@ -104,9 +108,10 @@ class InquiryInput extends BaseControl
                         </tr>
                     </template>
                     </tbody>
+                </table>
             </div>
 
-            <table class="rs-table rs-table-bordered rs-inquiry-input table">
+            <table class="table rs-table rs-table-bordered rs-inquiry-input">
                 <thead class="thead-light">
                 <tr>
                     <th>#</th>
@@ -132,14 +137,14 @@ class InquiryInput extends BaseControl
                 <tfoot>
                 <tr>
                     <td colspan="<?= count($field_names) + 2; ?>" class="text-right">
-                        <button type="button" class="rs-btn rs-btn-primary" @click="addNewField()"><?= __( '+ Add Row', 'wprs' ); ?></button>
+                        <button type="button" class="rs-btn rs-btn-primary" @click="addNewField()"><?= __('+ Add Row', 'wprs'); ?></button>
                     </td>
                 </tr>
                 </tfoot>
             </table>
 
             <div>
-                <button @click="open = !open" class="rs-btn rs-btn-primary"><?= __( '+ Add Row', 'wprs' ); ?></button>
+                <button @click="open = !open" class="rs-btn rs-btn-primary"><?= __('+ Add Row', 'wprs'); ?></button>
                 <dialog x-show="open" x-dialog="open = false">
                     <div>
                         <fieldset class="rs-form-row">
@@ -147,10 +152,10 @@ class InquiryInput extends BaseControl
                             <?php foreach ($fields as $field): ?>
                                 <div class="rs-form-group rs-form--text rs-row rs-col-md-12" id="rs-form-company_name">
                                     <div class="rs-col-sm-3 rs-control-label">
-                                        <label for="frm-company_name"><?= $field['label']; ?></label>
+                                        <label for="frm-company_name"><?= $field[ 'label' ]; ?></label>
                                     </div>
                                     <div class="rs-col-sm-9 rs-control-input">
-                                        <input x-model="_field._<?= $field['name']; ?>" type="text" name="_<?= $field['name']; ?>" class="form-control rs-form-control">
+                                        <input x-model="_field._<?= $field[ 'name' ]; ?>" type="text" name="_<?= $field[ 'name' ]; ?>" class="form-control rs-form-control">
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -158,7 +163,7 @@ class InquiryInput extends BaseControl
                         </fieldset>
 
                         <div>
-                            <button type="button" class="rs-btn rs-btn-default" @click="addNewField2()"><?= __( 'Add', 'wprs' ); ?></button>
+                            <button type="button" class="rs-btn rs-btn-default" @click="addNewField2()"><?= __('Add', 'wprs'); ?></button>
                         </div>
                     </div>
                 </dialog>
@@ -169,14 +174,9 @@ class InquiryInput extends BaseControl
         <script>
           function <?= $js_id; ?>_handler() {
             return {
-              open     : false,
-              fields   : <?= json_encode($value); ?>,
-              _field: {
-                _part_no     : '',
-                _manufacturer: '',
-                _package     : '',
-                _request_qty : '',
-              },
+              open  : false,
+              fields: <?= json_encode($value); ?>,
+              _field: <?= json_encode($_field_names); ?>,
               addNewField() {
                 this.fields.push(<?= json_encode($field_names); ?>);
               },
@@ -188,15 +188,10 @@ class InquiryInput extends BaseControl
                 }
 
                 this.fields.push(real_field);
-
-                this._field = {
-                  _part_no     : '',
-                  _manufacturer: '',
-                  _package     : '',
-                  _request_qty : '',
-                };
-
+                this._field = <?= json_encode($_field_names); ?>;
                 this.open = false;
+
+                return false;
               },
               removeField(index) {
                 this.fields.splice(index, 1);

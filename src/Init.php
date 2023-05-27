@@ -168,6 +168,9 @@ class Init
         wp_register_style('wprs-forms-main', $this->get_assets_url('dist/styles/main.css'), [], WENPRISE_FORM_VERSION);
         wp_register_script('wprs-forms-main', $this->get_assets_url('dist/scripts/main.js'), WENPRISE_FORM_VERSION, true);
 
+        // alpinejs 和 @fylgja/alpinejs-dialog 插件
+        wp_register_script('wprs-alpinejs', $this->get_assets_url('dist/scripts/alpinejs.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
+
         // Chosen 样式和脚本
         wp_register_style('wprs-chosen', $this->get_assets_url('dist/styles/chosen.css'), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
         wp_register_script('wprs-chosen', $this->get_assets_url('dist/scripts/chosen-js.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);

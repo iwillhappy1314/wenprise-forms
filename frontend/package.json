@@ -42,6 +42,8 @@
     "dev": "mix watch"
   },
   "dependencies": {
+    "@fylgja/alpinejs-dialog": "^1.0.1",
+    "alpinejs": "^3.12.1",
     "bootstrap": "^4.6.0",
     "bootstrap-star-rating": "^4.0.6",
     "chosen-js": "^1.8.7",

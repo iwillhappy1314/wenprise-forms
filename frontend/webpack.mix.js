@@ -36,6 +36,7 @@ mix.sass('assets/styles/main.scss', 'dist/styles')
     });
 
 mix.js('assets/scripts/main.js', 'dist/scripts')
+    .js('assets/scripts/modules/alpinejs.js', 'dist/scripts')
     .js('assets/scripts/modules/conditionize.js', 'dist/scripts')
     .js('assets/scripts/modules/table-input.js', 'dist/scripts')
     .js('assets/scripts/modules/bootstrap-button.js', 'dist/scripts')
