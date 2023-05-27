@@ -5,6 +5,7 @@ namespace Wenprise\Forms\Controls;
 use Nette\Forms\Controls\BaseControl;
 use Nette\Forms\Form;
 use Nette\Utils\Html;
+use Wenprise\Forms\FormHelpers;
 
 
 /**
@@ -72,13 +73,17 @@ class InquiryInput extends BaseControl
         $fields   = $this->fields;
         $value    = $this->getValue();
 
-        $field_names = [];
+        $field_names  = [];
         $_field_names = [];
 
         foreach ($fields as $field) {
-            $field_names[ $field[ 'name' ] ] = '';
+            $field_names[ $field[ 'name' ] ]        = '';
             $_field_names[ '_' . $field[ 'name' ] ] = '';
         }
+
+        $allow_delete = FormHelpers::data_get($settings, 'allow_delete', 'yes') === 'yes';
+        $allow_add = FormHelpers::data_get($settings, 'allow_add', 'yes') === 'yes';
+        $addition_col_number = $allow_delete ? 2 : 1;
 
         ob_start();
         ?>
@@ -91,7 +96,10 @@ class InquiryInput extends BaseControl
                         <?php foreach (wp_list_pluck($fields, 'label') as $label): ?>
                             <th><?= $label; ?></th>
                         <?php endforeach; ?>
-                        <th></th>
+
+                        <?php if ( $allow_delete ) : ?>
+                            <th></th>
+                        <?php endif; ?>
                     </tr>
                     </thead>
                     <tbody>
@@ -102,9 +110,13 @@ class InquiryInput extends BaseControl
                                     <div x-text="field.<?= $name; ?>">
                                 </td>
                             <?php endforeach; ?>
-                            <td>
-                                <button type="button" class="rs-btn rs-btn-default" @click="removeField(index)">&times;</button>
-                            </td>
+
+                            <?php if ($allow_delete) : ?>
+                                <td>
+                                    <button type="button" class="rs-btn rs-btn-default" @click="removeField(index)">&times;</button>
+                                </td>
+                            <?php endif; ?>
+
                         </tr>
                     </template>
                     </tbody>
@@ -118,7 +130,9 @@ class InquiryInput extends BaseControl
                     <?php foreach (wp_list_pluck($fields, 'label') as $label): ?>
                         <th><?= $label; ?></th>
                     <?php endforeach; ?>
-                    <th></th>
+                    <?php if ( $allow_delete ) : ?>
+                        <th></th>
+                    <?php endif; ?>
                 </tr>
                 </thead>
                 <tbody>
@@ -128,23 +142,32 @@ class InquiryInput extends BaseControl
                         <?php foreach (wp_list_pluck($fields, 'name') as $name): ?>
                             <td><input x-model="field.<?= $name; ?>" type="text" name="<?= $name; ?>[]" class="form-control rs-form-control"></td>
                         <?php endforeach; ?>
-                        <td>
-                            <button type="button" class="rs-btn rs-btn-default" @click="removeField(index)">&times;</button>
-                        </td>
+
+                        <?php if ($allow_delete) : ?>
+                            <td>
+                                <button type="button" class="rs-btn rs-btn-default" @click="removeField(index)">&times;</button>
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 </template>
                 </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="<?= count($field_names) + 2; ?>" class="text-right">
-                        <button type="button" class="rs-btn rs-btn-primary" @click="addNewField()"><?= __('+ Add Row', 'wprs'); ?></button>
-                    </td>
-                </tr>
-                </tfoot>
+
+                <?php if ($allow_add) : ?>
+                    <tfoot>
+                    <tr>
+                        <td colspan="<?= count($field_names) + $addition_col_number; ?>" class="text-right">
+                            <button type="button" class="rs-btn rs-btn-primary" @click="addNewField()"><?= __('+ Add Row', 'wprs'); ?></button>
+                        </td>
+                    </tr>
+                    </tfoot>
+                <?php endif; ?>
+
             </table>
 
             <div>
-                <button @click="open = !open" class="rs-btn rs-btn-primary"><?= __('+ Add Row', 'wprs'); ?></button>
+                <?php if ($allow_delete) : ?>
+                    <button @click="open = !open" class="rs-btn rs-btn-primary"><?= __('+ Add Row', 'wprs'); ?></button>
+                <?php endif; ?>
                 <dialog x-show="open" x-dialog="open = false">
                     <div>
                         <fieldset class="rs-form-row">
@@ -163,7 +186,7 @@ class InquiryInput extends BaseControl
                         </fieldset>
 
                         <div>
-                            <button type="button" class="rs-btn rs-btn-default" @click="addNewField2()"><?= __('Add', 'wprs'); ?></button>
+                            <button type="button" class="rs-btn rs-btn-default" @click="_addNewField()"><?= __('Add', 'wprs'); ?></button>
                         </div>
                     </div>
                 </dialog>
@@ -180,7 +203,7 @@ class InquiryInput extends BaseControl
               addNewField() {
                 this.fields.push(<?= json_encode($field_names); ?>);
               },
-              addNewField2() {
+              _addNewField() {
                 let real_field = {};
 
                 for (let key in this._field) {
