@@ -139,8 +139,24 @@ class InquiryInput extends BaseControl
                 <template x-for="(field, index) in fields" :key="index">
                     <tr>
                         <td x-text="index + 1"></td>
-                        <?php foreach (wp_list_pluck($fields, 'name') as $name): ?>
-                            <td><input x-model="field.<?= $name; ?>" type="text" name="<?= $name; ?>[]" class="form-control rs-form-control"></td>
+                        <?php foreach ($fields as $field): ?>
+                            <?php
+                            $field_type = FormHelpers::data_get($field, 'type', 'text');
+                            $field_name= FormHelpers::data_get($field, 'name', );
+                            ?>
+                            <td>
+                                <?php if ( $field_type === 'text' ) : ?>
+                                    <input x-model="field.<?= $field_name; ?>" type="text" name="<?= $field_name; ?>[]" class="form-control rs-form-control">
+                                <?php elseif($field_type === 'textarea'): ?>
+                                    <textarea x-model="field.<?= $field_name; ?>" name="<?= $field_name; ?>[]" cols="30" rows="10"></textarea>
+                                <?php elseif($field_type === 'select'): ?>
+                                    <select x-model="field.<?= $field_name; ?>" name="<?= $field_name; ?>[]">
+                                        <?php foreach (FormHelpers::data_get($field, 'options', ) as $option_key => $option_value): ?>
+                                            <option value="<?= $option_key; ?>"><?= $option_value; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php endif; ?>
+                            </td>
                         <?php endforeach; ?>
 
                         <?php if ($allow_delete) : ?>
