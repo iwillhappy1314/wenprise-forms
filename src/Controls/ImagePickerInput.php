@@ -44,14 +44,9 @@ class ImagePickerInput extends SelectBox
         ];
 
         $settings = array_merge($settings_default, $settings);
+        $el->data('settings', json_encode($settings));
 
-        $script = "<script>
-		        jQuery(document).ready(function($){
-		        	$( '#$id' ).imagepicker(" . json_encode($settings) . ");
-		        });
-		    </script>";
-
-        return Html::fromHtml($el . $script);
+        return Html::fromHtml($el);
 
     }
 

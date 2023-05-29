@@ -35,7 +35,6 @@ class AutoCompleteInput extends TextInput {
 	public function getControl(): Html {
 		if ( function_exists( 'wp_enqueue_script' ) ) {
 			wp_dequeue_script( 'jquery-ui-autocomplete' );
-			wp_enqueue_script( 'wprs-autocomplete' );
 		}
 
 		$el = parent::getControl();

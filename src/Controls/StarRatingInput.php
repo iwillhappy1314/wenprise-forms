@@ -54,13 +54,8 @@ class StarRatingInput extends TextInput
         $el->data('min', $settings[ 'min' ]);
         $el->data('max', $settings[ 'max' ]);
         $el->data('step', $settings[ 'step' ]);
+        $el->data('settings', json_encode($settings));
 
-        $script = "<script>
-		        jQuery(document).ready(function($){
-		        	$( '#$id' ).rating(" . json_encode($settings) . ");
-		        });
-		    </script>";
-
-        return Html::fromHtml( $el . $script);
+        return Html::fromHtml( $el );
     }
 }

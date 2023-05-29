@@ -170,6 +170,7 @@ class Init
 
         wp_localize_script('wprs-forms-main', 'wenpriseFormSettings', [
             'staticPath'           => $this->dir_to_url(realpath(__DIR__ . '/../frontend/dist')) . '/',
+            'ajaxurl' => admin_url('admin-ajax.php'),
             'error'           => __('Upload error, please try again.', 'wprs'),
             'canceled'        => __('Upload canceled.', 'wprs'),
             'file_type_error' => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
@@ -177,12 +178,13 @@ class Init
             'file_ext_error'  => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
             'choose_image'    => __('Choose Image', 'wprs'),
             'insert_image'    => __('Insert Image', 'wprs'),
+            'clear'         => __('Clear', 'wprs'),
+            'defaultString' => __('Default', 'wprs'),
+            'pick'          => __('Select Color', 'wprs'),
+            'current'       => __('Current Color', 'wprs'),
         ]);
 
         wp_register_script('iris', admin_url('js/iris.min.js'), ['jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch'], false, true);
-
-        // // Moment Js 日期处理
-        wp_register_script('wprs-moment', $this->get_assets_url('dist/scripts/moment.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
 
         // 表格输入
         wp_register_script('wprs-table-input', $this->get_assets_url('dist/scripts/table-input.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, false);
@@ -191,11 +193,7 @@ class Init
 
         wp_dequeue_script('jquery-ui-autocomplete');
 
-        wp_localize_script('wp-color-picker', 'wenpriseFormsSettings', [
-            'ajaxurl' => admin_url('admin-ajax.php'),
-        ]);
-
-        wp_localize_script('wp-color-picker', 'wpColorPickerL10n', [
+        wp_localize_script('wprs-forms-main', 'wpColorPickerL10n', [
             'clear'         => __('Clear', 'wprs'),
             'defaultString' => __('Default', 'wprs'),
             'pick'          => __('Select Color', 'wprs'),

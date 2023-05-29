@@ -41,31 +41,27 @@ mix.js('assets/scripts/main.js', 'dist/scripts')
     .js('assets/scripts/modules/table-input.js', 'dist/scripts')
     .js('assets/scripts/modules/bootstrap-button.js', 'dist/scripts')
     .js('assets/scripts/modules/ion-rangeslider.js', 'dist/scripts')
-    .js('assets/scripts/modules/moment.js', 'dist/scripts')
     .js('assets/scripts/modules/combodate.js', 'dist/scripts')
     .js('assets/scripts/modules/ajax-uploader.js', 'dist/scripts')
     .js('assets/scripts/modules/autocomplete.js', 'dist/scripts')
     .js('assets/scripts/modules/chosen-js.js', 'dist/scripts')
     .js('assets/scripts/modules/image-picker.js', 'dist/scripts')
     .js('assets/scripts/modules/daterangepicker.js', 'dist/scripts')
-    .js('assets/scripts/modules/datepicker-zh.js', 'dist/scripts')
     .js('assets/scripts/modules/jq-signature.js', 'dist/scripts')
     .js('assets/scripts/modules/sweet-alert.js', 'dist/scripts')
-    .js('assets/scripts/modules/star-rating.js', 'dist/scripts')
-    .js('assets/scripts/modules/nette-forms.js', 'dist/scripts');
+    .js('assets/scripts/modules/star-rating.js', 'dist/scripts');
 
-//mix.copyWatched('assets/images', 'dist/images').
-//    copyWatched('assets/fonts', 'dist/fonts');
+mix.copyWatched('assets/images', 'dist/images');
 
 if (mix.inProduction()) {
   mix.versionHash();
 } else {
   mix.sourceMaps();
-  mix.webpackConfig({devtool: 'eval-cheap-source-map'});
+  mix.webpackConfig({devtool: 'eval'});
 }
 
 mix.browserSync({
-  proxy         : 'http://chipsgate.as',
+  proxy         : 'http://forms.as',
   files         : [
     {
       match  : [

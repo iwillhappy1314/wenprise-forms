@@ -32,8 +32,6 @@ class MultiChosenInput extends MultiSelectBox {
 		}
 
 		$el = parent::getControl();
-
-		$id       = $this->getHtmlId();
 		$settings = $this->settings;
 
 		$settings_default = [
@@ -42,13 +40,9 @@ class MultiChosenInput extends MultiSelectBox {
 
 		$settings = array_merge( $settings_default, $settings );
 
-		$script = "<script>
-		        jQuery(document).ready(function($){
-		        	$( '#$id' ).chosen(" . json_encode( $settings ) . ");
-		        });
-		    </script>";
+        $el->data('settings', json_encode($settings));
 
-		return Html::fromHtml( $el . $script );
+		return Html::fromHtml( $el );
 
 	}
 

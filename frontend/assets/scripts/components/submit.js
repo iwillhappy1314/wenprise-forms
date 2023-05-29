@@ -11,7 +11,7 @@
     form.find('li.wpuf-submit').append('<span class="wpuf-loading"></span>');
     submitButton.attr('disabled', 'disabled').addClass('button-primary-disabled');
 
-    $.post(wenpriseFormsSettings.ajaxurl, form_data, function(res) {
+    $.post(wenpriseFormSettings.ajaxurl, form_data, function(res) {
       // var res = $.parseJSON(res);
 
       if (res.success) {

@@ -145,6 +145,8 @@ class InquiryInput extends BaseControl
                                 <td>
                                     <?php if ( $field_type === 'text' ) : ?>
                                         <input x-model="field.<?= $field_name; ?>" type="text" name="<?= $field_name; ?>[]" class="form-control rs-form-control">
+                                    <?php elseif($field_type === 'checkbox'): ?>
+                                        <input x-model="field.<?= $field_name; ?>" type="checkbox" name="<?= $field_name; ?>[]" class="form-checkbox">
                                     <?php elseif($field_type === 'textarea'): ?>
                                         <textarea x-model="field.<?= $field_name; ?>" name="<?= $field_name; ?>[]" cols="30" rows="10"></textarea>
                                     <?php elseif($field_type === 'select'): ?>
@@ -199,6 +201,8 @@ class InquiryInput extends BaseControl
                                     <div class="rs-col-sm-9 rs-control-input">
                                         <?php if ( $field_type === 'text' ) : ?>
                                             <input x-model="_field._<?= $field_name; ?>" type="text" name="_<?= $field_name; ?>" class="form-control rs-form-control">
+                                        <?php elseif($field_type === 'checkbox'): ?>
+                                            <input x-model="_field._<?= $field_name; ?>" type="checkbox" name="_<?= $field_name; ?>" class="form-checkbox">
                                         <?php elseif($field_type === 'textarea'): ?>
                                             <textarea x-model="_field._<?= $field_name; ?>" name="_<?= $field_name; ?>" cols="30" rows="10" class="form-control rs-form-control"></textarea>
                                         <?php elseif($field_type === 'select'): ?>

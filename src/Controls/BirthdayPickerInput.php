@@ -32,10 +32,6 @@ class BirthdayPickerInput extends TextInput
 	 */
     public function getControl(): Html
     {
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_script('wprs-combodate');
-        }
-
         $el = parent::getControl();
 
         $id       = $this->getHtmlId();
@@ -51,12 +47,8 @@ class BirthdayPickerInput extends TextInput
 
         $settings = array_merge($settings_default, $settings);
 
-        $script = "<script>
-			jQuery(document).ready(function($) {
-				$('#$id').combodate(" . json_encode($settings) . ");
-			});
-		</script>";
+        $el->data('settings', json_encode($settings));
 
-        return Html::fromHtml( $el . $script);
+        return Html::fromHtml( $el );
     }
 }

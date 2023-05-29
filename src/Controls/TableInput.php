@@ -59,11 +59,6 @@ class TableInput extends BaseControl {
 	 * @return \Nette\Utils\Html
 	 */
 	public function getControl(): Html {
-
-		if ( function_exists( 'wp_enqueue_script' ) ) {
-			wp_enqueue_script( 'wprs-table-input' );
-		}
-
 		$name     = $this->getName();
 		$settings = $this->settings;
 		$fields   = $this->fields;
@@ -114,16 +109,10 @@ class TableInput extends BaseControl {
 
 		$html = Html::el( 'table id=' . $name );
 		$html->setAttribute( 'class', 'rs-table rs-table-bordered rs-table-input' );
+		$html->setAttribute( 'data-id', 'rs-table-input-' . md5(json_encode( $settings )) );
+		$html->setAttribute( 'data-settings', json_encode( $settings ) );
 
-		$script = "<script>
-			document.addEventListener('DOMContentLoaded', function () {
-                loadjs.ready('table-input', function() {
-                    window.AppendGrid = new AppendGrid(" . json_encode( $settings ) . ");
-                });
-			});
-			</script>";
-
-		return Html::fromHtml( $html . $script );
+		return Html::fromHtml( $html );
 	}
 
 }

@@ -33,13 +33,9 @@ class DatePickerInput extends TextInput
      */
     public function getControl(): Html
     {
-        wp_enqueue_style('wprs-daterangepicker');
-        wp_enqueue_script('wprs-daterangepicker');
-
         $el = parent::getControl();
         $el->setAttribute('autocomplete', 'off');
 
-        $id       = $this->getHtmlId();
         $settings = $this->settings;
 
         $settings_default = [
@@ -58,16 +54,8 @@ class DatePickerInput extends TextInput
 
         $settings = array_merge($settings_default, $settings);
 
-        $script = "<script>
-		        jQuery(document).ready(function($){
-		            var defaults = {},
-		            options = " . json_encode($settings) . ",
-		            settings = $.extend({}, defaults, options);
-		            
-		        	$( '#$id' ).daterangepicker(settings);
-		        });
-		    </script>";
+        $el->data('settings', json_encode($settings));
 
-	    return Html::fromHtml( $el . $script);
+	    return Html::fromHtml( $el);
     }
 }

@@ -29,11 +29,6 @@ class ChosenInput extends SelectBox
     public function getControl(): Html
     {
 
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_style('wprs-chosen');
-            wp_enqueue_script('wprs-chosen');
-        }
-
         $el = parent::getControl();
 
         $id       = $this->getHtmlId();
@@ -48,13 +43,9 @@ class ChosenInput extends SelectBox
 
         $settings = array_merge($settings_default, $settings);
 
-        $script = "<script>
-		        jQuery(document).ready(function($){
-		        	$( '#$id' ).chosen(" . json_encode($settings) . ");
-		        });
-		    </script>";
+        $el->data('settings', json_encode($settings));
 
-        return Html::fromHtml( $el . $script);
+        return Html::fromHtml( $el );
 
     }
 
