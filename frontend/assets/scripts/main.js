@@ -11,7 +11,7 @@ if ($('.rs-form--uploader').length > 0) {
   loadjs([distPath + 'styles/ajax-uploader.css', distPath + 'scripts/ajax-uploader.js'], 'uploader');
 }
 
-if ($('.rs-signature--control').length > 0) {
+if ($('.rs-form--signature').length > 0) {
   loadjs([distPath + 'scripts/jq-signature.js'], 'signature');
 }
 

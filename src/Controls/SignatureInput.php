@@ -57,6 +57,9 @@ class SignatureInput extends TextInput {
 
 		$settings = array_merge( $settings_default, $settings );
 
+        $el->data('id', $id);
+        $el->data('settings', $settings);
+
 		$script = "<script>
 		        jQuery(document).ready(function($){
 		            var el = $('#$id'),

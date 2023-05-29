@@ -52,6 +52,8 @@ class AutoCompleteInput extends TextInput {
 		$settings = array_merge( $settings_default, $settings );
 		$settings = json_encode( $settings );
 
+        $el->data('settings', json_encode($settings));
+
 		$script = "<script>
 			jQuery(document).ready(function($) {
 				$('#$id').devbridgeAutocomplete($settings);

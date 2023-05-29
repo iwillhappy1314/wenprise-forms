@@ -178,16 +178,9 @@ class Init
             'file_ext_error'  => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
             'choose_image'    => __('Choose Image', 'wprs'),
             'insert_image'    => __('Insert Image', 'wprs'),
-            'clear'         => __('Clear', 'wprs'),
-            'defaultString' => __('Default', 'wprs'),
-            'pick'          => __('Select Color', 'wprs'),
-            'current'       => __('Current Color', 'wprs'),
         ]);
 
         wp_register_script('iris', admin_url('js/iris.min.js'), ['jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch'], false, true);
-
-        // 表格输入
-        wp_register_script('wprs-table-input', $this->get_assets_url('dist/scripts/table-input.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, false);
 
         wp_register_script('wprs-sweetalert', $this->get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
 
