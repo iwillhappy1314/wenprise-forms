@@ -22,7 +22,7 @@ class StarRatingInput extends TextInput
         parent::__construct($label);
         $this->settings = (array)$settings;
 
-        $this->setOption('type', 'datepicker');
+        $this->setOption('type', 'star-rating');
     }
 
 

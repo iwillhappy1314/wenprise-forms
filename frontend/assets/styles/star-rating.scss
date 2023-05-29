@@ -29,6 +29,7 @@
   white-space: nowrap;
 }
 
+.rating-container .filled-stars+.rating-input,
 .rating-container+.rating-input {
   position: absolute;
   cursor: pointer;

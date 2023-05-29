@@ -59,6 +59,7 @@
     "jquery.appendgrid": "^2.1.0",
     "js-cookie": "^3.0.5",
     "less": "^3.13.1",
+    "loadjs": "4.2.0",
     "moment": "^2.24.0",
     "nette-forms": "^3.0.3",
     "popper.js": "^1.16.1",

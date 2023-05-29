@@ -111,7 +111,7 @@ class AjaxUploadInput extends BaseControl
             ->addHtml(
                 Html::el('div class=rs-uploader__browser')
                     ->addHtml(
-                        Html::el('label class="rs-btn rs-uploader__button"')
+                        Html::el('label class="rs-btn rs-btn-default rs-uploader__button"')
                             ->addHtml(
                                 Html::el('span')
                                     ->addHtml($placeholder)

@@ -1,3 +1,12 @@
+.rsf-block {
+  display: block;
+}
+.rsf-hidden {
+  display: none;
+}
+.rs-\[a-z0-9\:-\] {
+  a-z0-9: -;
+}
 html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;
@@ -2043,6 +2052,11 @@ ul.rs-checkbox-tree li label {
   font-size: 1rem;
   text-transform: capitalize;
 }
+
+.rs-inquiry-input-mobile {
+  display: none;
+}
+
 @media (max-width: 575.98px) {
   .rs-table-responsive-sm {
     display: block;
@@ -2054,6 +2068,7 @@ ul.rs-checkbox-tree li label {
     border: 0;
   }
 }
+
 @media (max-width: 767.98px) {
   .rs-table-responsive-md {
     display: block;
@@ -2065,6 +2080,7 @@ ul.rs-checkbox-tree li label {
     border: 0;
   }
 }
+
 @media (max-width: 991.98px) {
   .rs-table-responsive-lg {
     display: block;
@@ -2076,6 +2092,7 @@ ul.rs-checkbox-tree li label {
     border: 0;
   }
 }
+
 @media (max-width: 1199.98px) {
   .rs-table-responsive-xl {
     display: block;
@@ -2087,6 +2104,7 @@ ul.rs-checkbox-tree li label {
     border: 0;
   }
 }
+
 @media (min-width: 576px) {
   .rs-container-sm, .rs-container {
     max-width: 540px;
@@ -2350,6 +2368,7 @@ ul.rs-checkbox-tree li label {
     order: -1;
   }
 }
+
 @media (min-width: 768px) {
   .rs-container-md, .rs-container-sm, .rs-container {
     max-width: 720px;
@@ -2567,6 +2586,7 @@ ul.rs-checkbox-tree li label {
     order: -1;
   }
 }
+
 @media (min-width: 992px) {
   .rs-container-lg, .rs-container-md, .rs-container-sm, .rs-container {
     max-width: 960px;
@@ -2784,6 +2804,7 @@ ul.rs-checkbox-tree li label {
     order: -1;
   }
 }
+
 @media (min-width: 1200px) {
   .rs-container-xl, .rs-container-lg, .rs-container-md, .rs-container-sm, .rs-container {
     max-width: 1140px;
@@ -3001,11 +3022,27 @@ ul.rs-checkbox-tree li label {
     order: -1;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .rs-form-control, .rs-form--daterangepicker input[type=text] {
     transition: none;
   }
   .rs-btn {
     transition: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .rs-inquiry-input-mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:rsf-block {
+    display: block;
+  }
+  .lg\:rsf-hidden {
+    display: none;
   }
 }

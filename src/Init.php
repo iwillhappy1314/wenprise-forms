@@ -166,53 +166,10 @@ class Init
     {
         // 主样式
         wp_register_style('wprs-forms-main', $this->get_assets_url('dist/styles/main.css'), [], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-forms-main', $this->get_assets_url('dist/scripts/main.js'), WENPRISE_FORM_VERSION, true);
+        wp_enqueue_script('wprs-forms-main', $this->get_assets_url('dist/scripts/main.js'), ['jquery'],WENPRISE_FORM_VERSION, true);
 
-        // alpinejs 和 @fylgja/alpinejs-dialog 插件
-        wp_register_script('wprs-alpinejs', $this->get_assets_url('dist/scripts/alpinejs.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
-
-        // Chosen 样式和脚本
-        wp_register_style('wprs-chosen', $this->get_assets_url('dist/styles/chosen.css'), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-chosen', $this->get_assets_url('dist/scripts/chosen-js.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
-
-        // ion-rangeslider 样式
-        wp_register_style('wprs-ion-rangeslider', $this->get_assets_url('dist/styles/ion-rangeslider.css'), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-ion-rangeslider', $this->get_assets_url('dist/scripts/ion-rangeslider.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
-
-        // Moment Js 日期处理
-        wp_register_script('wprs-moment', $this->get_assets_url('dist/scripts/moment.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
-
-        // 签字/签名
-        wp_register_script('wprs-signature', $this->get_assets_url('dist/scripts/jq-signature.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
-
-        // Sweet Alert 弹窗美化
-        wp_register_script('wprs-sweetalert', $this->get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
-
-        // Birthday Picker
-        wp_register_script('wprs-combodate', $this->get_assets_url('dist/scripts/combodate.js'), ['jquery', 'moment', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
-
-        // Datepicker 样式
-        wp_register_style('wprs-datepicker', $this->get_assets_url('dist/styles/datepicker.css'), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-datepicker-zh', $this->get_assets_url('dist/scripts/datepicker-zh.js'), ['jquery', 'jquery-ui-datepicker', 'wprs-forms-main'], WENPRISE_FORM_VERSION);
-
-        // 日期区间选择器
-        wp_register_style('wprs-daterangepicker', $this->get_assets_url('dist/styles/daterangepicker.css'), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-daterangepicker', $this->get_assets_url('dist/scripts/daterangepicker.js'), ['jquery'], WENPRISE_FORM_VERSION);
-
-        // jQuery AutoComplete
-        wp_register_script('wprs-autocomplete', $this->get_assets_url('dist/scripts/autocomplete.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION);
-
-        // 表格输入
-        wp_register_script('wprs-table-input', $this->get_assets_url('dist/scripts/table-input.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, false);
-
-        // 图像选择
-        wp_register_script('wprs-image-picker', $this->get_assets_url('dist/scripts/image-picker.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, false);
-
-        // Ajax 上传
-        wp_register_style('wprs-ajax-uploader', $this->get_assets_url('dist/styles/ajax-uploader.css'), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-ajax-uploader', $this->get_assets_url('dist/scripts/ajax-uploader.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
-
-        wp_localize_script('wprs-ajax-uploader', 'wprsUploaderL10n', [
+        wp_localize_script('wprs-forms-main', 'wenpriseFormSettings', [
+            'staticPath'           => $this->dir_to_url(realpath(__DIR__ . '/../frontend/dist')) . '/',
             'error'           => __('Upload error, please try again.', 'wprs'),
             'canceled'        => __('Upload canceled.', 'wprs'),
             'file_type_error' => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
@@ -222,14 +179,16 @@ class Init
             'insert_image'    => __('Insert Image', 'wprs'),
         ]);
 
-        // 五星评分
-        wp_register_style('wprs-star-rating',  $this->get_assets_url('dist/styles/star-rating.css'), ['wprs-forms-main'], WENPRISE_FORM_VERSION);
-        wp_register_script('wprs-star-rating', $this->get_assets_url('dist/scripts/star-rating.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
-
-        // 颜色选择
         wp_register_script('iris', admin_url('js/iris.min.js'), ['jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch'], false, true);
 
-        // 移除jQuery自动完成
+        // // Moment Js 日期处理
+        wp_register_script('wprs-moment', $this->get_assets_url('dist/scripts/moment.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, true);
+
+        // 表格输入
+        wp_register_script('wprs-table-input', $this->get_assets_url('dist/scripts/table-input.js'), ['jquery', 'wprs-forms-main'], WENPRISE_FORM_VERSION, false);
+
+        wp_register_script('wprs-sweetalert', $this->get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
+
         wp_dequeue_script('jquery-ui-autocomplete');
 
         wp_localize_script('wp-color-picker', 'wenpriseFormsSettings', [

@@ -1,6 +1,8 @@
 module.exports = {
+    prefix: 'rsf-',
     content   : [
         '../src/**/*.php',
+        '../vendor/**/*.php',
         '../templates/**/*.php'
     ],
     //darkMode: false, // or 'media' or 'class'

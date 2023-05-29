@@ -64,8 +64,6 @@ class InquiryInput extends BaseControl
      */
     public function getControl(): string
     {
-        wp_enqueue_script('wprs-alpinejs');
-
         $id    = $this->getHtmlId();
         $js_id = str_replace('-', '_', $id);
 
@@ -89,7 +87,7 @@ class InquiryInput extends BaseControl
         ?>
         <div x-data="<?= $js_id; ?>_handler()">
 
-            <div>
+            <div class="rsf-block lg:rsf-hidden rs-inquiry-input-mobile">
                 <table class="table rs-table rs-table-bordered rs-inquiry-input">
                     <thead class="thead-light">
                     <tr>
@@ -116,71 +114,72 @@ class InquiryInput extends BaseControl
                                     <button type="button" class="rs-btn rs-btn-default" @click="removeField(index)">&times;</button>
                                 </td>
                             <?php endif; ?>
-
                         </tr>
                     </template>
                     </tbody>
                 </table>
             </div>
 
-            <table class="table rs-table rs-table-bordered rs-inquiry-input">
-                <thead class="thead-light">
-                <tr>
-                    <th>#</th>
-                    <?php foreach (wp_list_pluck($fields, 'label') as $label): ?>
-                        <th><?= $label; ?></th>
-                    <?php endforeach; ?>
-                    <?php if ( $allow_delete ) : ?>
-                        <th></th>
-                    <?php endif; ?>
-                </tr>
-                </thead>
-                <tbody>
-                <template x-for="(field, index) in fields" :key="index">
+            <div class="rsf-hidden lg:rsf-block">
+                <table class="table rs-table rs-table-bordered rs-inquiry-input">
+                    <thead class="thead-light">
                     <tr>
-                        <td x-text="index + 1"></td>
-                        <?php foreach ($fields as $field): ?>
-                            <?php
-                            $field_type = FormHelpers::data_get($field, 'type', 'text');
-                            $field_name= FormHelpers::data_get($field, 'name', );
-                            ?>
-                            <td>
-                                <?php if ( $field_type === 'text' ) : ?>
-                                    <input x-model="field.<?= $field_name; ?>" type="text" name="<?= $field_name; ?>[]" class="form-control rs-form-control">
-                                <?php elseif($field_type === 'textarea'): ?>
-                                    <textarea x-model="field.<?= $field_name; ?>" name="<?= $field_name; ?>[]" cols="30" rows="10"></textarea>
-                                <?php elseif($field_type === 'select'): ?>
-                                    <select x-model="field.<?= $field_name; ?>" name="<?= $field_name; ?>[]">
-                                        <?php foreach (FormHelpers::data_get($field, 'options', ) as $option_key => $option_value): ?>
-                                            <option value="<?= $option_key; ?>"><?= $option_value; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php endif; ?>
-                            </td>
+                        <th>#</th>
+                        <?php foreach (wp_list_pluck($fields, 'label') as $label): ?>
+                            <th><?= $label; ?></th>
                         <?php endforeach; ?>
-
-                        <?php if ($allow_delete) : ?>
-                            <td>
-                                <button type="button" class="rs-btn rs-btn-default" @click="removeField(index)">&times;</button>
-                            </td>
+                        <?php if ( $allow_delete ) : ?>
+                            <th></th>
                         <?php endif; ?>
                     </tr>
-                </template>
-                </tbody>
+                    </thead>
+                    <tbody>
+                    <template x-for="(field, index) in fields" :key="index">
+                        <tr>
+                            <td x-text="index + 1"></td>
+                            <?php foreach ($fields as $field): ?>
+                                <?php
+                                $field_type = FormHelpers::data_get($field, 'type', 'text');
+                                $field_name= FormHelpers::data_get($field, 'name', );
+                                ?>
+                                <td>
+                                    <?php if ( $field_type === 'text' ) : ?>
+                                        <input x-model="field.<?= $field_name; ?>" type="text" name="<?= $field_name; ?>[]" class="form-control rs-form-control">
+                                    <?php elseif($field_type === 'textarea'): ?>
+                                        <textarea x-model="field.<?= $field_name; ?>" name="<?= $field_name; ?>[]" cols="30" rows="10"></textarea>
+                                    <?php elseif($field_type === 'select'): ?>
+                                        <select x-model="field.<?= $field_name; ?>" name="<?= $field_name; ?>[]">
+                                            <?php foreach (FormHelpers::data_get($field, 'options', ) as $option_key => $option_value): ?>
+                                                <option value="<?= $option_key; ?>"><?= $option_value; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    <?php endif; ?>
+                                </td>
+                            <?php endforeach; ?>
 
-                <?php if ($allow_add) : ?>
-                    <tfoot>
-                    <tr>
-                        <td colspan="<?= count($field_names) + $addition_col_number; ?>" class="text-right">
-                            <button type="button" class="rs-btn rs-btn-primary" @click="addNewField()"><?= __('+ Add Row', 'wprs'); ?></button>
-                        </td>
-                    </tr>
-                    </tfoot>
-                <?php endif; ?>
+                            <?php if ($allow_delete) : ?>
+                                <td>
+                                    <button type="button" class="rs-btn rs-btn-default" @click="removeField(index)">&times;</button>
+                                </td>
+                            <?php endif; ?>
+                        </tr>
+                    </template>
+                    </tbody>
 
-            </table>
+                    <?php if ($allow_add) : ?>
+                        <tfoot>
+                        <tr>
+                            <td colspan="<?= count($field_names) + $addition_col_number; ?>" class="text-right">
+                                <button type="button" class="rs-btn rs-btn-primary" @click="addNewField()"><?= __('+ Add Row', 'wprs'); ?></button>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    <?php endif; ?>
 
-            <div>
+                </table>
+            </div>
+
+            <div class="rsf-block lg:rsf-hidden rs-inquiry-input-modal">
                 <?php if ($allow_delete) : ?>
                     <button @click="open = !open" class="rs-btn rs-btn-primary"><?= __('+ Add Row', 'wprs'); ?></button>
                 <?php endif; ?>
@@ -189,12 +188,26 @@ class InquiryInput extends BaseControl
                         <fieldset class="rs-form-row">
 
                             <?php foreach ($fields as $field): ?>
+                                <?php
+                                $field_type = FormHelpers::data_get($field, 'type', 'text');
+                                $field_name= FormHelpers::data_get($field, 'name', );
+                                ?>
                                 <div class="rs-form-group rs-form--text rs-row rs-col-md-12" id="rs-form-company_name">
                                     <div class="rs-col-sm-3 rs-control-label">
                                         <label for="frm-company_name"><?= $field[ 'label' ]; ?></label>
                                     </div>
                                     <div class="rs-col-sm-9 rs-control-input">
-                                        <input x-model="_field._<?= $field[ 'name' ]; ?>" type="text" name="_<?= $field[ 'name' ]; ?>" class="form-control rs-form-control">
+                                        <?php if ( $field_type === 'text' ) : ?>
+                                            <input x-model="_field._<?= $field_name; ?>" type="text" name="_<?= $field_name; ?>" class="form-control rs-form-control">
+                                        <?php elseif($field_type === 'textarea'): ?>
+                                            <textarea x-model="_field._<?= $field_name; ?>" name="_<?= $field_name; ?>" cols="30" rows="10" class="form-control rs-form-control"></textarea>
+                                        <?php elseif($field_type === 'select'): ?>
+                                            <select x-model="_field._<?= $field_name; ?>" name="_<?= $field_name; ?>">
+                                                <?php foreach (FormHelpers::data_get($field, 'options', ) as $option_key => $option_value): ?>
+                                                    <option value="<?= $option_key; ?>"><?= $option_value; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -221,6 +234,8 @@ class InquiryInput extends BaseControl
               },
               _addNewField() {
                 let real_field = {};
+
+                console.log(this._field);
 
                 for (let key in this._field) {
                   real_field[key.replace('_', '')] = this._field[key];

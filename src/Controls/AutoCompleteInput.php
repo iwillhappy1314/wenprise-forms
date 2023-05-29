@@ -22,7 +22,7 @@ class AutoCompleteInput extends TextInput {
 		parent::__construct( $label );
 		$this->settings = (array) $settings;
 
-		$this->setOption( 'type', 'birthday' );
+		$this->setOption( 'type', 'autocomplete' );
 	}
 
 	/**

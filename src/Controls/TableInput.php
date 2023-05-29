@@ -23,7 +23,7 @@ class TableInput extends BaseControl {
 		$this->settings = (array) $settings;
 		$this->fields   = (array) $fields;
 
-		$this->setOption( 'type', 'table' );
+		$this->setOption( 'type', 'table-input' );
 	}
 
 
@@ -117,7 +117,9 @@ class TableInput extends BaseControl {
 
 		$script = "<script>
 			document.addEventListener('DOMContentLoaded', function () {
-			    window.AppendGrid = new AppendGrid(" . json_encode( $settings ) . ");
+                loadjs.ready('table-input', function() {
+                    window.AppendGrid = new AppendGrid(" . json_encode( $settings ) . ");
+                });
 			});
 			</script>";
 
