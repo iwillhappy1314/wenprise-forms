@@ -147,7 +147,7 @@ class Helpers
         $manifest = self::get_manifest();
 
         // Remove manifest directory from path
-        $path = str_replace($manifest_directory, '', $path);
+        $path = str_replace((string)$manifest_directory, '', $path);
         // Make sure there’s a leading slash
         $path = '/' . ltrim($path, '/');
 
