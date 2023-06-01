@@ -7,6 +7,19 @@ Basic usage: [Nette Form](https://doc.nette.org/en/2.4/forms)
 ## Usage
 
 ### Quick start
+Forms 类带有自己的HTTP请求处理方法，需要在head_sent之前实例化，可以把实例化的过程放在 init action 中。
+
+```php
+add_action('init', function ()
+{
+    global $form;
+
+    // Get forms object
+    $form = Helpers::get_form();
+});
+
+```
+创建Form实例
 
 ````php
 use Wenprise\Forms\Form;
