@@ -198,8 +198,6 @@
             var value = $(this).data('value'),
                 wp_uploader = $('body').find('.rs-wp-uploader__field');
 
-            console.log(wp_uploader.find('input[value=' + value + ']'));
-
             // 移除值
             wp_uploader.find('input[value=' + value + ']').remove();
 
@@ -208,6 +206,10 @@
         });
 
         wprs_wp_media_uploader.open();
+    });
+
+    $.each($('.rs-form--uploader'), function(index, el) {
+      $(this).find('.js-uploader').wprsAjaxUploader();
     });
 
 })(jQuery);

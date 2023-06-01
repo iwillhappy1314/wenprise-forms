@@ -90,8 +90,6 @@ class Init
 
         wp_register_script('wprs-sweetalert', Helpers::get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
 
-        wp_dequeue_script('jquery-ui-autocomplete');
-
         wp_localize_script('wprs-forms-main', 'wpColorPickerL10n', [
             'clear'         => __('Clear', 'wprs'),
             'defaultString' => __('Default', 'wprs'),

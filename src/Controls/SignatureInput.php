@@ -60,21 +60,6 @@ class SignatureInput extends TextInput {
         $el->data('id', $id);
         $el->data('settings', $settings);
 
-		$script = "<script>
-		        jQuery(document).ready(function($){
-		            var el = $('#$id'),
-		                pad = $('#js-$id');
-		        	pad.jqSignature(" . json_encode( $settings ) . ");
-		        	pad.on('jq.signature.changed', function() {
-		        	  el.val(pad.jqSignature('getDataURL'));
-                    });
-		        	
-		        	$('.rs-clear-signature').click(function(){
-		        	    pad.jqSignature('clearCanvas');
-		        	})
-		        });
-		    </script>";
-
-		return Html::fromHtml( $el . $holder . $script );
+		return Html::fromHtml( $el . $holder );
 	}
 }

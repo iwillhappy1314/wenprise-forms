@@ -40,7 +40,6 @@ class AutoCompleteInput extends TextInput {
 		$el = parent::getControl();
 		$el->setAttribute( 'class', 'rs-form-control' );
 
-		$id       = $this->getHtmlId();
 		$settings = $this->settings;
 
 		if ( is_array( $this->source ) ) {
@@ -50,17 +49,10 @@ class AutoCompleteInput extends TextInput {
 		}
 
 		$settings = array_merge( $settings_default, $settings );
-		$settings = json_encode( $settings );
 
         $el->data('settings', json_encode($settings));
 
-		$script = "<script>
-			jQuery(document).ready(function($) {
-				$('#$id').devbridgeAutocomplete($settings);
-			});
-		</script>";
-
-		return Html::fromHtml( $el . $script );
+		return Html::fromHtml( $el );
 	}
 
 	/**
