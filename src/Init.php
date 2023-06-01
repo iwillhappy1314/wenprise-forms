@@ -77,7 +77,7 @@ class Init
             'staticPath'      => Helpers::dir_to_url(realpath(__DIR__ . '/../frontend')),
             'admin_url'       => admin_url(),
             'includes_url'    => includes_url(),
-            'ajaxurl'         => admin_url('admin-ajax.php'),
+            'ajax_url'         => admin_url('admin-ajax.php'),
             'error'           => __('Upload error, please try again.', 'wprs'),
             'canceled'        => __('Upload canceled.', 'wprs'),
             'file_type_error' => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),

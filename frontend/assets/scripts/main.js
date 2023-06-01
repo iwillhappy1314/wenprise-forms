@@ -27,7 +27,7 @@ $('.rs-form--captcha').on('click', '.rs-captcha__img', function() {
  * 根据条件显示表单
  */
 $('form').conditionize({
-  selector: '[data-cond]',
+  selector    : '[data-cond]',
   customToggle: function($item, show) {
     if (show) {
       $item.parents('.rs-form-group').show();
@@ -70,6 +70,10 @@ if ($('.rs-form--color-picker').length > 0) {
 
 if ($('.rs-form--uploader').length > 0) {
   loadjs([distPath + wprs_get_assets_file('/dist/styles/ajax-uploader.css'), distPath + wprs_get_assets_file('/dist/scripts/ajax-uploader.js')], 'uploader');
+}
+
+if ($('.rs-form--sms').length > 0) {
+  loadjs([distPath + wprs_get_assets_file('/dist/scripts/send-sms.js')], 'send-sms');
 }
 
 if ($('.rs-form--signature').length > 0) {
