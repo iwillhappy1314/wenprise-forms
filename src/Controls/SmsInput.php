@@ -4,7 +4,7 @@ namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\TextInput;
 use Nette\Utils\Html;
-use Wenprise\Forms\FormHelpers;
+use Wenprise\Forms\Helpers;
 
 /**
  * 颜色选择
@@ -37,7 +37,7 @@ class SmsInput extends TextInput {
 		$el       = parent::getControl();
 		$settings = $this->settings;
 
-		if ( ! $url = FormHelpers::data_get( $settings, 'url' ) ) {
+		if ( ! $url = Helpers::data_get( $settings, 'url' ) ) {
 			$url = $this->url;
 		}
 

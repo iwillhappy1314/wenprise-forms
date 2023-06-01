@@ -57,7 +57,7 @@ if (mix.inProduction()) {
   mix.versionHash();
 } else {
   mix.sourceMaps();
-  mix.webpackConfig({devtool: 'eval'});
+  //mix.webpackConfig({devtool: 'eval'});
 }
 
 mix.browserSync({

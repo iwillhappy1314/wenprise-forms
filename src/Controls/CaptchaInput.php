@@ -4,7 +4,7 @@ namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\TextInput;
 use Nette\Utils\Html;
-use Wenprise\Forms\FormHelpers;
+use Wenprise\Forms\Helpers;
 
 /**
  * 图形验证码
@@ -40,7 +40,7 @@ class CaptchaInput extends TextInput {
 		$settings  = $this->settings;
 		$action_id = $id . '-action';
 
-		if ( ! $url = FormHelpers::data_get( $settings, 'url' ) ) {
+		if ( ! $url = Helpers::data_get( $settings, 'url' ) ) {
 			$url = $this->url;
 		}
 

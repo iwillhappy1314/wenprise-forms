@@ -1,10 +1,10 @@
 <?php
 
-namespace Wenprise\Forms;
+namespace Wenprise\Forms\Translator;
 
 use Nette\Localization\Translator;
 
-class FormTranslator implements Translator
+class DefaultTranslator implements Translator
 {
     /**
      * 根据前端语言显示对应的字符串

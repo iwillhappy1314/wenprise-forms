@@ -5,6 +5,7 @@ namespace Wenprise\Forms;
 use Nette\HtmlStringable;
 use Wenprise\Forms\Datastores\IDatastore;
 use Wenprise\Forms\Renders\DefaultFormRender;
+use Wenprise\Forms\Translator\DefaultTranslator;
 
 class Form extends \Nette\Forms\Form implements HtmlStringable
 {
@@ -35,7 +36,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
         new Init();
 
         $this->setRenderer(new DefaultFormRender());
-        $this->setTranslator(new FormTranslator());
+        $this->setTranslator(new DefaultTranslator());
 
         wp_enqueue_style('wprs-forms-main');
 

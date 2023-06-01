@@ -5,7 +5,7 @@ namespace Wenprise\Forms\Controls;
 use Nette\Forms\Controls\RadioList;
 use Nette\Forms\Helpers;
 use Nette\Utils\Html;
-use Wenprise\Forms\FormHelpers;
+use Wenprise\Forms\Helpers as FormHelpers;
 
 /**
  * Chosen 增加选择

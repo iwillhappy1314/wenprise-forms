@@ -55,101 +55,6 @@ class Init
 
 
     /**
-     * 转换路径到 Url
-     *
-     * @param $directory
-     *
-     * @return string
-     */
-    function dir_to_url($directory): string
-    {
-        $url   = trailingslashit($directory);
-        $count = 0;
-
-        # Sanitize directory separator on Windows
-        $url = str_replace('\\', '/', $url);
-
-        $possible_locations = [
-            WP_PLUGIN_DIR  => plugins_url(),   # If installed as a plugin
-            WP_CONTENT_DIR => content_url(),   # If anywhere in wp-content
-            ABSPATH        => site_url('/'),   # If anywhere else within the WordPress installation
-        ];
-
-        foreach ($possible_locations as $test_dir => $test_url) {
-            $test_dir_normalized = str_replace('\\', '/', $test_dir);
-            $url                 = str_replace($test_dir_normalized, $test_url, $url, $count);
-
-            if ($count > 0) {
-                return untrailingslashit($url);
-            }
-        }
-
-        return ''; // return empty string to avoid exposing half-parsed paths
-    }
-
-
-    /**
-     * 获取资源列表
-     *
-     * @param $dir
-     *
-     * @return mixed
-     */
-    function get_manifest($dir): mixed
-    {
-        $filepath = realpath(__DIR__ . '/' . $dir . '/manifest.json');
-
-        if (file_exists($filepath)) {
-            return json_decode(file_get_contents($filepath), true);
-        }
-
-        return false;
-    }
-
-
-    /**
-     * 获取资源 URL
-     *
-     * @param      $path
-     * @param null $manifest_directory
-     *
-     * @return string
-     */
-    function get_assets_url($path, $manifest_directory = null): string
-    {
-
-        static $manifest;
-        static $manifest_path;
-
-        if ( ! $manifest_path) {
-            $manifest_path = realpath(__DIR__ . '/../frontend/mix-manifest.json');
-        }
-
-        if ( ! $manifest) {
-            // @codingStandardsIgnoreLine
-            $manifest = json_decode(file_get_contents($manifest_path), true);
-        }
-
-        // Remove manifest directory from path
-        $path = str_replace($manifest_directory, '', $path);
-        // Make sure there’s a leading slash
-        $path = '/' . ltrim($path, '/');
-
-        // Get file URL from manifest file
-        $path = $manifest[ $path ];
-        // Make sure there’s no leading slash
-        $path = ltrim($path, '/');
-
-        # 设置根目录 Url
-        if ( ! defined('WENPRISE_FORM_URL')) {
-            define('WENPRISE_FORM_URL', $this->dir_to_url(realpath(__DIR__ . '/../')));
-        }
-
-        return esc_url(WENPRISE_FORM_URL . '/frontend/' . $path);
-    }
-
-
-    /**
      * 注册多语言文件
      */
     function register_locals(): void
@@ -165,12 +70,12 @@ class Init
     function register_assets(): void
     {
         // 主样式
-        wp_register_style('wprs-forms-main', $this->get_assets_url('dist/styles/main.css'), [], WENPRISE_FORM_VERSION);
-        wp_enqueue_script('wprs-forms-main', $this->get_assets_url('dist/scripts/main.js'), ['jquery'],WENPRISE_FORM_VERSION, true);
+        wp_register_style('wprs-forms-main', Helpers::get_assets_url('dist/styles/main.css'), [], WENPRISE_FORM_VERSION);
+        wp_enqueue_script('wprs-forms-main', Helpers::get_assets_url('dist/scripts/main.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
 
         wp_localize_script('wprs-forms-main', 'wenpriseFormSettings', [
-            'staticPath'           => $this->dir_to_url(realpath(__DIR__ . '/../frontend/dist')) . '/',
-            'ajaxurl' => admin_url('admin-ajax.php'),
+            'staticPath'      => Helpers::dir_to_url(realpath(__DIR__ . '/../frontend')),
+            'ajaxurl'         => admin_url('admin-ajax.php'),
             'error'           => __('Upload error, please try again.', 'wprs'),
             'canceled'        => __('Upload canceled.', 'wprs'),
             'file_type_error' => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
@@ -178,11 +83,12 @@ class Init
             'file_ext_error'  => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
             'choose_image'    => __('Choose Image', 'wprs'),
             'insert_image'    => __('Insert Image', 'wprs'),
+            'manifest'        => Helpers::get_manifest(),
         ]);
 
         wp_register_script('iris', admin_url('js/iris.min.js'), ['jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch'], false, true);
 
-        wp_register_script('wprs-sweetalert', $this->get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
+        wp_register_script('wprs-sweetalert', Helpers::get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
 
         wp_dequeue_script('jquery-ui-autocomplete');
 
@@ -207,8 +113,8 @@ class Init
 
         // 基本文章数据
         $post_data = [
-            'post_type'  => FormHelpers::data_get($data, 'post_type', 'inquiry'),
-            'post_title' => FormHelpers::data_get($data, 'name', '') . FormHelpers::data_get($data, 'phone', '') . FormHelpers::data_get($data, 'subject', ''),
+            'post_type'  => Helpers::data_get($data, 'post_type', 'inquiry'),
+            'post_title' => Helpers::data_get($data, 'name', '') . Helpers::data_get($data, 'phone', '') . Helpers::data_get($data, 'subject', ''),
         ];
 
         $post_id_or_error = wp_insert_post($post_data);
