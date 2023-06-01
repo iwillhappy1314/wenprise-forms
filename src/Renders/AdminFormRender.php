@@ -18,6 +18,8 @@ class AdminFormRender extends BaseFormRender
         $this->type = $type;
         $screen     = get_current_screen();
 
+        $this->wrappers[ 'form' ][ 'container' ] = "div class='rs-admin-form rs-form--$type'";
+
         switch ($type) {
             case 'term_meta':
                 if ($screen->base == 'term') {
@@ -35,7 +37,7 @@ class AdminFormRender extends BaseFormRender
 
         $this->wrappers[ 'label' ][ 'container' ]   = 'th class=row scope=row';
 
-        add_action('wp_enqueue_scripts', function(){
+        add_action('admin_enqueue_scripts', function(){
             wp_enqueue_style('wprs-forms-main');
             wp_enqueue_script('wprs-forms-main');
         });

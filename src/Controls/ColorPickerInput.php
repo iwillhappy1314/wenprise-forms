@@ -52,6 +52,9 @@ class ColorPickerInput extends TextInput
 
 		$settings = array_merge( $settings_default, $settings );
 
+        $el->data('id', $id);
+        $el->data('settings', json_encode($settings));
+
 		$script = "<script>
 			jQuery(document).ready(function($) {
 				var picker = $('#$id');

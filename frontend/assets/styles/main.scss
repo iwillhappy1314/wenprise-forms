@@ -177,12 +177,35 @@ ul.rs-checkbox-tree {
   }
 }
 
-.rs-inquiry-input-mobile{
+.rs-inquiry-input-mobile {
   display: none;
 }
 
 @media(max-width: 960px) {
   .rs-inquiry-input-mobile {
     display: block;
+  }
+}
+
+.rs-captcha__img{
+  cursor: pointer;
+}
+
+.rs-admin-form {
+  & > fieldset {
+    margin: 1.5em 0;
+  }
+
+  legend {
+    color: #1d2327;
+    font-size: 1.5em;
+  }
+
+  // Field description
+  td input + small {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    color: #646970;
   }
 }

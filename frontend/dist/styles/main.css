@@ -2056,7 +2056,23 @@ ul.rs-checkbox-tree li label {
 .rs-inquiry-input-mobile {
   display: none;
 }
+.rs-captcha__img {
+  cursor: pointer;
+}
 
+.rs-admin-form > fieldset {
+  margin: 1.5em 0;
+}
+.rs-admin-form legend {
+  color: #1d2327;
+  font-size: 1.5em;
+}
+.rs-admin-form td input + small {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  color: #646970;
+}
 @media (max-width: 575.98px) {
   .rs-table-responsive-sm {
     display: block;
@@ -2068,7 +2084,6 @@ ul.rs-checkbox-tree li label {
     border: 0;
   }
 }
-
 @media (max-width: 767.98px) {
   .rs-table-responsive-md {
     display: block;
@@ -2080,7 +2095,6 @@ ul.rs-checkbox-tree li label {
     border: 0;
   }
 }
-
 @media (max-width: 991.98px) {
   .rs-table-responsive-lg {
     display: block;
@@ -2092,7 +2106,6 @@ ul.rs-checkbox-tree li label {
     border: 0;
   }
 }
-
 @media (max-width: 1199.98px) {
   .rs-table-responsive-xl {
     display: block;
@@ -2104,7 +2117,6 @@ ul.rs-checkbox-tree li label {
     border: 0;
   }
 }
-
 @media (min-width: 576px) {
   .rs-container-sm, .rs-container {
     max-width: 540px;
@@ -2368,7 +2380,6 @@ ul.rs-checkbox-tree li label {
     order: -1;
   }
 }
-
 @media (min-width: 768px) {
   .rs-container-md, .rs-container-sm, .rs-container {
     max-width: 720px;
@@ -2586,7 +2597,6 @@ ul.rs-checkbox-tree li label {
     order: -1;
   }
 }
-
 @media (min-width: 992px) {
   .rs-container-lg, .rs-container-md, .rs-container-sm, .rs-container {
     max-width: 960px;
@@ -2804,7 +2814,6 @@ ul.rs-checkbox-tree li label {
     order: -1;
   }
 }
-
 @media (min-width: 1200px) {
   .rs-container-xl, .rs-container-lg, .rs-container-md, .rs-container-sm, .rs-container {
     max-width: 1140px;
@@ -3022,7 +3031,6 @@ ul.rs-checkbox-tree li label {
     order: -1;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .rs-form-control, .rs-form--daterangepicker input[type=text] {
     transition: none;
@@ -3031,13 +3039,11 @@ ul.rs-checkbox-tree li label {
     transition: none;
   }
 }
-
 @media (max-width: 960px) {
   .rs-inquiry-input-mobile {
     display: block;
   }
 }
-
 @media (min-width: 1024px) {
   .lg\:rsf-block {
     display: block;

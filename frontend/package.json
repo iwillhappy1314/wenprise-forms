@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@fylgja/alpinejs-dialog": "^1.0.1",
+    "@wordpress/url": "^3.35.0",
     "alpinejs": "^3.12.1",
     "bootstrap": "^4.6.0",
     "bootstrap-star-rating": "^4.0.6",

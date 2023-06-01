@@ -44,14 +44,6 @@ class CaptchaInput extends TextInput {
 			$url = $this->url;
 		}
 
-		$script = "<script>
-            // 刷新验证码
-		    function wprs_refresh_code(obj) {
-		        var href = new URL(obj.src);
-                href.searchParams.set('code', Math.random());
-		        obj.src = href;
-		    }</script>";
-
 		$input_group   = Html::el( 'div class=rs-input-group' );
 		$action_button = Html::el( 'span class=rs-input-group-btn' )
 		                     ->addHtml(
@@ -60,7 +52,6 @@ class CaptchaInput extends TextInput {
 			                         ->setAttribute( 'id', $action_id )
 			                         ->setAttribute( 'class', 'rs-captcha__img' )
 			                         ->setAttribute( 'title', __( 'Click to refresh', 'wprs' ) )
-			                         ->setAttribute( 'onclick', 'wprs_refresh_code(this)' )
 			                         ->setAttribute( 'alt', 'Captcha' )
 			                         ->setAttribute( 'src', $url )
 		                     );
@@ -68,7 +59,7 @@ class CaptchaInput extends TextInput {
 		$input_group->addHtml( $el->setAttribute( 'class', 'rs-form-control' ) );
 		$input_group->addHtml( $action_button );
 
-		return Html::fromHtml( $input_group . $script );
+		return $input_group;
 	}
 
 
