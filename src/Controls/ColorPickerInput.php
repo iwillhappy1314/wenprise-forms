@@ -33,13 +33,6 @@ class ColorPickerInput extends TextInput
      */
 	public function getControl(): Html
 	{
-
-        if ( function_exists( 'wp_enqueue_script' ) ) {
-            wp_enqueue_script( 'iris' );
-            wp_enqueue_script( 'wp-color-picker' );
-            wp_enqueue_style('wp-color-picker');
-        }
-
 		$el = parent::getControl();
         $el->setAttribute('autocomplete', 'off');
 
@@ -55,25 +48,6 @@ class ColorPickerInput extends TextInput
         $el->data('id', $id);
         $el->data('settings', json_encode($settings));
 
-		$script = "<script>
-			jQuery(document).ready(function($) {
-				var picker = $('#$id');
-				picker.iris(" . json_encode( $settings ) . ");
-				picker.blur(function() {
-					setTimeout(function() {
-					  if (!$(document.activeElement).closest('.iris-picker').length){
-					  	  picker.iris('hide');
-					  }else{
-					      picker.focus();
-					  }
-					}, 0);
-				});
-				picker.focus(function() {
-					picker.iris('show');
-				});
-			});
-		</script>";
-
-		return Html::fromHtml( $el . $script);
+		return $el;
 	}
 }

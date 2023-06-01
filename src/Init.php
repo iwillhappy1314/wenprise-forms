@@ -75,6 +75,8 @@ class Init
 
         wp_localize_script('wprs-forms-main', 'wenpriseFormSettings', [
             'staticPath'      => Helpers::dir_to_url(realpath(__DIR__ . '/../frontend')),
+            'admin_url'       => admin_url(),
+            'includes_url'    => includes_url(),
             'ajaxurl'         => admin_url('admin-ajax.php'),
             'error'           => __('Upload error, please try again.', 'wprs'),
             'canceled'        => __('Upload canceled.', 'wprs'),
@@ -85,8 +87,6 @@ class Init
             'insert_image'    => __('Insert Image', 'wprs'),
             'manifest'        => Helpers::get_manifest(),
         ]);
-
-        wp_register_script('iris', admin_url('js/iris.min.js'), ['jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch'], false, true);
 
         wp_register_script('wprs-sweetalert', Helpers::get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
 

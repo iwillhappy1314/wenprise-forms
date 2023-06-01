@@ -8,6 +8,8 @@ import {addQueryArgs} from '@wordpress/url';
 
 var loadjs = require('loadjs');
 var distPath = wenpriseFormSettings.staticPath;
+var admin_url = wenpriseFormSettings.admin_url;
+var includes_url = wenpriseFormSettings.includes_url;
 
 var wprs_get_assets_file = function($file_path) {
   var manifest = wenpriseFormSettings.manifest;
@@ -25,7 +27,7 @@ $('.rs-form--captcha').on('click', '.rs-captcha__img', function() {
  * 根据条件显示表单
  */
 $('form').conditionize({
-  selector    : '[data-cond]',
+  selector: '[data-cond]',
   customToggle: function($item, show) {
     if (show) {
       $item.parents('.rs-form-group').show();
@@ -35,25 +37,36 @@ $('form').conditionize({
   },
 });
 
-/**
- * 显示颜色选择控件
- */
-//$.each($('.rs-form--color-picker input'), function(index, el) {
-//  var picker = $(el).data('id');
-//  picker.iris($(el).data('settings'));
-//  picker.blur(function() {
-//    setTimeout(function() {
-//      if (!$(document.activeElement).closest('.iris-picker').length) {
-//        picker.iris('hide');
-//      } else {
-//        picker.focus();
-//      }
-//    }, 0);
-//  });
-//  picker.focus(function() {
-//    picker.iris('show');
-//  });
-//});
+if ($('.rs-form--color-picker').length > 0) {
+  loadjs([
+    includes_url + 'js/jquery/ui/core.min.js',
+    includes_url + 'js/jquery/ui/mouse.min.js',
+    includes_url + 'js/jquery/ui/draggable.min.js',
+    includes_url + 'js/jquery/ui/slider.min.js',
+    includes_url + 'js/jquery/jquery.ui.touch-punch.js',
+    admin_url + 'js/iris.min.js',
+    admin_url + 'js/color-picker.min.js',
+    admin_url + 'css/color-picker.min.css'], 'color-picker');
+
+  loadjs.ready('color-picker', function() {
+    $.each($('.rs-form--color-picker input'), function(index, el) {
+      var picker = $(el);
+      picker.iris($(el).data('settings'));
+      picker.blur(function() {
+        setTimeout(function() {
+          if (!$(document.activeElement).closest('.iris-picker').length) {
+            picker.iris('hide');
+          } else {
+            picker.focus();
+          }
+        }, 0);
+      });
+      picker.focus(function() {
+        picker.iris('show');
+      });
+    });
+  });
+}
 
 if ($('.rs-form--uploader').length > 0) {
   loadjs([distPath + wprs_get_assets_file('/dist/styles/ajax-uploader.css'), distPath + wprs_get_assets_file('/dist/scripts/ajax-uploader.js')], 'uploader');
