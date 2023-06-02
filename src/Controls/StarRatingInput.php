@@ -33,11 +33,6 @@ class StarRatingInput extends TextInput
      */
     public function getControl(): Html
     {
-        wp_enqueue_style('wprs-star-rating');
-        wp_enqueue_script('wprs-star-rating');
-
-
-        $id       = $this->getHtmlId();
         $settings = $this->settings;
 
         $el = parent::getControl();
@@ -56,6 +51,6 @@ class StarRatingInput extends TextInput
         $el->data('step', $settings[ 'step' ]);
         $el->data('settings', json_encode($settings));
 
-        return Html::fromHtml( $el );
+        return $el;
     }
 }

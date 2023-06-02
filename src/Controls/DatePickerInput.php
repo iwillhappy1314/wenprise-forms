@@ -56,6 +56,6 @@ class DatePickerInput extends TextInput
 
         $el->data('settings', json_encode($settings));
 
-	    return Html::fromHtml( $el);
+	    return $el;
     }
 }

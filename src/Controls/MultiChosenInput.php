@@ -25,12 +25,6 @@ class MultiChosenInput extends MultiSelectBox {
 	}
 
 	public function getControl(): Html {
-
-		if ( function_exists( 'wp_enqueue_script' ) ) {
-			wp_enqueue_style( 'wprs-chosen' );
-			wp_enqueue_script( 'wprs-chosen' );
-		}
-
 		$el = parent::getControl();
 		$settings = $this->settings;
 
@@ -42,7 +36,7 @@ class MultiChosenInput extends MultiSelectBox {
 
         $el->data('settings', json_encode($settings));
 
-		return Html::fromHtml( $el );
+		return $el;
 
 	}
 

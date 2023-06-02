@@ -51,12 +51,6 @@ class WpUploaderInput extends BaseControl {
 
 		$el = parent::getControl();
 
-		if ( function_exists( 'wp_enqueue_script' ) ) {
-			wp_enqueue_media();
-			wp_enqueue_style( 'wprs-ajax-uploader' );
-			wp_enqueue_script( 'wprs-ajax-uploader' );
-		}
-
 		$name     = $this->getHtmlName();
 		$id       = $this->getHtmlId();
 		$settings = $this->settings;

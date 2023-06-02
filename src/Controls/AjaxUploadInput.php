@@ -133,7 +133,7 @@ class AjaxUploadInput extends BaseControl
                     )
             );
 
-        return Html::fromHtml( $html);
+        return $html;
     }
 
 

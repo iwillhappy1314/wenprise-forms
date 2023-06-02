@@ -28,14 +28,8 @@ class ImagePickerInput extends SelectBox
 
     public function getControl(): Html
     {
-
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_script('wprs-image-picker');
-        }
-
         $el = parent::getControl();
 
-        $id       = $this->getHtmlId();
         $settings = $this->settings;
 
         $settings_default = [
@@ -46,7 +40,7 @@ class ImagePickerInput extends SelectBox
         $settings = array_merge($settings_default, $settings);
         $el->data('settings', json_encode($settings));
 
-        return Html::fromHtml($el);
+        return $el;
 
     }
 

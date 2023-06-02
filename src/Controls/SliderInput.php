@@ -39,12 +39,6 @@ class SliderInput extends TextBase
      */
     public function getControl(): Html
     {
-
-        if (function_exists('wp_enqueue_script')) {
-            wp_enqueue_script('wprs-ion-rangeslider');
-            wp_enqueue_style('wprs-ion-rangeslider');
-        }
-
         $el       = parent::getControl();
         $settings = $this->settings;
         $value    = $this->getValue();
@@ -67,7 +61,7 @@ class SliderInput extends TextBase
 
         $el->data('settings', json_encode($settings));
 
-        return Html::fromHtml($el);
+        return $el;
 
     }
 

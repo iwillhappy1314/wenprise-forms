@@ -33,10 +33,6 @@ class AutoCompleteInput extends TextInput {
 	 * @todo: 解决和内置 autocomplete 的冲突
 	 */
 	public function getControl(): Html {
-		if ( function_exists( 'wp_enqueue_script' ) ) {
-			wp_dequeue_script( 'jquery-ui-autocomplete' );
-		}
-
 		$el = parent::getControl();
 		$el->setAttribute( 'class', 'rs-form-control' );
 
@@ -52,7 +48,7 @@ class AutoCompleteInput extends TextInput {
 
         $el->data('settings', json_encode($settings));
 
-		return Html::fromHtml( $el );
+		return $el;
 	}
 
 	/**

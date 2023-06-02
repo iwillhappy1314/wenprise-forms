@@ -112,7 +112,7 @@ class TableInput extends BaseControl {
 		$html->setAttribute( 'data-id', 'rs-table-input-' . md5(json_encode( $settings )) );
 		$html->setAttribute( 'data-settings', json_encode( $settings ) );
 
-		return Html::fromHtml( $html );
+		return $html;
 	}
 
 }
