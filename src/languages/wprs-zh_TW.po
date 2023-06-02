@@ -4,205 +4,240 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2020-12-23 20:06+0800\n"
-"PO-Revision-Date: 2020-12-23 20:08+0800\n"
+"POT-Creation-Date: 2023-06-02 11:04+0800\n"
+"PO-Revision-Date: 2023-06-02 11:06+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Forms/Controls/AjaxUploadInput.php:67
+#: Controls/AjaxUploadInput.php:62
 msgid "Select File"
 msgstr "選擇文件"
 
-#: Forms/Controls/AjaxUploadInput.php:102
+#: Controls/AjaxUploadInput.php:104
 msgid "Drag & Drop Images Here"
 msgstr "拖放圖像到這裡"
 
-#: Forms/Controls/CaptchaInput.php:58
+#: Controls/CaptchaInput.php:54
 msgid "Click to refresh"
 msgstr "單擊以刷新"
 
-#: Forms/Controls/ChosenInput.php:43
+#: Controls/ChosenInput.php:39
 msgid "Select Some Options"
 msgstr "選擇一些選項"
 
-#: Forms/Controls/ChosenInput.php:44
+#: Controls/ChosenInput.php:40
 msgid "Select an Option"
 msgstr "選擇一項"
 
-#: Forms/Controls/ChosenInput.php:45
+#: Controls/ChosenInput.php:41
 msgid "No results match"
 msgstr "沒有符合的結果"
 
-#: Forms/Controls/CloneInput.php:61
+#: Controls/CloneInput.php:61
 msgid "Remove"
 msgstr "刪除"
 
-#: Forms/Controls/CloneInput.php:68
+#: Controls/CloneInput.php:68
 msgid "Add More Fields"
 msgstr "添加更多欄位"
 
-#: Forms/Controls/SmsInput.php:50
-msgid "Get Code"
-msgstr "獲取認證碼"
+#: Controls/InquiryInput.php:175 Controls/InquiryInput.php:186
+msgid "+ Add Row"
+msgstr "+ 新增行"
 
-#: Forms/Controls/SmsInput.php:70 Forms/Controls/SmsInput.php:74
+#: Controls/InquiryInput.php:222
+msgid "Add"
+msgstr "新增"
+
+#: Controls/SignatureInput.php:44 Init.php:94
+msgid "Clear"
+msgstr "清除"
+
+#: Controls/SmsInput.php:52
 msgid "Get Again"
 msgstr "重新獲取"
 
-#: Forms/Controls/SmsInput.php:97
-msgid "minutes Later Get Again"
-msgstr "秒後重新獲取"
+#: Controls/SmsInput.php:53
+msgid " Minutes Later Get Again"
+msgstr " 秒後重新獲取"
 
-#: Forms/Controls/SmsInput.php:105
-msgid "Send failed"
-msgstr "發送失敗"
+#: Controls/SmsInput.php:61 Controls/SmsInput.php:63
+msgid "Get Code"
+msgstr "獲取認證碼"
 
-#: Forms/Controls/TableInput.php:101
+#: Controls/TableInput.php:96
 msgid "Append Row"
 msgstr "复制行"
 
-#: Forms/Controls/TableInput.php:102
+#: Controls/TableInput.php:97
 msgid "Remove Last Row"
 msgstr "移除最後一行"
 
-#: Forms/Controls/TableInput.php:103
+#: Controls/TableInput.php:98
 msgid "Insert Row Above"
 msgstr "在下面插入一行"
 
-#: Forms/Controls/TableInput.php:104
+#: Controls/TableInput.php:99
 msgid "Remove Current Row"
 msgstr "移除當前行"
 
-#: Forms/Controls/TableInput.php:105
+#: Controls/TableInput.php:100
 msgid "Move Up"
 msgstr "向上移動"
 
-#: Forms/Controls/TableInput.php:106
+#: Controls/TableInput.php:101
 msgid "Move Down"
 msgstr "向下移動"
 
-#: Forms/Controls/TableInput.php:107
+#: Controls/TableInput.php:102
 msgid "This Grid Is Empty"
 msgstr "内容為空"
 
-#: helpers.php:201
-msgid "Your session has expired. Please return to the home page and try again."
-msgstr ""
+#: Controls/WpUploaderInput.php:92
+msgid "Upload Image"
+msgstr "上傳圖片"
 
-#: helpers.php:202
+#: Init.php:32
+msgid "Your session has expired. Please return to the home page and try again."
+msgstr "您的工作階段已過期。請返回主頁，然後重試。"
+
+#: Init.php:33
 #, php-format
 msgid "Please enter %s."
 msgstr "請輸入 %s。"
 
-#: helpers.php:203
+#: Init.php:34
 #, php-format
 msgid "This value should not be %s."
-msgstr ""
+msgstr "此值不應为%s。"
 
-#: helpers.php:204
+#: Init.php:35
 msgid "This field is required."
-msgstr ""
+msgstr "此欄位為必填。"
 
-#: helpers.php:205
+#: Init.php:36
 msgid "This field should be blank."
-msgstr ""
+msgstr "此欄位應為空。"
 
-#: helpers.php:206
+#: Init.php:37
 #, php-format
 msgid "Please enter at least %d characters."
-msgstr ""
+msgstr "請輸入至少 %d 個字元。"
 
-#: helpers.php:207
+#: Init.php:38
 #, php-format
 msgid "Please enter no more than %d characters."
-msgstr ""
+msgstr "請輸入不超過 %d 個字元。"
 
-#: helpers.php:208
+#: Init.php:39
 #, php-format
 msgid "Please enter a value between %d and %d characters long."
-msgstr ""
+msgstr "請輸入一個介於 %d 到 %d 個字元之間的值。"
 
-#: helpers.php:209
+#: Init.php:40
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "請輸入有效的電子郵件地址。"
 
-#: helpers.php:210
+#: Init.php:41
 msgid "Please enter a valid URL."
-msgstr ""
+msgstr "請輸入有效的網址。"
 
-#: helpers.php:211
+#: Init.php:42
 msgid "Please enter a valid integer."
 msgstr "請輸入一個正確的整數。"
 
-#: helpers.php:212
+#: Init.php:43
 msgid "Please enter a valid number."
-msgstr ""
+msgstr "請輸入有效的數字。"
 
-#: helpers.php:213
+#: Init.php:44
 #, php-format
 msgid "Please enter a value greater than or equal to %d."
-msgstr ""
+msgstr "請輸入大於或等於 %d的值。"
 
-#: helpers.php:214
+#: Init.php:45
 #, php-format
 msgid "Please enter a value less than or equal to %d."
-msgstr ""
+msgstr "請輸入小於或等於 %d 的值。"
 
-#: helpers.php:215
+#: Init.php:46
 #, php-format
 msgid "Please enter a value between %d and %d."
-msgstr ""
+msgstr "請輸入一個介於 %d 和 %d 之間的值。"
 
-#: helpers.php:216
+#: Init.php:47
 #, php-format
 msgid "The size of the uploaded file can be up to %d bytes."
-msgstr ""
+msgstr "上傳檔的大小最多可以為 %d 位元組。"
 
-#: helpers.php:217
+#: Init.php:48
 #, php-format
 msgid "The uploaded data exceeds the limit of %d bytes."
-msgstr ""
+msgstr "上傳的數據超過 %d 位元組的限制。"
 
-#: helpers.php:218
+#: Init.php:49
 msgid "The uploaded file is not in the expected format."
-msgstr ""
+msgstr "上傳的檔不是預期的格式。"
 
-#: helpers.php:219
+#: Init.php:50
 msgid "The uploaded file must be image in format JPEG, GIF or PNG."
-msgstr ""
+msgstr "上傳的文件必須是 JPEG、GIF 或 PNG 格式的圖像。"
 
-#: helpers.php:220
+#: Init.php:51
 msgid "Please select a valid option."
-msgstr ""
+msgstr "請選擇一個有效的選項。"
 
-#: helpers.php:221
+#: Init.php:52
 msgid "An error occurred during file upload."
-msgstr ""
+msgstr "檔上傳過程中出錯。"
 
-#: helpers.php:381
-msgid "Clear"
-msgstr "清除"
+#: Init.php:81
+msgid "Upload error, please try again."
+msgstr "上傳錯誤，請重試。"
 
-#: helpers.php:382
+#: Init.php:82
+msgid "Upload canceled."
+msgstr "上傳已取消。"
+
+#: Init.php:83 Init.php:85
+msgid "You have uploaded an incorrect file type. Please try again."
+msgstr "您上傳的檔案類型不正確。請重試。"
+
+#: Init.php:84
+msgid "The file you have uploaded exceeds the file size limit. Please try again."
+msgstr "您上載的檔超出了檔案大小限制。請重試。"
+
+#: Init.php:86
+msgid "Choose Image"
+msgstr "選取圖片"
+
+#: Init.php:87
+msgid "Insert Image"
+msgstr "插入圖片"
+
+#: Init.php:95
 msgid "Default"
 msgstr "默認"
 
-#: helpers.php:383
+#: Init.php:96
 msgid "Select Color"
 msgstr "選擇顏色"
 
-#: helpers.php:384
+#: Init.php:97
 msgid "Current Color"
 msgstr "當前顏色"
+
+#~ msgid "Send failed"
+#~ msgstr "發送失敗"
 
 #~ msgid "Drag &amp; Drop Images Here"
 #~ msgstr "拖放圖像到這裡"

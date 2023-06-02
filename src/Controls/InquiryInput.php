@@ -261,10 +261,10 @@ class InquiryInput extends BaseControl
         <?php
         $html = ob_get_clean();
 
-        $clone_group = Html::el('div class=frm-group-input')
+        $el = Html::el('div class=frm-group-input')
                            ->setAttribute('id', $id);
 
-        return $clone_group->addHtml(Html::el()->setHtml($html));
+        return $el->addHtml(Html::fromHtml($html));
 
     }
 

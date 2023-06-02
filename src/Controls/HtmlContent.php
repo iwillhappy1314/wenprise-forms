@@ -10,8 +10,8 @@ use Nette\Forms\Controls\BaseControl;
 class HtmlContent extends BaseControl {
 
 	/**
-	 * @param  string|object
-	 */
+	 * @param  string|object $caption
+     */
 	public function __construct( $caption = null ) {
 		parent::__construct( $caption );
 		$this->control->type = 'html';
@@ -32,11 +32,11 @@ class HtmlContent extends BaseControl {
 	/**
 	 * 输出 HTML 内容
 	 *
-	 * @param  string|object
-	 *
+	 * @param object|string|null $caption
+     *
 	 * @return string
 	 */
-	public function getControl( $caption = null ): string {
+	public function getControl(object|string $caption = null ): string {
 		$this->setOption( 'rendered', true );
 
 		return $this->getCaption();

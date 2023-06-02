@@ -12,7 +12,7 @@ class Helpers
      *
      * @return false|string
      */
-    public static function get_grandparent_class($object)
+    public static function get_grandparent_class($object): bool|string
     {
         if (is_object($object)) {
             $object = get_class($object);

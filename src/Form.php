@@ -23,7 +23,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
     }
 
 
-    public function save()
+    public function save(): void
     {
         if ($this->isSuccess()) {
             $this->datastore->save();
