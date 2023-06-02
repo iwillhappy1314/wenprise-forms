@@ -434,10 +434,22 @@ function send_sms( $mobile, $content )
  $form->AddCaptcha('captcha', 'Captcha')
              ->setUrl(admin_url('admin-ajax.php?action=get_captcha'));
 ````
+### Chained Select
+
+````php
+$form->addChainedSelect('chained', 'Chained Select', [
+        'url'        => get_theme_file_uri('cityData.min.json'),
+        'selects'    => ['province', 'city', 'area'],
+        'emptyStyle' => 'none',
+    ], ['province', 'city', 'area'])->setDefaultValue([001, 002, 003]);
+````
+
+### Captcha backend sample.
 
 ````php
 /**
  * Captcha backend sample.
+ * WordPress core do not use sessions, use cookie and transient instead 
  *
  * Run composer require gregwar/captcha to install requirement
  */
@@ -447,12 +459,20 @@ function get_captcha($type)
 {
     header('Content-type: image/jpeg');
 
-    // use gregwar/captcha to generate captcha.
-    $builder                             = new \Gregwar\Captcha\CaptchaBuilder();
-    $_SESSION[ 'wprs-security-captcha' ] = $builder->build(150, 36)->getPhrase();
+    $builder    = new CaptchaBuilder();
+    $captcha_id = wp_generate_uuid4();
+    $expires = MINUTE_IN_SECONDS * 5;
+
+    setcookie('wprs-security-captcha-id', $captcha_id, time() + $expires);
+    set_transient($captcha_id, $builder->getPhrase(), $expires);
 
     $builder->build()
             ->output();
-
 }
+````
+
+````php
+// 验证Captcha
+$captcha_id      = $_COOKIE[ 'wprs-security-captcha-id' ];
+$session_captcha = get_transient($captcha_id);
 ````

@@ -50,6 +50,7 @@ mix.js('assets/scripts/main.js', 'dist/scripts')
     .js('assets/scripts/modules/jq-signature.js', 'dist/scripts')
     .js('assets/scripts/modules/sweet-alert.js', 'dist/scripts')
     .js('assets/scripts/modules/send-sms.js', 'dist/scripts')
+    .js('assets/scripts/modules/cxselect.js', 'dist/scripts')
     .js('assets/scripts/modules/star-rating.js', 'dist/scripts');
 
 mix.copyWatched('assets/images', 'dist/images');

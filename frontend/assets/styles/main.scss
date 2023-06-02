@@ -191,6 +191,14 @@ ul.rs-checkbox-tree {
   cursor: pointer;
 }
 
+.rs-form--chained{
+  .frm-chained{
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 .rs-admin-form {
   & > fieldset {
     margin: 1.5em 0;

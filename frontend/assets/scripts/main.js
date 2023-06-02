@@ -117,3 +117,7 @@ if ($('.rs-form--birthday').length > 0) {
 if ($('.rs-form--autocomplete').length > 0) {
   loadjs([distPath + wprs_get_assets_file('/dist/scripts/autocomplete.js')], 'autocomplete');
 }
+
+if ($('.rs-form--chained').length > 0) {
+  loadjs([distPath + wprs_get_assets_file('/dist/scripts/cxselect.js')], 'cxselect');
+}

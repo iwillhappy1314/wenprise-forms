@@ -18,6 +18,7 @@ module.exports = {
 		classPrfx('rs-', {
 			ignore: [
 				/rs-/,
+				/frm-/,
 				/rsf-/,
 				/rating-/,
 				/clear-/,

@@ -8,85 +8,85 @@ use Nette\Utils\Html;
 /**
  * 链式选择输入
  */
-class ChainedInput extends BaseControl {
+class ChainedInput extends BaseControl
+{
 
-	private array $settings = [];
+    private array $settings = [];
 
-	private array $fields = [];
+    private array $fields = [];
 
-	/**
-	 * @param null       $label    Html 标签
-	 * @param array|null $settings TinyMce 设置
-	 * @param array|null $fields   TinyMce 设置
-	 */
-	public function __construct( $label = null, ?array $settings = [], ?array $fields = [] ) {
-		parent::__construct( $label );
-		$this->settings = $settings;
-		$this->fields   = $fields;
+    /**
+     * @param null       $label    Html 标签
+     * @param array|null $settings TinyMce 设置
+     * @param array|null $fields   TinyMce 设置
+     */
+    public function __construct($label = null, ?array $settings = [], ?array $fields = [])
+    {
+        parent::__construct($label);
+        $this->settings = $settings;
+        $this->fields   = $fields;
 
-		$this->setOption( 'type', 'chained' );
-	}
-
-
-	/**
-	 *  生成 html
-	 *
-	 * @return \Nette\Utils\Html
-	 */
-	public function getControl(): Html {
-
-		$id            = $this->getHtmlId();
-		$name          = $this->getHtmlName();
-		$settings      = $this->settings;
-		$fields        = $this->fields;
-		$default_value = $this->getValue() ? $this->getValue() : [];
-
-		$settings_default = [
-			'selects'    => $fields,
-			'emptyStyle' => 'none',
-		];
-
-		$settings = array_merge( $settings_default, $settings );
-
-		$html = Html::el( 'div' )
-		            ->setAttribute( 'id', $id )
-		            ->setAttribute( 'class', 'input-group frm-chained' );
-
-		$i = 0;
-		foreach ( $fields as $field ) {
-
-			$html->addHtml(
-				Html::el( 'select class=rs-form-control' )
-				    ->appendAttribute( 'class', $field )
-				    ->setAttribute( 'name', $name )
-				    ->data( 'value', $default_value[ $i ] )
-			);
-
-			$i ++;
-		}
-
-		$script = "<script>
-		    jQuery(document).ready(function($){
-		        $('#$id').cxSelect(" . json_encode( $settings ) . ");
-		    });
-		</script>";
-
-		return Html::fromHtml( $html . $script );
-	}
+        $this->setOption('type', 'chained');
+    }
 
 
-	public function addFields() {
+    /**
+     * Loads HTTP data.
+     */
+    public function loadHttpData(): void
+    {
+        $fields = $this->fields;
 
-	}
+        $values = [];
+        foreach ($fields as $field) {
+            $values[ $field ] = $_POST[ $field ];
+        }
+
+        $this->setValue($values);
+    }
 
 
-	/**
-	 * 获取 HTML 名称
-	 *
-	 * @return string
-	 */
-	public function getHtmlName(): string {
-		return parent::getHtmlName() . '[]';
-	}
+    /**
+     *  生成 html
+     *
+     * @return \Nette\Utils\Html
+     */
+    public function getControl(): Html
+    {
+
+        $id            = $this->getHtmlId();
+        $settings      = $this->settings;
+        $fields        = $this->fields;
+        $default_value = $this->getValue() ? $this->getValue() : [];
+
+        $settings_default = [
+            'selects'    => $fields,
+            'emptyStyle' => 'none',
+        ];
+
+        $settings = array_merge($settings_default, $settings);
+
+        $el = Html::el('div')
+                  ->setAttribute('id', $id)
+                  ->setAttribute('class', 'input-group frm-chained');
+
+        $i = 0;
+
+        foreach ($fields as $field) {
+
+            $el->addHtml(
+                Html::el('select class=rs-form-control')
+                    ->appendAttribute('class', $field)
+                    ->setAttribute('name', $field)
+                    ->data('value', $default_value[ $field ])
+            );
+
+            $i++;
+        }
+
+        $el->data('settings', json_encode($settings));
+
+        return $el;
+    }
 
 }
