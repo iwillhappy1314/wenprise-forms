@@ -70,8 +70,6 @@ class ChainedInput extends BaseControl
                   ->setAttribute('id', $id)
                   ->setAttribute('class', 'input-group frm-chained');
 
-        $i = 0;
-
         foreach ($fields as $field) {
 
             $el->addHtml(
@@ -80,8 +78,6 @@ class ChainedInput extends BaseControl
                     ->setAttribute('name', $field)
                     ->data('value', $default_value[ $field ])
             );
-
-            $i++;
         }
 
         $el->data('settings', json_encode($settings));
