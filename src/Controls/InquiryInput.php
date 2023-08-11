@@ -45,11 +45,11 @@ class InquiryInput extends BaseControl
         $names  = wp_list_pluck($fields, 'name');
         $values = [];
 
-        $data_length = count($_POST[ $names[ 0 ] ]);
+        $data_length = count((array)Helpers::data_get($_POST, $names[ 0 ]));
 
         for ($i = 0; $i < $data_length; $i++) {
             foreach ($names as $field) {
-                $values[ $i ][ $field ] = $_POST[ $field ][ $i ] ?? '';
+                $values[ $i ][ $field ] = Helpers::data_get($_POST, $field[ $i ], '');
             }
         }
 
