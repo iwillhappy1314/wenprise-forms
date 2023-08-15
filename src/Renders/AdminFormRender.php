@@ -11,7 +11,7 @@ class AdminFormRender extends BaseFormRender
 {
     use Nette\SmartObject;
 
-    var mixed $type = 'post_meta';
+    var $type = 'post_meta';
 
     public function __construct($type = 'post_meta')
     {

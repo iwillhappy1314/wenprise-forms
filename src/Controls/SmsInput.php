@@ -79,7 +79,7 @@ class SmsInput extends TextInput
      *
      * @return $this
      */
-    public function setUrl($url): static
+    public function setUrl($url)
     {
         $this->url = $url;
 

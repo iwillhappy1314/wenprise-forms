@@ -105,7 +105,7 @@ class Init
      *
      * @return void
      */
-    #[NoReturn] function save_form_data(): void
+    function save_form_data(): void
     {
         $data = $_POST;
 

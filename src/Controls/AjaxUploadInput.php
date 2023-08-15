@@ -36,7 +36,7 @@ class AjaxUploadInput extends BaseControl
     public function __construct($label = null, bool $multiple = false, array $settings = null)
     {
         parent::__construct($label);
-        $this->control->multiple = (bool)$multiple;
+        $this->control->multiple = $multiple;
         $this->control->type     = 'text';
         $this->settings          = (array)$settings;
 
@@ -187,7 +187,7 @@ class AjaxUploadInput extends BaseControl
      *
      * @return $this
      */
-    public function setUrl($url): static {
+    public function setUrl($url) {
         $this->url = $url;
 
         return $this;

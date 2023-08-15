@@ -2,6 +2,8 @@
 
 namespace Wenprise\Forms;
 
+use Closure;
+
 class Helpers
 {
 
@@ -12,7 +14,7 @@ class Helpers
      *
      * @return false|string
      */
-    public static function get_grandparent_class($object): bool|string
+    public static function get_grandparent_class($object)
     {
         if (is_object($object)) {
             $object = get_class($object);
@@ -29,9 +31,9 @@ class Helpers
      *
      * @return mixed
      */
-    public static function value(mixed $value): mixed
+    public static function value($value)
     {
-        return $value instanceof \Closure ? $value() : $value;
+        return $value instanceof Closure ? $value() : $value;
     }
 
 
@@ -44,7 +46,7 @@ class Helpers
      *
      * @return mixed
      */
-    public static function data_get(array $array, string $key, mixed $default = null): mixed
+    public static function data_get(array $array, string $key, $default = null)
     {
 
         if (isset($array[ $key ])) {
@@ -71,7 +73,7 @@ class Helpers
      *
      * @return mixed|null
      */
-    public static function http_get($key = null, $default = null): mixed
+    public static function input_get($key = null, $default = null)
     {
         return static::data_get($_REQUEST, $key, $default);
     }
@@ -116,7 +118,7 @@ class Helpers
      *
      * @return mixed
      */
-    public static function get_manifest(): mixed
+    public static function get_manifest()
     {
         static $manifest;
         static $manifest_path;

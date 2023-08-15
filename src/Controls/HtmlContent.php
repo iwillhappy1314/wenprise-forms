@@ -36,7 +36,7 @@ class HtmlContent extends BaseControl {
      *
 	 * @return string
 	 */
-	public function getControl(object|string $caption = null ): string {
+	public function getControl( $caption = null ): string {
 		$this->setOption( 'rendered', true );
 
 		return $this->getCaption();

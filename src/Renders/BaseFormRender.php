@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Renders;
 
 use Nette;
+use Nette\InvalidArgumentException;
 use Nette\Utils\Html;
 use Nette\HtmlStringable;
 
@@ -43,14 +44,14 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     /**
      * 渲染控件组，主要添加 Html render
      *
-     * @param Nette\Forms\Container|Nette\Forms\ControlGroup
+     * @param Nette\Forms\Container|Nette\Forms\ControlGroup $parent
      *
      * @return string
      */
     public function renderControls($parent): string
     {
         if ( ! ($parent instanceof Nette\Forms\Container || $parent instanceof Nette\Forms\ControlGroup)) {
-            throw new \Nette\InvalidArgumentException('Argument must be Nette\Forms\Container or Nette\Forms\ControlGroup instance.');
+            throw new InvalidArgumentException('Argument must be Nette\Forms\Container or Nette\Forms\ControlGroup instance.');
         }
 
         $container = $this->getWrapper('controls container');
@@ -89,7 +90,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     /**
      * 在一行中渲染多个控件，主要添加 wrapper class
      *
-     * @param Nette\Forms\IControl[]
+     * @param Nette\Forms\IControl[] $controls
      *
      * @return string
      */
@@ -98,7 +99,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         $s = [];
         foreach ($controls as $control) {
             if ( ! $control instanceof Nette\Forms\Control) {
-                throw new Nette\InvalidArgumentException('Argument must be array of Nette\Forms\IControl instances.');
+                throw new InvalidArgumentException('Argument must be array of Nette\Forms\IControl instances.');
             }
 
             $description = $control->getOption('description');
@@ -161,7 +162,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
      *
      * @return \Nette\Utils\Html|string
      */
-    public function renderControlGroup($control): Html|string
+    public function renderControlGroup($control)
     {
         $html = '';
 

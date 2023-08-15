@@ -10,7 +10,7 @@ use Wenprise\Forms\Translator\DefaultTranslator;
 class Form extends \Nette\Forms\Form implements HtmlStringable
 {
 
-    public IDatastore|null $datastore = null;
+    public $datastore = null;
 
     /**
      * @param \Wenprise\Forms\Datastores\IDatastore $datastore

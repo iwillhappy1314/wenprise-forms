@@ -12,7 +12,7 @@ class AutoCompleteInput extends TextInput {
 
 	private array $settings = [];
 
-	public string|array $source = '';
+	public $source = '';
 
 	/**
 	 * @param null       $label
@@ -54,7 +54,7 @@ class AutoCompleteInput extends TextInput {
 	/**
 	 * 设置输入提示源
 	 */
-	public function setSource( $source ): static {
+	public function setSource( $source ) {
 		$this->source = $source;
 
 		return $this;

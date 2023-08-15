@@ -115,7 +115,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     /**
      * 渲染控件组
      *
-     * @param Nette\Forms\Container|Nette\Forms\ControlGroup
+     * @param Nette\Forms\Container|Nette\Forms\ControlGroup $parent
      *
      * @return string
      */
@@ -206,7 +206,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             }
 
             // 中间
-            $group->addHtml($this->renderControl($control->setAttribute('class', 'rs-form-control'))
+            $group->addHtml($this->renderControl($control->setHtmlAttribute('class', 'rs-form-control'))
                                  ->getChildren()[ 0 ]);
 
             // 后缀
@@ -245,7 +245,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     /**
      * 在一行中渲染多个控件
      *
-     * @param Nette\Forms\IControl[]
+     * @param Nette\Forms\IControl[] $controls
      *
      * @return string
      */
@@ -253,7 +253,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     {
         $s = [];
         foreach ($controls as $control) {
-            if ( ! $control instanceof Nette\Forms\IControl) {
+            if ( ! $control instanceof Nette\Forms\Control) {
                 throw new Nette\InvalidArgumentException('Argument must be array of Nette\Forms\IControl instances.');
             }
 

@@ -140,7 +140,7 @@ class InquiryInput extends BaseControl
                             <?php foreach ($fields as $field): ?>
                                 <?php
                                 $field_type = Helpers::data_get($field, 'type', 'text');
-                                $field_name= Helpers::data_get($field, 'name', );
+                                $field_name= Helpers::data_get($field, 'name' );
                                 ?>
                                 <td>
                                     <?php if ( $field_type === 'text' ) : ?>
@@ -151,7 +151,7 @@ class InquiryInput extends BaseControl
                                         <textarea x-model="field.<?= $field_name; ?>" name="<?= $field_name; ?>[]" cols="30" rows="10"></textarea>
                                     <?php elseif($field_type === 'select'): ?>
                                         <select x-model="field.<?= $field_name; ?>" name="<?= $field_name; ?>[]">
-                                            <?php foreach (Helpers::data_get($field, 'options', ) as $option_key => $option_value): ?>
+                                            <?php foreach (Helpers::data_get($field, 'options' ) as $option_key => $option_value): ?>
                                                 <option value="<?= $option_key; ?>"><?= $option_value; ?></option>
                                             <?php endforeach; ?>
                                         </select>
@@ -192,7 +192,7 @@ class InquiryInput extends BaseControl
                             <?php foreach ($fields as $field): ?>
                                 <?php
                                 $field_type = Helpers::data_get($field, 'type', 'text');
-                                $field_name= Helpers::data_get($field, 'name', );
+                                $field_name= Helpers::data_get($field, 'name' );
                                 ?>
                                 <div class="rs-form-group rs-form--text rs-row rs-col-md-12" id="rs-form-company_name">
                                     <div class="rs-col-sm-3 rs-control-label">
@@ -207,7 +207,7 @@ class InquiryInput extends BaseControl
                                             <textarea x-model="_field._<?= $field_name; ?>" name="_<?= $field_name; ?>" cols="30" rows="10" class="form-control rs-form-control"></textarea>
                                         <?php elseif($field_type === 'select'): ?>
                                             <select x-model="_field._<?= $field_name; ?>" name="_<?= $field_name; ?>">
-                                                <?php foreach (Helpers::data_get($field, 'options', ) as $option_key => $option_value): ?>
+                                                <?php foreach (Helpers::data_get($field, 'options' ) as $option_key => $option_value): ?>
                                                     <option value="<?= $option_key; ?>"><?= $option_value; ?></option>
                                                 <?php endforeach; ?>
                                             </select>

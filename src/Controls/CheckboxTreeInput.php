@@ -3,7 +3,9 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\MultiChoiceControl;
+use Nette\InvalidArgumentException;
 use Nette\Utils\Html;
+use Nette\Utils\Strings;
 
 /**
  * 克隆输入
@@ -46,16 +48,16 @@ class CheckboxTreeInput extends MultiChoiceControl
         return $html;
     }
 
-    public function setValue($values): CheckboxTreeInput|static {
+    public function setValue($values) {
         if (is_scalar($values) || $values === null) {
             $values = (array)$values;
         } elseif ( ! is_array($values)) {
-            throw new \Nette\InvalidArgumentException(sprintf("Value must be array or NULL, %s given in field '%s'.", gettype($values), $this->name));
+            throw new InvalidArgumentException(sprintf("Value must be array or NULL, %s given in field '%s'.", gettype($values), $this->name));
         }
         $flip = [];
         foreach ($values as $value) {
             if ( ! is_scalar($value) && ! method_exists($value, '__toString')) {
-                throw new \Nette\InvalidArgumentException(sprintf("Values must be scalar, %s given in field '%s'.", gettype($value), $this->name));
+                throw new InvalidArgumentException(sprintf("Values must be scalar, %s given in field '%s'.", gettype($value), $this->name));
             }
             $flip[ (string)$value ] = true;
         }
@@ -67,16 +69,16 @@ class CheckboxTreeInput extends MultiChoiceControl
             $nestedKeys[] = $key;
         });
         if ($diff = array_diff($values, $nestedKeys)) {
-            $range = \Nette\Utils\Strings::truncate(implode(', ', array_map(function ($s) { return var_export($s, true); }, $nestedKeys)), 70, '...');
+            $range = Strings::truncate(implode(', ', array_map(function ($s) { return var_export($s, true); }, $nestedKeys)), 70, '...');
             $vals  = (count($diff) > 1 ? 's' : '') . " '" . implode("', '", $diff) . "'";
-            throw new \Nette\InvalidArgumentException("Value$vals are out of allowed range [$range] in field '{$this->name}'.");
+            throw new InvalidArgumentException("Value$vals are out of allowed range [$range] in field '$this->name'.");
         }
         $this->value = $values;
 
         return $this;
     }
 
-    public function getLabel($caption = null): Html|string|null {
+    public function getLabel($caption = null) {
         return parent::getLabel($caption)->for(null);
     }
 
