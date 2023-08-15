@@ -15,7 +15,7 @@ class DefaultTranslator implements Translator
      *
      * @usage: Translator($message);
      */
-    public function translate(string|\Stringable $message, mixed ...$parameters): string|\Stringable
+    public function translate($message, ...$parameters): string
     {
         return __($message, 'wprs');
     }

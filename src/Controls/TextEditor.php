@@ -21,9 +21,8 @@ class TextEditor extends TextArea {
 		parent::__construct( $label );
 		$this->settings = (array) $settings;
 
-		$this->setOption( 'type', 'editor' );
+		$this->setOption( 'type', 'wp_editor' );
 	}
-
 
 	/**
 	 * 生成控件 HTML 内容
@@ -53,6 +52,6 @@ class TextEditor extends TextArea {
 		$html = ob_get_contents();
 		ob_end_clean();
 
-		return Html::fromHtml( $html );
+		return Html::fromHtml( $html )->setName('div');
 	}
 }

@@ -30,8 +30,6 @@ class ChosenInput extends SelectBox
     {
 
         $el = parent::getControl();
-
-        $id       = $this->getHtmlId();
         $settings = $this->settings;
 
         $settings_default = [

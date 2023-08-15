@@ -115,7 +115,7 @@ class CloneInput extends BaseControl
                         });
                     </script>';
 
-        return Html::fromHtml( $html .$add_button . $scripts );
+        return Html::fromHtml( $html .$add_button . $scripts )->setName('div');
 
     }
 
