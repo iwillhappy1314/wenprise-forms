@@ -2079,6 +2079,19 @@ ul.rs-checkbox-tree li label {
   font-size: 14px;
   color: #646970;
 }
+
+.rs-inquiry-input-modal dialog {
+  border: none !important;
+  border-radius: calc(5px * var(--ratio));
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 1.5rem;
+}
+.rs-inquiry-input-modal dialog::-webkit-backdrop {
+  background: rgba(0, 0, 0, 0.3);
+}
+.rs-inquiry-input-modal dialog::backdrop {
+  background: rgba(0, 0, 0, 0.3);
+}
 @media (max-width: 575.98px) {
   .rs-table-responsive-sm {
     display: block;

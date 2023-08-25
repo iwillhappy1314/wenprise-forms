@@ -217,3 +217,15 @@ ul.rs-checkbox-tree {
     color: #646970;
   }
 }
+
+.rs-inquiry-input-modal{
+  dialog{
+    border: none !important;
+    border-radius: calc(5px * var(--ratio));
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 1.5rem;
+    &::backdrop{
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+}

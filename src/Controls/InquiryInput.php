@@ -172,7 +172,7 @@ class InquiryInput extends BaseControl
                         <tfoot>
                         <tr>
                             <td colspan="<?= count($field_names) + $addition_col_number; ?>" class="text-right">
-                                <button type="button" class="rs-btn rs-btn-primary" @click="addNewField()"><?= __('+ Add Row', 'wprs'); ?></button>
+                                <button type="button" class="rs-btn rs-btn-primary" @click.prevent="addNewField()"><?= __('+ Add Row', 'wprs'); ?></button>
                             </td>
                         </tr>
                         </tfoot>
@@ -183,7 +183,7 @@ class InquiryInput extends BaseControl
 
             <div class="rsf-block lg:rsf-hidden rs-inquiry-input-modal">
                 <?php if ($allow_delete) : ?>
-                    <button @click="open = !open" class="rs-btn rs-btn-primary"><?= __('+ Add Row', 'wprs'); ?></button>
+                    <button @click.prevent="open = !open" class="rs-btn rs-btn-primary"><?= __('+ Add Row', 'wprs'); ?></button>
                 <?php endif; ?>
                 <dialog x-show="open" x-dialog="open = false">
                     <div>
@@ -235,11 +235,10 @@ class InquiryInput extends BaseControl
               _field: <?= json_encode($_field_names); ?>,
               addNewField() {
                 this.fields.push(<?= json_encode($field_names); ?>);
+                return false;
               },
               _addNewField() {
                 let real_field = {};
-
-                console.log(this._field);
 
                 for (let key in this._field) {
                   real_field[key.replace('_', '')] = this._field[key];
