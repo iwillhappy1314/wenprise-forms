@@ -4,6 +4,7 @@ namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\BaseControl;
 use Nette\Utils\Html;
+use Wenprise\Forms\Helpers;
 
 /**
  * 链式选择输入
@@ -39,7 +40,7 @@ class ChainedInput extends BaseControl
 
         $values = [];
         foreach ($fields as $field) {
-            $values[ $field ] = $_POST[ $field ];
+            $values[ $field ] = Helpers::input_get($field);
         }
 
         $this->setValue($values);

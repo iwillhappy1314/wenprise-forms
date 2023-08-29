@@ -77,7 +77,7 @@ class Init
             'staticPath'      => Helpers::dir_to_url(realpath(__DIR__ . '/../frontend')),
             'admin_url'       => admin_url(),
             'includes_url'    => includes_url(),
-            'ajax_url'         => admin_url('admin-ajax.php'),
+            'ajax_url'        => admin_url('admin-ajax.php'),
             'error'           => __('Upload error, please try again.', 'wprs'),
             'canceled'        => __('Upload canceled.', 'wprs'),
             'file_type_error' => __('You have uploaded an incorrect file type. Please try again.', 'wprs'),
@@ -107,19 +107,17 @@ class Init
      */
     function save_form_data(): void
     {
-        $data = $_POST;
-
         // 基本文章数据
         $post_data = [
-            'post_type'  => Helpers::data_get($data, 'post_type', 'inquiry'),
-            'post_title' => Helpers::data_get($data, 'name', '') . Helpers::data_get($data, 'phone', '') . Helpers::data_get($data, 'subject', ''),
+            'post_type'  => Helpers::input_get('post_type', 'inquiry'),
+            'post_title' => Helpers::input_get('name', '') . Helpers::input_get('phone', '') . Helpers::input_get('subject', ''),
         ];
 
         $post_id_or_error = wp_insert_post($post_data);
 
         if ( ! is_wp_error($post_id_or_error)) {
             // 其他数据添加到自定义子字段中
-            foreach ($data as $key => $value) {
+            foreach ($_POST as $key => $value) {
                 update_post_meta($post_id_or_error, $key, $value);
             }
 
