@@ -38,7 +38,7 @@ class TableInput extends BaseControl
         $name        = $this->getName();
         $fields      = $this->fields;
         $values      = [];
-        $row_numbers = Helpers::input_get([$name . '_rowOrder']);
+        $row_numbers = Helpers::input_get($name . '_rowOrder');
 
         if ( ! empty($row_numbers)) {
             $row_numbers = explode(',', $row_numbers);
@@ -46,7 +46,7 @@ class TableInput extends BaseControl
             foreach ($row_numbers as $row_number) {
                 $vs = [];
                 foreach ($fields as $field) {
-                    $vs[ $field[ 'name' ] ] = esc_attr(Helpers::input_get([$name . '_' . $field[ 'name' ] . '_' . $row_number]));
+                    $vs[ $field[ 'name' ] ] = esc_attr(Helpers::input_get($name . '_' . $field[ 'name' ] . '_' . $row_number));
                 }
 
                 $values[] = $vs;
