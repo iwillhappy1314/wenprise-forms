@@ -49,7 +49,7 @@ class InquiryInput extends BaseControl
 
         for ($i = 0; $i < $data_length; $i++) {
             foreach ($names as $field) {
-                $values[ $i ][ $field ] = Helpers::input_get($field[ $i ], '');
+                $values[ $i ][ $field ] = Helpers::input_get($field, '')[ $i ];
             }
         }
 
