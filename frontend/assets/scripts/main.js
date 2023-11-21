@@ -96,7 +96,7 @@ if ($('.rs-form--table-input').length > 0) {
   loadjs([distPath + wprs_get_assets_file('/dist/scripts/table-input.js')], 'table-input', {async: false});
 }
 
-if ($('.rs-form--daterangepicker').length > 0) {
+if ($('.rs-form--daterangepicker').length > 0 || $('.rs-form--datepicker').length > 0) {
   loadjs([distPath + wprs_get_assets_file('/dist/styles/daterangepicker.css'), distPath + wprs_get_assets_file('/dist/scripts/daterangepicker.js')],
       'daterangepicker');
 }
