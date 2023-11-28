@@ -187,7 +187,7 @@ class InquiryInput extends BaseControl
                 <?php endif; ?>
                 <dialog x-show="open" x-dialog="open = false">
                     <div>
-                        <fieldset class="rs-form-row">
+                        <div class="rs-form-row">
 
                             <?php foreach ($fields as $field): ?>
                                 <?php
@@ -216,7 +216,7 @@ class InquiryInput extends BaseControl
                                 </div>
                             <?php endforeach; ?>
 
-                        </fieldset>
+                        </div>
 
                         <div>
                             <button type="button" class="rs-btn rs-btn-default" @click="_addNewField()"><?= __('Add', 'wprs'); ?></button>

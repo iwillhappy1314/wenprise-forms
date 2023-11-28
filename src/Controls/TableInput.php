@@ -75,7 +75,7 @@ class TableInput extends BaseControl
             'uiFramework'      => 'bootstrap4',
             'iconFramework'    => 'bootstrapicons',
             'iconParams'       => [
-                'baseUrl' => WENPRISE_FORM_URL . '/frontend/assets/images/',
+                'baseUrl' => defined('WENPRISE_FORM_URL') ? WENPRISE_FORM_URL . '/frontend/assets/images/' : '',
                 'icons'   => [
                     'append'     => 'plus',
                     'insert'     => 'plus',
