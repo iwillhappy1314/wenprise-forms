@@ -106,7 +106,7 @@ if ($('.rs-form--slider').length > 0) {
       'ion-rangeslider');
 }
 
-if ($('.rs-form--inquiry').length > 0) {
+if ($('.rs-form--inquiry').length > 0 && window.Alpine === undefined) {
   loadjs([distPath + wprs_get_assets_file('/dist/scripts/alpinejs.js')], 'alpinejs');
 }
 
