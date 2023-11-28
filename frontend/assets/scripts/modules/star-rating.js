@@ -1,5 +1,4 @@
 ﻿import 'bootstrap-star-rating';
-import AppendGrid from 'jquery.appendgrid/src';
 
 (function($) {
   'use strict';
