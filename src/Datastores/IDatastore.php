@@ -8,7 +8,7 @@ abstract class IDatastore
 {
     var Form $form;
 
-    public function __construct( Form $form)
+    public function __construct(Form $form)
     {
         $this->form = $form;
     }
@@ -21,7 +21,7 @@ abstract class IDatastore
     {
         $items = [];
         foreach ($this->form->getComponents() as $key => $item) {
-            if ($item->getControl()->type !== 'submit') {
+            if ( ! is_string($item->getControl()) && $item->getControl()->type !== 'submit') {
                 $items[ $key ] = $item->caption;
             }
         }
