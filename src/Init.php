@@ -2,8 +2,6 @@
 
 namespace Wenprise\Forms;
 
-use JetBrains\PhpStorm\NoReturn;
-
 class Init
 {
 
