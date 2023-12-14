@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2023-06-02 11:04+0800\n"
-"PO-Revision-Date: 2023-06-02 11:04+0800\n"
+"POT-Creation-Date: 2023-12-14 10:15+0800\n"
+"PO-Revision-Date: 2023-12-14 10:15+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
@@ -31,15 +31,15 @@ msgstr "拖放文件到这里"
 msgid "Click to refresh"
 msgstr "点击刷新"
 
-#: Controls/ChosenInput.php:39
+#: Controls/ChosenInput.php:37
 msgid "Select Some Options"
 msgstr "请选择一项或几项"
 
-#: Controls/ChosenInput.php:40
+#: Controls/ChosenInput.php:38
 msgid "Select an Option"
 msgstr "请选择一项"
 
-#: Controls/ChosenInput.php:41
+#: Controls/ChosenInput.php:39
 msgid "No results match"
 msgstr "没有匹配的结果"
 
@@ -51,11 +51,111 @@ msgstr "删除"
 msgid "Add More Fields"
 msgstr "添加字段"
 
-#: Controls/InquiryInput.php:175 Controls/InquiryInput.php:186
+#: Controls/DatePickerInput.php:52 Controls/DateRangePickerInput.php:49
+msgid "Apply"
+msgstr "应用"
+
+#: Controls/DatePickerInput.php:53 Controls/DateRangePickerInput.php:50
+msgid "Cancel"
+msgstr "取消"
+
+#: Controls/DatePickerInput.php:54 Controls/DateRangePickerInput.php:51
+msgid "From"
+msgstr "从"
+
+#: Controls/DatePickerInput.php:55 Controls/DateRangePickerInput.php:52
+msgid "To"
+msgstr "至"
+
+#: Controls/DatePickerInput.php:56 Controls/DateRangePickerInput.php:53
+msgid "Custom"
+msgstr "自定义"
+
+#: Controls/DatePickerInput.php:57 Controls/DateRangePickerInput.php:54
+msgid "W"
+msgstr "周"
+
+#: Controls/DatePickerInput.php:59 Controls/DateRangePickerInput.php:56
+msgid "Su"
+msgstr "日"
+
+#: Controls/DatePickerInput.php:60 Controls/DateRangePickerInput.php:57
+msgid "Mo"
+msgstr "一"
+
+#: Controls/DatePickerInput.php:61 Controls/DateRangePickerInput.php:58
+msgid "Tu"
+msgstr "二"
+
+#: Controls/DatePickerInput.php:62 Controls/DateRangePickerInput.php:59
+msgid "We"
+msgstr "三"
+
+#: Controls/DatePickerInput.php:63 Controls/DateRangePickerInput.php:60
+msgid "Th"
+msgstr "四"
+
+#: Controls/DatePickerInput.php:64 Controls/DateRangePickerInput.php:61
+msgid "Fr"
+msgstr "五"
+
+#: Controls/DatePickerInput.php:65 Controls/DateRangePickerInput.php:62
+msgid "Sa"
+msgstr "六"
+
+#: Controls/DatePickerInput.php:68 Controls/DateRangePickerInput.php:65
+msgid "January"
+msgstr "一月"
+
+#: Controls/DatePickerInput.php:69 Controls/DateRangePickerInput.php:66
+msgid "February"
+msgstr "二月"
+
+#: Controls/DatePickerInput.php:70 Controls/DateRangePickerInput.php:67
+msgid "March"
+msgstr "三月"
+
+#: Controls/DatePickerInput.php:71 Controls/DateRangePickerInput.php:68
+msgid "April"
+msgstr "四月"
+
+#: Controls/DatePickerInput.php:72 Controls/DateRangePickerInput.php:69
+msgid "May"
+msgstr "五月"
+
+#: Controls/DatePickerInput.php:73 Controls/DateRangePickerInput.php:70
+msgid "June"
+msgstr "六月"
+
+#: Controls/DatePickerInput.php:74 Controls/DateRangePickerInput.php:71
+msgid "July"
+msgstr "七月"
+
+#: Controls/DatePickerInput.php:75 Controls/DateRangePickerInput.php:72
+msgid "August"
+msgstr "八月"
+
+#: Controls/DatePickerInput.php:76 Controls/DateRangePickerInput.php:73
+msgid "September"
+msgstr "九月"
+
+#: Controls/DatePickerInput.php:77 Controls/DateRangePickerInput.php:74
+msgid "October"
+msgstr "十月"
+
+#: Controls/DatePickerInput.php:78 Controls/DateRangePickerInput.php:75
+msgid "November"
+msgstr "十一月"
+
+#: Controls/DatePickerInput.php:79 Controls/DateRangePickerInput.php:76
+msgid "December"
+msgstr "十二月"
+
+#: Controls/InquiryInput.php:178 Controls/InquiryInput.php:189
 msgid "+ Add Row"
 msgstr "+添加行"
 
-#: Controls/InquiryInput.php:222
+#: Controls/InquiryInput.php:225
 msgid "Add"
 msgstr "添加"
 
@@ -75,31 +175,31 @@ msgstr " 秒后再次获取"
 msgid "Get Code"
 msgstr "获取验证码"
 
-#: Controls/TableInput.php:96
+#: Controls/TableInput.php:101
 msgid "Append Row"
 msgstr "添加行"
 
-#: Controls/TableInput.php:97
+#: Controls/TableInput.php:102
 msgid "Remove Last Row"
 msgstr "删除最后一行"
 
-#: Controls/TableInput.php:98
+#: Controls/TableInput.php:103
 msgid "Insert Row Above"
 msgstr "在上面插入行"
 
-#: Controls/TableInput.php:99
+#: Controls/TableInput.php:104
 msgid "Remove Current Row"
 msgstr "删除当前行"
 
-#: Controls/TableInput.php:100
+#: Controls/TableInput.php:105
 msgid "Move Up"
 msgstr "上移"
 
-#: Controls/TableInput.php:101
+#: Controls/TableInput.php:106
 msgid "Move Down"
 msgstr "下移"
 
-#: Controls/TableInput.php:102
+#: Controls/TableInput.php:107
 msgid "This Grid Is Empty"
 msgstr "这个表格没有数据"
 

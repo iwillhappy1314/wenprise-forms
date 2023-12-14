@@ -45,7 +45,36 @@ class DateRangePickerInput extends TextInput
             "applyButtonClasses"  => 'rs-btn-primary',
             "cancelButtonClasses" => 'rs-btn-default',
             "locale"              => [
-                "format" => "YYYY-MM-DD",
+                "format"           => "YYYY-MM-DD",
+                "applyLabel"       => __('Apply', 'wprs'),
+                "cancelLabel"      => __('Cancel', 'wprs'),
+                "fromLabel"        => __('From', 'wprs'),
+                "toLabel"          => __('To', 'wprs'),
+                "customRangeLabel" => __('Custom', 'wprs'),
+                "weekLabel"        => __('W', 'wprs'),
+                "daysOfWeek"        => [
+                    __('Su', 'wprs'),
+                    __('Mo', 'wprs'),
+                    __('Tu', 'wprs'),
+                    __('We', 'wprs'),
+                    __('Th', 'wprs'),
+                    __('Fr', 'wprs'),
+                    __('Sa', 'wprs')
+                ],
+                "monthNames" => [
+                    __('January', 'wprs'),
+                    __('February', 'wprs'),
+                    __('March', 'wprs'),
+                    __('April', 'wprs'),
+                    __('May', 'wprs'),
+                    __('June', 'wprs'),
+                    __('July', 'wprs'),
+                    __('August', 'wprs'),
+                    __('September', 'wprs'),
+                    __('October', 'wprs'),
+                    __('November', 'wprs'),
+                    __('December', 'wprs'),
+                ]
             ],
         ];
 
