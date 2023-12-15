@@ -84,17 +84,13 @@ class Init
             'choose_image'    => __('Choose Image', 'wprs'),
             'insert_image'    => __('Insert Image', 'wprs'),
             'manifest'        => Helpers::get_manifest(),
-        ]);
-
-        wp_register_script('wprs-sweetalert', Helpers::get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
-
-        wp_localize_script('wprs-forms-main', 'wpColorPickerL10n', [
             'clear'         => __('Clear', 'wprs'),
             'defaultString' => __('Default', 'wprs'),
             'pick'          => __('Select Color', 'wprs'),
             'current'       => __('Current Color', 'wprs'),
         ]);
 
+        wp_register_script('wprs-sweetalert', Helpers::get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
     }
 
 
