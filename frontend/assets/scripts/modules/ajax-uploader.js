@@ -1,36 +1,36 @@
 ﻿import 'dm-file-uploader';
 
 (function($) {
-    var close_icon = '<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg>',
+  var close_icon = '<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg>',
 
-        file_icon = '<svg class="icon" style="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="128" height="128"><defs><style type="text/css"></style></defs><path d="M768 426.666667H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333zM341.333333 324.266667h170.666667a17.066667 17.066667 0 1 0 0-34.133334H341.333333a17.066667 17.066667 0 1 0 0 34.133334zM768 563.2H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333zM768 699.733333H341.333333a17.066667 17.066667 0 1 0 0 34.133334h426.666667a17.066667 17.066667 0 1 0 0-34.133334zM768 836.266667H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333z" p-id="2458" fill="#666666"></path><path d="M836.266667 248.9344V0H102.4v938.666667h85.333333v85.333333h733.866667V334.267733l-85.333333-85.333333z m-153.6-105.335467l153.6 153.6L863.3344 324.266667H682.666667V143.598933zM136.533333 904.533333V34.133333h665.6v180.667734L672.6656 85.333333H187.733333v819.2H136.533333z m85.333334 85.333334V119.466667h426.666666v238.933333h238.933334v631.466667H221.866667z" p-id="2459" fill="#666666"></path></svg>';
+      file_icon  = '<svg class="icon" style="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="128" height="128"><defs><style type="text/css"></style></defs><path d="M768 426.666667H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333zM341.333333 324.266667h170.666667a17.066667 17.066667 0 1 0 0-34.133334H341.333333a17.066667 17.066667 0 1 0 0 34.133334zM768 563.2H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333zM768 699.733333H341.333333a17.066667 17.066667 0 1 0 0 34.133334h426.666667a17.066667 17.066667 0 1 0 0-34.133334zM768 836.266667H341.333333a17.066667 17.066667 0 1 0 0 34.133333h426.666667a17.066667 17.066667 0 1 0 0-34.133333z" p-id="2458" fill="#666666"></path><path d="M836.266667 248.9344V0H102.4v938.666667h85.333333v85.333333h733.866667V334.267733l-85.333333-85.333333z m-153.6-105.335467l153.6 153.6L863.3344 324.266667H682.666667V143.598933zM136.533333 904.533333V34.133333h665.6v180.667734L672.6656 85.333333H187.733333v819.2H136.533333z m85.333334 85.333334V119.466667h426.666666v238.933333h238.933334v631.466667H221.866667z" p-id="2459" fill="#666666"></path></svg>';
 
-    $.fn.wprsAjaxUploader = function() {
-        var options = this.data('settings'),
-            el = this,
+  $.fn.wprsAjaxUploader = function() {
+    var options  = this.data('settings'),
+        el       = this,
 
-            defaults = {
-                url             : el.find('.rs-uploader__shadow').data('url'),
-                type            : 'POST',
-                dataType        : 'json',
-                maxFileSize     : 2000000,
-                auto            : true,
-                queue           : false,
-                multiple        : (el.data('multiple') === true),
-                onBeforeUpload  : function() {
-                    el.find('.js-uploader-message').empty();
-                },
-                onDragEnter     : function() {
-                    el.addClass('active');
-                },
-                onDragLeave     : function() {
-                    el.removeClass('active');
-                },
-                onUploadSuccess : function(id, data) {
-                    var name = el.data('name'),
-                        is_multiple = (el.data('multiple') === true),
+        defaults = {
+          url                   : el.find('.rs-uploader__shadow').data('url'),
+          type                  : 'POST',
+          dataType              : 'json',
+          maxFileSize           : 2000000,
+          auto                  : true,
+          queue                 : false,
+          multiple              : (el.data('multiple') === true),
+          onBeforeUpload        : function() {
+            el.find('.js-uploader-message').empty();
+          },
+          onDragEnter           : function() {
+            el.addClass('active');
+          },
+          onDragLeave           : function() {
+            el.removeClass('active');
+          },
+          onUploadSuccess       : function(id, data) {
+            var name           = el.data('name'),
+                is_multiple    = (el.data('multiple') === true),
 
-                        // @formatter:off
+                // @formatter:off
                         button = '<button type="button" class="rs-uploader__close" data-value=' + data.id + '>' + close_icon + '</button>',
                         thumb = '<img src="' + data.thumb + '" alt="Thumbnail">';
 
@@ -71,25 +71,25 @@
 
                 },
                 onUploadError   : function(id, xhr, status, errorThrown) {
-                    el.find('.js-uploader-message').html(wprsUploaderL10n.error);
+                    el.find('.js-uploader-message').html(wenpriseFormSettings.error);
                 },
                 onUploadComplete: function(id) {
                     el.find('.js-progress').remove();
                 },
                 onUploadCanceled: function(id) {
-                    el.find('.js-uploader-message').html(wprsUploaderL10n.canceled);
+                    el.find('.js-uploader-message').html(wenpriseFormSettings.canceled);
                 },
                 onUploadProgress: function(id, percent) {
                     el.find('.js-uploader-message').html($('<div class="js-progress">').css('width', percent + '%'));
                 },
                 onFileTypeError : function(file) {
-                    el.find('.js-uploader-message').html(wprsUploaderL10n.file_type_error);
+                    el.find('.js-uploader-message').html(wenpriseFormSettings.file_type_error);
                 },
                 onFileSizeError : function(file) {
-                    el.find('.js-uploader-message').html(wprsUploaderL10n.file_size_error);
+                    el.find('.js-uploader-message').html(wenpriseFormSettings.file_size_error);
                 },
                 onFileExtError  : function(file) {
-                    el.find('.js-uploader-message').html(wprsUploaderL10n.file_ext_error);
+                    el.find('.js-uploader-message').html(wenpriseFormSettings.file_ext_error);
                 },
             };
 
@@ -160,9 +160,9 @@
         }
 
         wprs_wp_media_uploader = wp.media.frames.file_frame = wp.media({
-            title   : wprsUploaderL10n.choose_image,
+            title   : wenpriseFormSettings.choose_image,
             button  : {
-                text: wprsUploaderL10n.insert_image,
+                text: wenpriseFormSettings.insert_image,
             },
             multiple: is_multiple,
         });
