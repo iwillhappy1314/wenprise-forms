@@ -10,6 +10,7 @@ use Nette\Forms\Controls\BaseControl;
 use Nette\Forms\Form;
 use Nette\Forms\Validator;
 use Nette\Utils\Html;
+use Wenprise\Forms\Helpers;
 
 
 /**
@@ -64,7 +65,8 @@ class AjaxUploadInput extends BaseControl
         $preview     = '';
         $values      = '';
         $hide        = 'rs-hide';
-        $multiple    = (bool) $this->control->multiple;
+        $multiple    = (bool)$this->control->multiple;
+        $file_types  = Helpers::data_get($settings, 'extFilter', ["jpg", "jpeg", "png", "gif", "zip", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]);
 
         $close_icon = '<svg width="103" height="76" xmlns="http://www.w3.org/2000/svg">
                         <path d="M43 60v16H24v-.007C11.218 75.723.998 65.283.998 52.499.998 40.1 10.628 29.836 23 29.047c0-.205-.005-.384-.005-.546 0-15.74 12.76-28.5 28.5-28.5s28.5 12.76 28.5 28.5c0 .182 0 .366-.005.546 12.379.781 22.019 11.049 22.019 23.453 0 12.4-9.635 22.666-22.01 23.452V76H61V60h9.2a5 5 0 0 0 3.6-8.479l-18.2-18.81a5 5 0 0 0-7.187 0L30.2 51.522A5 5 0 0 0 33.8 60H43z" fill="#9a9a9a"></path>
@@ -95,43 +97,54 @@ class AjaxUploadInput extends BaseControl
                     ->setAttribute('class', 'js-uploader rs-uploader')
                     ->data('name', $name)
                     ->data('multiple', $multiple)
+                    ->data('extFilter', $file_types)
                     ->data('settings', json_encode($settings));
 
         $html
             ->addHtml(
-                Html::el('div class=rs-uploader__text')
-                    ->addHtml('<div class="rs-uploader__image">' . $close_icon . '</div>')
-                    ->addText(__('Drag & Drop Images Here', 'wprs'))
-            )
+                Html::el('div class=rs-uploader__container')
+                    ->addHtml(
+                        Html::el('div class=rs-uploader__text')
+                            ->addHtml('<div class="rs-uploader__image">' . $close_icon . '</div>')
+                            ->addText(__('Drag & Drop Images Here', 'wprs'))
+                    )
+                    ->addHtml(
+                        Html::el('div class=rs-uploader__browser')
+                            ->addHtml(
+                                Html::el('label class="rs-btn rs-btn-default rs-uploader__button"')
+                                    ->addHtml(
+                                        Html::el('span')
+                                            ->addHtml($placeholder)
+                                    )
+                                    ->addHtml(
+                                        Html::el('input type="file" class=rs-uploader__shadow')
+                                            ->setAttribute('name', 'js-input-shadow')
+                                            ->setAttribute('multiple', $multiple)
+                                            ->setAttribute('title', $placeholder)
+                                            ->data('url', $this->url)
+                                    )
+                            )
+                            ->addHtml(
+                                Html::el('div class=rs-uploader__value')
+                                    ->addHtml($values)
+                            )
+                            ->addHtml(
+                                Html::el('div class=rs-uploader__preview')
+                                    ->appendAttribute('class', $hide)
+                                    ->addHtml($preview)
+                            )
+                            ->addHtml(
+                                Html::el('div class="js-uploader-message rs-uploader__message"')
+                            )
+                    ))
             ->addHtml(
-                Html::el('div class=rs-uploader__browser')
-                    ->addHtml(
-                        Html::el('label class="rs-btn rs-btn-default rs-uploader__button"')
-                            ->addHtml(
-                                Html::el('span')
-                                    ->addHtml($placeholder)
-                            )
-                            ->addHtml(
-                                Html::el('input type="file" class=rs-uploader__shadow')
-                                    ->setAttribute('name', 'js-input-shadow')
-                                    ->setAttribute('multiple', $multiple)
-                                    ->setAttribute('title', $placeholder)
-                                    ->data('url', $this->url)
-                            )
-                    )
-                    ->addHtml(
-                        Html::el('div class=rs-uploader__value')
-                            ->addHtml($values)
-                    )
-                    ->addHtml(
-                        Html::el('div class=rs-uploader__preview')
-                            ->appendAttribute('class', $hide)
-                            ->addHtml($preview)
-                    )
-                    ->addHtml(
-                        Html::el('div class="js-uploader-message rs-uploader__message"')
-                    )
+                Html::el('div class=rs-uploader__description')
+                    ->addText(__('Maximum allowed size for uploaded files:', 'wprs') . (int)(ini_get('upload_max_filesize')) . 'M')
+            )->addHtml(
+                Html::el('div class=rs-uploader__description')
+                    ->addText(__('Allowed file extensions:', 'wprs') . implode(', ', $file_types))
             );
+
 
         return $html;
     }
@@ -187,7 +200,8 @@ class AjaxUploadInput extends BaseControl
      *
      * @return $this
      */
-    public function setUrl($url) {
+    public function setUrl($url)
+    {
         $this->url = $url;
 
         return $this;
@@ -199,7 +213,8 @@ class AjaxUploadInput extends BaseControl
      *
      * @return bool
      */
-    public function isOk(): bool {
+    public function isOk(): bool
+    {
         return $this->isDisabled()
                || $this->getValue() == 0
                || $this->getValue() !== null;

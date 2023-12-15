@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wenprise Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2023-12-14 10:15+0800\n"
-"PO-Revision-Date: 2023-12-14 10:15+0800\n"
+"POT-Creation-Date: 2023-12-15 23:51+0800\n"
+"PO-Revision-Date: 2023-12-15 23:51+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
@@ -19,13 +19,21 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: Controls/AjaxUploadInput.php:62
+#: Controls/AjaxUploadInput.php:63
 msgid "Select File"
 msgstr "选择文件"
 
-#: Controls/AjaxUploadInput.php:104
+#: Controls/AjaxUploadInput.php:109
 msgid "Drag & Drop Images Here"
 msgstr "拖放文件到这里"
+
+#: Controls/AjaxUploadInput.php:142
+msgid "Maximum allowed size for uploaded files:"
+msgstr "上传文件的最大允许大小："
+
+#: Controls/AjaxUploadInput.php:145
+msgid "Allowed file extensions:"
+msgstr "允许的文件扩展名："
 
 #: Controls/CaptchaInput.php:54
 msgid "Click to refresh"
@@ -159,7 +167,7 @@ msgstr "+添加行"
 msgid "Add"
 msgstr "添加"
 
-#: Controls/SignatureInput.php:44 Init.php:94
+#: Controls/SignatureInput.php:44 Init.php:88
 msgid "Clear"
 msgstr "清除"
 
@@ -207,133 +215,133 @@ msgstr "这个表格没有数据"
 msgid "Upload Image"
 msgstr "上传图像"
 
-#: Init.php:32
+#: Init.php:30
 msgid "Your session has expired. Please return to the home page and try again."
 msgstr "您的会话已过期，请返回或刷新重试。"
 
-#: Init.php:33
+#: Init.php:31
 #, php-format
 msgid "Please enter %s."
 msgstr "请输入 %s 。"
 
-#: Init.php:34
+#: Init.php:32
 #, php-format
 msgid "This value should not be %s."
 msgstr "这个字段的值不应为 %s。"
 
-#: Init.php:35
+#: Init.php:33
 msgid "This field is required."
 msgstr "此字段为必填项。"
 
-#: Init.php:36
+#: Init.php:34
 msgid "This field should be blank."
 msgstr "这个字段应该留空。"
 
-#: Init.php:37
+#: Init.php:35
 #, php-format
 msgid "Please enter at least %d characters."
 msgstr "请输入至少为 %d 个字符。"
 
-#: Init.php:38
+#: Init.php:36
 #, php-format
 msgid "Please enter no more than %d characters."
 msgstr "请输入不超过 %d 个字符。"
 
-#: Init.php:39
+#: Init.php:37
 #, php-format
 msgid "Please enter a value between %d and %d characters long."
 msgstr "请输入一个 %d 到 %d 位的字符。"
 
-#: Init.php:40
+#: Init.php:38
 msgid "Please enter a valid email address."
 msgstr "请输入一个有效的电子邮件地址。"
 
-#: Init.php:41
+#: Init.php:39
 msgid "Please enter a valid URL."
 msgstr "请输入一个正确的 URL。"
 
-#: Init.php:42
+#: Init.php:40
 msgid "Please enter a valid integer."
 msgstr "请输入一个整数。"
 
-#: Init.php:43
+#: Init.php:41
 msgid "Please enter a valid number."
 msgstr "请输入一个有效的数字。"
 
-#: Init.php:44
+#: Init.php:42
 #, php-format
 msgid "Please enter a value greater than or equal to %d."
 msgstr "请输入至少为 %d 个字符。"
 
-#: Init.php:45
+#: Init.php:43
 #, php-format
 msgid "Please enter a value less than or equal to %d."
 msgstr "请输入一个小于等于 %d 的数字。"
 
-#: Init.php:46
+#: Init.php:44
 #, php-format
 msgid "Please enter a value between %d and %d."
 msgstr "请输入一个处于 %d 和 %d 之间的数字。"
 
-#: Init.php:47
+#: Init.php:45
 #, php-format
 msgid "The size of the uploaded file can be up to %d bytes."
 msgstr "上传的文件尺寸最大为 %d 字节。"
 
-#: Init.php:48
+#: Init.php:46
 #, php-format
 msgid "The uploaded data exceeds the limit of %d bytes."
 msgstr "上传的数据超过了 %d 字节的限制。"
 
-#: Init.php:49
+#: Init.php:47
 msgid "The uploaded file is not in the expected format."
 msgstr "上传的文件不是有效的格式。"
 
-#: Init.php:50
+#: Init.php:48
 msgid "The uploaded file must be image in format JPEG, GIF or PNG."
 msgstr "上传的文件必须为 JPED、GIF 或 PNG 格式。"
 
-#: Init.php:51
+#: Init.php:49
 msgid "Please select a valid option."
 msgstr "请选择一个有效的选项。"
 
-#: Init.php:52
+#: Init.php:50
 msgid "An error occurred during file upload."
 msgstr "上传时出现了一些错误。"
 
-#: Init.php:81
+#: Init.php:80
 msgid "Upload error, please try again."
 msgstr "上传错误，请重试。"
 
-#: Init.php:82
+#: Init.php:81
 msgid "Upload canceled."
 msgstr "已取消上传。"
 
-#: Init.php:83 Init.php:85
+#: Init.php:82 Init.php:84
 msgid "You have uploaded an incorrect file type. Please try again."
 msgstr "文件类型不正确，请重试。"
 
-#: Init.php:84
+#: Init.php:83
 msgid "The file you have uploaded exceeds the file size limit. Please try again."
 msgstr "文件过大，请重试。"
 
-#: Init.php:86
+#: Init.php:85
 msgid "Choose Image"
 msgstr "选择图像"
 
-#: Init.php:87
+#: Init.php:86
 msgid "Insert Image"
 msgstr "插入图像"
 
-#: Init.php:95
+#: Init.php:89
 msgid "Default"
 msgstr "默认"
 
-#: Init.php:96
+#: Init.php:90
 msgid "Select Color"
 msgstr "选择颜色"
 
-#: Init.php:97
+#: Init.php:91
 msgid "Current Color"
 msgstr "当前颜色"
 

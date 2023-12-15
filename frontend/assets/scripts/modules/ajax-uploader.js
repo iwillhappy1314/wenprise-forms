@@ -10,206 +10,191 @@
         el       = this,
 
         defaults = {
-          url                   : el.find('.rs-uploader__shadow').data('url'),
-          type                  : 'POST',
-          dataType              : 'json',
-          maxFileSize           : 2000000,
-          auto                  : true,
-          queue                 : false,
-          multiple              : (el.data('multiple') === true),
-          onBeforeUpload        : function() {
+          url             : el.find('.rs-uploader__shadow').data('url'),
+          type            : 'POST',
+          dataType        : 'json',
+          maxFileSize     : wenpriseFormSettings.upload_max_filesize * 1000000,
+          auto            : true,
+          queue           : false,
+          extFilter       : el.data('extfilter'),
+          multiple        : (el.data('multiple') === true),
+          onBeforeUpload  : function() {
             el.find('.js-uploader-message').empty();
           },
-          onDragEnter           : function() {
+          onDragEnter     : function() {
             el.addClass('active');
           },
-          onDragLeave           : function() {
+          onDragLeave     : function() {
             el.removeClass('active');
           },
-          onUploadSuccess       : function(id, data) {
-            var name           = el.data('name'),
-                is_multiple    = (el.data('multiple') === true),
+          onUploadSuccess : function(id, responsive) {
+            if (responsive.success === true) {
+              var name        = el.data('name'),
+                  is_multiple = (el.data('multiple') === true),
+                  button      = '<button type="button" class="rs-uploader__close" data-value=' + responsive.data.id + '>' + close_icon + '</button>',
+                  thumb       = '<img src="' + responsive.data.thumb + '" alt="Thumbnail">';
 
-                // @formatter:off
-                        button = '<button type="button" class="rs-uploader__close" data-value=' + data.id + '>' + close_icon + '</button>',
-                        thumb = '<img src="' + data.thumb + '" alt="Thumbnail">';
+              if (!responsive.data.thumb) {
+                thumb = file_icon + responsive.data.title;
+              }
 
-                    if (!data.thumb) {
-                        thumb = file_icon + data.title;
-                    }
+              el.find('input:text').filter(function() {
+                return this.value === '';
+              }).remove();
 
-                    el.
-                        find('input:text').
-                        filter(function() { return this.value === ''; }).
-                        remove();
-
-                    if (!is_multiple) {
-                        el.find('.rs-uploader__text').hide();
-                        el.find('.rs-uploader__button').hide();
-
-                        el.
-                            find('.rs-uploader__value').
-                            empty().
-                            append('<input type="hidden" name="' + name + '" value="' + data.id + '">');
-
-                        el.
-                            find('.rs-uploader__preview').
-                            empty().
-                            show().
-                            append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
-                    } else {
-
-                        el.
-                            find('.rs-uploader__value').
-                            append('<input type="hidden" name="' + name + '" value="' + data.id + '">');
-
-                        el.
-                            find('.rs-uploader__preview').
-                            show().
-                            append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
-                    }
-
-                },
-                onUploadError   : function(id, xhr, status, errorThrown) {
-                    el.find('.js-uploader-message').html(wenpriseFormSettings.error);
-                },
-                onUploadComplete: function(id) {
-                    el.find('.js-progress').remove();
-                },
-                onUploadCanceled: function(id) {
-                    el.find('.js-uploader-message').html(wenpriseFormSettings.canceled);
-                },
-                onUploadProgress: function(id, percent) {
-                    el.find('.js-uploader-message').html($('<div class="js-progress">').css('width', percent + '%'));
-                },
-                onFileTypeError : function(file) {
-                    el.find('.js-uploader-message').html(wenpriseFormSettings.file_type_error);
-                },
-                onFileSizeError : function(file) {
-                    el.find('.js-uploader-message').html(wenpriseFormSettings.file_size_error);
-                },
-                onFileExtError  : function(file) {
-                    el.find('.js-uploader-message').html(wenpriseFormSettings.file_ext_error);
-                },
-            };
-
-        var settings = $.extend({}, defaults, options);
-
-        /**
-         * 初始化文件上传组件
-         */
-        el.dmUploader(settings);
-
-        /**
-         * 删除缩略图
-         */
-        $('body').on('click', '.rs-uploader__close', function() {
-
-            var value = $(this).data('value'),
-                uploader = $(this).closest('.js-uploader'),
-                is_multiple = (uploader.data('multiple') === true);
-
-            // 移除值
-            if (!is_multiple) {
-                uploader.find('.rs-uploader__value input').attr('value', '');
-
-                uploader.show();
-                uploader.find('.rs-uploader__text').show();
-                uploader.find('.rs-uploader__button').show();
+              if (!is_multiple) {
+                el.find('.rs-uploader__text').hide();
+                el.find('.rs-uploader__button').hide();
+                el.find('.rs-uploader__value').empty().append('<input type="hidden" name="' + name + '" value="' + responsive.data.id + '">');
+                el.find('.rs-uploader__preview').empty().show().append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
+              } else {
+                el.find('.rs-uploader__value').append('<input type="hidden" name="' + name + '" value="' + responsive.data.id + '">');
+                el.find('.rs-uploader__preview').show().append('<div class="rs-uploader__thumbnail">' + button + thumb + '</div>');
+              }
             } else {
-                uploader.find('input[value=' + value + ']').remove();
+              el.find('.js-uploader-message').html(responsive.data);
             }
+          },
+          onUploadError   : function(id, xhr, status, errorThrown) {
+            el.find('.js-uploader-message').html(wenpriseFormSettings.error);
+          },
+          onUploadComplete: function(id) {
+            el.find('.js-progress').remove();
+          },
+          onUploadCanceled: function(id) {
+            el.find('.js-uploader-message').html(wenpriseFormSettings.canceled);
+          },
+          onUploadProgress: function(id, percent) {
+            el.find('.js-uploader-message').html($('<div class="js-progress">').css('width', percent + '%'));
+          },
+          onFileTypeError : function(file) {
+            el.find('.js-uploader-message').html(wenpriseFormSettings.file_type_error);
+          },
+          onFileSizeError : function(file) {
+            el.find('.js-uploader-message').html(wenpriseFormSettings.file_size_error);
+          },
+          onFileExtError  : function(file) {
+            el.find('.js-uploader-message').html(wenpriseFormSettings.file_ext_error);
+          },
+        };
 
-            // 移除缩略图
-            $(this).parent().remove();
-
-        });
-
-        /**
-         * 单文件上传时，如果已有文件，移除上传组件
-         */
-        $('input[name=js-input-shadow]').each(function() {
-
-            var uploader = $(this).closest('.js-uploader'),
-                is_multiple = (uploader.data('multiple') === true),
-                thumbnails = uploader.find('.rs-uploader__preview').children().length;
-
-            if (!is_multiple && thumbnails > 0) {
-                uploader.find('.rs-uploader__text').hide();
-                $(this).parent().hide();
-            }
-
-        });
-    };
+    var settings = $.extend({}, defaults, options);
 
     /**
-     * WordPress Uploader
+     * 初始化文件上传组件
      */
-    $('.rs-wp-uploader__button').on('click', function(e) {
-        e.preventDefault();
+    el.dmUploader(settings);
 
-        var wprs_wp_media_uploader,
-            wprs_wp_media_target_input = $(this).next().attr('id'),
-            uploader = $(this).closest('.rs-wp-uploader'),
-            name = uploader.data('name'),
-            is_multiple = (uploader.data('multiple') === true);
+    /**
+     * 删除缩略图
+     */
+    $('body').on('click', '.rs-uploader__close', function() {
 
-        if (wprs_wp_media_uploader) {
-            wprs_wp_media_uploader.open();
-            return;
+      var value       = $(this).data('value'),
+          uploader    = $(this).closest('.js-uploader'),
+          is_multiple = (uploader.data('multiple') === true);
+
+      // 移除值
+      if (!is_multiple) {
+        uploader.find('.rs-uploader__value input').attr('value', '');
+
+        uploader.show();
+        uploader.find('.rs-uploader__text').show();
+        uploader.find('.rs-uploader__button').show();
+      } else {
+        uploader.find('input[value=' + value + ']').remove();
+      }
+
+      // 移除缩略图
+      $(this).parent().remove();
+
+    });
+
+    /**
+     * 单文件上传时，如果已有文件，移除上传组件
+     */
+    $('input[name=js-input-shadow]').each(function() {
+
+      var uploader    = $(this).closest('.js-uploader'),
+          is_multiple = (uploader.data('multiple') === true),
+          thumbnails  = uploader.find('.rs-uploader__preview').children().length;
+
+      if (!is_multiple && thumbnails > 0) {
+        uploader.find('.rs-uploader__text').hide();
+        $(this).parent().hide();
+      }
+
+    });
+  };
+
+  /**
+   * WordPress Uploader
+   */
+  $('.rs-wp-uploader__button').on('click', function(e) {
+    e.preventDefault();
+
+    var wprs_wp_media_uploader,
+        wprs_wp_media_target_input = $(this).next().attr('id'),
+        uploader                   = $(this).closest('.rs-wp-uploader'),
+        name                       = uploader.data('name'),
+        is_multiple                = (uploader.data('multiple') === true);
+
+    if (wprs_wp_media_uploader) {
+      wprs_wp_media_uploader.open();
+      return;
+    }
+
+    wprs_wp_media_uploader = wp.media.frames.file_frame = wp.media({
+      title   : wenpriseFormSettings.choose_image,
+      button  : {
+        text: wenpriseFormSettings.insert_image,
+      },
+      multiple: is_multiple,
+    });
+
+    wprs_wp_media_uploader.on('select', function() {
+      var target_input = $('#' + wprs_wp_media_target_input).parent(),
+          attachments  = wprs_wp_media_uploader.state().get('selection').toJSON();
+
+      attachments.forEach(function(attachment) {
+        var button     = '<button type="button" class="rs-uploader__close rs-wp-uploader__close" data-value=' + attachment.id + '>' + close_icon + '</button>',
+            thumb      = '<div class="rs-uploader__thumbnail">' + button + '<img src="' + attachment.url + '" alt="Thumbnail"></div>',
+            el_preview = target_input.find('.rs-uploader__preview'),
+            el_value   = target_input.find('.rs-uploader__value');
+
+        target_input.find('input:text').remove();
+
+        if (is_multiple) {
+          el_value.append('<input type="hidden" name="' + name + '" value="' + attachment.id + '">');
+
+          el_preview.append(thumb).show();
+        } else {
+          el_value.html('<input type="hidden" name="' + name + '" value="' + attachment.id + '">');
+
+          el_preview.html(thumb).show();
         }
-
-        wprs_wp_media_uploader = wp.media.frames.file_frame = wp.media({
-            title   : wenpriseFormSettings.choose_image,
-            button  : {
-                text: wenpriseFormSettings.insert_image,
-            },
-            multiple: is_multiple,
-        });
-
-        wprs_wp_media_uploader.on('select', function() {
-            var target_input = $('#' + wprs_wp_media_target_input).parent(),
-                attachments = wprs_wp_media_uploader.state().get('selection').toJSON();
-
-            attachments.forEach(function(attachment){
-                var button = '<button type="button" class="rs-uploader__close rs-wp-uploader__close" data-value=' + attachment.id + '>' + close_icon + '</button>',
-                    thumb = '<div class="rs-uploader__thumbnail">' + button + '<img src="' + attachment.url + '" alt="Thumbnail"></div>',
-                    el_preview = target_input.find('.rs-uploader__preview'),
-                    el_value = target_input.find('.rs-uploader__value');
-
-                target_input.find('input:text').remove();
-
-                if(is_multiple){
-                    el_value.append('<input type="hidden" name="' + name + '" value="' + attachment.id + '">');
-
-                    el_preview.append(thumb).show();
-                } else{
-                    el_value.html('<input type="hidden" name="' + name + '" value="' + attachment.id + '">');
-
-                    el_preview.html(thumb).show();
-                }
-            });
-        });
-
-        /**
-         * 删除缩略图
-         */
-        $('.rs-form--wp-uploader').on('click', 'button.rs-wp-uploader__close', function(el) {
-            var value = $(this).data('value'),
-                wp_uploader = $('body').find('.rs-wp-uploader__field');
-
-            // 移除值
-            wp_uploader.find('input[value=' + value + ']').remove();
-
-            // 移除缩略图
-            $(this).parent().remove();
-        });
-
-        wprs_wp_media_uploader.open();
+      });
     });
 
-    $.each($('.rs-form--uploader'), function(index, el) {
-      $(this).find('.js-uploader').wprsAjaxUploader();
+    /**
+     * 删除缩略图
+     */
+    $('.rs-form--wp-uploader').on('click', 'button.rs-wp-uploader__close', function(el) {
+      var value       = $(this).data('value'),
+          wp_uploader = $('body').find('.rs-wp-uploader__field');
+
+      // 移除值
+      wp_uploader.find('input[value=' + value + ']').remove();
+
+      // 移除缩略图
+      $(this).parent().remove();
     });
+
+    wprs_wp_media_uploader.open();
+  });
+
+  $.each($('.rs-form--uploader'), function(index, el) {
+    $(this).find('.js-uploader').wprsAjaxUploader();
+  });
 
 })(jQuery);

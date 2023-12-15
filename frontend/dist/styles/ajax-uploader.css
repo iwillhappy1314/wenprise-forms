@@ -1,4 +1,4 @@
-.rs-uploader {
+.rs-uploader__container {
   cursor: default;
   -webkit-user-select: none;
           user-select: none;
@@ -7,7 +7,7 @@
   text-align: center;
   padding: 1rem;
 }
-.rs-uploader.active {
+.rs-uploader.active .rs-uploader__container {
   border-color: #4a5568;
   border-style: solid;
   background: #edf2f7;
@@ -63,6 +63,10 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
+}
+.rs-uploader__description {
+  color: #686868;
+  margin-top: 8px;
 }
 .rs-uploader__button {
   display: inline-block !important;
