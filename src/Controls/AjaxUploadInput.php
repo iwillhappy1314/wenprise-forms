@@ -141,8 +141,8 @@ class AjaxUploadInput extends BaseControl
                 Html::el('div class=rs-uploader__description')
                     ->addText(__('Maximum allowed size for uploaded files:', 'wprs') . (int)(ini_get('upload_max_filesize')) . 'M')
             )->addHtml(
-                Html::el('div class=rs-uploader__description')
-                    ->addText(__('Allowed file extensions:', 'wprs') . implode(', ', $file_types))
+                ($file_types) ? Html::el('div class=rs-uploader__description')
+                                    ->addText(__('Allowed file extensions:', 'wprs') . implode(', ', $file_types)) : ''
             );
 
 
