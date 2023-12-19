@@ -68,7 +68,7 @@ class AjaxUploadInput extends BaseControl
         $multiple    = (bool)$this->control->multiple;
         $file_types  = Helpers::data_get($settings, 'extFilter', ["jpg", "jpeg", "png", "gif", "zip", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]);
 
-        $close_icon = '<svg width="103" height="76" xmlns="http://www.w3.org/2000/svg">
+        $upload_icon = '<svg width="103" height="76" xmlns="http://www.w3.org/2000/svg">
                         <path d="M43 60v16H24v-.007C11.218 75.723.998 65.283.998 52.499.998 40.1 10.628 29.836 23 29.047c0-.205-.005-.384-.005-.546 0-15.74 12.76-28.5 28.5-28.5s28.5 12.76 28.5 28.5c0 .182 0 .366-.005.546 12.379.781 22.019 11.049 22.019 23.453 0 12.4-9.635 22.666-22.01 23.452V76H61V60h9.2a5 5 0 0 0 3.6-8.479l-18.2-18.81a5 5 0 0 0-7.187 0L30.2 51.522A5 5 0 0 0 33.8 60H43z" fill="#9a9a9a"></path>
                     </svg>';
 
@@ -105,7 +105,7 @@ class AjaxUploadInput extends BaseControl
                 Html::el('div class=rs-uploader__container')
                     ->addHtml(
                         Html::el('div class=rs-uploader__text')
-                            ->addHtml('<div class="rs-uploader__image">' . $close_icon . '</div>')
+                            ->addHtml('<div class="rs-uploader__image">' . $upload_icon . '</div>')
                             ->addText(__('Drag & Drop Images Here', 'wprs'))
                     )
                     ->addHtml(
@@ -170,7 +170,7 @@ class AjaxUploadInput extends BaseControl
             if (wp_attachment_is('image', $value)) {
                 $thumb = wp_get_attachment_thumb_url($value);
             } else {
-                $thumb = wp_mime_type_icon(get_post_mime_type($value));
+                $thumb = Helpers::get_assets_url('dist/images/file.svg');
             }
         } else {
             $thumb = $value;
@@ -181,8 +181,7 @@ class AjaxUploadInput extends BaseControl
                        ->data('value', $value)
                        ->setHtml($close_icon);
 
-        $image = Html::el('img')
-                     ->setAttribute('src', $thumb);
+        $image = Html::el('div class=rs-uploader__preview-image')->addHtml(Html::el('img')->setAttribute('src', $thumb));
 
         $file_name = Html::el('div')
                          ->setText($attachment->post_title);

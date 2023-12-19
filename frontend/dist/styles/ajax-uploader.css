@@ -15,13 +15,15 @@
 .rs-uploader__thumbnail {
   padding: 0.5rem;
   position: relative;
-  max-width: 150px;
-  width: 33.3333%;
+  max-width: 128px;
+  width: 128px;
+  line-height: 1.4;
   flex-grow: 1;
 }
 .rs-uploader__thumbnail img {
   max-width: 100%;
   height: auto;
+  vertical-align: middle;
 }
 .rs-uploader__image {
   margin-bottom: 1rem;
@@ -63,6 +65,19 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.rs-uploader__preview-image {
+  margin-bottom: 0.5rem;
+  background: #f7fafc;
+  border: 1px solid #cbd5e0;
+  border-radius: 3px;
+  width: 114px;
+  height: 114px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .rs-uploader__description {
   color: #686868;
