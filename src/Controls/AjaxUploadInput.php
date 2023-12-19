@@ -160,13 +160,17 @@ class AjaxUploadInput extends BaseControl
     public function getPreview($value): string
     {
 
+        $close_icon = '<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg>';
+
         if (function_exists('wp_get_attachment_thumb_url')) {
-            $thumb = wp_get_attachment_thumb_url($value);
+            if (wp_attachment_is('image', $value)) {
+                $thumb = wp_get_attachment_thumb_url($value);
+            } else {
+                $thumb = wp_mime_type_icon(get_post_mime_type($value));
+            }
         } else {
             $thumb = $value;
         }
-
-        $close_icon = '<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M49.6 158.4l104-108.8 358.4 352 356.8-352 105.6 105.6-352 356.8 352 355.2-102.4 107.2L512 620.8 155.2 974.4l-105.6-105.6L406.4 512z" p-id="3640" fill="#ffffff"></path></svg>';
 
         $preview = Html::el('div class="rs-uploader__thumbnail"');
         $button  = Html::el('button type=button class=rs-uploader__close')
