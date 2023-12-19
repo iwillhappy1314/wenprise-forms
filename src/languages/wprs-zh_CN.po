@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Wenprise Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
 "POT-Creation-Date: 2023-12-15 23:51+0800\n"
-"PO-Revision-Date: 2023-12-19 18:01+0800\n"
+"PO-Revision-Date: 2023-12-19 18:02+0800\n"
 "Last-Translator: Amos Lee <iwillhappy1314@gmail.com>\n"
 "Language-Team: Amos Lee\n"
 "Language: zh_CN\n"
@@ -319,11 +319,11 @@ msgstr "已取消上传。"
 
 #: Init.php:82 Init.php:84
 msgid "You have uploaded an incorrect file type. Please try again."
-msgstr "您上传的文件类型不正确。请再试一次。"
+msgstr "您上传的文件类型不正确，请再试一次。"
 
 #: Init.php:83
 msgid "The file you have uploaded exceeds the file size limit. Please try again."
-msgstr "您上传的文件超过了文件大小限制。请再试一次。"
+msgstr "您上传的文件超过了文件大小限制，请再试一次。"
 
 #: Init.php:85
 msgid "Choose Image"
