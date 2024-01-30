@@ -1315,6 +1315,21 @@ input + .iris-picker {
   border-radius: 0 4px 4px 0;
 }
 
+.rs-form--chosen select,
+.rs-form--multi-chosen select {
+  display: inline-block !important;
+  height: 0;
+  padding: 0;
+  opacity: 0;
+  font-size: 0;
+  -webkit-appearance: none;
+          appearance: none;
+  position: absolute;
+  bottom: 1em;
+  width: 100%;
+  min-height: initial;
+}
+
 .rs-btn {
   display: inline-block;
   font-weight: 400;
