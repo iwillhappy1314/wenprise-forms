@@ -221,3 +221,16 @@ input + .iris-picker {
 .rs-switch:last-of-type .rs-switch__text {
   border-radius: 0 4px 4px 0;
 }
+
+.rs-form--chosen,
+.rs-form--multi-chosen{
+  select{
+    display: inline-block !important;
+    height: 0;
+    padding: 0;
+    opacity: 0;
+    appearance: none;
+    position: absolute;
+    bottom: 1em;
+  }
+}
