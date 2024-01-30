@@ -1137,7 +1137,7 @@ textarea.form-control {
   display: block;
   margin-bottom: 0.5rem;
 }
-.rs-form-group label.rs-required:after {
+.rs-form-group label.rs-required:after, .rs-form-group label.rs-required:after {
   content: "*";
   color: #f30;
   font-size: 1.2em;

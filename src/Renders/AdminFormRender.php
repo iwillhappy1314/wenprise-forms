@@ -23,7 +23,7 @@ class AdminFormRender extends BaseFormRender
         switch ($type) {
             case 'term_meta':
                 if ($screen->base == 'term') {
-                    $this->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
+                    $this->wrappers[ 'controls' ][ 'container' ] = 'table class="form-table rs-form-group"';
                     $this->wrappers[ 'pair' ][ 'container' ]     = 'tr class=rs-form-field';
                 } else {
                     $this->wrappers[ 'controls' ][ 'container' ] = '';
@@ -31,7 +31,7 @@ class AdminFormRender extends BaseFormRender
                 }
                 break;
             default:
-                $this->wrappers[ 'controls' ][ 'container' ] = 'table class=form-table';
+                $this->wrappers[ 'controls' ][ 'container' ] = 'table class="form-table rs-form-group"';
                 $this->wrappers[ 'pair' ][ 'container' ]     = 'tr class=rs-form-field';
         }
 
@@ -96,7 +96,7 @@ class AdminFormRender extends BaseFormRender
             $pair->addHtml($this->renderControl($control));
         }
 
-        $pair->class($this->getValue($control->isRequired() ? 'pair .required' : 'pair .optional'), true);
+        $pair->class($this->getValue($control->isRequired() ? 'pair .rs-required' : 'pair .optional'), true);
         $pair->class($control->hasErrors() ? $this->getValue('pair .error') : null, true);
         $pair->class($control->getOption('class'), true);
 
