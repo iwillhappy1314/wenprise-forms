@@ -54,9 +54,13 @@
             } else {
               el.find('.js-uploader-message').html(responsive.data);
             }
+
+            $( document.body ).trigger( 'wprs-ajax-uploader-success' );
           },
           onUploadError   : function(id, xhr, status, errorThrown) {
             el.find('.js-uploader-message').html(wenpriseFormSettings.error);
+
+            $( document.body ).trigger( 'wprs-ajax-uploader-error' );
           },
           onUploadComplete: function(id) {
             el.find('.js-progress').remove();
