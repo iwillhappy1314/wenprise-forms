@@ -32,7 +32,7 @@
               var name        = el.data('name'),
                   is_multiple = (el.data('multiple') === true),
                   button      = '<button type="button" class="rs-uploader__close" data-value=' + responsive.data.id + '>' + close_icon + '</button>',
-                  thumb       = '<div class="rs-uploader__preview-image"><img src="' + responsive.data.thumb + '" alt="Thumbnail"></div>' + responsive.data.title;
+                  thumb       = '<a href="' + responsive.data.url + '" class="rs-uploader__preview-image"><img src="' + responsive.data.thumb + '" alt="Thumbnail"></a>' + responsive.data.title;
 
               if (!responsive.data.thumb) {
                 thumb = '<div class="rs-uploader__preview-image">' + file_icon + '</div>' + responsive.data.title;
