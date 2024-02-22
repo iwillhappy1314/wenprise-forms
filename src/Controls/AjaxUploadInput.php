@@ -181,7 +181,14 @@ class AjaxUploadInput extends BaseControl
                        ->data('value', $value)
                        ->setHtml($close_icon);
 
-        $image = Html::el('div class=rs-uploader__preview-image')->addHtml(Html::el('img')->setAttribute('src', $thumb));
+        if (wp_attachment_is('image', $value)) {
+            $thumb_full = wp_get_attachment_image_url($value, 'full');
+            $image      = Html::el('a class=rs-uploader__preview-image')
+                              ->href($thumb_full)
+                              ->addHtml(Html::el('img')->setAttribute('src', $thumb));
+        } else {
+            $image = Html::el('div class=rs-uploader__preview-image')->addHtml(Html::el('img')->setAttribute('src', $thumb));
+        }
 
         $file_name = Html::el('div')
                          ->setText($attachment->post_title);

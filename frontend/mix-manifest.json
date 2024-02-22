@@ -5,7 +5,7 @@
     "/dist/images/dash.svg": "/dist/images/dash.svg",
     "/dist/images/file.svg": "/dist/images/file.svg",
     "/dist/images/plus.svg": "/dist/images/plus.svg",
-    "/dist/scripts/ajax-uploader.js": "/dist/scripts/ajax-uploader.8a6260.js",
+    "/dist/scripts/ajax-uploader.js": "/dist/scripts/ajax-uploader.2a06cf.js",
     "/dist/scripts/alpinejs.js": "/dist/scripts/alpinejs.2642b9.js",
     "/dist/scripts/autocomplete.js": "/dist/scripts/autocomplete.539b3c.js",
     "/dist/scripts/bootstrap-button.js": "/dist/scripts/bootstrap-button.d23a44.js",
@@ -22,11 +22,11 @@
     "/dist/scripts/star-rating.js": "/dist/scripts/star-rating.a12e22.js",
     "/dist/scripts/sweet-alert.js": "/dist/scripts/sweet-alert.0cda1d.js",
     "/dist/scripts/table-input.js": "/dist/scripts/table-input.2f424a.js",
-    "/dist/styles/ajax-uploader.css": "/dist/styles/ajax-uploader.4514c0.css",
-    "/dist/styles/chosen.css": "/dist/styles/chosen.4514c0.css",
-    "/dist/styles/datepicker.css": "/dist/styles/datepicker.4514c0.css",
-    "/dist/styles/daterangepicker.css": "/dist/styles/daterangepicker.4514c0.css",
-    "/dist/styles/ion-rangeslider.css": "/dist/styles/ion-rangeslider.4514c0.css",
-    "/dist/styles/main.css": "/dist/styles/main.4514c0.css",
-    "/dist/styles/star-rating.css": "/dist/styles/star-rating.4514c0.css"
+    "/dist/styles/ajax-uploader.css": "/dist/styles/ajax-uploader.ffeff0.css",
+    "/dist/styles/chosen.css": "/dist/styles/chosen.ffeff0.css",
+    "/dist/styles/datepicker.css": "/dist/styles/datepicker.ffeff0.css",
+    "/dist/styles/daterangepicker.css": "/dist/styles/daterangepicker.ffeff0.css",
+    "/dist/styles/ion-rangeslider.css": "/dist/styles/ion-rangeslider.ffeff0.css",
+    "/dist/styles/main.css": "/dist/styles/main.ffeff0.css",
+    "/dist/styles/star-rating.css": "/dist/styles/star-rating.ffeff0.css"
 }
