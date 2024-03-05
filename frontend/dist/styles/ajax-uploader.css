@@ -79,6 +79,15 @@
   align-items: center;
   justify-content: center;
 }
+.rs-uploader__preview-name {
+  height: 40px;
+  max-width: 300px;
+  word-break: break-all;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
 .rs-uploader__description {
   color: #686868;
   margin-top: 8px;
