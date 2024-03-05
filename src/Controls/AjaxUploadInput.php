@@ -190,7 +190,7 @@ class AjaxUploadInput extends BaseControl
             $image = Html::el('div class=rs-uploader__preview-image')->addHtml(Html::el('img')->setAttribute('src', $thumb));
         }
 
-        $file_name = Html::el('div')
+        $file_name = Html::el('div class=rs-uploader__preview-name')
                          ->setText($attachment->post_title);
 
         $preview->addHtml($button . $image . $file_name);

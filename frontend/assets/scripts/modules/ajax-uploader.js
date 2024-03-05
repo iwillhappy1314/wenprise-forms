@@ -32,10 +32,10 @@
               var name        = el.data('name'),
                   is_multiple = (el.data('multiple') === true),
                   button      = '<button type="button" class="rs-uploader__close" data-value=' + responsive.data.id + '>' + close_icon + '</button>',
-                  thumb       = '<a target=_blank href="' + responsive.data.url + '" class="rs-uploader__preview-image"><img src="' + responsive.data.thumb + '" alt="Thumbnail"></a>' + responsive.data.title;
+                  thumb       = '<a target=_blank href="' + responsive.data.url + '" class="rs-uploader__preview-image"><img src="' + responsive.data.thumb + '" alt="Thumbnail"></a>' + '<div class="rs-uploader__preview-name">' + responsive.data.title + '</div>';
 
               if (!responsive.data.thumb) {
-                thumb = '<div class="rs-uploader__preview-image">' + file_icon + '</div>' + responsive.data.title;
+                thumb = '<div class="rs-uploader__preview-image">' + file_icon + '</div>' + '<div class="rs-uploader__preview-name">' + responsive.data.title + '</div>';
               }
 
               el.find('input:text').filter(function() {

@@ -89,6 +89,14 @@
       align-items: center;
       justify-content: center;
     }
+
+    &-name{
+      height: 40px;
+      max-width: 300px;
+      overflow: hidden;
+      word-break: break-all;
+      @apply rsf-line-clamp-2;
+    }
   }
 
   &__browser {
