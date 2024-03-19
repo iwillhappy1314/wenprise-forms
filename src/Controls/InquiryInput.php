@@ -63,9 +63,9 @@ class InquiryInput extends BaseControl
     /**
      * 生成 HTML 元素
      *
-     * @return string
+     * @return \Nette\Utils\Html
      */
-    public function getControl(): string
+    public function getControl(): Html
     {
         $id    = $this->getHtmlId();
         $js_id = str_replace('-', '_', $id);
