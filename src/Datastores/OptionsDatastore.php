@@ -4,8 +4,6 @@ namespace Wenprise\Forms\Datastores;
 
 class OptionsDatastore extends IDatastore
 {
-    var int $post_id = 0;
-
     public function __construct($form)
     {
         parent::__construct($form);
