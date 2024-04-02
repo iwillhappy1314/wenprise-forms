@@ -55,7 +55,7 @@
               el.find('.js-uploader-message').html(responsive.data);
             }
 
-            $( document.body ).trigger( 'wprs-ajax-uploader-success' );
+            $( document.body ).trigger( 'wprs-ajax-uploader-success', responsive );
           },
           onUploadError   : function(id, xhr, status, errorThrown) {
             el.find('.js-uploader-message').html(wenpriseFormSettings.error);
