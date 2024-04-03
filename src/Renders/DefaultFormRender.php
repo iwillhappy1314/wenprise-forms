@@ -49,7 +49,7 @@ class DefaultFormRender extends BaseFormRender
 
         $type = $control->getOption('type');
 
-        $row_class   = ['rs-form--' . $type];
+        $row_class   = ['rs-form rs-form--' . $type];
         $group_class = [];
 
         if ($this->layout === 'horizontal') {

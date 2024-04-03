@@ -1,8 +1,10 @@
+@import "vars";
+
 .rs-uploader {
   &__container{
     cursor: default;
     user-select: none;
-    border: 2px dashed #a0aec0;
+    border: 2px dashed var(--rs-form-border-color);
     border-radius: 6px;
     text-align: center;
     padding: 1rem;
@@ -10,9 +12,9 @@
 
   &.active {
     .rs-uploader__container{
-      border-color: #4a5568;
+      border-color: var(--rs-form-border-alt-color);
       border-style: solid;
-      background: #edf2f7;
+      background: var(--rs-form-bg-color);
     }
   }
 
@@ -34,7 +36,7 @@
   &__image{
     svg{
       width: 56px;
-      stroke: #686868;
+      stroke: var(--rs-form-text-alt-color);
     }
   }
 
@@ -68,7 +70,7 @@
   }
 
   &__text {
-    color: #686868;
+    color: var(--rs-form-text-alt-color);
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 1.5rem;
@@ -84,8 +86,8 @@
     overflow: hidden;
     &-image{
       margin-bottom: .5rem;
-      background: #f7fafc;
-      border: 1px solid #cbd5e0;
+      background: var(--rs-form-bg-color);
+      border: 1px solid var(--rs-form-border-color);
       border-radius: 3px;
       width: 114px;
       height: 114px;
@@ -108,7 +110,7 @@
   }
 
   &__description{
-    color: #686868;
+    color: var(--rs-form-text-alt-color);
     margin-top: 8px;
   }
 
@@ -119,9 +121,9 @@
     overflow: hidden;
     line-height: 34px;
     font-size: 14px;
-    border: 1px solid #cbd5e0;
-    background-color: #f7fafc;
-    color: #333;
+    border: 1px solid var(--rs-form-border-color);
+    background-color: var(--rs-form-bg-color);
+    color: var(--rs-form-text-color);
     text-align: center;
     vertical-align: middle;
     border-radius: 4px;
@@ -132,10 +134,10 @@
     &:active,
     &:focus,
     &:hover {
-      color: #333;
+      color: var(--rs-form-text-color);
       outline: 0;
-      background-color: #edf2f7;
-      border-color: #a0aec0;
+      background-color: var(--rs-form-bg-color);
+      border-color: var(--rs-form-border-alt-color);
     }
   }
 
@@ -158,10 +160,10 @@
   }
 
   &__message {
-    color: #e53e3e;
+    color: var(--rs-form-error-color);
 
     .js-progress{
-      background: #0f9d58;
+      background: var(--rs-form-success-color);
       height: 5px;
       border-radius: 3px;
     }
@@ -170,7 +172,7 @@
 }
 
 .rs-wp-uploader__field{
-  border: 2px dashed #a0aec0;
+  border: 2px dashed var(--rs-form-border-color);
   border-radius: 6px;
   padding: 1rem;
 }

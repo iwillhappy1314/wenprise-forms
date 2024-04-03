@@ -1,16 +1,29 @@
+:root {
+  --rs-form-primay-color: #3b82f6;
+  --rs-form-primay-alt-color: #2563eb;
+  --rs-form-text-color: #374151;
+  --rs-form-text-alt-color: #71717a;
+  --rs-form-border-color: #d1d5db;
+  --rs-form-border-alt-color: #a0aec0;
+  --rs-form-bg-color: #f3f4f6;
+  --rs-form-bg-alt-color: #edf2f7;
+  --rs-form-success-color: #16a34a;
+  --rs-form-error-color: #e11d48;
+}
+
 .rs-uploader__container {
   cursor: default;
   -webkit-user-select: none;
           user-select: none;
-  border: 2px dashed #a0aec0;
+  border: 2px dashed var(--rs-form-border-color);
   border-radius: 6px;
   text-align: center;
   padding: 1rem;
 }
 .rs-uploader.active .rs-uploader__container {
-  border-color: #4a5568;
+  border-color: var(--rs-form-border-alt-color);
   border-style: solid;
-  background: #edf2f7;
+  background: var(--rs-form-bg-color);
 }
 .rs-uploader__thumbnail {
   padding: 0.5rem;
@@ -27,7 +40,7 @@
 }
 .rs-uploader__image svg {
   width: 56px;
-  stroke: #686868;
+  stroke: var(--rs-form-text-alt-color);
 }
 .rs-uploader__close {
   position: absolute;
@@ -56,7 +69,7 @@
   box-shadow: none;
 }
 .rs-uploader__text {
-  color: #686868;
+  color: var(--rs-form-text-alt-color);
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 1.5rem;
@@ -72,8 +85,8 @@
 }
 .rs-uploader__preview-image {
   margin-bottom: 0.5rem;
-  background: #f7fafc;
-  border: 1px solid #cbd5e0;
+  background: var(--rs-form-bg-color);
+  border: 1px solid var(--rs-form-border-color);
   border-radius: 3px;
   width: 114px;
   height: 114px;
@@ -91,7 +104,7 @@
   -webkit-line-clamp: 2;
 }
 .rs-uploader__description {
-  color: #686868;
+  color: var(--rs-form-text-alt-color);
   margin-top: 8px;
 }
 .rs-uploader__button {
@@ -101,9 +114,9 @@
   overflow: hidden;
   line-height: 34px;
   font-size: 14px;
-  border: 1px solid #cbd5e0;
-  background-color: #f7fafc;
-  color: #333;
+  border: 1px solid var(--rs-form-border-color);
+  background-color: var(--rs-form-bg-color);
+  color: var(--rs-form-text-color);
   text-align: center;
   vertical-align: middle;
   border-radius: 4px;
@@ -112,10 +125,10 @@
   font-weight: 400;
 }
 .rs-uploader__button:active, .rs-uploader__button:focus, .rs-uploader__button:hover {
-  color: #333;
+  color: var(--rs-form-text-color);
   outline: 0;
-  background-color: #edf2f7;
-  border-color: #a0aec0;
+  background-color: var(--rs-form-bg-color);
+  border-color: var(--rs-form-border-alt-color);
 }
 .rs-uploader__value {
   display: none;
@@ -134,16 +147,16 @@
   cursor: pointer;
 }
 .rs-uploader__message {
-  color: #e53e3e;
+  color: var(--rs-form-error-color);
 }
 .rs-uploader__message .js-progress {
-  background: #0f9d58;
+  background: var(--rs-form-success-color);
   height: 5px;
   border-radius: 3px;
 }
 
 .rs-wp-uploader__field {
-  border: 2px dashed #a0aec0;
+  border: 2px dashed var(--rs-form-border-color);
   border-radius: 6px;
   padding: 1rem;
 }

@@ -18,7 +18,7 @@ class AdminFormRender extends BaseFormRender
         $this->type = $type;
         $screen     = get_current_screen();
 
-        $this->wrappers[ 'form' ][ 'container' ] = "div class='rs-admin-form rs-form--$type'";
+        $this->wrappers[ 'form' ][ 'container' ] = "div class='rs-form rs-admin-form rs-form--$type'";
 
         switch ($type) {
             case 'term_meta':
@@ -64,7 +64,7 @@ class AdminFormRender extends BaseFormRender
         $type = $control->getOption('type');
 
         if ( ! $control->getOption('class')) {
-            $control->setOption('class', 'rs-form--' . $type);
+            $control->setOption('class', 'rs-form rs-form--' . $type);
         }
 
         $control->setOption('id', 'grp-' . $control->getName());
