@@ -68,9 +68,9 @@ class AjaxUploadInput extends BaseControl
         $multiple    = (bool)$this->control->multiple;
         $file_types  = Helpers::data_get($settings, 'extFilter', ["jpg", "jpeg", "png", "gif", "zip", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]);
 
-        $upload_icon = '<svg width="103" height="76" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M43 60v16H24v-.007C11.218 75.723.998 65.283.998 52.499.998 40.1 10.628 29.836 23 29.047c0-.205-.005-.384-.005-.546 0-15.74 12.76-28.5 28.5-28.5s28.5 12.76 28.5 28.5c0 .182 0 .366-.005.546 12.379.781 22.019 11.049 22.019 23.453 0 12.4-9.635 22.666-22.01 23.452V76H61V60h9.2a5 5 0 0 0 3.6-8.479l-18.2-18.81a5 5 0 0 0-7.187 0L30.2 51.522A5 5 0 0 0 33.8 60H43z" fill="#9a9a9a"></path>
-                    </svg>';
+        $upload_icon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
+                        </svg>';
 
         $el->appendAttribute('class', $hide);
 

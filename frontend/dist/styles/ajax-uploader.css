@@ -25,8 +25,9 @@
   height: auto;
   vertical-align: middle;
 }
-.rs-uploader__image {
-  margin-bottom: 1rem;
+.rs-uploader__image svg {
+  width: 56px;
+  stroke: #686868;
 }
 .rs-uploader__close {
   position: absolute;
@@ -55,10 +56,11 @@
   box-shadow: none;
 }
 .rs-uploader__text {
-  color: #4a5568;
+  color: #686868;
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  font-weight: 500;
 }
 .rs-uploader__preview {
   display: flex;
@@ -106,7 +108,7 @@
   vertical-align: middle;
   border-radius: 4px;
   padding: 0 15px;
-  margin: 0;
+  margin: 0 !important;
   font-weight: 400;
 }
 .rs-uploader__button:active, .rs-uploader__button:focus, .rs-uploader__button:hover {

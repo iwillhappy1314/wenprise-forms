@@ -32,7 +32,10 @@
   }
 
   &__image{
-    margin-bottom: 1rem;
+    svg{
+      width: 56px;
+      stroke: #686868;
+    }
   }
 
   &__close {
@@ -65,10 +68,11 @@
   }
 
   &__text {
-    color: #4a5568;
+    color: #686868;
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 1.5rem;
+    font-weight: 500;
   }
 
   &__preview {
@@ -122,7 +126,7 @@
     vertical-align: middle;
     border-radius: 4px;
     padding: 0 15px;
-    margin: 0;
+    margin: 0 !important;
     font-weight: 400;
 
     &:active,
