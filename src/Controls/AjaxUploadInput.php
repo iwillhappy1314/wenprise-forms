@@ -183,7 +183,7 @@ class AjaxUploadInput extends BaseControl
 
         if (wp_attachment_is('image', $value)) {
             $thumb_full = wp_get_attachment_image_url($value, 'full');
-            $image      = Html::el('a class=rs-uploader__preview-image')
+            $image      = Html::el('a target="_blank" class=rs-uploader__preview-image')
                               ->href($thumb_full)
                               ->addHtml(Html::el('img')->setAttribute('src', $thumb));
         } else {
@@ -191,7 +191,7 @@ class AjaxUploadInput extends BaseControl
         }
 
         $file_name = Html::el('div class=rs-uploader__preview-name')
-                         ->setText($attachment->post_title);
+                         ->setHtml('<a target=_blank href="' . $attachment->guid . '">' . $attachment->post_title . '</a>');
 
         $preview->addHtml($button . $image . $file_name);
 
