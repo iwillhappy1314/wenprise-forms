@@ -486,3 +486,17 @@ div.mce-toolbar-grp{
 .daterangepicker td.active, .daterangepicker td.active:hover{
   background-color: var(--rs-form-primay-alt-color) !important;
 }
+
+.rs-form--inline{
+  display: inline-flex;
+
+  .rs-form-group{
+    display: inline-flex;
+    gap: .5rem;
+    align-items: center;
+    label{
+      white-space: nowrap;
+      margin-bottom: 0;
+    }
+  }
+}
