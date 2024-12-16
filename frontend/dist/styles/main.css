@@ -1522,6 +1522,19 @@ div.mce-toolbar-grp {
   background-color: var(--rs-form-primay-alt-color) !important;
 }
 
+.rs-form--inline {
+  display: inline-flex;
+}
+.rs-form--inline .rs-form-group {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.rs-form--inline .rs-form-group label {
+  white-space: nowrap;
+  margin-bottom: 0;
+}
+
 .rs-btn {
   display: inline-block;
   font-weight: 400;

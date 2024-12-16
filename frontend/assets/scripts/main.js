@@ -88,7 +88,7 @@ if ($('.rs-form--image-picker').length > 0) {
   loadjs([distPath + wprs_get_assets_file('/dist/scripts/image-picker.js')], 'image-picker');
 }
 
-if ($('.rs-form--chosen').length > 0) {
+if ($('.rs-form--chosen').length > 0 || $('.rs-form--multi-chosen').length > 0) {
   loadjs([distPath + wprs_get_assets_file('/dist/styles/chosen.css'), distPath + wprs_get_assets_file('/dist/scripts/chosen-js.js')], 'chosen');
 }
 
