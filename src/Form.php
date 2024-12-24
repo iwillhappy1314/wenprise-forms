@@ -385,7 +385,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addAutocomplete(string $name, string $label = null, array $settings = null): Controls\AutoCompleteInput
     {
-        return $this[ $name ] = (new Controls\AutocompleteInput($label, $settings));
+        return $this[ $name ] = (new Controls\AutoCompleteInput($label, $settings));
     }
 
 
