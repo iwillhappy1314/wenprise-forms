@@ -13,49 +13,49 @@ class MetaBox
      *
      * @var Form
      */
-    protected $form;
+    protected Form $form;
 
     /**
      * Meta Box 标题
      *
      * @var string
      */
-    protected $title;
+    protected string $title;
 
     /**
      * Meta Box 类型 (post, user, term, options)
      *
      * @var string
      */
-    protected $type;
+    protected string $type;
 
     /**
      * Meta Box ID
      *
      * @var string
      */
-    protected $id;
+    protected string $id;
 
     /**
      * 上下文 (normal, side, advanced)
      *
      * @var string
      */
-    protected $context = 'normal';
+    protected string $context = 'normal';
 
     /**
      * 优先级 (default, high, low)
      *
      * @var string
      */
-    protected $priority = 'default';
+    protected string $priority = 'default';
 
     /**
      * 条件数组
      *
      * @var array
      */
-    protected $conditions = [];
+    protected array $conditions = [];
 
     /**
      * 构造函数
@@ -83,7 +83,7 @@ class MetaBox
      *
      * @return static
      */
-    public static function post(string $id, string $title)
+    public static function post(string $id, string $title): MetaBox
     {
         return new static($id, $title, 'post');
     }
@@ -96,7 +96,7 @@ class MetaBox
      *
      * @return static
      */
-    public static function user(string $id, string $title)
+    public static function user(string $id, string $title): MetaBox
     {
         return new static($id, $title, 'user');
     }
@@ -109,7 +109,7 @@ class MetaBox
      *
      * @return static
      */
-    public static function term(string $id, string $title)
+    public static function term(string $id, string $title): MetaBox
     {
         return new static($id, $title, 'term');
     }
@@ -122,7 +122,7 @@ class MetaBox
      *
      * @return static
      */
-    public static function options(string $id, string $title)
+    public static function options(string $id, string $title): MetaBox
     {
         return new static($id, $title, 'options');
     }
@@ -134,7 +134,7 @@ class MetaBox
      *
      * @return $this
      */
-    public function setContext(string $context)
+    public function setContext(string $context): MetaBox
     {
         $this->context = $context;
         return $this;
@@ -147,7 +147,7 @@ class MetaBox
      *
      * @return $this
      */
-    public function setPriority(string $priority)
+    public function setPriority(string $priority): MetaBox
     {
         $this->priority = $priority;
         return $this;
@@ -162,7 +162,7 @@ class MetaBox
      *
      * @return $this
      */
-    public function where(string $key, string $operator, $value)
+    public function where(string $key, string $operator, $value): MetaBox
     {
         $this->conditions[] = [
             'key'      => $key,
@@ -180,9 +180,9 @@ class MetaBox
      * @param string|null $label    字段标签
      * @param int|null    $maxLength 最大长度
      *
-     * @return \Wenprise\Forms\Controls\TextInput
+     * @return \Nette\Forms\Controls\TextInput
      */
-    public function addText(string $name, string $label = null, int $maxLength = null)
+    public function addText(string $name, string $label = null, int $maxLength = null): \Nette\Forms\Controls\TextInput
     {
         return $this->form->addText($name, $label, $maxLength);
     }
@@ -193,9 +193,9 @@ class MetaBox
      * @param string      $name  字段名称
      * @param string|null $label 字段标签
      *
-     * @return \Wenprise\Forms\Controls\TextArea
+     * @return \Nette\Forms\Controls\TextArea
      */
-    public function addTextArea(string $name, string $label = null)
+    public function addTextArea(string $name, string $label = null): \Nette\Forms\Controls\TextArea
     {
         return $this->form->addTextArea($name, $label);
     }
@@ -207,9 +207,9 @@ class MetaBox
      * @param string|null $label 字段标签
      * @param array|null  $items 选项数组
      *
-     * @return \Wenprise\Forms\Controls\SelectBox
+     * @return \Nette\Forms\Controls\SelectBox
      */
-    public function addSelect(string $name, string $label = null, array $items = null)
+    public function addSelect(string $name, string $label = null, array $items = null): \Nette\Forms\Controls\SelectBox
     {
         return $this->form->addSelect($name, $label, $items);
     }
@@ -221,9 +221,9 @@ class MetaBox
      * @param string|null $label 字段标签
      * @param array|null  $items 选项数组
      *
-     * @return \Wenprise\Forms\Controls\MultiSelectBox
+     * @return \Nette\Forms\Controls\MultiSelectBox
      */
-    public function addMultiSelect(string $name, string $label = null, array $items = null)
+    public function addMultiSelect(string $name, string $label = null, array $items = null): \Nette\Forms\Controls\MultiSelectBox
     {
         return $this->form->addMultiSelect($name, $label, $items);
     }
@@ -235,9 +235,9 @@ class MetaBox
      * @param string|null $label 字段标签
      * @param array|null  $items 选项数组
      *
-     * @return \Wenprise\Forms\Controls\RadioList
+     * @return \Nette\Forms\Controls\RadioList
      */
-    public function addRadioList(string $name, string $label = null, array $items = null)
+    public function addRadioList(string $name, string $label = null, array $items = null): \Nette\Forms\Controls\RadioList
     {
         return $this->form->addRadioList($name, $label, $items);
     }
@@ -248,9 +248,9 @@ class MetaBox
      * @param string      $name  字段名称
      * @param string|null $label 字段标签
      *
-     * @return \Wenprise\Forms\Controls\Checkbox
+     * @return \Nette\Forms\Controls\Checkbox
      */
-    public function addCheckbox(string $name, string $label = null)
+    public function addCheckbox(string $name, string $label = null): \Nette\Forms\Controls\Checkbox
     {
         return $this->form->addCheckbox($name, $label);
     }
@@ -262,9 +262,9 @@ class MetaBox
      * @param string|null $label 字段标签
      * @param array|null  $items 选项数组
      *
-     * @return \Wenprise\Forms\Controls\CheckboxList
+     * @return \Nette\Forms\Controls\CheckboxList
      */
-    public function addCheckboxList(string $name, string $label = null, array $items = null)
+    public function addCheckboxList(string $name, string $label = null, array $items = null): \Nette\Forms\Controls\CheckboxList
     {
         return $this->form->addCheckboxList($name, $label, $items);
     }
@@ -272,12 +272,12 @@ class MetaBox
     /**
      * 添加隐藏字段
      *
-     * @param string $name  字段名称
-     * @param string $value 字段值
+     * @param string      $name  字段名称
+     * @param string|null $value 字段值
      *
-     * @return \Wenprise\Forms\Controls\HiddenField
+     * @return \Nette\Forms\Controls\HiddenField
      */
-    public function addHidden(string $name, string $value = null)
+    public function addHidden(string $name, string $value = null): \Nette\Forms\Controls\HiddenField
     {
         return $this->form->addHidden($name, $value);
     }
@@ -288,9 +288,9 @@ class MetaBox
      * @param string      $name  字段名称
      * @param string|null $label 字段标签
      *
-     * @return \Wenprise\Forms\Controls\UploadControl
+     * @return \Nette\Forms\Controls\UploadControl
      */
-    public function addUpload(string $name, string $label = null)
+    public function addUpload(string $name, string $label = null): \Nette\Forms\Controls\UploadControl
     {
         return $this->form->addUpload($name, $label);
     }
@@ -304,7 +304,7 @@ class MetaBox
      *
      * @return \Wenprise\Forms\Controls\DatePickerInput
      */
-    public function addDatePicker(string $name, string $label = null, array $settings = null)
+    public function addDatePicker(string $name, string $label = null, array $settings = null): Controls\DatePickerInput
     {
         return $this->form->addDatePicker($name, $label, $settings);
     }
@@ -318,7 +318,7 @@ class MetaBox
      *
      * @return \Wenprise\Forms\Controls\ColorpickerInput
      */
-    public function addColorPicker(string $name, string $label = null, array $settings = null)
+    public function addColorPicker(string $name, string $label = null, array $settings = null): Controls\ColorpickerInput
     {
         return $this->form->addColorPicker($name, $label, $settings);
     }
@@ -332,7 +332,7 @@ class MetaBox
      *
      * @return \Wenprise\Forms\Controls\TextEditor
      */
-    public function addEditor(string $name, string $label = null, array $settings = null)
+    public function addEditor(string $name, string $label = null, array $settings = null): Controls\TextEditor
     {
         return $this->form->addEditor($name, $label, $settings);
     }
@@ -433,7 +433,7 @@ class MetaBox
      * @param int      $post_id 文章ID
      * @param \WP_Post $post    文章对象
      */
-    public function savePostMetaBox($post_id, $post)
+    public function savePostMetaBox(int $post_id, \WP_Post $post)
     {
         // 检查自动保存
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
@@ -613,7 +613,7 @@ class MetaBox
      *
      * @param int $term_id 分类ID
      */
-    public function saveTermMetaBox($term_id)
+    public function saveTermMetaBox(int $term_id)
     {
         // 检查条件
         if (!$this->checkConditions($term_id, 'term')) {
@@ -709,7 +709,7 @@ class MetaBox
      *
      * @return array
      */
-    public function sanitizeOptions($input)
+    public function sanitizeOptions(array $input): array
     {
         $output = [];
         
@@ -730,7 +730,7 @@ class MetaBox
      *
      * @return bool
      */
-    protected function checkConditions($object_id, $type)
+    protected function checkConditions(int $object_id, string $type): bool
     {
         if (empty($this->conditions)) {
             return true;
