@@ -43,8 +43,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
         /**
          * @todo 无法加载？
          */
-        add_action('wp_enqueue_scripts', function ()
-        {
+        add_action('wp_enqueue_scripts', function () {
             wp_enqueue_script('jquery-form');
             wp_enqueue_script('wprs-sweetalert');
         });
@@ -63,7 +62,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addCsrf(string $name, $errorMessage = null): Controls\CsrfInput
     {
-        return $this[ $name ] = (new Controls\CsrfInput($errorMessage));
+        return $this[$name] = (new Controls\CsrfInput($errorMessage));
     }
 
 
@@ -78,7 +77,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addEditor(string $name, string $label = null, array $settings = null): Controls\TextEditor
     {
-        return $this[ $name ] = (new Controls\TextEditor($label, $settings));
+        return $this[$name] = (new Controls\TextEditor($label, $settings));
     }
 
 
@@ -94,7 +93,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addAjaxUpload(string $name, string $label = null, bool $multiple = false, array $settings = null): Controls\AjaxUploadInput
     {
-        return $this[ $name ] = (new Controls\AjaxUploadInput($label, $multiple, $settings));
+        return $this[$name] = (new Controls\AjaxUploadInput($label, $multiple, $settings));
     }
 
 
@@ -110,7 +109,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addWpUploader(string $name, string $label = null, bool $multiple = false, array $settings = null): Controls\WpUploaderInput
     {
-        return $this[ $name ] = (new Controls\WpUploaderInput($label, $multiple, $settings));
+        return $this[$name] = (new Controls\WpUploaderInput($label, $multiple, $settings));
     }
 
 
@@ -127,7 +126,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addGroupInput(string $name, string $label = null, int $maxLength = null, string $prefix = null, string $suffix = null): Controls\GroupInput
     {
-        return $this[ $name ] = (new Controls\GroupInput($label, $maxLength, $prefix, $suffix));
+        return $this[$name] = (new Controls\GroupInput($label, $maxLength, $prefix, $suffix));
     }
 
 
@@ -142,7 +141,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addCloneInput(string $name, string $label = null, array $settings = null): Controls\CloneInput
     {
-        return $this[ $name ] = (new Controls\CloneInput($label, $settings));
+        return $this[$name] = (new Controls\CloneInput($label, $settings));
     }
 
 
@@ -157,7 +156,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addSlider(string $name, string $label = null, array $settings = null): Controls\SliderInput
     {
-        return $this[ $name ] = (new Controls\SliderInput($label, $settings));
+        return $this[$name] = (new Controls\SliderInput($label, $settings));
     }
 
 
@@ -172,7 +171,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addDatePicker(string $name, string $label = null, array $settings = null): Controls\DatePickerInput
     {
-        return $this[ $name ] = (new Controls\DatePickerInput($label, $settings));
+        return $this[$name] = (new Controls\DatePickerInput($label, $settings));
     }
 
 
@@ -187,7 +186,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addDateRangePicker(string $name, string $label = null, array $settings = null): Controls\DateRangePickerInput
     {
-        return $this[ $name ] = (new Controls\DateRangePickerInput($label, $settings));
+        return $this[$name] = (new Controls\DateRangePickerInput($label, $settings));
     }
 
 
@@ -202,7 +201,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addBirthdayPicker(string $name, string $label = null, array $settings = null): Controls\BirthdayPickerInput
     {
-        return $this[ $name ] = (new Controls\BirthdayPickerInput($label, $settings));
+        return $this[$name] = (new Controls\BirthdayPickerInput($label, $settings));
     }
 
 
@@ -217,7 +216,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addColorPicker(string $name, string $label = null, array $settings = null): Controls\ColorpickerInput
     {
-        return $this[ $name ] = (new Controls\ColorpickerInput($label, $settings));
+        return $this[$name] = (new Controls\ColorpickerInput($label, $settings));
     }
 
 
@@ -233,7 +232,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addChainedSelect(string $name, string $label = null, array $settings = null, array $field = null): Controls\ChainedInput
     {
-        return $this[ $name ] = (new Controls\ChainedInput($label, $settings, $field));
+        return $this[$name] = (new Controls\ChainedInput($label, $settings, $field));
     }
 
 
@@ -247,7 +246,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addHtml(string $name, string $caption = null): Controls\HtmlContent
     {
-        return $this[ $name ] = (new Controls\HtmlContent($caption));
+        return $this[$name] = (new Controls\HtmlContent($caption));
     }
 
 
@@ -262,7 +261,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function AddSmsInput(string $name, string $label = null, array $settings = null): Controls\SmsInput
     {
-        return $this[ $name ] = (new Controls\SmsInput($label, $settings));
+        return $this[$name] = (new Controls\SmsInput($label, $settings));
     }
 
 
@@ -276,7 +275,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function AddCaptcha(string $name, string $label = null): Controls\CaptchaInput
     {
-        return $this[ $name ] = (new Controls\CaptchaInput($label));
+        return $this[$name] = (new Controls\CaptchaInput($label));
     }
 
 
@@ -292,7 +291,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addTableInput(string $name, string $label = null, array $settings = null, ?array $field = []): Controls\TableInput
     {
-        return $this[ $name ] = (new Controls\TableInput($label, $settings, $field));
+        return $this[$name] = (new Controls\TableInput($label, $settings, $field));
     }
 
 
@@ -308,7 +307,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addInquiryInput(string $name, string $label = null, array $settings = null, ?array $fields = []): Controls\InquiryInput
     {
-        return $this[ $name ] = (new Controls\InquiryInput($label, $settings, $fields));
+        return $this[$name] = (new Controls\InquiryInput($label, $settings, $fields));
     }
 
 
@@ -324,7 +323,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addChosen(string $name, string $label = null, array $items = null, array $settings = null): Controls\ChosenInput
     {
-        return $this[ $name ] = (new Controls\ChosenInput($label, $items, $settings));
+        return $this[$name] = (new Controls\ChosenInput($label, $items, $settings));
     }
 
 
@@ -339,7 +338,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addSwitch(string $name, string $label = null, array $items = null): Controls\SwitchInput
     {
-        return $this[ $name ] = (new Controls\SwitchInput($label, $items));
+        return $this[$name] = (new Controls\SwitchInput($label, $items));
     }
 
 
@@ -355,7 +354,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addMultiChosen(string $name, string $label = null, array $items = null, array $settings = null): Controls\MultiChosenInput
     {
-        return $this[ $name ] = (new Controls\MultiChosenInput($label, $items, $settings));
+        return $this[$name] = (new Controls\MultiChosenInput($label, $items, $settings));
     }
 
 
@@ -370,7 +369,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addSignature(string $name, string $label = null, array $settings = null): Controls\SignatureInput
     {
-        return $this[ $name ] = (new Controls\SignatureInput($label, $settings));
+        return $this[$name] = (new Controls\SignatureInput($label, $settings));
     }
 
 
@@ -385,7 +384,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addAutocomplete(string $name, string $label = null, array $settings = null): Controls\AutoCompleteInput
     {
-        return $this[ $name ] = (new Controls\AutoCompleteInput($label, $settings));
+        return $this[$name] = (new Controls\AutoCompleteInput($label, $settings));
     }
 
 
@@ -401,7 +400,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addImagePicker(string $name, string $label = null, array $items = null, array $settings = null): Controls\ImagePickerInput
     {
-        return $this[ $name ] = (new Controls\ImagePickerInput($label, $items, $settings));
+        return $this[$name] = (new Controls\ImagePickerInput($label, $items, $settings));
     }
 
 
@@ -416,7 +415,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addStarRating(string $name, string $label = null, array $settings = null): Controls\StarRatingInput
     {
-        return $this[ $name ] = (new Controls\StarRatingInput($label, $settings));
+        return $this[$name] = (new Controls\StarRatingInput($label, $settings));
     }
 
     /**
@@ -430,7 +429,7 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
      */
     public function addCheckboxTree(string $name, string $label = null, array $settings = null): Controls\CheckboxTreeInput
     {
-        return $this[ $name ] = (new Controls\CheckboxTreeInput($label, $settings));
+        return $this[$name] = (new Controls\CheckboxTreeInput($label, $settings));
     }
 
 }

@@ -2,6 +2,8 @@
 
 namespace Wenprise\Forms;
 
+use Wenprise\Forms\Renders\AdminFormRender;
+
 /**
  * Meta Box 类
  * 用于快速添加 post meta box 或 user metabox
@@ -70,6 +72,7 @@ class MetaBox
         $this->title = $title;
         $this->type = $type;
         $this->form = new Form();
+        $this->form->setRenderer(new AdminFormRender($type));
 
         // 注册 Meta Box
         $this->register();
@@ -365,19 +368,19 @@ class MetaBox
     {
         add_action('add_meta_boxes', function () {
             $post_types = [];
-            
+
             // 从条件中获取文章类型
             foreach ($this->conditions as $condition) {
                 if ($condition['key'] === 'post_type' && $condition['operator'] === '=') {
                     $post_types[] = $condition['value'];
                 }
             }
-            
+
             // 如果没有指定文章类型，则使用所有文章类型
             if (empty($post_types)) {
                 $post_types = get_post_types(['public' => true]);
             }
-            
+
             foreach ($post_types as $post_type) {
                 add_meta_box(
                     $this->id,
@@ -389,7 +392,7 @@ class MetaBox
                 );
             }
         });
-        
+
         // 保存 Meta Box 数据
         add_action('save_post', [$this, 'savePostMetaBox'], 10, 2);
     }
@@ -405,12 +408,12 @@ class MetaBox
         if (!$this->checkConditions($post->ID, 'post')) {
             return;
         }
-        
+
         // 添加 nonce 字段
         wp_nonce_field($this->id . '_nonce', $this->id . '_nonce');
-        
+
         echo '<div class="wprs-metabox-container">';
-        
+
         // 设置字段值
         foreach ($this->form->getComponents() as $component) {
             if (method_exists($component, 'setDefaultValue')) {
@@ -420,10 +423,10 @@ class MetaBox
                 }
             }
         }
-        
+
         // 渲染表单
-        echo $this->form;
-        
+        echo $this->form->renderBody();
+
         echo '</div>';
     }
 
@@ -439,22 +442,22 @@ class MetaBox
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
             return;
         }
-        
+
         // 检查 nonce
         if (!isset($_POST[$this->id . '_nonce']) || !wp_verify_nonce($_POST[$this->id . '_nonce'], $this->id . '_nonce')) {
             return;
         }
-        
+
         // 检查权限
         if (!current_user_can('edit_post', $post_id)) {
             return;
         }
-        
+
         // 检查条件
         if (!$this->checkConditions($post_id, 'post')) {
             return;
         }
-        
+
         // 保存字段值
         foreach ($this->form->getComponents() as $component) {
             if (method_exists($component, 'getName') && isset($_POST[$component->getName()])) {
@@ -485,10 +488,10 @@ class MetaBox
         if (!$this->checkConditions($user->ID, 'user')) {
             return;
         }
-        
+
         echo '<h2>' . esc_html($this->title) . '</h2>';
         echo '<table class="form-table wprs-metabox-container">';
-        
+
         // 设置字段值
         foreach ($this->form->getComponents() as $component) {
             if (method_exists($component, 'setDefaultValue')) {
@@ -498,10 +501,10 @@ class MetaBox
                 }
             }
         }
-        
+
         // 渲染表单
         echo $this->form;
-        
+
         echo '</table>';
     }
 
@@ -516,12 +519,12 @@ class MetaBox
         if (!current_user_can('edit_user', $user_id)) {
             return;
         }
-        
+
         // 检查条件
         if (!$this->checkConditions($user_id, 'user')) {
             return;
         }
-        
+
         // 保存字段值
         foreach ($this->form->getComponents() as $component) {
             if (method_exists($component, 'getName') && isset($_POST[$component->getName()])) {
@@ -542,19 +545,19 @@ class MetaBox
                 $taxonomies[] = $condition['value'];
             }
         }
-        
+
         // 如果没有指定分类法，则使用所有分类法
         if (empty($taxonomies)) {
             $taxonomies = get_taxonomies(['public' => true]);
         }
-        
+
         foreach ($taxonomies as $taxonomy) {
             // 添加分类表单字段
             add_action($taxonomy . '_add_form_fields', [$this, 'renderTermAddMetaBox']);
-            
+
             // 编辑分类表单字段
             add_action($taxonomy . '_edit_form_fields', [$this, 'renderTermEditMetaBox']);
-            
+
             // 保存分类表单字段
             add_action('created_' . $taxonomy, [$this, 'saveTermMetaBox']);
             add_action('edited_' . $taxonomy, [$this, 'saveTermMetaBox']);
@@ -568,10 +571,10 @@ class MetaBox
     {
         echo '<div class="wprs-metabox-container">';
         echo '<h2>' . esc_html($this->title) . '</h2>';
-        
+
         // 渲染表单
-        echo $this->form;
-        
+        echo $this->form->renderBody();
+
         echo '</div>';
     }
 
@@ -586,11 +589,11 @@ class MetaBox
         if (!$this->checkConditions($term->term_id, 'term')) {
             return;
         }
-        
+
         echo '<tr class="form-field wprs-metabox-container">';
         echo '<th scope="row"><h2>' . esc_html($this->title) . '</h2></th>';
         echo '<td>';
-        
+
         // 设置字段值
         foreach ($this->form->getComponents() as $component) {
             if (method_exists($component, 'setDefaultValue')) {
@@ -600,10 +603,10 @@ class MetaBox
                 }
             }
         }
-        
+
         // 渲染表单
         echo $this->form;
-        
+
         echo '</td>';
         echo '</tr>';
     }
@@ -619,7 +622,7 @@ class MetaBox
         if (!$this->checkConditions($term_id, 'term')) {
             return;
         }
-        
+
         // 保存字段值
         foreach ($this->form->getComponents() as $component) {
             if (method_exists($component, 'getName') && isset($_POST[$component->getName()])) {
@@ -642,7 +645,7 @@ class MetaBox
                 [$this, 'renderOptionsPage']
             );
         });
-        
+
         add_action('admin_init', [$this, 'registerSettings']);
     }
 
@@ -654,12 +657,12 @@ class MetaBox
         echo '<div class="wrap">';
         echo '<h1>' . esc_html($this->title) . '</h1>';
         echo '<form method="post" action="options.php">';
-        
+
         settings_fields($this->id);
         do_settings_sections($this->id);
-        
+
         submit_button();
-        
+
         echo '</form>';
         echo '</div>';
     }
@@ -670,14 +673,14 @@ class MetaBox
     public function registerSettings()
     {
         register_setting($this->id, $this->id, [$this, 'sanitizeOptions']);
-        
+
         add_settings_section(
             $this->id . '_section',
             '',
             '__return_false',
             $this->id
         );
-        
+
         foreach ($this->form->getComponents() as $component) {
             if (method_exists($component, 'getName')) {
                 add_settings_field(
@@ -691,9 +694,21 @@ class MetaBox
                                 $component->setDefaultValue($options[$component->getName()]);
                             }
                         }
-                        
+
                         // 渲染字段
-                        echo $component;
+                        if (method_exists($component, '__toString')) {
+                            echo $component;
+                        } else if (method_exists($component, 'getControl')) {
+                            echo $component->getControl();
+                        } else if (method_exists($component, 'getHtml')) {
+                            echo $component->getHtml();
+                        } else {
+                            // 如果没有合适的方法，尝试使用默认的表单渲染器
+                            $renderer = $this->form->getRenderer();
+                            if ($renderer && method_exists($renderer, 'renderControl')) {
+                                echo $renderer->renderControl($component);
+                            }
+                        }
                     },
                     $this->id,
                     $this->id . '_section'
@@ -705,20 +720,30 @@ class MetaBox
     /**
      * 净化选项值
      *
-     * @param array $input 输入值
+     * @param array|null $input 输入值
      *
      * @return array
      */
-    public function sanitizeOptions(array $input): array
+    public function sanitizeOptions($input): array
     {
         $output = [];
-        
+
+        // 如果输入为 null，则将其转换为空数组
+        if ($input === null) {
+            $input = [];
+        }
+
+        // 确保输入是数组
+        if (!is_array($input)) {
+            return $output;
+        }
+
         foreach ($this->form->getComponents() as $component) {
             if (method_exists($component, 'getName') && isset($input[$component->getName()])) {
                 $output[$component->getName()] = $input[$component->getName()];
             }
         }
-        
+
         return $output;
     }
 
