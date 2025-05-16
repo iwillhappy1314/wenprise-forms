@@ -695,18 +695,37 @@ class MetaBox
                             }
                         }
 
-                        // 修改控件的 name 属性，使其成为数组格式
-                        if (method_exists($component, 'getControl')) {
-                            $control = $component->getControl();
-                            if ($control instanceof \Nette\Utils\Html) {
-                                $name = $component->getName();
-                                $control->name = "{$this->id}[$name]";
-                                
-                                // 如果是复选框类型，需要特殊处理
-                                if ($component instanceof \Nette\Forms\Controls\Checkbox) {
-                                    $control->checked = (bool)get_option($this->id)[$name] ?? false;
-                                }
+                        // 直接替换整个控件，而不是仅仅修改属性
+                        if (method_exists($component, 'getName')) {
+                            $name = $component->getName();
+                            $options = get_option($this->id, []);
+                            $value = isset($options[$name]) ? $options[$name] : null;
+                            
+                            // 根据控件类型渲染不同的 HTML
+                            if ($component instanceof \Nette\Forms\Controls\TextInput) {
+                                echo '<input type="text" name="' . $this->id . '[' . $name . ']" value="' . esc_attr($value) . '" class="regular-text">';
+                            } else if ($component instanceof \Nette\Forms\Controls\TextArea) {
+                                echo '<textarea name="' . $this->id . '[' . $name . ']" rows="5" class="large-text">' . esc_textarea($value) . '</textarea>';
+                            } else if ($component instanceof \Nette\Forms\Controls\Checkbox) {
+                                $checked = $value ? 'checked' : '';
+                                echo '<input type="checkbox" name="' . $this->id . '[' . $name . ']" value="on" ' . $checked . '>';
+                            } else if ($component instanceof \Wenprise\Forms\Controls\ColorpickerInput) {
+                                echo '<input type="text" name="' . $this->id . '[' . $name . ']" value="' . esc_attr($value) . '" class="wprs-color-picker">';
+                                echo '<script>jQuery(document).ready(function($) { $(".wprs-color-picker").wpColorPicker(); });</script>';
+                            } else {
+                                // 其他类型的控件，尝试使用默认的文本输入框
+                                echo '<input type="text" name="' . $this->id . '[' . $name . ']" value="' . esc_attr($value) . '" class="regular-text">';
                             }
+                            
+                            // 添加描述文本
+                            $description = $component->getOption('description');
+                            if ($description) {
+                                echo '<p class="description">' . $description . '</p>';
+                            }
+                            
+                            // 标记控件已经被渲染
+                            $component->setOption('rendered', true);
+                            return;
                         }
 
                         // 渲染字段
