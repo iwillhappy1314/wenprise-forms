@@ -425,7 +425,7 @@ class MetaBox
         }
 
         // 渲染表单
-        echo $this->form->renderBody('body');
+        $this->form->render('body');
 
         echo '</div>';
     }
@@ -695,6 +695,20 @@ class MetaBox
                             }
                         }
 
+                        // 修改控件的 name 属性，使其成为数组格式
+                        if (method_exists($component, 'getControl')) {
+                            $control = $component->getControl();
+                            if ($control instanceof \Nette\Utils\Html) {
+                                $name = $component->getName();
+                                $control->name = "{$this->id}[$name]";
+                                
+                                // 如果是复选框类型，需要特殊处理
+                                if ($component instanceof \Nette\Forms\Controls\Checkbox) {
+                                    $control->checked = (bool)get_option($this->id)[$name] ?? false;
+                                }
+                            }
+                        }
+
                         // 渲染字段
                         if (method_exists($component, '__toString')) {
                             echo $component;
@@ -727,23 +741,29 @@ class MetaBox
     public function sanitizeOptions($input): array
     {
         $output = [];
-
+        
+        // 调试信息
+        // error_log('Input data: ' . print_r($input, true));
+        
         // 如果输入为 null，则将其转换为空数组
         if ($input === null) {
             $input = [];
         }
-
+        
         // 确保输入是数组
         if (!is_array($input)) {
             return $output;
         }
-
+        
         foreach ($this->form->getComponents() as $component) {
-            if (method_exists($component, 'getName') && isset($input[$component->getName()])) {
-                $output[$component->getName()] = $input[$component->getName()];
+            if (method_exists($component, 'getName')) {
+                $name = $component->getName();
+                if (isset($input[$name])) {
+                    $output[$name] = $input[$name];
+                }
             }
         }
-
+        
         return $output;
     }
 
