@@ -13,11 +13,11 @@ class InlineFormRender extends BaseFormRender
 
     var $layout = 'inline';
 
-    public function __construct($type = 'inline')
+    public function __construct($layout = 'inline')
     {
-	    parent::__construct($type);
+	    parent::__construct($layout);
 
-        $this->layout = $type;
+        $this->layout = $layout;
 
 	    $this->wrappers[ 'control' ][ '.submit' ]        = 'button';
 	    $this->wrappers[ 'control' ][ '.image' ]         = 'rs-btn--image';

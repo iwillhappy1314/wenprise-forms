@@ -16,9 +16,9 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
     var $layout = 'horizontal';
 
-    public function __construct($type = 'horizontal')
+    public function __construct($layout = 'horizontal')
     {
-        $this->layout = $type;
+        $this->layout = $layout;
 
         $this->wrappers[ 'form' ][ 'container' ] = "div class='rs-form rs-form--$this->layout'";
 

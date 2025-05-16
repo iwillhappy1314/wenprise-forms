@@ -425,7 +425,7 @@ class MetaBox
         }
 
         // 渲染表单
-        echo $this->form->renderBody();
+        echo $this->form->renderBody('body');
 
         echo '</div>';
     }
@@ -482,7 +482,7 @@ class MetaBox
      *
      * @param \WP_User $user 用户对象
      */
-    public function renderUserMetaBox($user)
+    public function renderUserMetaBox(\WP_User $user)
     {
         // 检查条件
         if (!$this->checkConditions($user->ID, 'user')) {
@@ -513,7 +513,7 @@ class MetaBox
      *
      * @param int $user_id 用户ID
      */
-    public function saveUserMetaBox($user_id)
+    public function saveUserMetaBox(int $user_id)
     {
         // 检查权限
         if (!current_user_can('edit_user', $user_id)) {
@@ -573,7 +573,7 @@ class MetaBox
         echo '<h2>' . esc_html($this->title) . '</h2>';
 
         // 渲染表单
-        echo $this->form->renderBody();
+        $this->form->render('body');
 
         echo '</div>';
     }

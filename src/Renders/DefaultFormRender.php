@@ -13,9 +13,9 @@ class DefaultFormRender extends BaseFormRender
 
     var $layout = 'horizontal';
 
-    public function __construct($type = 'horizontal')
+    public function __construct($layout = 'horizontal')
     {
-        $this->layout = $type;
+        $this->layout = $layout;
 
         $this->wrappers[ 'group' ][ 'container' ]    = 'fieldset class=rs-form-row';
         $this->wrappers[ 'group' ][ 'label' ]        = 'legend class="rs-form-legend rs-col-md-12"';
@@ -26,7 +26,7 @@ class DefaultFormRender extends BaseFormRender
 
         $this->wrappers[ 'pair' ][ 'container' ] = 'div class=rs-form-group';
 
-        parent::__construct($type);
+        parent::__construct($layout);
     }
 
     /**

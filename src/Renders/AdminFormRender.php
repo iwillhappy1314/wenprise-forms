@@ -11,24 +11,24 @@ class AdminFormRender extends BaseFormRender
 {
     use Nette\SmartObject;
 
-    var $type = 'post_meta';
+    var $layout = 'post_meta';
 
-    public function __construct($type = 'post_meta')
+    public function __construct($layout = 'post_meta')
     {
-        $this->type = $type;
-        $screen     = function_exists('get_current_screen') ? get_current_screen() : null;
+        $this->layout = $layout;
+        $screen       = function_exists('get_current_screen') ? get_current_screen() : null;
 
-        $this->wrappers['form']['container'] = "div class='rs-form rs-admin-form rs-form--$type'";
+        $this->wrappers['form']['container'] = "div class='rs-form rs-admin-form rs-form--$layout'";
 
-        switch ($type) {
+        switch ($layout) {
             case 'term_meta':
             case 'term':
-                if ($screen->base == 'term') {
+                if ($screen && $screen->base == 'term') {
                     $this->wrappers['controls']['container'] = 'table class="form-table rs-form-group"';
                     $this->wrappers['pair']['container']     = 'tr class=rs-form-field';
                 } else {
                     $this->wrappers['controls']['container'] = '';
-                    $this->wrappers['pair']['container']     = 'div class="form-field wprs-form-field"';
+                    $this->wrappers['pair']['container']     = 'tr class=rs-form-field"';
                 }
                 break;
             default:
@@ -37,6 +37,7 @@ class AdminFormRender extends BaseFormRender
         }
 
         $this->wrappers['label']['container']   = 'th class=row scope=row';
+        $this->wrappers[ 'control' ][ 'description' ] = 'p class=description';
 
         add_action('admin_enqueue_scripts', function () {
             wp_enqueue_style('wprs-forms-main');
