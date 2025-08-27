@@ -19,3 +19,4 @@ Temporary Items
 .idea/
 vendor/
 frontend/node_modules
+.claude
