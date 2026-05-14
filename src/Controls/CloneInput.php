@@ -21,7 +21,7 @@ class CloneInput extends BaseControl
      * @param string|null $label
      * @param array|null  $settings
      */
-    public function __construct($label = null, array $settings = null)
+    public function __construct(?string $label = null, ?array $settings = null)
     {
         parent::__construct($label);
         $this->settings = (array)$settings;

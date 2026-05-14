@@ -5,7 +5,7 @@ namespace Wenprise\Forms\Datastores;
 
 class UserMetaDatastore extends IDatastore
 {
-    var int $user_id = 0;
+    public int $user_id = 0;
 
     public function __construct($user_id, $form)
     {
@@ -13,7 +13,7 @@ class UserMetaDatastore extends IDatastore
         parent::__construct($form);
     }
 
-    function save()
+    public function save(): void
     {
         $values = $this->form->getValues();
         $fields = $this->getFields();

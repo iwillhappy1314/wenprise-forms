@@ -17,7 +17,7 @@ class CheckboxTreeInput extends MultiChoiceControl
      */
     public string $item_key = '';
 
-    public function __construct($label = null, array $items = null)
+    public function __construct(?string $label = null, ?array $items = null)
     {
         parent::__construct($label, $items);
         $this->control->type = 'checkbox';
@@ -78,7 +78,7 @@ class CheckboxTreeInput extends MultiChoiceControl
         return $this;
     }
 
-    public function getLabel($caption = null) {
+    public function getLabel($caption = null): \Nette\Utils\Html {
         return parent::getLabel($caption)->for(null);
     }
 

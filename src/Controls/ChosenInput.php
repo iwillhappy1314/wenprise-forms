@@ -18,7 +18,7 @@ class ChosenInput extends SelectBox
      * @param array|null $items    选择项
      * @param array|null $settings Chosen 设置
      */
-    public function __construct($label = null, array $items = null, array $settings = null)
+    public function __construct(?string $label = null, ?array $items = null, ?array $settings = null)
     {
         parent::__construct($label, $items);
         $this->settings = (array)$settings;

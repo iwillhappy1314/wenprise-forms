@@ -165,7 +165,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
      *
      * @return string
      */
-    public function renderPair(Nette\Forms\Control $control): string
+    public function renderPair(Nette\Forms\IControl $control): string
     {
         $pair = $this->getWrapper('pair container');
         $pair->addHtml($this->renderLabel($control));
@@ -253,7 +253,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     {
         $s = [];
         foreach ($controls as $control) {
-            if ( ! $control instanceof Nette\Forms\Control) {
+            if ( ! $control instanceof Nette\Forms\IControl) {
                 throw new Nette\InvalidArgumentException('Argument must be array of Nette\Forms\IControl instances.');
             }
 
@@ -266,7 +266,7 @@ class FormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             } elseif ($description != null) {
 
                 // intentionally ==
-                if ($control instanceof Nette\Forms\Controls\BaseControl) {
+                if ($control instanceof Nette\Forms\Controls\BaseControl || $control instanceof Nette\Forms\IControl) {
                     $description = $control->translate($description);
                 }
 

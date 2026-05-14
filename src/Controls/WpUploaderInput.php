@@ -30,7 +30,7 @@ class WpUploaderInput extends BaseControl {
 	 * @param bool       $multiple
      * @param array|null $settings Chosen 设置
 	 */
-	public function __construct($label = null, bool $multiple = false, array $settings = null ) {
+	public function __construct(?string $label = null, bool $multiple = false, ?array $settings = null ) {
 		parent::__construct( $label );
 		$this->control->multiple = $multiple;
 		$this->control->type     = 'text';

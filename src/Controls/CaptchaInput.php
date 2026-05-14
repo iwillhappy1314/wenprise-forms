@@ -19,7 +19,7 @@ class CaptchaInput extends TextInput {
 	 * @param string|object $label    Html 标签
 	 * @param array         $settings TinyMce 设置
 	 */
-	public function __construct( $label = null, $settings = [] ) {
+	public function __construct( ?string $label = null, array $settings = [] ) {
 		parent::__construct( $label );
 		$this->settings = $settings;
 

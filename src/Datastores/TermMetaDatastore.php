@@ -4,7 +4,7 @@ namespace Wenprise\Forms\Datastores;
 
 class TermMetaDatastore extends IDatastore
 {
-    var int $term_id = 0;
+    public int $term_id = 0;
 
     public function __construct($term_id, $form)
     {
@@ -12,7 +12,7 @@ class TermMetaDatastore extends IDatastore
         parent::__construct($form);
     }
 
-    function save()
+    public function save(): void
     {
         $values = $this->form->getValues();
         $fields = $this->getFields();

@@ -12,7 +12,7 @@ class HtmlContent extends BaseControl {
 	/**
 	 * @param  string|object $caption
      */
-	public function __construct( $caption = null ) {
+	public function __construct( ?string $caption = null ) {
 		parent::__construct( $caption );
 		$this->control->type = 'html';
 
@@ -26,7 +26,7 @@ class HtmlContent extends BaseControl {
 	 *
 	 * @return void
 	 */
-	public function getLabel( $caption = null ): void {
+	public function getLabel( ?string $caption = null ): void {
 	}
 	
 	/**
@@ -36,7 +36,7 @@ class HtmlContent extends BaseControl {
      *
 	 * @return string
 	 */
-	public function getControl( $caption = null ): string {
+	public function getControl( ?string $caption = null ): string {
 		$this->setOption( 'rendered', true );
 
 		return $this->getCaption();

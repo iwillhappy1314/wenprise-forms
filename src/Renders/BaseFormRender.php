@@ -98,7 +98,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
     {
         $s = [];
         foreach ($controls as $control) {
-            if ( ! $control instanceof Nette\Forms\Control) {
+            if ( ! $control instanceof Nette\Forms\IControl) {
                 throw new InvalidArgumentException('Argument must be array of Nette\Forms\IControl instances.');
             }
 
@@ -111,7 +111,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             } elseif ($description != null) {
 
                 // intentionally ==
-                if ($control instanceof Nette\Forms\Controls\BaseControl) {
+                if ($control instanceof Nette\Forms\Controls\BaseControl || $control instanceof Nette\Forms\IControl) {
                     $description = $control->translate($description);
                 }
 

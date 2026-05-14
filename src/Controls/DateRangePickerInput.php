@@ -17,7 +17,7 @@ class DateRangePickerInput extends TextInput
      * @param null       $label    Html 标签
      * @param array|null $settings TinyMce 设置
      */
-    public function __construct($label = null, array $settings = null)
+    public function __construct(?string $label = null, ?array $settings = null)
     {
         parent::__construct($label);
         $this->settings = (array)$settings;

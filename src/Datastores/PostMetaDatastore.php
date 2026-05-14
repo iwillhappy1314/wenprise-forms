@@ -5,7 +5,7 @@ namespace Wenprise\Forms\Datastores;
 
 class PostMetaDatastore extends IDatastore
 {
-    var int $post_id = 0;
+    public int $post_id = 0;
 
     public function __construct($post_id, $form)
     {
@@ -13,7 +13,7 @@ class PostMetaDatastore extends IDatastore
         parent::__construct($form);
     }
 
-    function save()
+    public function save(): void
     {
         wp_enqueue_script('wprs-sweetalert');
 

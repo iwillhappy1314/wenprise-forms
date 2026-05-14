@@ -17,7 +17,7 @@ class SwitchInput extends RadioList
      * @param null       $label 标签
      * @param array|null $items 选择项
      */
-    public function __construct($label = null, array $items = null)
+    public function __construct(?string $label = null, ?array $items = null)
     {
         parent::__construct($label, $items);
 

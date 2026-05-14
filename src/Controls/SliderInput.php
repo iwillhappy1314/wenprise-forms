@@ -21,7 +21,7 @@ class SliderInput extends TextBase
      * @param null       $label
      * @param array|null $settings
      */
-    public function __construct($label = null, array $settings = null)
+    public function __construct(?string $label = null, ?array $settings = null)
     {
         parent::__construct($label);
         $this->control->type = 'hidden';

@@ -25,7 +25,7 @@ class InquiryInput extends BaseControl
      * @param array|null  $settings
      * @param array|null  $fields
      */
-    public function __construct($label = null, array $settings = null, array $fields = null)
+    public function __construct(?string $label = null, ?array $settings = null, ?array $fields = null)
     {
         parent::__construct($label);
         $this->settings = (array)$settings;

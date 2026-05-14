@@ -6,7 +6,7 @@ use Wenprise\Forms\Form;
 
 abstract class IDatastore
 {
-    var Form $form;
+    public Form $form;
 
     public function __construct(Form $form)
     {

@@ -29,7 +29,7 @@ class GroupInput extends TextInput {
 	 * @param string|null $prefix    string|object
 	 * @param string|null $suffix    string|object
 	 */
-	public function __construct( $label = null, $maxLength = null, string $prefix = null, string $suffix = null ) {
+	public function __construct( ?string $label = null, ?int $maxLength = null, ?string $prefix = null, ?string $suffix = null ) {
 		parent::__construct( $label, $maxLength );
 
 		$this->prefix = $prefix;

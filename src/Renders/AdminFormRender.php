@@ -52,7 +52,7 @@ class AdminFormRender extends BaseFormRender
      *
      * @return string
      */
-    public function renderPair(Nette\Forms\Control $control): string
+    public function renderPair(Nette\Forms\IControl $control): string
     {
         $pair = $this->getWrapper('pair container');
         $pair->addHtml($this->renderLabel($control));

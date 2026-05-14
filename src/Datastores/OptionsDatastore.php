@@ -9,7 +9,7 @@ class OptionsDatastore extends IDatastore
         parent::__construct($form);
     }
 
-    function save()
+    public function save(): void
     {
         $values = $this->form->getValues();
         $fields = $this->getFields();

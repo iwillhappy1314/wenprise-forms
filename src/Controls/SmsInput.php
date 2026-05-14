@@ -20,7 +20,7 @@ class SmsInput extends TextInput
      * @param null       $label
      * @param array|null $settings TinyMce 设置
      */
-    public function __construct($label = null, array $settings = null)
+    public function __construct(?string $label = null, ?array $settings = null)
     {
         parent::__construct($label);
         $this->settings = (array)$settings;

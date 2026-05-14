@@ -2,9 +2,9 @@
 
 namespace Wenprise\Forms\Translator;
 
-use Nette\Localization\Translator;
+use Nette\Localization\ITranslator;
 
-class DefaultTranslator implements Translator
+class DefaultTranslator implements ITranslator
 {
     /**
      * 根据前端语言显示对应的字符串
