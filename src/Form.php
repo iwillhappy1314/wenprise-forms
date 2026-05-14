@@ -51,6 +51,10 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
         $this->httpRequest = (new \Nette\Http\RequestFactory())->fromGlobals();
 
         parent::__construct($name);
+
+        if (method_exists($this, 'allowCrossOrigin')) {
+            $this->allowCrossOrigin();
+        }
     }
 
 
