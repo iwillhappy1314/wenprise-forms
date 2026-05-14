@@ -48,6 +48,8 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
             wp_enqueue_script('wprs-sweetalert');
         });
 
+        $this->httpRequest = (new \Nette\Http\RequestFactory())->fromGlobals();
+
         parent::__construct($name);
     }
 
