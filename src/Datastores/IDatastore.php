@@ -12,14 +12,26 @@ abstract class IDatastore
     /**
      * 当前 datastore 绑定的表单实例。
      */
-    public Form $form;
+    public ?Form $form = null;
 
     /**
      * 初始化 datastore。
      *
-     * @param Form $form 表单实例。
+     * @param Form|null $form 表单实例。
      */
-    public function __construct(Form $form)
+    public function __construct(?Form $form = null)
+    {
+        $this->form = $form;
+    }
+
+    /**
+     * 绑定表单实例，供保存时读取控件和值。
+     *
+     * @param Form $form 表单实例。
+     *
+     * @return void
+     */
+    public function setForm(Form $form): void
     {
         $this->form = $form;
     }
@@ -40,6 +52,10 @@ abstract class IDatastore
      */
     public function getFields(): array
     {
+        if ( ! $this->form instanceof Form) {
+            throw new \RuntimeException('Datastore form is not configured.');
+        }
+
         $items = [];
         foreach ($this->form->getComponents() as $key => $item) {
             if ( ! is_string($item->getControl()) && $item->getControl()->type !== 'submit') {

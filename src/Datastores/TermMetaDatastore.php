@@ -15,10 +15,10 @@ class TermMetaDatastore extends IDatastore
     /**
      * 初始化术语元数据 datastore。
      *
-     * @param mixed $term_id 术语 ID。
-     * @param mixed $form    表单实例。
+     * @param mixed                        $term_id 术语 ID。
+     * @param \Wenprise\Forms\Form|null    $form    表单实例。
      */
-    public function __construct($term_id, $form)
+    public function __construct($term_id, ?\Wenprise\Forms\Form $form = null)
     {
         $this->term_id = $term_id;
         parent::__construct($form);

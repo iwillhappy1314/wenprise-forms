@@ -16,10 +16,10 @@ class PostMetaDatastore extends IDatastore
     /**
      * 初始化文章元数据 datastore。
      *
-     * @param mixed $post_id 文章 ID。
-     * @param mixed $form    表单实例。
+     * @param mixed                        $post_id 文章 ID。
+     * @param \Wenprise\Forms\Form|null    $form    表单实例。
      */
-    public function __construct($post_id, $form)
+    public function __construct($post_id, ?\Wenprise\Forms\Form $form = null)
     {
         $this->post_id = $post_id;
         parent::__construct($form);

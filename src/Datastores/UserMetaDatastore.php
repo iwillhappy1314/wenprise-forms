@@ -16,10 +16,10 @@ class UserMetaDatastore extends IDatastore
     /**
      * 初始化用户元数据 datastore。
      *
-     * @param mixed $user_id 用户 ID。
-     * @param mixed $form    表单实例。
+     * @param mixed                        $user_id 用户 ID。
+     * @param \Wenprise\Forms\Form|null    $form    表单实例。
      */
-    public function __construct($user_id, $form)
+    public function __construct($user_id, ?\Wenprise\Forms\Form $form = null)
     {
         $this->user_id = $user_id;
         parent::__construct($form);

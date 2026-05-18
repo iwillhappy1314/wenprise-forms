@@ -10,9 +10,9 @@ class OptionsDatastore extends IDatastore
     /**
      * 初始化 options datastore。
      *
-     * @param mixed $form 表单实例。
+     * @param \Wenprise\Forms\Form|null $form 表单实例。
      */
-    public function __construct($form)
+    public function __construct(?\Wenprise\Forms\Form $form = null)
     {
         parent::__construct($form);
     }
