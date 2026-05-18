@@ -204,7 +204,7 @@ $form->addCheckbox('confirm', $confirm)->setOption('description', $confirm);
 ### 设置 Datastore
 
 ```php
-$form->setDatastore(new \Wenprise\Forms\Datastores\PostMetaDatastore(1, $form));
+$form->setDatastore(new \Wenprise\Forms\Datastores\PostMetaDatastore(1));
 
 $form->save();
 ```
@@ -247,7 +247,7 @@ function render_wenprise_form_settings_page() {
 
     $form->addSubmit('save', 'Save Settings');
 
-    $form->setDatastore(new OptionsDatastore($form));
+    $form->setDatastore(new OptionsDatastore());
     $form->save();
 
     echo '<div class="wrap"><h1>Wenprise Form Settings</h1>';

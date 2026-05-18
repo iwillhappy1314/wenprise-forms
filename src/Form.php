@@ -10,21 +10,9 @@ use Wenprise\Forms\Translator\DefaultTranslator;
 
 class Form extends \Nette\Forms\Form implements HtmlStringable
 {
-    /**
-     * 已注册的表单实例集合。
-     *
-     * @var array<string, self>
-     */
-    protected static array $registered_forms = [];
-
     public ?IDatastore $datastore = null;
     protected array $tab_groups = [];
     protected ?string $active_tab_name = null;
-    protected string $save_method = 'sync';
-    protected string $ajax_action = 'wprs_save_form_data';
-    protected string $ajax_nonce_action = 'wprs_save_form_data';
-    protected string $form_id = '';
-    protected string $form_key = '';
 
     /**
      * @param \Wenprise\Forms\Datastores\IDatastore $datastore
@@ -36,168 +24,6 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
         $datastore->setForm($this);
         $this->datastore = $datastore;
     }
-
-    /**
-     * 注册当前表单实例到运行时注册表。
-     *
-     * @return void
-     */
-    protected function register_form_instance(): void
-    {
-        self::$registered_forms[ $this->form_id ] = $this;
-    }
-
-    /**
-     * 按 form_id 获取已注册的表单实例。
-     *
-     * @param string $form_id 表单唯一标识
-     *
-     * @return self|null
-     */
-    public static function get_registered_form(string $form_id): ?self
-    {
-        return self::$registered_forms[ $form_id ] ?? null;
-    }
-
-    /**
-     * 获取当前表单唯一标识。
-     *
-     * @return string
-     */
-    public function getFormId(): string
-    {
-        return $this->form_id;
-    }
-
-    /**
-     * 设置表单业务标识，用于跨请求重建表单。
-     *
-     * @param string $form_key 表单业务标识
-     *
-     * @return self
-     */
-    public function setFormKey(string $form_key): self
-    {
-        $this->form_key = trim($form_key);
-        $this->getElementPrototype()->setAttribute('data-wprs-form-key', $this->form_key);
-
-        return $this;
-    }
-
-    /**
-     * 获取表单业务标识。
-     *
-     * @return string
-     */
-    public function getFormKey(): string
-    {
-        return $this->form_key;
-    }
-
-    /**
-     * 设置表单保存方式，支持 sync 和 ajax。
-     *
-     * @param string $save_method 保存方式
-     *
-     * @return self
-     */
-    public function setSaveMethod(string $save_method): self
-    {
-        $save_method = strtolower(trim($save_method));
-
-        if ( ! in_array($save_method, ['sync', 'ajax'], true)) {
-            throw new \InvalidArgumentException('Save method must be "sync" or "ajax".');
-        }
-
-        $this->save_method = $save_method;
-
-        $this->getElementPrototype()->setAttribute('data-wprs-save-method', $this->save_method);
-
-        if ($this->save_method === 'ajax') {
-            $this->getElementPrototype()->setAttribute('data-wprs-ajax-action', $this->ajax_action);
-            $this->getElementPrototype()->setAttribute('data-wprs-ajax-nonce', wp_create_nonce($this->ajax_nonce_action));
-        }
-
-        return $this;
-    }
-
-    public function getSaveMethod(): string
-    {
-        return $this->save_method;
-    }
-
-    /**
-     * 兼容下划线命名的保存方式设置方法。
-     *
-     * @param string $save_method 保存方式
-     *
-     * @return self
-     */
-    public function set_save_method(string $save_method): self
-    {
-        return $this->setSaveMethod($save_method);
-    }
-
-    /**
-     * 兼容下划线命名的获取保存方式方法。
-     *
-     * @return string
-     */
-    public function get_save_method(): string
-    {
-        return $this->getSaveMethod();
-    }
-
-    /**
-     * 设置 Ajax 保存 action 名称。
-     *
-     * @param string $ajax_action Ajax action 名称
-     *
-     * @return self
-     */
-    public function setAjaxAction(string $ajax_action): self
-    {
-        $this->ajax_action = trim($ajax_action);
-
-        if ($this->save_method === 'ajax') {
-            $this->getElementPrototype()->setAttribute('data-wprs-ajax-action', $this->ajax_action);
-        }
-
-        return $this;
-    }
-
-    /**
-     * 获取 Ajax 保存 action 名称。
-     *
-     * @return string
-     */
-    public function getAjaxAction(): string
-    {
-        return $this->ajax_action;
-    }
-
-    /**
-     * 兼容下划线命名的 Ajax action 设置方法。
-     *
-     * @param string $ajax_action Ajax action 名称
-     *
-     * @return self
-     */
-    public function set_ajax_action(string $ajax_action): self
-    {
-        return $this->setAjaxAction($ajax_action);
-    }
-
-    /**
-     * 兼容下划线命名的 Ajax action 获取方法。
-     *
-     * @return string
-     */
-    public function get_ajax_action(): string
-    {
-        return $this->getAjaxAction();
-    }
-
 
     public function save(): void
     {
@@ -227,12 +53,6 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
         $this->httpRequest = (new \Nette\Http\RequestFactory())->fromGlobals();
 
         parent::__construct($name);
-
-        $this->form_id = 'wprs_form_' . ($name ?: wp_generate_uuid4());
-        $this->form_key = (string) ($name ?: $this->form_id);
-        $this->getElementPrototype()->setAttribute('data-wprs-form-id', $this->form_id);
-        $this->getElementPrototype()->setAttribute('data-wprs-form-key', $this->form_key);
-        $this->register_form_instance();
 
         if (method_exists($this, 'allowCrossOrigin')) {
             $this->allowCrossOrigin();
