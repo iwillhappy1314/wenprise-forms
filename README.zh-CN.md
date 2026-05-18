@@ -209,6 +209,94 @@ $form->setDatastore(new \Wenprise\Forms\Datastores\PostMetaDatastore(1, $form));
 $form->save();
 ```
 
+### 自定义设置页面示例
+
+你可以使用 `OptionsDatastore` 快速构建 WordPress 后台设置页。
+
+```php
+<?php
+use Wenprise\Forms\Form;
+use Wenprise\Forms\Datastores\OptionsDatastore;
+use Wenprise\Forms\Renders\AdminFormRender;
+
+add_action('admin_menu', function () {
+    add_menu_page(
+        'Wenprise Form Settings',
+        'Form Settings',
+        'manage_options',
+        'wenprise-form-settings',
+        'render_wenprise_form_settings_page'
+    );
+});
+
+function render_wenprise_form_settings_page() {
+    $form = new Form('wenprise_form_settings');
+    $form->setRenderer(new AdminFormRender('vertical'));
+    $form->setMethod('POST');
+
+    $form->addText('wprs_company_name', 'Company Name')
+        ->setDefaultValue(get_option('wprs_company_name', ''));
+
+    $form->addText('wprs_support_email', 'Support Email')
+        ->setRequired()
+        ->addRule($form::EMAIL, 'Please enter a valid email address.')
+        ->setDefaultValue(get_option('wprs_support_email', ''));
+
+    $form->addCheckbox('wprs_enable_notifications', 'Enable Email Notifications')
+        ->setDefaultValue((bool) get_option('wprs_enable_notifications', false));
+
+    $form->addSubmit('save', 'Save Settings');
+
+    $form->setDatastore(new OptionsDatastore($form));
+    $form->save();
+
+    echo '<div class="wrap"><h1>Wenprise Form Settings</h1>';
+    $form->render();
+    echo '</div>';
+}
+```
+
+### Tab 分组
+
+你可以用 Tab 分组把长表单拆成多个面板。
+
+```php
+$form = new \Wenprise\Forms\Form();
+
+$form->addTab('basic', '基础信息', true);
+$form->addText('first_name', 'First Name');
+$form->addText('email', 'Email');
+
+$form->addTab('advanced', '高级设置');
+$form->addTextArea('notes', 'Notes');
+$form->endTab();
+
+// 这个提交按钮在 Tab 分组之外。
+$form->addSubmit('send', 'Save');
+
+// 模板中直接输出：
+echo $form;
+```
+
+Tab 会自动走现有渲染流程（`$form->render()` / `echo $form`），不需要额外调用新的渲染方法。
+
+在 Tab 分组内创建的提交按钮会自动渲染到 Tab 面板外层，确保保存操作始终可见。
+
+也可以使用下划线方法名：
+
+```php
+$form->add_tab('basic', '基础信息', true);
+echo $form;
+```
+
+如果是在 shortcode 回调中渲染，请返回 HTML，不要直接 echo：
+
+```php
+add_shortcode('wenprise_form_demo', function () use ($form) {
+    return (string) $form;
+});
+```
+
 ## 字段类型
 
 ### nonce 字段

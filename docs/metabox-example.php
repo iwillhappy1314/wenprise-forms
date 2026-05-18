@@ -118,25 +118,17 @@ add_action('init', 'wprs_register_term_meta_fields');
  */
 function wprs_register_options_fields()
 {
-    // 创建一个选项页
-    $options = MetaBox::options('wprs_site_settings', '网站设置');
+    $form = new \Wenprise\Forms\Form();
 
-    // 添加文本字段
-    $options->addText('site_copyright', '版权信息')
-        ->setOption('description', '网站底部显示的版权信息')
-        ->setRequired('请输入版权信息');
+    $form->addTab('basic', '基础信息', true);
+    $form->addText('first_name', 'First Name');
+    $form->addText('email', 'Email');
 
-    // 添加文本域
-    $options->addTextArea('site_footer_scripts', '页脚脚本')
-        ->setOption('description', '添加到网站页脚的自定义脚本')
-        ->setHtmlAttribute('rows', 5);
+    $form->addTab('advanced', '高级设置');
+    $form->addTextArea('notes', 'Notes');
 
-    // 添加颜色选择器
-    $options->addColorPicker('site_primary_color', '主色调')
-        ->setOption('description', '网站的主色调');
 
-    // 添加复选框
-    $options->addCheckbox('enable_analytics', '启用网站分析')
-        ->setOption('description', '是否启用网站分析功能');
+    $form->addSubmit('reset', 'Reset');
+    $form->addSubmit('send', 'Save');
 }
 add_action('init', 'wprs_register_options_fields');

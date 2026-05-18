@@ -3,6 +3,7 @@
 namespace Wenprise\Forms;
 
 use Nette\HtmlStringable;
+use Nette\Forms\ControlGroup;
 use Wenprise\Forms\Datastores\IDatastore;
 use Wenprise\Forms\Renders\DefaultFormRender;
 use Wenprise\Forms\Translator\DefaultTranslator;
@@ -11,6 +12,8 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
 {
 
     public ?IDatastore $datastore = null;
+    protected array $tab_groups = [];
+    protected ?string $active_tab_name = null;
 
     /**
      * @param \Wenprise\Forms\Datastores\IDatastore $datastore
@@ -437,5 +440,89 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
     {
         return $this[$name] = (new Controls\CheckboxTreeInput($label, $settings));
     }
+
+
+    /**
+     * 添加 Tab 分组。
+     *
+     * @param string      $name     Tab 唯一名称
+     * @param string|null $label    Tab 标题
+     * @param bool        $is_active 是否激活为当前 Tab
+     *
+     * @return \Nette\Forms\ControlGroup
+     */
+    public function add_tab(string $name, ?string $label = null, bool $is_active = false): ControlGroup
+    {
+        $tab_name = trim($name);
+        if ($tab_name === '') {
+            $tab_name = 'tab_' . (count($this->tab_groups) + 1);
+        }
+
+        $tab_slug = strtolower((string) preg_replace('/[^a-z0-9]+/i', '-', $tab_name));
+        $tab_slug = trim($tab_slug, '-');
+        if ($tab_slug === '') {
+            $tab_slug = 'tab-' . (count($this->tab_groups) + 1);
+        }
+
+        $group = $this->addGroup($label ?? $tab_name);
+        $group->setOption('wprs_tab_name', $tab_name);
+        $group->setOption('wprs_tab_slug', $tab_slug);
+        $group->setOption('wprs_tab_label', $label ?? $tab_name);
+        $group->setOption('wprs_tab_active', false);
+
+        $this->tab_groups[$tab_name] = $group;
+
+        if ($is_active || $this->active_tab_name === null) {
+            $this->active_tab_name = $tab_name;
+        }
+
+        foreach ($this->tab_groups as $current_tab_name => $current_group) {
+            $current_group->setOption('wprs_tab_active', $current_tab_name === $this->active_tab_name);
+        }
+
+        $this->setCurrentGroup($group);
+
+        return $group;
+    }
+
+
+    /**
+     * 添加 Tab 分组（驼峰别名）。
+     *
+     * @param string      $name      Tab 唯一名称
+     * @param string|null $label     Tab 标题
+     * @param bool        $is_active 是否激活为当前 Tab
+     *
+     * @return \Nette\Forms\ControlGroup
+     */
+    public function addTab(string $name, ?string $label = null, bool $is_active = false): ControlGroup
+    {
+        return $this->add_tab($name, $label, $is_active);
+    }
+
+
+    /**
+     * 结束当前 Tab 分组，后续字段不再归入当前 Tab。
+     *
+     * @return static
+     */
+    public function end_tab(): static
+    {
+        $this->setCurrentGroup(null);
+
+        return $this;
+    }
+
+
+    /**
+     * 结束当前 Tab 分组（驼峰别名）。
+     *
+     * @return static
+     */
+    public function endTab(): static
+    {
+        return $this->end_tab();
+    }
+
 
 }

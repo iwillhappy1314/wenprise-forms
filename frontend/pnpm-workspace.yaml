@@ -1,0 +1,3 @@
+allowBuilds:
+  bootstrap-star-rating: false
+  core-js: false

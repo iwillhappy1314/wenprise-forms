@@ -6,6 +6,7 @@ use Nette;
 use Nette\InvalidArgumentException;
 use Nette\Utils\Html;
 use Nette\HtmlStringable;
+use Nette\Localization\Translator;
 
 /**
  * 转到表单到 HTML 输出
@@ -84,6 +85,191 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         }
 
         return $s;
+    }
+
+
+    /**
+     * 渲染表单主体，支持按 Tab 渲染分组。
+     *
+     * @return string
+     */
+    public function renderBody(): string
+    {
+        $s = $remains = '';
+
+        $default_container = $this->getWrapper('group container');
+        $translator = $this->form->getTranslator();
+        $tab_groups = [];
+
+        foreach ($this->form->getGroups() as $group) {
+            if (!$group->getControls() || !$group->getOption('visual')) {
+                continue;
+            }
+
+            if ($group->getOption('wprs_tab_name')) {
+                $tab_groups[] = $group;
+                continue;
+            }
+
+            $container = $group->getOption('container') ?? $default_container;
+            $container = $container instanceof Html ? clone $container : Html::el($container);
+
+            $id = $group->getOption('id');
+            if ($id) {
+                $container->id = $id;
+            }
+
+            $s .= "\n" . $container->startTag();
+
+            $group_label = $group->getOption('label');
+            if ($group_label instanceof HtmlStringable) {
+                $s .= $this->getWrapper('group label')->addHtml($group_label);
+            } elseif ($group_label != null) {
+                $s .= "\n" . $this->getWrapper('group label')->setText($this->translate_text($group_label, $translator)) . "\n";
+            }
+
+            $group_description = $group->getOption('description');
+            if ($group_description instanceof HtmlStringable) {
+                $s .= $group_description;
+            } elseif ($group_description != null) {
+                $s .= $this->getWrapper('group description')->setText($this->translate_text($group_description, $translator)) . "\n";
+            }
+
+            $s .= $this->renderControls($group);
+
+            $remains = $container->endTag() . "\n" . $remains;
+            if (!$group->getOption('embedNext')) {
+                $s .= $remains;
+                $remains = '';
+            }
+        }
+
+        if (!empty($tab_groups)) {
+            $s .= $this->render_tab_groups($tab_groups, $translator);
+        }
+
+        $s .= $remains . $this->renderControls($this->form);
+
+        $container = $this->getWrapper('form container');
+        $container->setHtml($s);
+
+        return $container->render(0);
+    }
+
+
+    /**
+     * 渲染 Tab 导航与内容。
+     *
+     * @param array<\Nette\Forms\ControlGroup> $tab_groups
+     * @param \Nette\Localization\Translator|null $translator
+     *
+     * @return string
+     */
+    protected function render_tab_groups(array $tab_groups, ?Translator $translator = null): string
+    {
+        $tab_nav = Html::el('ul')
+            ->class('rs-tabs-nav')
+            ->setAttribute('role', 'tablist');
+        $tab_content = Html::el('div')->class('rs-tabs-content');
+
+        $has_active = false;
+        foreach ($tab_groups as $group) {
+            if ($group->getOption('wprs_tab_active')) {
+                $has_active = true;
+                break;
+            }
+        }
+
+        foreach ($tab_groups as $index => $group) {
+            $tab_name = (string) $group->getOption('wprs_tab_name');
+            $tab_slug = (string) $group->getOption('wprs_tab_slug');
+            $tab_label = $group->getOption('wprs_tab_label') ?? $group->getOption('label') ?? $tab_name;
+            $tab_label = $this->translate_text($tab_label, $translator);
+
+            $is_active = (bool) $group->getOption('wprs_tab_active');
+            if (!$has_active && $index === 0) {
+                $is_active = true;
+            }
+
+            $tab_link = Html::el('a')
+                ->setAttribute('href', '#wprs-tab-' . $tab_slug)
+                ->setAttribute('data-wprs-tab-target', 'wprs-tab-' . $tab_slug)
+                ->setAttribute('role', 'tab')
+                ->setAttribute('aria-selected', $is_active ? 'true' : 'false')
+                ->class($is_active ? 'rs-is-active' : null)
+                ->setText((string) $tab_label);
+
+            $tab_nav->addHtml(
+                Html::el('li')
+                    ->class('rs-tabs-nav-item')
+                    ->addHtml($tab_link)
+            );
+
+            $tab_pane = Html::el('div')
+                ->setAttribute('id', 'wprs-tab-' . $tab_slug)
+                ->setAttribute('role', 'tabpanel')
+                ->class('rs-tab-pane' . ($is_active ? ' rs-is-active' : ''))
+                ->addHtml($this->render_tab_controls($group));
+
+            $tab_content->addHtml($tab_pane);
+        }
+
+        return Html::el('div')
+            ->class('rs-tabs')
+            ->addHtml($tab_nav)
+            ->addHtml($tab_content)
+            ->render();
+    }
+
+
+    /**
+     * 渲染 Tab 面板中的控件，按钮控件留在 Tab 外层统一渲染。
+     *
+     * @param \Nette\Forms\ControlGroup $group
+     *
+     * @return string
+     */
+    protected function render_tab_controls(Nette\Forms\ControlGroup $group): string
+    {
+        $container = $this->getWrapper('controls container');
+
+        foreach ($group->getControls() as $control) {
+            if ($control->getOption('rendered') || $control->getOption('type') === 'hidden' || $control->getForm(false) !== $this->form) {
+                continue;
+            }
+
+            // Keep submit/button controls outside the tab panes.
+            if ($control->getOption('type') === 'button') {
+                continue;
+            }
+
+            $container->addHtml($this->renderPair($control));
+        }
+
+        $s = '';
+        if (count($container)) {
+            $s .= "\n" . $container . "\n";
+        }
+
+        return $s;
+    }
+
+
+    /**
+     * 翻译文本标签。
+     *
+     * @param mixed $text
+     * @param \Nette\Localization\Translator|null $translator
+     *
+     * @return mixed
+     */
+    protected function translate_text($text, ?Translator $translator = null)
+    {
+        if ($translator !== null && is_string($text)) {
+            return $translator->translate($text);
+        }
+
+        return $text;
     }
 
 

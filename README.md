@@ -209,6 +209,94 @@ $form->setDatastore(new \Wenprise\Forms\Datastores\PostMetaDatastore(1, $form));
 $form->save();
 ```
 
+### Custom Settings Page Example
+
+Use `OptionsDatastore` to build a WordPress admin settings page quickly.
+
+```php
+<?php
+use Wenprise\Forms\Form;
+use Wenprise\Forms\Datastores\OptionsDatastore;
+use Wenprise\Forms\Renders\AdminFormRender;
+
+add_action('admin_menu', function () {
+    add_menu_page(
+        'Wenprise Form Settings',
+        'Form Settings',
+        'manage_options',
+        'wenprise-form-settings',
+        'render_wenprise_form_settings_page'
+    );
+});
+
+function render_wenprise_form_settings_page() {
+    $form = new Form('wenprise_form_settings');
+    $form->setRenderer(new AdminFormRender('vertical'));
+    $form->setMethod('POST');
+
+    $form->addText('wprs_company_name', 'Company Name')
+        ->setDefaultValue(get_option('wprs_company_name', ''));
+
+    $form->addText('wprs_support_email', 'Support Email')
+        ->setRequired()
+        ->addRule($form::EMAIL, 'Please enter a valid email address.')
+        ->setDefaultValue(get_option('wprs_support_email', ''));
+
+    $form->addCheckbox('wprs_enable_notifications', 'Enable Email Notifications')
+        ->setDefaultValue((bool) get_option('wprs_enable_notifications', false));
+
+    $form->addSubmit('save', 'Save Settings');
+
+    $form->setDatastore(new OptionsDatastore($form));
+    $form->save();
+
+    echo '<div class="wrap"><h1>Wenprise Form Settings</h1>';
+    $form->render();
+    echo '</div>';
+}
+```
+
+### Tab Groups
+
+Use tab groups to split long forms into multiple panels.
+
+```php
+$form = new \Wenprise\Forms\Form();
+
+$form->addTab('basic', 'Basic', true);
+$form->addText('first_name', 'First Name');
+$form->addText('email', 'Email');
+
+$form->addTab('advanced', 'Advanced');
+$form->addTextArea('notes', 'Notes');
+$form->endTab();
+
+// This submit button is outside tab groups.
+$form->addSubmit('send', 'Save');
+
+// Template context:
+echo $form;
+```
+
+Tabs are rendered automatically through the existing render flow (`$form->render()` / `echo $form`), so no extra render method is required.
+
+Submit buttons created inside tab groups are rendered outside tab panes automatically, so the save action stays visible.
+
+You can also use underscore naming method:
+
+```php
+$form->add_tab('basic', 'Basic', true);
+echo $form;
+```
+
+If you render inside a shortcode callback, return the form HTML instead of echoing:
+
+```php
+add_shortcode('wenprise_form_demo', function () use ($form) {
+    return (string) $form;
+});
+```
+
 ## Fields
 
 ### nonce field

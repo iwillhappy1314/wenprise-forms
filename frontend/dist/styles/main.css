@@ -2170,6 +2170,53 @@ input[type=button].btn-block {
   min-width: 16px;
 }
 
+.rs-tabs {
+  margin-bottom: 1.5rem;
+}
+
+.rs-tabs-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.rs-tabs-nav-item {
+  margin: 0;
+  padding: 0;
+}
+
+.rs-tabs-nav-item a {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  color: #0073aa;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.rs-tabs-nav-item a:hover {
+  color: #005177;
+  text-decoration: none;
+}
+
+.rs-tabs-nav-item a.rs-is-active {
+  color: #212529;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.rs-tab-pane {
+  display: none;
+}
+
+.rs-tab-pane.rs-is-active {
+  display: block;
+}
+
 @media (max-width: 575.98px) {
   .rs-table-responsive-sm {
     display: block;
