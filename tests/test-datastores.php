@@ -317,6 +317,69 @@ class DatastoreTests extends WP_UnitTestCase
         }
     }
 
+    /**
+     * Test post type remains unchanged for custom post type records
+     */
+    public function test_post_meta_datastore_does_not_override_post_type()
+    {
+        register_post_type('wprs_test_item', [
+            'public' => true,
+            'label' => 'WPRS Test Item',
+            'supports' => ['title']
+        ]);
+
+        $custom_post_id = $this->factory->post->create([
+            'post_type' => 'wprs_test_item',
+            'post_title' => 'Original CPT Title',
+            'post_status' => 'publish'
+        ]);
+
+        $form = new Form('test_cpt_form');
+        $form->addText('post_title', 'Post Title');
+        $form->addText('custom_field', 'Custom Field');
+
+        $datastore = new PostMetaDatastore($custom_post_id, $form);
+        $form->setDatastore($datastore);
+        $form->setValues([
+            'post_title' => 'Updated CPT Title',
+            'custom_field' => 'CPT Meta Value'
+        ]);
+
+        $this->assertTrue($form->isValid());
+        $form->save();
+
+        $updated_post = get_post($custom_post_id);
+        $this->assertEquals('wprs_test_item', $updated_post->post_type);
+        $this->assertEquals('Updated CPT Title', $updated_post->post_title);
+        $this->assertEquals('CPT Meta Value', get_post_meta($custom_post_id, 'custom_field', true));
+
+        unregister_post_type('wprs_test_item');
+    }
+
+    /**
+     * Test missing field does not overwrite existing meta value
+     */
+    public function test_datastore_missing_field_does_not_override_existing_value()
+    {
+        update_post_meta($this->test_post_id, 'keep_value', 'existing value');
+
+        $form = new Form('missing_field_form');
+        $form->addText('keep_value', 'Keep Value');
+        $form->addText('new_value', 'New Value');
+
+        $datastore = new PostMetaDatastore($this->test_post_id, $form);
+        $form->setDatastore($datastore);
+        $form->setValues([
+            'new_value' => 'new value'
+        ]);
+
+        $this->assertTrue($form->isValid());
+        $form->save();
+
+        $this->assertEquals('existing value', get_post_meta($this->test_post_id, 'keep_value', true));
+        $this->assertEquals('new value', get_post_meta($this->test_post_id, 'new_value', true));
+    }
+
     public function tearDown(): void
     {
         // Clean up test data

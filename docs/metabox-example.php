@@ -120,15 +120,28 @@ function wprs_register_options_fields()
 {
     $form = new \Wenprise\Forms\Form();
 
-    $form->addTab('basic', '基础信息', true);
-    $form->addText('first_name', 'First Name');
-    $form->addText('email', 'Email');
-
-    $form->addTab('advanced', '高级设置');
-    $form->addTextArea('notes', 'Notes');
-
+    wprs_render_settings_form($form);
 
     $form->addSubmit('reset', 'Reset');
     $form->addSubmit('send', 'Save');
 }
 add_action('init', 'wprs_register_options_fields');
+
+/**
+ * 渲染设置表单中的 Tab 字段。
+ *
+ * @param \Wenprise\Forms\Form $form 表单实例
+ *
+ * @return void
+ */
+function wprs_render_settings_form(\Wenprise\Forms\Form $form): void
+{
+    $form->addTab('basic', '基础信息', true);
+    $form->addText('first_name', 'First Name');
+    $form->addText('email', 'Email');
+    $form->endTab();
+
+    $form->addTab('advanced', '高级设置');
+    $form->addTextArea('notes', 'Notes');
+    $form->endTab();
+}
