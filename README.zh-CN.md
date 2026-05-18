@@ -1,52 +1,52 @@
 # wenprise-forms
 
-Extend Nette Forms for WordPress use.
+为 WordPress 场景扩展 Nette Forms。
 
-Basic usage: [Nette Form](https://doc.nette.org/en/forms/standalone)
+基础用法：[Nette Form](https://doc.nette.org/en/forms/standalone)
 
-## Features
+## 功能特性
 
-- Supports both Composer library mode and WordPress plugin mode
-- Extends Nette Forms with WordPress-ready fields and UI widgets
-- Includes form validation, conditional display, datastore integration, and AJAX-friendly inputs
+- 同时支持 Composer 库模式和 WordPress 插件模式
+- 在 Nette Forms 基础上扩展适配 WordPress 的字段与 UI 组件
+- 内置表单验证、条件显示、数据存储集成与 AJAX 友好输入组件
 
-## Requirements
+## 环境要求
 
 - PHP `>=8.3`
 - `ext-json`
 - `nette/forms ^3.2`
 - `nette/utils ^4.1`
-- WordPress `>=6.0` (recommended)
+- WordPress `>=6.0`（推荐）
 
-## Installation
+## 安装
 
-### Option A: Install as a Composer library
+### 方式 A：作为 Composer 库安装
 
 ```bash
 composer require wenprise/forms
 ```
 
-### Option B: Install as a WordPress plugin
+### 方式 B：作为 WordPress 插件安装
 
-1. Clone or download this repository into `wp-content/plugins/wenprise-forms`.
-2. Run `composer install` inside the plugin directory.
-3. Activate `Wenprise Forms` in WordPress admin.
+1. 将本仓库克隆或下载到 `wp-content/plugins/wenprise-forms`。
+2. 在插件目录中运行 `composer install`。
+3. 在 WordPress 后台启用 `Wenprise Forms`。
 
-## Runtime Modes
+## 运行模式
 
-### Composer library mode
+### Composer 库模式
 
-- Your project is responsible for loading Composer autoload.
-- Your code decides when and where to bootstrap the form objects.
+- 由你的项目负责加载 Composer autoload。
+- 由你的业务代码决定何时何地初始化表单对象。
 
-### WordPress plugin mode
+### WordPress 插件模式
 
-- Plugin entry file `wenprise-forms.php` loads `vendor/autoload.php` automatically.
-- Plugin bootstraps with `new \Wenprise\Forms\Init();`.
+- 插件入口文件 `wenprise-forms.php` 会自动加载 `vendor/autoload.php`。
+- 插件通过 `new \Wenprise\Forms\Init();` 完成启动。
 
-## Quick Start (Minimal Working Example)
+## 快速开始（最小可运行示例）
 
-Forms has its own HTTP request handling flow. Instantiate it before `head_sent`, usually on `init`.
+Forms 内置自己的 HTTP 请求处理流程。请在 `head_sent` 前实例化，通常放在 `init` action 中。
 
 ```php
 <?php
@@ -78,10 +78,10 @@ add_shortcode('wenprise_form_demo', function () {
 });
 ```
 
-## Usage
+## 用法
 
-### Quick start
-Forms includes its own HTTP request handling flow, so instantiate it before `head_sent`, usually in the `init` action.
+### 快速开始
+Forms 内置自己的 HTTP 请求处理流程，因此需要在 `head_sent` 前实例化，通常放在 `init` action 中。
 
 ```php
 add_action('init', function ()
@@ -93,7 +93,7 @@ add_action('init', function ()
 });
 
 ```
-Create a Form instance
+创建 Form 实例
 
 ````php
 use Wenprise\Forms\Form;
@@ -122,28 +122,28 @@ if ( $form->isSuccess() ) {
 }	
 ````
 
-## Frontend Assets
+## 前端资源说明
 
-Some fields depend on JavaScript/CSS widgets (for example: `Slider`, `Chosen`, `Date Picker`, `Signature`, `Star Rating`, `Autocomplete`, `Chained Select`).
+部分字段依赖 JavaScript/CSS 组件（例如：`Slider`、`Chosen`、`Date Picker`、`Signature`、`Star Rating`、`Autocomplete`、`Chained Select`）。
 
-- Ensure assets are properly enqueued in your theme/plugin runtime.
-- Prefer testing one advanced field at a time when integrating into existing themes.
+- 请确保在主题或插件运行时正确 enqueue 这些资源。
+- 集成到现有主题时，建议一次只接入并测试一个高级字段。
 
-## Security Notes
+## 安全建议
 
-- Always include CSRF protection for public forms (`$form->addCsrf(...)`).
-- For AJAX endpoints, validate nonce and capability before processing input.
-- Sanitize incoming data and escape output in templates.
-- Do not trust client-side validation alone; keep validation rules on the server side.
+- 公开表单务必添加 CSRF 保护（`$form->addCsrf(...)`）。
+- AJAX 端点在处理输入前应校验 nonce 与 capability。
+- 请对输入做清洗，并在模板输出时做转义。
+- 不要只依赖前端校验；服务端必须保留验证规则。
 
-### Set Required
+### 设置必填
 
 ```php
 $form->addText('first_name', 'First Name')
      ->setRequired();
 ```
 
-### Add rule
+### 添加验证规则
 
 ```php
 $form->addPassword('re_password', 'Password again:')
@@ -153,14 +153,14 @@ $form->addPassword('re_password', 'Password again:')
 [Rule Documentation](https://doc.nette.org/en/forms/validation)
 
 
-### Add field description
+### 添加字段说明
 
 ```php
 $form->addText('first_name', 'First Name')
      ->setOption('description', 'This is your first name.');
 ```
 
-With Html
+使用 HTML
 
 ```php
 $form->addTextArea('description', Html::el('p')
@@ -168,7 +168,7 @@ $form->addTextArea('description', Html::el('p')
 	);
 ```
 
-### Set condition display
+### 设置条件显示
 
 ```php
 $form->addColorPicker('first_name3', 'First Name')
@@ -176,7 +176,7 @@ $form->addColorPicker('first_name3', 'First Name')
 ```
 
 
-### Multiple Submit Button
+### 多提交按钮
 
 ```php
 $form->addSubmit('save', 'Save');
@@ -193,7 +193,7 @@ if ($form->isSuccess()) {
 }
 ```
 
-### Use html in label or description
+### 在标签或说明中使用 HTML
 
 ```php
 $confirm = Html::el('span')->setHtml('I agree the <a href="#">Terms of service.</a>');
@@ -201,7 +201,7 @@ $confirm = Html::el('span')->setHtml('I agree the <a href="#">Terms of service.<
 $form->addCheckbox('confirm', $confirm)->setOption('description', $confirm);
 ```
 
-### Set Datastore
+### 设置 Datastore
 
 ```php
 $form->setDatastore(new \Wenprise\Forms\Datastores\PostMetaDatastore(1, $form));
@@ -209,15 +209,15 @@ $form->setDatastore(new \Wenprise\Forms\Datastores\PostMetaDatastore(1, $form));
 $form->save();
 ```
 
-## Fields
+## 字段类型
 
-### nonce field
+### nonce 字段
 
 ````php
 $form->addCsrf('postform', 'Nonce invalid');
 ````
 
-### WordPress Tinymce editor
+### WordPress TinyMCE 编辑器
 
 [Settings](https://codex.wordpress.org/Function_Reference/wp_editor)
 
@@ -225,14 +225,14 @@ $form->addCsrf('postform', 'Nonce invalid');
 $form->addEditor('post_extra', 'Extra content', []);
 ````
 
-### Ajax uploader
+### Ajax 上传器
 
 ```php
 $form->addAjaxUpload('photos', 'Photos', true, )
              ->setUrl(  admin_url( 'admin-ajax.php?action=upload' ) );
 ```
 
-#### Uploader backend sample.
+#### 上传后端示例
 
 ````php
 add_action('wp_ajax_upload', 'ajax_uploader');
@@ -269,17 +269,17 @@ function ajax_uploader()
 }
 ````
 
-### Slider input
+### Slider 输入
 
-[Setting](http://ionden.com/a/plugins/ion.rangeSlider/en.html) 
+[配置](http://ionden.com/a/plugins/ion.rangeSlider/en.html) 
 
 ````php
 $form->addSlider('price', 'Price', []);
 ````
 
-### Data Picker
+### 日期选择器
 
-[Setting](https://jqueryui.com/datepicker/)
+[配置](https://jqueryui.com/datepicker/)
 
 ````php
 $form->AddBirthdaypicker('_birthday', 'Date of Birth', [
@@ -290,9 +290,9 @@ $form->AddBirthdaypicker('_birthday', 'Date of Birth', [
 ]);
 ````
 
-### Color Picker
+### 颜色选择器
 
-[Setting](http://automattic.github.io/Iris/)
+[配置](http://automattic.github.io/Iris/)
 
 ````php
 $form->addColorPicker('color', 'Color', []);
@@ -311,13 +311,13 @@ $choices = [
 $form->addChosen('category', 'Category', $choices);
 ````
 
-#### Multi Chosen
+#### 多选 Chosen
 
 ````php
 $form->addMultiChosen('post_tags', 'Tags', $choices);
 ````
 
-### Signature Field
+### 签名字段
 
 ````php
 $options = [
@@ -330,7 +330,7 @@ $options = [
 $form->addSignature('first_name9', 'First Name', $options);
 ````
 
-### Star rating input
+### 星级评分输入
 
 ````php
 $options = [
@@ -345,7 +345,7 @@ $options = [
 $form->addStarRating('rating', 'Rating', $options);
 ````
 
-### Image Select
+### 图片选择
 
 ````php
 $options = [
@@ -356,9 +356,9 @@ $options = [
 $form->addImagePicker('theme', 'Theme', $options);
 ````
 
-### Autocomplete Input
+### 自动补全输入
 
-Source is an array or a url returns an array.
+数据源可以是数组，也可以是返回数组的 URL。
 
 ```php
 $form->addAutocomplete('name', 'Name')->setSource([
@@ -377,7 +377,7 @@ $form->addAutocomplete('name', 'Name')->setSource([
 ]);
 ```
 
-If Source is an ajax url, the backend need return data as bellow.
+如果数据源是 AJAX URL，后端需要按如下格式返回数据。
 
 ```php
 suggestions: [
@@ -387,7 +387,7 @@ suggestions: [
 ]
 ```
 
-### Table input
+### 表格输入
 
 ````php
 $fields = [
@@ -426,17 +426,17 @@ $form->addTableInput('table', 'Table', [], $fields)
      ->setDefaultValue($values);
 ````
 
-### Clone Input
+### 克隆输入
 
-Allow input multi text value.
+允许输入多个文本值。
 
 ````php
 $form->addCloneInput('photo1', 'Photo');
 ````
 
-### Group Input
+### 组合输入
 
-Set a prefix or suffix for text input.
+为文本输入设置前缀或后缀。
 
 ````php
 $form->addGroupInput('day1', 'Day')
@@ -444,21 +444,21 @@ $form->addGroupInput('day1', 'Day')
      ->setSuffix('gmail.com');
 ````
 
-### SMS input
+### 短信输入
 
-Send SMS code
+发送短信验证码
 
 ```php
 $form->addSmsInput('phone', 'Cellphone', )
              ->setUrl(admin_url('admin-ajax.php?action=validate_cellpone'));
 ```
 
-Backend Example
+后端示例
 
 ```php
 
 /**
- * Send SMS verification code.
+ * 发送短信验证码。
  */
 add_action('wp_ajax_validate_cellpone', 'validate_cellpone');
 add_action('wp_ajax_nopriv_validate_cellpone', 'validate_cellpone');
@@ -472,7 +472,7 @@ function validate_cellpone()
 
 	$random = mt_rand( 100000, 999999 );
 
-	// Save the verification code before sending SMS.
+	// 发送短信前先保存验证码。
 	$code       = PhoneCode::query()->firstOrCreate( [ 'phone' => $phone ] );
 	$code->code = $random;
 	$code->save();
@@ -483,7 +483,7 @@ function validate_cellpone()
 };
 
 /**
- * SMS backend example using Yunpian API.
+ * 短信后端示例：使用云片 API。
  */
 function send_sms( $mobile, $content )
 {
@@ -492,7 +492,7 @@ function send_sms( $mobile, $content )
         'tpl_id' => '123456',
     ];
 
-    // Template API endpoint
+    // 模板接口地址
     $url = "https://sms.yunpian.com/v2/sms/tpl_single_send.json";
 
     $args = [
@@ -500,7 +500,7 @@ function send_sms( $mobile, $content )
             'apikey'    => $config[ 'apikey' ],
             'mobile'    => $mobile,
 
-            // Template SMS payload
+            // 模板短信参数
             'tpl_id'    => $config[ 'tpl_id' ],
             'tpl_value' => "#code#=$content",
         ],
@@ -508,7 +508,7 @@ function send_sms( $mobile, $content )
 
     $result = json_decode( wp_remote_retrieve_body( wp_remote_post( $url, $args ) ) );
 
-    // Return message based on gateway response
+    // 根据网关返回结果生成消息。
     return [
         'code' => $result->code,
         'msg'  => $result->msg,
@@ -516,13 +516,13 @@ function send_sms( $mobile, $content )
 }
 ```
 
-### Captcha Input
+### Captcha 输入
 
 ````php
  $form->AddCaptcha('captcha', 'Captcha')
              ->setUrl(admin_url('admin-ajax.php?action=get_captcha'));
 ````
-### Chained Select
+### 级联选择
 
 ````php
 $form->addChainedSelect('chained', 'Chained Select', [
@@ -532,14 +532,14 @@ $form->addChainedSelect('chained', 'Chained Select', [
     ], ['province', 'city', 'area'])->setDefaultValue([001, 002, 003]);
 ````
 
-### Captcha backend sample.
+### Captcha 后端示例
 
 ````php
 /**
- * Captcha backend sample.
- * WordPress core do not use sessions, use cookie and transient instead 
+ * Captcha 后端示例。
+ * WordPress 核心不使用 session，请改用 cookie 与 transient 
  *
- * Run composer require gregwar/captcha to install requirement
+ * 运行 `composer require gregwar/captcha` 安装依赖
  */
 add_action('wp_ajax_get_captcha', 'get_captcha');
 add_action('wp_ajax_nopriv_get_captcha', 'get_captcha');
@@ -560,7 +560,7 @@ function get_captcha($type)
 ````
 
 ````php
-// Validate captcha
+// 验证 captcha
 $captcha_id      = $_COOKIE[ 'wprs-security-captcha-id' ];
 $session_captcha = get_transient($captcha_id);
 ````
