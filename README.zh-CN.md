@@ -289,6 +289,36 @@ $form->add_tab('basic', '基础信息', true);
 echo $form;
 ```
 
+### Stepper 分组
+
+你可以用 Stepper 分组渲染带进度条的分步表单，并自动带有上一步/下一步操作。
+
+```php
+$form = new \Wenprise\Forms\Form();
+
+$form->addStep('campaign', '选择主活动设置', true);
+$form->addText('campaign_name', '活动名称');
+$form->endStep();
+
+$form->addStep('ad_group', '创建广告组');
+$form->addText('group_name', '广告组名称');
+$form->endStep();
+
+$form->addStep('ad', '创建广告');
+$form->addTextArea('ad_content', '广告内容');
+$form->endStep();
+
+$form->addSubmit('send', '保存');
+
+echo $form;
+```
+
+也可以使用下划线方法名：
+
+```php
+$form->add_step('campaign', '活动', true);
+```
+
 如果是在 shortcode 回调中渲染，请返回 HTML，不要直接 echo：
 
 ```php

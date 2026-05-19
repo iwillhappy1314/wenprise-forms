@@ -11,8 +11,9 @@ use Wenprise\Forms\Translator\DefaultTranslator;
 class Form extends \Nette\Forms\Form implements HtmlStringable
 {
     public ?IDatastore $datastore = null;
-    protected array $tab_groups = [];
-    protected ?string $active_tab_name = null;
+    protected string $save_method = 'default';
+    protected array $group_collections = [];
+    protected ?string $active_group_name = null;
 
     /**
      * @param \Wenprise\Forms\Datastores\IDatastore $datastore
@@ -442,46 +443,71 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
 
 
     /**
+     * 添加分组（Tab/Step 通用底层实现）。
+     *
+     * @param string      $name       分组唯一名称
+     * @param string|null $label      分组标题
+     * @param bool        $is_active  是否激活为当前分组
+     * @param string      $group_type 分组类型，支持 tab 或 step
+     *
+     * @return \Nette\Forms\ControlGroup
+     */
+    protected function add_group(string $name, ?string $label = null, bool $is_active = false, string $group_type = 'tab'): ControlGroup
+    {
+        $current_group_type = in_array($group_type, ['tab', 'step'], true) ? $group_type : 'tab';
+        $group_name = trim($name);
+        if ($group_name === '') {
+            $group_name = $current_group_type . '_' . (count($this->group_collections) + 1);
+        }
+
+        $group_slug = strtolower((string) preg_replace('/[^a-z0-9]+/i', '-', $group_name));
+        $group_slug = trim($group_slug, '-');
+        if ($group_slug === '') {
+            $group_slug = $current_group_type . '-' . (count($this->group_collections) + 1);
+        }
+
+        $group = $this->addGroup($label ?? $group_name);
+        $group->setOption('wprs_group_name', $group_name);
+        $group->setOption('wprs_group_slug', $group_slug);
+        $group->setOption('wprs_group_label', $label ?? $group_name);
+        $group->setOption('wprs_group_type', $current_group_type);
+        $group->setOption('wprs_group_active', false);
+        // Backward compatibility for existing tab render flow.
+        $group->setOption('wprs_tab_name', $group_name);
+        $group->setOption('wprs_tab_slug', $group_slug);
+        $group->setOption('wprs_tab_label', $label ?? $group_name);
+        $group->setOption('wprs_tab_active', false);
+
+        $this->group_collections[$group_name] = $group;
+
+        if ($is_active || $this->active_group_name === null) {
+            $this->active_group_name = $group_name;
+        }
+
+        foreach ($this->group_collections as $current_group_name => $current_group) {
+            $is_current_group_active = $current_group_name === $this->active_group_name;
+            $current_group->setOption('wprs_group_active', $is_current_group_active);
+            $current_group->setOption('wprs_tab_active', $is_current_group_active);
+        }
+
+        $this->setCurrentGroup($group);
+
+        return $group;
+    }
+
+
+    /**
      * 添加 Tab 分组。
      *
-     * @param string      $name     Tab 唯一名称
-     * @param string|null $label    Tab 标题
+     * @param string      $name      Tab 唯一名称
+     * @param string|null $label     Tab 标题
      * @param bool        $is_active 是否激活为当前 Tab
      *
      * @return \Nette\Forms\ControlGroup
      */
     public function add_tab(string $name, ?string $label = null, bool $is_active = false): ControlGroup
     {
-        $tab_name = trim($name);
-        if ($tab_name === '') {
-            $tab_name = 'tab_' . (count($this->tab_groups) + 1);
-        }
-
-        $tab_slug = strtolower((string) preg_replace('/[^a-z0-9]+/i', '-', $tab_name));
-        $tab_slug = trim($tab_slug, '-');
-        if ($tab_slug === '') {
-            $tab_slug = 'tab-' . (count($this->tab_groups) + 1);
-        }
-
-        $group = $this->addGroup($label ?? $tab_name);
-        $group->setOption('wprs_tab_name', $tab_name);
-        $group->setOption('wprs_tab_slug', $tab_slug);
-        $group->setOption('wprs_tab_label', $label ?? $tab_name);
-        $group->setOption('wprs_tab_active', false);
-
-        $this->tab_groups[$tab_name] = $group;
-
-        if ($is_active || $this->active_tab_name === null) {
-            $this->active_tab_name = $tab_name;
-        }
-
-        foreach ($this->tab_groups as $current_tab_name => $current_group) {
-            $current_group->setOption('wprs_tab_active', $current_tab_name === $this->active_tab_name);
-        }
-
-        $this->setCurrentGroup($group);
-
-        return $group;
+        return $this->add_group($name, $label, $is_active, 'tab');
     }
 
 
@@ -497,6 +523,36 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
     public function addTab(string $name, ?string $label = null, bool $is_active = false): ControlGroup
     {
         return $this->add_tab($name, $label, $is_active);
+    }
+
+
+    /**
+     * 添加 Step 分组。
+     *
+     * @param string      $name      Step 唯一名称
+     * @param string|null $label     Step 标题
+     * @param bool        $is_active 是否激活为当前 Step
+     *
+     * @return \Nette\Forms\ControlGroup
+     */
+    public function add_step(string $name, ?string $label = null, bool $is_active = false): ControlGroup
+    {
+        return $this->add_group($name, $label, $is_active, 'step');
+    }
+
+
+    /**
+     * 添加 Step 分组（驼峰别名）。
+     *
+     * @param string      $name      Step 唯一名称
+     * @param string|null $label     Step 标题
+     * @param bool        $is_active 是否激活为当前 Step
+     *
+     * @return \Nette\Forms\ControlGroup
+     */
+    public function addStep(string $name, ?string $label = null, bool $is_active = false): ControlGroup
+    {
+        return $this->add_step($name, $label, $is_active);
     }
 
 
@@ -521,6 +577,28 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
     public function endTab(): static
     {
         return $this->end_tab();
+    }
+
+
+    /**
+     * 结束当前 Step 分组，后续字段不再归入当前 Step。
+     *
+     * @return static
+     */
+    public function end_step(): static
+    {
+        return $this->end_tab();
+    }
+
+
+    /**
+     * 结束当前 Step 分组（驼峰别名）。
+     *
+     * @return static
+     */
+    public function endStep(): static
+    {
+        return $this->end_step();
     }
 
 

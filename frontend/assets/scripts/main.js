@@ -63,6 +63,79 @@ function initWidgets(container) {
   });
 
   /**
+   * 初始化 Stepper 切换
+   */
+  $(container).find('.rs-stepper').each(function() {
+    var stepRoot = $(this);
+    var stepLinks = stepRoot.find('.rs-stepper-link[data-wprs-step-target]');
+    var stepPanes = stepRoot.find('.rs-step-pane');
+
+    if (stepLinks.length === 0 || stepPanes.length === 0) {
+      return;
+    }
+
+    var activateStepByIndex = function(targetIndex) {
+      if (targetIndex < 0 || targetIndex >= stepLinks.length) {
+        return;
+      }
+
+      stepLinks.each(function(index) {
+        var link = $(this);
+        var parent = link.closest('.rs-stepper-nav-item');
+        var badge = link.find('.rs-stepper-badge');
+
+        link.removeClass('rs-is-active rs-is-completed');
+        parent.removeClass('rs-is-active rs-is-completed');
+
+        if (index < targetIndex) {
+          link.addClass('rs-is-completed').attr('aria-selected', 'false');
+          parent.addClass('rs-is-completed');
+          badge.text('✓');
+        } else if (index === targetIndex) {
+          link.addClass('rs-is-active').attr('aria-selected', 'true');
+          parent.addClass('rs-is-active');
+          badge.text(index + 1);
+        } else {
+          link.attr('aria-selected', 'false');
+          badge.text(index + 1);
+        }
+      });
+
+      stepPanes.removeClass('rs-is-active');
+      var activeTargetId = stepLinks.eq(targetIndex).data('wprs-step-target');
+      if (activeTargetId) {
+        stepRoot.find('#' + activeTargetId).addClass('rs-is-active');
+      }
+    };
+
+    var initialIndex = stepLinks.index(stepLinks.filter('.rs-is-active').first());
+    if (initialIndex < 0) {
+      initialIndex = 0;
+    }
+    activateStepByIndex(initialIndex);
+
+    stepLinks.off('click.wprsStepper').on('click.wprsStepper', function(event) {
+      event.preventDefault();
+      var index = stepLinks.index(this);
+      activateStepByIndex(index);
+    });
+
+    stepRoot.find('[data-wprs-step-next]').off('click.wprsStepperNext').on('click.wprsStepperNext', function() {
+      var index = parseInt($(this).attr('data-wprs-step-next'), 10);
+      if (!isNaN(index)) {
+        activateStepByIndex(index + 1);
+      }
+    });
+
+    stepRoot.find('[data-wprs-step-prev]').off('click.wprsStepperPrev').on('click.wprsStepperPrev', function() {
+      var index = parseInt($(this).attr('data-wprs-step-prev'), 10);
+      if (!isNaN(index)) {
+        activateStepByIndex(index - 1);
+      }
+    });
+  });
+
+  /**
    * 点击图形验证码切换新图像
    */
   $(container).find('.rs-form--captcha .rs-captcha__img').on('click', function() {

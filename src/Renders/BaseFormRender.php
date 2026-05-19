@@ -14,6 +14,7 @@ use Nette\Localization\Translator;
 class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 {
     use Nette\SmartObject;
+    protected bool $has_rendered_stepper_submit_controls = false;
 
     var $layout = 'horizontal';
 
@@ -99,15 +100,23 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
         $default_container = $this->getWrapper('group container');
         $translator = $this->form->getTranslator();
-        $tab_groups = [];
+        $group_sets = [
+            'tab' => [],
+            'step' => [],
+        ];
 
         foreach ($this->form->getGroups() as $group) {
             if (!$group->getControls() || !$group->getOption('visual')) {
                 continue;
             }
 
-            if ($group->getOption('wprs_tab_name')) {
-                $tab_groups[] = $group;
+            $group_name = $group->getOption('wprs_group_name') ?? $group->getOption('wprs_tab_name');
+            if ($group_name) {
+                $group_type = (string) ($group->getOption('wprs_group_type') ?? 'tab');
+                if (!isset($group_sets[$group_type])) {
+                    $group_type = 'tab';
+                }
+                $group_sets[$group_type][] = $group;
                 continue;
             }
 
@@ -144,11 +153,20 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             }
         }
 
-        if (!empty($tab_groups)) {
-            $s .= $this->render_tab_groups($tab_groups, $translator);
+        if (!empty($group_sets['tab'])) {
+            $s .= $this->render_tab_groups($group_sets['tab'], $translator);
         }
 
-        $s .= $remains . $this->renderControls($this->form);
+        if (!empty($group_sets['step'])) {
+            $s .= $this->render_step_groups($group_sets['step'], $translator);
+        }
+
+        $form_controls = $this->renderControls($this->form);
+        if ($this->has_rendered_stepper_submit_controls) {
+            $form_controls = '';
+        }
+
+        $s .= $remains . $form_controls;
 
         $container = $this->getWrapper('form container');
         $container->setHtml($s);
@@ -219,6 +237,151 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
             ->addHtml($tab_nav)
             ->addHtml($tab_content)
             ->render();
+    }
+
+
+    /**
+     * 渲染 Stepper 导航与内容。
+     *
+     * @param array<\Nette\Forms\ControlGroup> $step_groups
+     * @param \Nette\Localization\Translator|null $translator
+     *
+     * @return string
+     */
+    protected function render_step_groups(array $step_groups, ?Translator $translator = null): string
+    {
+        $step_nav = Html::el('ol')
+            ->class('rs-stepper-nav')
+            ->setAttribute('role', 'tablist');
+        $step_content = Html::el('div')->class('rs-stepper-content');
+
+        $active_index = 0;
+        foreach ($step_groups as $index => $group) {
+            if ($group->getOption('wprs_group_active') || $group->getOption('wprs_tab_active')) {
+                $active_index = $index;
+                break;
+            }
+        }
+
+        $last_index = count($step_groups) - 1;
+        foreach ($step_groups as $index => $group) {
+            $group_name = (string) ($group->getOption('wprs_group_name') ?? $group->getOption('wprs_tab_name'));
+            $group_slug = (string) ($group->getOption('wprs_group_slug') ?? $group->getOption('wprs_tab_slug'));
+            $group_label = $group->getOption('wprs_group_label') ?? $group->getOption('wprs_tab_label') ?? $group->getOption('label') ?? $group_name;
+            $group_label = $this->translate_text($group_label, $translator);
+            $target_id = 'wprs-step-' . $group_slug;
+
+            $is_active = $index === $active_index;
+            $is_completed = $index < $active_index;
+
+            $step_link = Html::el('a')
+                ->setAttribute('href', '#' . $target_id)
+                ->setAttribute('data-wprs-step-target', $target_id)
+                ->setAttribute('data-wprs-step-index', (string) $index)
+                ->setAttribute('role', 'tab')
+                ->setAttribute('aria-selected', $is_active ? 'true' : 'false')
+                ->class('rs-stepper-link' . ($is_active ? ' rs-is-active' : '') . ($is_completed ? ' rs-is-completed' : ''));
+
+            $step_badge = Html::el('span')
+                ->class('rs-stepper-badge')
+                ->setText($is_completed ? '✓' : (string) ($index + 1));
+            $step_label = Html::el('span')
+                ->class('rs-stepper-title')
+                ->setText((string) $group_label);
+
+            $step_link->addHtml($step_badge)->addHtml($step_label);
+
+            $step_item_class = 'rs-stepper-nav-item';
+            if ($is_active) {
+                $step_item_class .= ' rs-is-active';
+            } elseif ($is_completed) {
+                $step_item_class .= ' rs-is-completed';
+            }
+            if ($index === $last_index) {
+                $step_item_class .= ' rs-is-last';
+            }
+
+            $step_nav->addHtml(
+                Html::el('li')
+                    ->class($step_item_class)
+                    ->addHtml($step_link)
+            );
+
+            $step_controls = Html::el('div')
+                ->class('rs-stepper-controls')
+                ->addHtml($this->render_tab_controls($group));
+
+            $step_actions = Html::el('div')->class('rs-stepper-actions');
+            if ($index > 0) {
+                $step_actions->addHtml(
+                    Html::el('button')
+                        ->setAttribute('type', 'button')
+                        ->setAttribute('data-wprs-step-prev', (string) $index)
+                        ->class('rs-btn rs-btn-secondary rs-stepper-prev')
+                        ->setText('Previous')
+                );
+            }
+            if ($index < $last_index) {
+                $step_actions->addHtml(
+                    Html::el('button')
+                        ->setAttribute('type', 'button')
+                        ->setAttribute('data-wprs-step-next', (string) $index)
+                        ->class('rs-btn rs-btn-primary rs-stepper-next')
+                        ->setText('Next')
+                );
+            } else {
+                $stepper_submit_controls = $this->render_stepper_submit_controls();
+                if ($stepper_submit_controls !== '') {
+                    $step_actions->addHtml(
+                        Html::el('div')
+                            ->class('rs-stepper-submit')
+                            ->setHtml($stepper_submit_controls)
+                    );
+                }
+            }
+
+            $step_pane = Html::el('div')
+                ->setAttribute('id', $target_id)
+                ->setAttribute('role', 'tabpanel')
+                ->class('rs-step-pane' . ($is_active ? ' rs-is-active' : ''))
+                ->addHtml($step_controls)
+                ->addHtml($step_actions);
+
+            $step_content->addHtml($step_pane);
+        }
+
+        return Html::el('div')
+            ->class('rs-stepper')
+            ->addHtml($step_nav)
+            ->addHtml($step_content)
+            ->render();
+    }
+
+
+    /**
+     * 渲染 Stepper 最后一步的提交按钮，并标记为已渲染避免重复输出。
+     *
+     * @return string
+     */
+    protected function render_stepper_submit_controls(): string
+    {
+        $submit_container = Html::el('div');
+
+        foreach ($this->form->getControls() as $control) {
+            if ($control->getOption('rendered') || $control->getForm(false) !== $this->form) {
+                continue;
+            }
+
+            if ($control->getOption('type') !== 'button') {
+                continue;
+            }
+
+            $control->setOption('rendered', true);
+            $submit_container->addHtml($control->getControl());
+            $this->has_rendered_stepper_submit_controls = true;
+        }
+
+        return (string) $submit_container;
     }
 
 

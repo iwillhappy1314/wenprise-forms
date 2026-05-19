@@ -289,6 +289,36 @@ $form->add_tab('basic', 'Basic', true);
 echo $form;
 ```
 
+### Stepper Groups
+
+Use stepper groups to render a progress bar with previous and next step actions.
+
+```php
+$form = new \Wenprise\Forms\Form();
+
+$form->addStep('campaign', 'Select master blaster campaign settings', true);
+$form->addText('campaign_name', 'Campaign Name');
+$form->endStep();
+
+$form->addStep('ad_group', 'Create an ad group');
+$form->addText('group_name', 'Group Name');
+$form->endStep();
+
+$form->addStep('ad', 'Create an ad');
+$form->addTextArea('ad_content', 'Ad Content');
+$form->endStep();
+
+$form->addSubmit('send', 'Save');
+
+echo $form;
+```
+
+You can also use underscore naming method:
+
+```php
+$form->add_step('campaign', 'Campaign', true);
+```
+
 If you render inside a shortcode callback, return the form HTML instead of echoing:
 
 ```php
