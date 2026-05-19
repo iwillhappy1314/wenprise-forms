@@ -34,8 +34,6 @@ class AutoCompleteInput extends TextInput {
 	 */
 	public function getControl(): Html {
 		$el = parent::getControl();
-		$el->setAttribute( 'class', 'rs-form-control' );
-
 		$settings = $this->settings;
 
 		if ( is_array( $this->source ) ) {

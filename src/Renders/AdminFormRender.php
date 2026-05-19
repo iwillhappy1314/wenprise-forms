@@ -63,7 +63,7 @@ class AdminFormRender extends BaseFormRender
             $pair->class($this->getValue('pair .odd'), true);
         }
 
-        $text_control_type = ['text', 'textarea', 'select', 'sms', 'datepicker', 'color-picker'];
+        $text_control_type = ['text', 'textarea', 'select', 'sms', 'datepicker', 'color-picker', 'autocomplete'];
 
         $type = $control->getOption('type');
 
