@@ -1,0 +1,13 @@
+/*!
+ * Name    : Conditionize - jQuery conditions for forms
+ * Version : 1.0.1
+ * Author  : nK <https://nkdev.info>
+ * GitHub  : https://github.com/nk-o/conditionize
+ */
+
+/**!
+ * NetteForms - simple form validation.
+ *
+ * This file is part of the Nette Framework (https://nette.org)
+ * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
+ */
