@@ -12,7 +12,7 @@ use Wenprise\Forms\Containers\Repeater;
 /**
  * 使用 Tailwind Grid 渲染表单布局，避免 Bootstrap gutter 带来的对齐问题。
  */
-class TailwindGridFormRender extends BaseFormRender
+class GridFormRender extends BaseFormRender
 {
     use Nette\SmartObject;
 
