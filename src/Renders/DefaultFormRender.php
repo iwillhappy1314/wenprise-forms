@@ -51,13 +51,14 @@ class DefaultFormRender extends BaseFormRender
 
         $row_class   = ['rs-form rs-form--' . $type];
         $group_class = [];
+        $wrapper_classes = $this->get_bootstrap_wrapper_classes($control);
 
         if ($this->layout === 'horizontal') {
             $row_class[]   = 'rs-row';
             $group_class[] = 'rs-col-md-12';
         } else {
-            if ( ! empty($control->getOption('class'))) {
-                $group_class[] = $control->getOption('class');
+            if ( ! empty($wrapper_classes)) {
+                $group_class = array_merge($group_class, $wrapper_classes);
             } else {
                 $group_class[] = 'rs-col-md-12';
             }

@@ -175,6 +175,72 @@ $form->addColorPicker('first_name3', 'First Name')
      ->setHtmlAttribute('data-cond', '[name=first_name2] == 2');
 ```
 
+### Control width
+
+`setWidth()` supports both Bootstrap-based renderers and `TailwindGridFormRender`.
+
+```php
+$form->addText('first_name', 'First Name')
+     ->setWidth(4);
+```
+
+You can also define responsive widths with breakpoint names:
+
+```php
+$form->addText('first_name', 'First Name')
+     ->setWidth(6, 'base')
+     ->setWidth(3, 'md')
+     ->setWidth(4, 'lg');
+```
+
+Or use the shorthand form:
+
+```php
+$form->addText('first_name', 'First Name')
+     ->setWidth(6, 3, 4);
+```
+
+The shorthand above means:
+
+- `base = 6`
+- `md = 3`
+- `lg = 4`
+
+With `DefaultFormRender('vertical')` and `InlineFormRender()`, `setWidth()` is mapped to Bootstrap-style classes such as `rs-col-md-4`.
+
+With `TailwindGridFormRender('vertical')`, `setWidth()` is mapped to grid span classes such as `rs-grid-form__span-md-4`.
+
+`DefaultFormRender('horizontal')` keeps each field full width by design, so width settings are ignored there.
+
+### Repeater
+
+Use `addRepeater()` to build repeatable field groups.
+
+```php
+use Wenprise\Forms\Renders\TailwindGridFormRender;
+
+$form = new \Wenprise\Forms\Form('contacts_form');
+$form->setRenderer(new TailwindGridFormRender('vertical'));
+
+$form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
+    $row->addText('name', 'Name')->setWidth(6, 3, 4);
+    $row->addText('phone', 'Phone')->setWidth(6, 3, 4);
+    $row->addText('email', 'Email')->setWidth(12, 6, 4);
+}, 1, 5);
+
+$form->addSubmit('send', 'Save');
+```
+
+`addRepeater()` arguments:
+
+- `$name`: repeater field name
+- `$label`: repeater label
+- `$factory`: callback used to define each row container
+- `$copy_count`: initial row count
+- `$max_copies`: optional maximum row count
+
+Submitted values are returned as nested arrays and can be stored by the built-in datastore layer.
+
 
 ### Multiple Submit Button
 

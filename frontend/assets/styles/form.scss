@@ -357,6 +357,70 @@ input + .iris-picker {
   }
 }
 
+.rs-form--grid {
+  .rs-form-legend {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.rs-grid-form {
+  &__section {
+    margin: 0 0 1.5rem;
+    padding: 0;
+    border: 0;
+  }
+
+  &__legend {
+    width: 100%;
+  }
+
+  &__grid {
+    @apply rsf-grid rsf-grid-cols-12 rsf-gap-x-6 rsf-gap-y-4;
+  }
+
+  &__item {
+    @apply rsf-col-span-12 rsf-min-w-0;
+  }
+
+  &__item--full {
+    @apply rsf-col-span-12;
+  }
+
+  &__row {
+    @apply rsf-grid rsf-grid-cols-12 rsf-gap-x-6 rsf-gap-y-3 rsf-items-start;
+  }
+
+  &__label {
+    @apply rsf-col-span-12 rsf-min-w-0 md:rsf-col-span-3;
+  }
+
+  &__control {
+    @apply rsf-col-span-12 rsf-min-w-0 md:rsf-col-span-9;
+  }
+
+  @for $column from 1 through 12 {
+    &__span-base-#{$column} {
+      @apply rsf-col-span-#{$column};
+    }
+
+    &__span-sm-#{$column} {
+      @apply sm:rsf-col-span-#{$column};
+    }
+
+    &__span-md-#{$column} {
+      @apply md:rsf-col-span-#{$column};
+    }
+
+    &__span-lg-#{$column} {
+      @apply lg:rsf-col-span-#{$column};
+    }
+
+    &__span-xl-#{$column} {
+      @apply xl:rsf-col-span-#{$column};
+    }
+  }
+}
+
 .rs-form--repeater {
   align-items: flex-start;
 }
@@ -388,10 +452,6 @@ input + .iris-picker {
 }
 
 .rs-repeater__row-controls {
-  &.rs-row{
-    margin-left: -15px;
-    margin-right: -15px;
-  }
   .rs-form-group {
     margin-bottom: 1rem;
   }

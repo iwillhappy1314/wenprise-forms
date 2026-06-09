@@ -175,6 +175,72 @@ $form->addColorPicker('first_name3', 'First Name')
      ->setHtmlAttribute('data-cond', '[name=first_name2] == 2');
 ```
 
+### 设置字段宽度
+
+`setWidth()` 同时支持 Bootstrap 风格 renderer 和 `TailwindGridFormRender`。
+
+```php
+$form->addText('first_name', 'First Name')
+     ->setWidth(4);
+```
+
+也可以按断点分别设置：
+
+```php
+$form->addText('first_name', 'First Name')
+     ->setWidth(6, 'base')
+     ->setWidth(3, 'md')
+     ->setWidth(4, 'lg');
+```
+
+或者使用简写：
+
+```php
+$form->addText('first_name', 'First Name')
+     ->setWidth(6, 3, 4);
+```
+
+上面的简写等价于：
+
+- `base = 6`
+- `md = 3`
+- `lg = 4`
+
+在 `DefaultFormRender('vertical')` 和 `InlineFormRender()` 下，`setWidth()` 会映射为 `rs-col-md-4` 这类 Bootstrap 列类。
+
+在 `TailwindGridFormRender('vertical')` 下，`setWidth()` 会映射为 `rs-grid-form__span-md-4` 这类 grid span 类。
+
+`DefaultFormRender('horizontal')` 会保持每个字段整行显示，因此这里会忽略宽度设置。
+
+### Repeater
+
+使用 `addRepeater()` 可以创建可重复的字段组。
+
+```php
+use Wenprise\Forms\Renders\TailwindGridFormRender;
+
+$form = new \Wenprise\Forms\Form('contacts_form');
+$form->setRenderer(new TailwindGridFormRender('vertical'));
+
+$form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
+    $row->addText('name', 'Name')->setWidth(6, 3, 4);
+    $row->addText('phone', 'Phone')->setWidth(6, 3, 4);
+    $row->addText('email', 'Email')->setWidth(12, 6, 4);
+}, 1, 5);
+
+$form->addSubmit('send', 'Save');
+```
+
+`addRepeater()` 参数说明：
+
+- `$name`：repeater 字段名
+- `$label`：repeater 标签
+- `$factory`：用于定义每一行容器的回调
+- `$copy_count`：初始行数
+- `$max_copies`：可选的最大行数
+
+提交后的值会以嵌套数组结构返回，并可通过内置 datastore 保存。
+
 
 ### 多提交按钮
 

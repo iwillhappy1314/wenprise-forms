@@ -2,6 +2,8 @@
 
 namespace Wenprise\Forms;
 
+use Nette\Forms\Controls\BaseControl;
+
 class Init
 {
 
@@ -12,9 +14,76 @@ class Init
             define('WENPRISE_FORM_VERSION', '1.8');
         }
 
+        $this->register_control_extension_methods();
+
         add_action('init', [$this, 'register_locals']);
         add_action('wp_enqueue_scripts', [$this, 'register_assets']);
         add_action('admin_enqueue_scripts', [$this, 'register_assets']);
+    }
+
+
+    /**
+     * 注册控件扩展方法，补充统一的布局 API。
+     *
+     * @return void
+     */
+    protected function register_control_extension_methods(): void
+    {
+        static $has_registered = false;
+
+        if ($has_registered) {
+            return;
+        }
+
+        $has_registered = true;
+
+        $set_width = function (BaseControl $control, mixed ...$args): BaseControl {
+            $allowed_breakpoints = ['base', 'sm', 'md', 'lg', 'xl'];
+
+            if (count($args) === 0) {
+                throw new \InvalidArgumentException('At least one width value is required.');
+            }
+
+            $current_widths = (array) $control->getOption('width');
+
+            if (count($args) > 1 && !is_string($args[1] ?? null)) {
+                $breakpoints = ['base', 'md', 'lg', 'xl'];
+
+                foreach ($args as $index => $width) {
+                    if (!isset($breakpoints[$index])) {
+                        break;
+                    }
+
+                    if ($width < 1 || $width > 12) {
+                        throw new \InvalidArgumentException('Width must be between 1 and 12.');
+                    }
+
+                    $current_widths[$breakpoints[$index]] = $width;
+                }
+
+                $control->setOption('width', $current_widths);
+
+                return $control;
+            }
+
+            $width = $args[0];
+            $breakpoint = $args[1] ?? 'md';
+
+            if ($width < 1 || $width > 12) {
+                throw new \InvalidArgumentException('Width must be between 1 and 12.');
+            }
+
+            if (!in_array($breakpoint, $allowed_breakpoints, true)) {
+                throw new \InvalidArgumentException('Breakpoint must be one of: base, sm, md, lg, xl.');
+            }
+
+            $current_widths[$breakpoint] = $width;
+            $control->setOption('width', $current_widths);
+
+            return $control;
+        };
+
+        BaseControl::extensionMethod('setWidth', $set_width);
     }
 
 

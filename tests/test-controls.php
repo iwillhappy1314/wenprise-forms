@@ -11,6 +11,9 @@ use Wenprise\Forms\Controls\CsrfInput;
 use Wenprise\Forms\Controls\TextEditor;
 use Wenprise\Forms\Controls\GroupInput;
 use Wenprise\Forms\Containers\Repeater;
+use Wenprise\Forms\Renders\DefaultFormRender;
+use Wenprise\Forms\Renders\InlineFormRender;
+use Wenprise\Forms\Renders\TailwindGridFormRender;
 use Nette\Utils\Html;
 
 class ControlsTests extends WP_UnitTestCase
@@ -380,6 +383,139 @@ class ControlsTests extends WP_UnitTestCase
         $this->assertStringContains('name="contacts[0][name]"', $rendered_form);
         $this->assertStringContains('name="contacts[0][phone]"', $rendered_form);
         $this->assertStringContains('class="rs-repeater__add"', $rendered_form);
+    }
+
+    /**
+     * Test Tailwind grid renderer maps Bootstrap column classes.
+     */
+    public function test_tailwind_grid_renderer_maps_bootstrap_columns()
+    {
+        $form = new Form('grid_form');
+        $form->setRenderer(new TailwindGridFormRender('vertical'));
+
+        $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
+            $row->addText('name', 'Name')->setOption('class', 'col-md-4');
+            $row->addText('phone', 'Phone')->setOption('class', 'custom-field col-md-4');
+            $row->addText('email', 'Email')->setOption('class', 'rs-col-md-4');
+        }, 1, 3);
+
+        $rendered_form = (string) $form;
+
+        $this->assertStringContains('rs-grid-form__grid', $rendered_form);
+        $this->assertStringContains('rs-grid-form__span-md-4', $rendered_form);
+        $this->assertStringContains('custom-field', $rendered_form);
+        $this->assertStringNotContainsString('rs-row', $rendered_form);
+    }
+
+    /**
+     * Test Tailwind grid renderer supports setWidth API.
+     */
+    public function test_tailwind_grid_renderer_supports_set_width_api()
+    {
+        $form = new Form('grid_width_form');
+        $form->setRenderer(new TailwindGridFormRender('vertical'));
+
+        $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
+            $row->addText('name', 'Name')->setWidth(4);
+            $row->addText('phone', 'Phone')->setWidth(6, 'lg');
+            $row->addText('email', 'Email')->setWidth(12, 'base');
+        }, 1, 3);
+
+        $rendered_form = (string) $form;
+
+        $this->assertStringContains('rs-grid-form__span-md-4', $rendered_form);
+        $this->assertStringContains('rs-grid-form__span-lg-6', $rendered_form);
+        $this->assertStringContains('rs-grid-form__span-base-12', $rendered_form);
+    }
+
+    /**
+     * Test Tailwind grid renderer supports shorthand setWidth API.
+     */
+    public function test_tailwind_grid_renderer_supports_shorthand_set_width_api()
+    {
+        $form = new Form('grid_width_short_form');
+        $form->setRenderer(new TailwindGridFormRender('vertical'));
+
+        $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
+            $row->addText('name', 'Name')->setWidth(6, 3, 4);
+        }, 1, 3);
+
+        $rendered_form = (string) $form;
+
+        $this->assertStringContains('rs-grid-form__span-base-6', $rendered_form);
+        $this->assertStringContains('rs-grid-form__span-md-3', $rendered_form);
+        $this->assertStringContains('rs-grid-form__span-lg-4', $rendered_form);
+    }
+
+    /**
+     * Test Tailwind grid renderer does not duplicate repeater grid wrappers.
+     */
+    public function test_tailwind_grid_renderer_does_not_duplicate_repeater_grid_wrappers()
+    {
+        $form = new Form('grid_wrapper_form');
+        $form->setRenderer(new TailwindGridFormRender('vertical'));
+
+        $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
+            $row->addText('name', 'Name')->setWidth(4);
+            $row->addText('phone', 'Phone')->setWidth(4);
+            $row->addText('email', 'Email')->setWidth(4);
+        }, 1, 3);
+
+        $rendered_form = (string) $form;
+
+        $this->assertStringContains('class="rs-repeater__row-controls"', $rendered_form);
+        $this->assertStringNotContainsString('class="rs-repeater__row-controls rs-grid-form__grid"', $rendered_form);
+    }
+
+    /**
+     * Test Tailwind grid renderer forces full width in horizontal layout.
+     */
+    public function test_tailwind_grid_renderer_forces_full_width_in_horizontal_layout()
+    {
+        $form = new Form('grid_horizontal_form');
+        $form->setRenderer(new TailwindGridFormRender('horizontal'));
+
+        $form->addText('name', 'Name')->setWidth(4)->setOption('class', 'custom-field col-md-4');
+
+        $rendered_form = (string) $form;
+
+        $this->assertStringContains('rs-grid-form__span-base-12', $rendered_form);
+        $this->assertStringContains('rs-grid-form__span-md-12', $rendered_form);
+        $this->assertStringContains('custom-field', $rendered_form);
+        $this->assertStringNotContainsString('rs-grid-form__span-md-4', $rendered_form);
+    }
+
+    /**
+     * Test default renderer maps setWidth to Bootstrap column classes.
+     */
+    public function test_default_renderer_maps_set_width_to_bootstrap_columns()
+    {
+        $form = new Form('default_width_form');
+        $form->setRenderer(new DefaultFormRender('vertical'));
+
+        $form->addText('name', 'Name')->setWidth(4);
+        $form->addText('phone', 'Phone')->setWidth(6, 'lg');
+
+        $rendered_form = (string) $form;
+
+        $this->assertStringContains('rs-col-md-4', $rendered_form);
+        $this->assertStringContains('rs-col-lg-6', $rendered_form);
+    }
+
+    /**
+     * Test inline renderer maps setWidth to Bootstrap column classes.
+     */
+    public function test_inline_renderer_maps_set_width_to_bootstrap_columns()
+    {
+        $form = new Form('inline_width_form');
+        $form->setRenderer(new InlineFormRender());
+
+        $form->addText('name', 'Name')->setWidth(4)->setOption('class', 'custom-field');
+
+        $rendered_form = (string) $form;
+
+        $this->assertStringContains('rs-col-md-4', $rendered_form);
+        $this->assertStringContains('custom-field', $rendered_form);
     }
 
     /**

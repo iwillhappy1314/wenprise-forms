@@ -123,6 +123,76 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
 
     /**
+     * 将 width option 转换为 Bootstrap 风格列类。
+     *
+     * @param mixed $width_option 宽度配置。
+     *
+     * @return array<int, string>
+     */
+    protected function map_width_option_to_bootstrap_classes(mixed $width_option): array
+    {
+        if ($width_option === null || $width_option === []) {
+            return [];
+        }
+
+        if (is_numeric($width_option)) {
+            $width_option = ['md' => (int) $width_option];
+        }
+
+        if (!is_array($width_option)) {
+            return [];
+        }
+
+        $mapped_classes = [];
+        foreach ($width_option as $breakpoint => $width) {
+            $width = (int) $width;
+            if ($width < 1 || $width > 12) {
+                continue;
+            }
+
+            if ($breakpoint === 'base') {
+                $mapped_classes[] = 'rs-col-' . $width;
+                continue;
+            }
+
+            if (in_array($breakpoint, ['sm', 'md', 'lg', 'xl'], true)) {
+                $mapped_classes[] = 'rs-col-' . $breakpoint . '-' . $width;
+            }
+        }
+
+        return $mapped_classes;
+    }
+
+
+    /**
+     * 合并控件原有类名与 width 映射出的 Bootstrap 列类。
+     *
+     * @param \Nette\Forms\IControl $control 表单控件。
+     *
+     * @return array<int, string>
+     */
+    protected function get_bootstrap_wrapper_classes(Nette\Forms\IControl $control): array
+    {
+        $wrapper_classes = [];
+        $existing_classes = trim((string) $control->getOption('class'));
+
+        if ($existing_classes !== '') {
+            $wrapper_classes[] = $existing_classes;
+        }
+
+        foreach ($this->map_width_option_to_bootstrap_classes($control->getOption('width')) as $mapped_class) {
+            if ($existing_classes !== '' && preg_match('/(?:^|\s)' . preg_quote($mapped_class, '/') . '(?:\s|$)/', $existing_classes) === 1) {
+                continue;
+            }
+
+            $wrapper_classes[] = $mapped_class;
+        }
+
+        return $wrapper_classes;
+    }
+
+
+    /**
      * 渲染表单主体，支持按 Tab 渲染分组。
      *
      * @return string
@@ -668,8 +738,10 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
 
         $pair->addHtml($this->renderLabel($control));
 
-        if ( ! empty($control->getOption('class'))) {
-            $group_class[] = $control->getOption('class');
+        $wrapper_classes = $this->get_bootstrap_wrapper_classes($control);
+
+        if ( ! empty($wrapper_classes)) {
+            $group_class = array_merge($group_class ?? [], $wrapper_classes);
         } else {
             $group_class[] = 'rs-col-md-12';
 
