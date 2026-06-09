@@ -33,7 +33,7 @@ class OptionsDatastore extends IDatastore
                 continue;
             }
 
-            update_option($name, $value_map[ $name ]);
+            update_option($name, $this->normalize_value_for_storage($value_map[ $name ]));
         }
 
     }

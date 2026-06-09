@@ -357,6 +357,66 @@ input + .iris-picker {
   }
 }
 
+.rs-form--repeater {
+  align-items: flex-start;
+}
+
+.rs-repeater {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rs-repeater__row {
+  border: 1px solid var(--rs-form-border-color);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.rs-repeater__row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: .75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.rs-repeater__row-body {
+  padding: 1.25rem 1.25rem;
+}
+
+.rs-repeater__row-controls {
+  .rs-form-group {
+    margin-bottom: 1rem;
+  }
+
+  .rs-form-group:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.rs-repeater__footer {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: .25rem;
+}
+
+.rs-repeater__add {
+  min-width: 10rem;
+}
+
+@media (max-width: 767.98px) {
+  .rs-repeater__row-actions {
+    justify-content: flex-start;
+  }
+
+  .rs-repeater__row-body {
+    padding: 1rem .875rem .25rem;
+  }
+}
+
 .rs-form--daterangepicker {
   input[type=text] {
     @extend .form-control;

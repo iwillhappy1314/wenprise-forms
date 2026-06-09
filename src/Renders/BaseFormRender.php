@@ -7,6 +7,7 @@ use Nette\InvalidArgumentException;
 use Nette\Utils\Html;
 use Nette\HtmlStringable;
 use Nette\Localization\Translator;
+use Wenprise\Forms\Containers\Repeater;
 
 /**
  * 转到表单到 HTML 输出
@@ -59,20 +60,52 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         $container = $this->getWrapper('controls container');
 
         $buttons = null;
-        foreach ($parent->getControls() as $control) {
-            if ($control->getOption('rendered') || $control->getOption('type') === 'hidden' || $control->getForm(false) !== $this->form) {
-                // skip
+        $items = $parent instanceof Nette\Forms\ControlGroup ? $parent->getControls() : iterator_to_array($parent->getComponents());
 
-                // add Html type
-            } elseif ($control->getOption('type') === 'button' || $control->getOption('type') === 'html') {
-                $buttons[] = $control;
+        foreach ($items as $item) {
+            if ($item instanceof Nette\Forms\IControl) {
+                $repeater = $this->find_parent_repeater($item);
+                if ($repeater instanceof Repeater && ! $repeater->getOption('rendering')) {
+                    if ($repeater->getOption('rendered')) {
+                        continue;
+                    }
 
-            } else {
+                    if ($buttons) {
+                        $container->addHtml($this->renderPairMulti($buttons));
+                        $buttons = null;
+                    }
+
+                    $container->addHtml($this->render_repeater($repeater));
+                    $this->mark_repeater_rendered($repeater);
+                    continue;
+                }
+
+                if ($item->getOption('rendered') || $item->getOption('type') === 'hidden' || $item->getForm(false) !== $this->form) {
+                    continue;
+                }
+
+                if ($item->getOption('type') === 'button' || $item->getOption('type') === 'html') {
+                    $buttons[] = $item;
+                    continue;
+                }
+
                 if ($buttons) {
                     $container->addHtml($this->renderPairMulti($buttons));
                     $buttons = null;
                 }
-                $container->addHtml($this->renderPair($control));
+
+                $container->addHtml($this->renderPair($item));
+                continue;
+            }
+
+            if ($item instanceof Repeater && ! $item->getOption('rendered')) {
+                if ($buttons) {
+                    $container->addHtml($this->renderPairMulti($buttons));
+                    $buttons = null;
+                }
+
+                $container->addHtml($this->render_repeater($item));
+                $this->mark_repeater_rendered($item);
             }
         }
 
@@ -397,6 +430,16 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         $container = $this->getWrapper('controls container');
 
         foreach ($group->getControls() as $control) {
+            $repeater = $this->find_parent_repeater($control);
+            if ($repeater instanceof Repeater && ! $repeater->getOption('rendering')) {
+                if (!$repeater->getOption('rendered')) {
+                    $container->addHtml($this->render_repeater($repeater));
+                    $this->mark_repeater_rendered($repeater);
+                }
+
+                continue;
+            }
+
             if ($control->getOption('rendered') || $control->getOption('type') === 'hidden' || $control->getForm(false) !== $this->form) {
                 continue;
             }
@@ -415,6 +458,146 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
         }
 
         return $s;
+    }
+
+
+    /**
+     * 查找控件所属的父级 repeater。
+     *
+     * @param Nette\ComponentModel\IComponent $component 当前组件。
+     *
+     * @return Repeater|null
+     */
+    protected function find_parent_repeater(Nette\ComponentModel\IComponent $component): ?Repeater
+    {
+        $parent = $component->getParent();
+
+        while ($parent !== null) {
+            if ($parent instanceof Repeater) {
+                return $parent;
+            }
+
+            if (!method_exists($parent, 'getParent')) {
+                break;
+            }
+
+            $parent = $parent->getParent();
+        }
+
+        return null;
+    }
+
+
+    /**
+     * 标记 repeater 与其子控件已经完成渲染。
+     *
+     * @param Repeater $repeater repeater 容器。
+     *
+     * @return void
+     */
+    protected function mark_repeater_rendered(Repeater $repeater): void
+    {
+        $repeater->setOption('rendered', true);
+
+        foreach ($repeater->getControls() as $control) {
+            $control->setOption('rendered', true);
+        }
+    }
+
+
+    /**
+     * 渲染独立 repeater 容器。
+     *
+     * @param Repeater $repeater repeater 容器。
+     *
+     * @return string
+     */
+    protected function render_repeater(Repeater $repeater): string
+    {
+        $repeater->setOption('rendering', true);
+
+        $pair = $this->getWrapper('pair container');
+        $pair->class('rs-form rs-form--repeater', true);
+
+        if ($this->layout === 'horizontal') {
+            $pair->class('rs-row rs-col-md-12', true);
+        }
+
+        $label_container = $this->getWrapper('label container');
+        if ($label_container !== null && $repeater->getLabel() !== null) {
+            $label_container = clone $label_container;
+            $label_container->setHtml(
+                Html::el('label')
+                    ->class('rs-control-label')
+                    ->setText($repeater->getLabel())
+                    ->render()
+            );
+            $pair->addHtml($label_container);
+        }
+
+        $control_container = $this->getWrapper('control container');
+        $control_container = $control_container !== null ? clone $control_container : Html::el('div');
+        $control_container->addClass('rs-repeater-container');
+
+        $repeater_html = Html::el('div')
+            ->class('rs-repeater')
+            ->setAttribute('data-rs-repeater-prefix', $repeater->getHtmlNamePrefix())
+            ->setAttribute('data-rs-repeater-max', $repeater->getMaxCopies() ?? '')
+            ->setAttribute('data-rs-repeater-next-index', (string) count($repeater->getRows()));
+
+        foreach ($repeater->getRows() as $row_name => $row) {
+            $row_prefix = Nette\Forms\Helpers::generateHtmlName($row->lookupPath(Nette\Forms\Form::class));
+            $row_id_prefix = $row->lookupPath(Nette\Forms\Form::class);
+            $row_html = Html::el('div')
+                ->class('rs-repeater__row')
+                ->setAttribute('data-rs-repeater-row-name', (string) $row_name)
+                ->setAttribute('data-rs-repeater-row-prefix', $row_prefix)
+                ->setAttribute('data-rs-repeater-row-id-prefix', $row_id_prefix);
+
+            $row_controls = Html::el('div')->class('rs-repeater__row-controls');
+            $row_controls->setHtml($this->renderControls($row));
+
+            $row_actions = Html::el('div')->class('rs-repeater__row-actions');
+            $row_actions->addHtml(
+                Html::el('button')
+                    ->setAttribute('type', 'button')
+                    ->class('rs-btn rs-btn-default rs-btn--sm rs-repeater__duplicate')
+                    ->setText(__('Duplicate', 'wprs'))
+            );
+            $row_actions->addHtml(
+                Html::el('button')
+                    ->setAttribute('type', 'button')
+                    ->class('rs-btn rs-btn-default rs-btn--sm rs-repeater__remove')
+                    ->setText(__('Remove', 'wprs'))
+            );
+
+            $row_html
+                ->addHtml(
+                    Html::el('div')
+                        ->class('rs-repeater__row-body')
+                        ->addHtml($row_controls)
+                        ->addHtml($row_actions)
+                );
+            $repeater_html->addHtml($row_html);
+        }
+
+        $repeater_html->addHtml(
+            Html::el('div')
+                ->class('rs-repeater__footer')
+                ->addHtml(
+                    Html::el('button')
+                        ->setAttribute('type', 'button')
+                        ->class('rs-btn rs-btn-primary rs-btn--sm rs-repeater__add')
+                        ->setText(__('Add Contact Group', 'wprs'))
+                )
+        );
+
+        $control_container->addHtml($repeater_html);
+        $pair->addHtml($control_container);
+
+        $repeater->setOption('rendering', false);
+
+        return $pair->render(0);
     }
 
 

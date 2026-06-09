@@ -58,7 +58,7 @@ class PostMetaDatastore extends IDatastore
                 continue;
             }
 
-            update_post_meta($post_id, $name, $value_map[ $name ]);
+            update_post_meta($post_id, $name, $this->normalize_value_for_storage($value_map[ $name ]));
         }
 
     }

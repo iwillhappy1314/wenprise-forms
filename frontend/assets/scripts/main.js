@@ -136,6 +136,128 @@ function initWidgets(container) {
   });
 
   /**
+   * 初始化 repeater 容器交互。
+   */
+  $(container).find('.rs-repeater').each(function() {
+    var repeaterRoot = $(this);
+    var repeaterPrefix = repeaterRoot.attr('data-rs-repeater-prefix');
+    var maxItems = parseInt(repeaterRoot.attr('data-rs-repeater-max'), 10);
+
+    var updateRepeaterIndexes = function() {
+      repeaterRoot.find('.rs-repeater__row').each(function(index) {
+        var row = $(this);
+        var oldPrefix = row.attr('data-rs-repeater-row-prefix');
+        var oldIdPrefix = row.attr('data-rs-repeater-row-id-prefix');
+        var newPrefix = repeaterPrefix + '[' + index + ']';
+        var newIdPrefix = (repeaterPrefix || '').replace(/\[/g, '-').replace(/\]/g, '').replace(/--+/g, '-') + '-' + index;
+
+        row.attr('data-rs-repeater-row-name', index);
+        row.attr('data-rs-repeater-row-prefix', newPrefix);
+        row.attr('data-rs-repeater-row-id-prefix', newIdPrefix);
+        row.find('[name]').each(function() {
+          var field = $(this);
+          var fieldName = field.attr('name');
+          if (fieldName && oldPrefix) {
+            field.attr('name', fieldName.replace(oldPrefix, newPrefix));
+          }
+        });
+
+        row.find('[id]').each(function() {
+          var field = $(this);
+          var fieldId = field.attr('id');
+          if (fieldId && oldIdPrefix) {
+            field.attr('id', fieldId.replace(oldIdPrefix.replace(/\[/g, '-').replace(/\]/g, '').replace(/--+/g, '-'), newIdPrefix));
+          }
+        });
+
+        row.find('label[for]').each(function() {
+          var label = $(this);
+          var fieldFor = label.attr('for');
+          if (fieldFor && oldIdPrefix) {
+            label.attr('for', fieldFor.replace(oldIdPrefix.replace(/\[/g, '-').replace(/\]/g, '').replace(/--+/g, '-'), newIdPrefix));
+          }
+        });
+      });
+
+      repeaterRoot.attr('data-rs-repeater-next-index', repeaterRoot.find('.rs-repeater__row').length);
+    };
+
+    repeaterRoot.off('click.wprsRepeaterAdd').on('click.wprsRepeaterAdd', '.rs-repeater__add', function(event) {
+      event.preventDefault();
+
+      var rows = repeaterRoot.find('.rs-repeater__row');
+      if (!isNaN(maxItems) && maxItems > 0 && rows.length >= maxItems) {
+        return false;
+      }
+
+      var newRow = rows.first().clone();
+      newRow.find('input').each(function() {
+        if (this.type === 'checkbox' || this.type === 'radio') {
+          this.checked = false;
+        } else {
+          $(this).val('');
+        }
+      });
+      newRow.find('textarea').val('');
+      newRow.find('select').each(function() {
+        this.selectedIndex = 0;
+      });
+
+      repeaterRoot.find('.rs-repeater__footer').before(newRow);
+      updateRepeaterIndexes();
+      initWidgets(newRow[0]);
+
+      return false;
+    });
+
+    repeaterRoot.off('click.wprsRepeaterDuplicate').on('click.wprsRepeaterDuplicate', '.rs-repeater__duplicate', function(event) {
+      event.preventDefault();
+
+      var rows = repeaterRoot.find('.rs-repeater__row');
+      if (!isNaN(maxItems) && maxItems > 0 && rows.length >= maxItems) {
+        return false;
+      }
+
+      var sourceRow = $(this).closest('.rs-repeater__row');
+      var newRow = sourceRow.clone();
+
+      sourceRow.after(newRow);
+      updateRepeaterIndexes();
+      initWidgets(newRow[0]);
+
+      return false;
+    });
+
+    repeaterRoot.off('click.wprsRepeaterRemove').on('click.wprsRepeaterRemove', '.rs-repeater__remove', function(event) {
+      event.preventDefault();
+
+      var rows = repeaterRoot.find('.rs-repeater__row');
+      if (rows.length <= 1) {
+        rows.first().find('input').each(function() {
+          if (this.type === 'checkbox' || this.type === 'radio') {
+            this.checked = false;
+          } else {
+            $(this).val('');
+          }
+        });
+        rows.first().find('textarea').val('');
+        rows.first().find('select').each(function() {
+          this.selectedIndex = 0;
+        });
+
+        return false;
+      }
+
+      $(this).closest('.rs-repeater__row').remove();
+      updateRepeaterIndexes();
+
+      return false;
+    });
+
+    updateRepeaterIndexes();
+  });
+
+  /**
    * 点击图形验证码切换新图像
    */
   $(container).find('.rs-form--captcha .rs-captcha__img').on('click', function() {

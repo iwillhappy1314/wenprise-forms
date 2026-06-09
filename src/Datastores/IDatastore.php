@@ -2,7 +2,9 @@
 
 namespace Wenprise\Forms\Datastores;
 
+use Nette\Utils\ArrayHash;
 use Wenprise\Forms\Form;
+use Wenprise\Forms\Containers\Repeater;
 
 /**
  * Datastore 抽象基类，负责定义保存接口和可保存字段筛选逻辑。
@@ -58,11 +60,39 @@ abstract class IDatastore
 
         $items = [];
         foreach ($this->form->getComponents() as $key => $item) {
+            if ($item instanceof Repeater) {
+                $items[ $key ] = $item->getLabel() ?? $key;
+                continue;
+            }
+
             if ( ! is_string($item->getControl()) && $item->getControl()->type !== 'submit') {
                 $items[ $key ] = $item->caption;
             }
         }
 
         return $items;
+    }
+
+
+    /**
+     * 将表单值递归转换为适合 WordPress 持久化的标量或数组。
+     *
+     * @param mixed $value 原始值。
+     *
+     * @return mixed
+     */
+    protected function normalize_value_for_storage(mixed $value): mixed
+    {
+        if ($value instanceof ArrayHash) {
+            $value = (array) $value;
+        }
+
+        if (is_array($value)) {
+            foreach ($value as $key => $item) {
+                $value[$key] = $this->normalize_value_for_storage($item);
+            }
+        }
+
+        return $value;
     }
 }

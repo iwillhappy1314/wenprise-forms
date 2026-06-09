@@ -207,6 +207,48 @@ class IntegrationTests extends WP_UnitTestCase
     }
 
     /**
+     * Test repeater values are saved as serialized arrays
+     */
+    public function test_repeater_form_integration()
+    {
+        $form = new Form('repeater_form');
+        $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
+            $row->addText('name', 'Name');
+            $row->addText('phone', 'Phone');
+        }, 1, 5);
+
+        $datastore = new PostMetaDatastore($this->test_post_id, $form);
+        $form->setDatastore($datastore);
+
+        $form->setValues([
+            'contacts' => [
+                [
+                    'name' => 'Alice',
+                    'phone' => '111',
+                ],
+                [
+                    'name' => 'Bob',
+                    'phone' => '222',
+                ],
+            ],
+        ]);
+
+        $this->assertTrue($form->isValid());
+        $form->save();
+
+        $this->assertEquals([
+            [
+                'name' => 'Alice',
+                'phone' => '111',
+            ],
+            [
+                'name' => 'Bob',
+                'phone' => '222',
+            ],
+        ], get_post_meta($this->test_post_id, 'contacts', true));
+    }
+
+    /**
      * Test conditional fields integration
      */
     public function test_conditional_fields_integration()

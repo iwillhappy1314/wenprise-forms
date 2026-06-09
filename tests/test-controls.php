@@ -10,6 +10,7 @@ use Wenprise\Forms\Controls\AjaxUploadInput;
 use Wenprise\Forms\Controls\CsrfInput;
 use Wenprise\Forms\Controls\TextEditor;
 use Wenprise\Forms\Controls\GroupInput;
+use Wenprise\Forms\Containers\Repeater;
 use Nette\Utils\Html;
 
 class ControlsTests extends WP_UnitTestCase
@@ -69,6 +70,28 @@ class ControlsTests extends WP_UnitTestCase
 
         $this->assertEquals('<label for="frm-description">Description</label>', (string)$input->getLabel());
         $this->assertStringContains('<textarea name="description" id="frm-description">', (string)$input->getControl());
+    }
+
+    /**
+     * Test repeater control structure
+     */
+    public function test_repeater_control_structure()
+    {
+        $form = new Form('test_form');
+        $repeater = $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
+            $row->addText('name', 'Name');
+            $row->addText('phone', 'Phone');
+        }, 1, 5);
+
+        $this->assertInstanceOf(Repeater::class, $repeater);
+
+        $rows = $repeater->getRows();
+        $this->assertCount(1, $rows);
+
+        $row = reset($rows);
+        $this->assertInstanceOf(\Wenprise\Forms\Container::class, $row);
+        $this->assertNotNull($row->getComponent('name', false));
+        $this->assertNotNull($row->getComponent('phone', false));
     }
 
     /**
@@ -338,6 +361,25 @@ class ControlsTests extends WP_UnitTestCase
         // Check proper HTML structure
         $this->assertStringContains('<form', $rendered_form);
         $this->assertStringContains('</form>', $rendered_form);
+    }
+
+    /**
+     * Test repeater HTML rendering consistency
+     */
+    public function test_repeater_html_rendering_consistency()
+    {
+        $form = new Form('test_form');
+        $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
+            $row->addText('name', 'Name');
+            $row->addText('phone', 'Phone');
+        }, 1, 3);
+
+        $rendered_form = (string) $form;
+
+        $this->assertStringContains('class="rs-repeater"', $rendered_form);
+        $this->assertStringContains('name="contacts[0][name]"', $rendered_form);
+        $this->assertStringContains('name="contacts[0][phone]"', $rendered_form);
+        $this->assertStringContains('class="rs-repeater__add"', $rendered_form);
     }
 
     /**

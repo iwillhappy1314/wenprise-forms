@@ -40,7 +40,7 @@ class TermMetaDatastore extends IDatastore
                 continue;
             }
 
-            update_term_meta($this->term_id, $name, $value_map[ $name ]);
+            update_term_meta($this->term_id, $name, $this->normalize_value_for_storage($value_map[ $name ]));
         }
 
     }

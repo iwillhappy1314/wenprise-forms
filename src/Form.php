@@ -4,6 +4,7 @@ namespace Wenprise\Forms;
 
 use Nette\HtmlStringable;
 use Nette\Forms\ControlGroup;
+use Wenprise\Forms\Containers\Repeater;
 use Wenprise\Forms\Datastores\IDatastore;
 use Wenprise\Forms\Renders\DefaultFormRender;
 use Wenprise\Forms\Translator\DefaultTranslator;
@@ -87,6 +88,23 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
     public function addEditor(string $name, ?string $label = null, ?array $settings = null): Controls\TextEditor
     {
         return $this[$name] = (new Controls\TextEditor($label, $settings));
+    }
+
+
+    /**
+     * 添加独立 repeater 容器。
+     *
+     * @param string      $name       容器名称。
+     * @param string|null $label      容器标签。
+     * @param callable    $factory    行容器工厂。
+     * @param int         $copy_count 默认行数。
+     * @param int|null    $max_copies 最大行数。
+     *
+     * @return Repeater
+     */
+    public function addRepeater(string $name, ?string $label, callable $factory, int $copy_count = 1, ?int $max_copies = null): Repeater
+    {
+        return $this[$name] = new Repeater($label, $factory, $copy_count, $max_copies);
     }
 
 

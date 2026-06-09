@@ -41,7 +41,7 @@ class UserMetaDatastore extends IDatastore
                 continue;
             }
 
-            update_user_meta($this->user_id, $name, $value_map[ $name ]);
+            update_user_meta($this->user_id, $name, $this->normalize_value_for_storage($value_map[ $name ]));
         }
 
     }

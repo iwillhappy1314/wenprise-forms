@@ -65,7 +65,7 @@ class DefaultFormRender extends BaseFormRender
 
         $control->setOption('class', implode(' ', $row_class) . ' ' . implode(' ', $group_class));
 
-        $control->setOption('id', 'rs-form-' . $control->getName());
+        $control->setOption('id', 'rs-form-' . str_replace(Nette\Forms\Form::NameSeparator, '-', $control->lookupPath(Nette\Forms\Form::class)));
 
         if ($type === 'button') {
 
