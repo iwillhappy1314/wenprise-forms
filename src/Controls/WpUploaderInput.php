@@ -48,6 +48,9 @@ class WpUploaderInput extends BaseControl {
 	 * @return \Nette\Utils\Html
 	 */
 	public function getControl(): Html {
+		if ( function_exists( 'wp_enqueue_media' ) ) {
+			wp_enqueue_media();
+		}
 
 		$el = parent::getControl();
 

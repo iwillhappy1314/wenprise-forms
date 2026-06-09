@@ -8,8 +8,14 @@ import * as Sqrl from 'squirrelly';
   const preview_template = '<div class="rs-uploader__thumbnail"><button type="button" class="rs-uploader__close" data-value={{it.id}}>' + close_icon + '</button><a target=_blank href="{{it.url}}" class="rs-uploader__preview-image"><img src="{{it.thumb}}" alt="Thumbnail"></a><div class="rs-uploader__preview-name"><a target=_blank href="{{it.url}}" class="rs-uploader__preview-file">{{it.title}}</a></div></div>';
 
   $.fn.wprsAjaxUploader = function() {
-    const options  = this.data('settings'),
-          el       = this,
+    return this.each(function() {
+      const el = $(this);
+
+      if (el.data('wprsAjaxUploaderInitialized')) {
+        return;
+      }
+
+      const options  = el.data('settings'),
 
           defaults = {
             url             : el.find('.rs-uploader__shadow').data('url'),
@@ -81,73 +87,77 @@ import * as Sqrl from 'squirrelly';
             },
           };
 
-    const settings = $.extend({}, defaults, options);
+      const settings = $.extend({}, defaults, options);
 
-    /**
-     * 初始化文件上传组件
-     */
-    el.dmUploader(settings);
+      /**
+       * 初始化文件上传组件
+       */
+      el.dmUploader(settings);
+      el.data('wprsAjaxUploaderInitialized', true);
 
-    /**
-     * 删除缩略图
-     */
-    $('body').on('click', '.rs-uploader__close', function() {
+      /**
+       * 单文件上传时，如果已有文件，移除上传组件
+       */
+      el.find('input[name=js-input-shadow]').each(function() {
+        const uploader    = $(this).closest('.js-uploader'),
+              is_multiple = (uploader.data('multiple') === true),
+              thumbnails  = uploader.find('.rs-uploader__preview').children().length;
 
-      var value       = $(this).data('value'),
-          uploader    = $(this).closest('.js-uploader'),
-          is_multiple = (uploader.data('multiple') === true);
-
-      // 移除值
-      if (!is_multiple) {
-        uploader.find('.rs-uploader__value input').attr('value', '');
-
-        uploader.show();
-        uploader.find('.rs-uploader__text').show();
-        uploader.find('.rs-uploader__button').show();
-      } else {
-        uploader.find('input[value=' + value + ']').remove();
-      }
-
-      // 移除缩略图
-      $(this).parent().remove();
-
-    });
-
-    /**
-     * 单文件上传时，如果已有文件，移除上传组件
-     */
-    $('input[name=js-input-shadow]').each(function() {
-
-      const uploader    = $(this).closest('.js-uploader'),
-            is_multiple = (uploader.data('multiple') === true),
-            thumbnails  = uploader.find('.rs-uploader__preview').children().length;
-
-      if (!is_multiple && thumbnails > 0) {
-        uploader.find('.rs-uploader__text').hide();
-        $(this).parent().hide();
-      }
-
+        if (!is_multiple && thumbnails > 0) {
+          uploader.find('.rs-uploader__text').hide();
+          $(this).parent().hide();
+        }
+      });
     });
   };
 
   /**
-   * WordPress Uploader
+   * 删除 Ajax 上传器缩略图。
    */
-  $('.rs-wp-uploader__button').on('click', function(e) {
+  $('body').on('click', '.js-uploader .rs-uploader__close', function() {
+    var value       = $(this).data('value'),
+        uploader    = $(this).closest('.js-uploader'),
+        is_multiple = (uploader.data('multiple') === true);
+
+    // 移除值
+    if (!is_multiple) {
+      uploader.find('.rs-uploader__value input').attr('value', '');
+
+      uploader.show();
+      uploader.find('.rs-uploader__text').show();
+      uploader.find('.rs-uploader__button').show();
+    } else {
+      uploader.find('input[value=' + value + ']').remove();
+    }
+
+    // 移除缩略图
+    $(this).parent().remove();
+  });
+
+  /**
+   * WordPress 媒体库上传器，使用事件委托兼容 repeater 动态新增节点。
+   */
+  $('body').on('click', '.rs-wp-uploader__button', function(e) {
     e.preventDefault();
 
-    let wprs_wp_media_uploader,
-        wprs_wp_media_target_input = $(this).next().attr('id'),
-        uploader                   = $(this).closest('.rs-wp-uploader'),
-        name                       = uploader.data('name'),
-        is_multiple                = (uploader.data('multiple') === true);
+    const uploader                   = $(this).closest('.rs-wp-uploader'),
+          wprs_wp_media_target_input = $(this).next().attr('id'),
+          name                       = uploader.data('name'),
+          is_multiple                = (uploader.data('multiple') === true);
+
+    if (typeof wp === 'undefined' || !wp.media) {
+      uploader.find('.rs-wp-uploader__message').html(wenpriseFormSettings.error);
+      return;
+    }
+
+    let wprs_wp_media_uploader = uploader.data('wprsWpMediaUploader');
 
     if (wprs_wp_media_uploader) {
       wprs_wp_media_uploader.open();
       return;
     }
 
-    wprs_wp_media_uploader = wp.media.frames.file_frame = wp.media({
+    wprs_wp_media_uploader = wp.media({
       title   : wenpriseFormSettings.choose_image,
       button  : {
         text: wenpriseFormSettings.insert_image,
@@ -179,22 +189,23 @@ import * as Sqrl from 'squirrelly';
         }
       });
     });
-
-    /**
-     * 删除缩略图
-     */
-    $('.rs-form--wp-uploader').on('click', 'button.rs-wp-uploader__close', function(el) {
-      const value       = $(this).data('value'),
-            wp_uploader = $('body').find('.rs-wp-uploader__field');
-
-      // 移除值
-      wp_uploader.find('input[value=' + value + ']').remove();
-
-      // 移除缩略图
-      $(this).parent().remove();
-    });
+    uploader.data('wprsWpMediaUploader', wprs_wp_media_uploader);
 
     wprs_wp_media_uploader.open();
+  });
+
+  /**
+   * 删除 WordPress 上传器缩略图。
+   */
+  $('body').on('click', '.rs-form--wp-uploader button.rs-wp-uploader__close', function() {
+    const value       = $(this).data('value'),
+          wp_uploader = $(this).closest('.rs-wp-uploader__field');
+
+    // 移除值
+    wp_uploader.find('input[value=' + value + ']').remove();
+
+    // 移除缩略图
+    $(this).parent().remove();
   });
 
   $.each($('.rs-form--uploader'), function(index, el) {

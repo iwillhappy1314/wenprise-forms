@@ -52,6 +52,14 @@ class TextEditor extends TextArea {
 		$html = ob_get_contents();
 		ob_end_clean();
 
+		$encoded_settings = esc_attr( wp_json_encode( $settings ) );
+		$html             = preg_replace(
+			'/<textarea\b/',
+			'<textarea data-wprs-editor-settings="' . $encoded_settings . '"',
+			$html,
+			1
+		);
+
 		return Html::fromHtml( $html )->setName('div');
 	}
 }
