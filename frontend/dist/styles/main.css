@@ -1439,6 +1439,10 @@ input + .iris-picker {
   padding: 1.25rem 1.25rem;
 }
 
+.rs-repeater__row-controls.rs-row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
 .rs-repeater__row-controls .rs-form-group {
   margin-bottom: 1rem;
 }

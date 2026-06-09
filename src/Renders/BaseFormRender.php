@@ -554,7 +554,7 @@ class BaseFormRender extends Nette\Forms\Rendering\DefaultFormRenderer
                 ->setAttribute('data-rs-repeater-row-prefix', $row_prefix)
                 ->setAttribute('data-rs-repeater-row-id-prefix', $row_id_prefix);
 
-            $row_controls = Html::el('div')->class('rs-repeater__row-controls');
+            $row_controls = Html::el('div')->class('rs-repeater__row-controls rs-row');
             $row_controls->setHtml($this->renderControls($row));
 
             $row_actions = Html::el('div')->class('rs-repeater__row-actions');

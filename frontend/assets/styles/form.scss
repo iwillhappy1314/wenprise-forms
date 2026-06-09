@@ -388,6 +388,10 @@ input + .iris-picker {
 }
 
 .rs-repeater__row-controls {
+  &.rs-row{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
   .rs-form-group {
     margin-bottom: 1rem;
   }
