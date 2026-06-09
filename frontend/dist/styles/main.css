@@ -1330,6 +1330,19 @@ ul.rs-checkbox-tree li label {
   font-size: 14px;
   color: #646970;
 }
+.rs-admin-form .rs-repeater__row-body {
+  padding: 0.5rem 1.25rem;
+}
+.rs-admin-form .rs-repeater__row-controls.rs-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+.rs-admin-form.rs-form--options {
+  max-width: 960px;
+}
+.rs-admin-form .rs-form--group td > div {
+  display: flex;
+}
 
 .rs-form-row > .rs-col,
 .rs-form-row > [class*=rs-col-] {
