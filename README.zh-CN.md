@@ -217,10 +217,10 @@ $form->addText('first_name', 'First Name')
 使用 `addRepeater()` 可以创建可重复的字段组。
 
 ```php
-use Wenprise\Forms\Renders\TailwindGridFormRender;
+use Wenprise\Forms\Renders\GridFormRender;
 
 $form = new \Wenprise\Forms\Form('contacts_form');
-$form->setRenderer(new TailwindGridFormRender('vertical'));
+$form->setRenderer(new GridFormRender('vertical'));
 
 $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
     $row->addText('name', 'Name')->setWidth(6, 3, 4);

@@ -13,7 +13,7 @@ use Wenprise\Forms\Controls\GroupInput;
 use Wenprise\Forms\Containers\Repeater;
 use Wenprise\Forms\Renders\DefaultFormRender;
 use Wenprise\Forms\Renders\InlineFormRender;
-use Wenprise\Forms\Renders\TailwindGridFormRender;
+use Wenprise\Forms\Renders\GridFormRender;
 use Nette\Utils\Html;
 
 class ControlsTests extends WP_UnitTestCase
@@ -391,7 +391,7 @@ class ControlsTests extends WP_UnitTestCase
     public function test_tailwind_grid_renderer_maps_bootstrap_columns()
     {
         $form = new Form('grid_form');
-        $form->setRenderer(new TailwindGridFormRender('vertical'));
+        $form->setRenderer(new GridFormRender('vertical'));
 
         $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
             $row->addText('name', 'Name')->setOption('class', 'col-md-4');
@@ -413,7 +413,7 @@ class ControlsTests extends WP_UnitTestCase
     public function test_tailwind_grid_renderer_supports_set_width_api()
     {
         $form = new Form('grid_width_form');
-        $form->setRenderer(new TailwindGridFormRender('vertical'));
+        $form->setRenderer(new GridFormRender('vertical'));
 
         $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
             $row->addText('name', 'Name')->setWidth(4);
@@ -434,7 +434,7 @@ class ControlsTests extends WP_UnitTestCase
     public function test_tailwind_grid_renderer_supports_shorthand_set_width_api()
     {
         $form = new Form('grid_width_short_form');
-        $form->setRenderer(new TailwindGridFormRender('vertical'));
+        $form->setRenderer(new GridFormRender('vertical'));
 
         $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
             $row->addText('name', 'Name')->setWidth(6, 3, 4);
@@ -453,7 +453,7 @@ class ControlsTests extends WP_UnitTestCase
     public function test_tailwind_grid_renderer_does_not_duplicate_repeater_grid_wrappers()
     {
         $form = new Form('grid_wrapper_form');
-        $form->setRenderer(new TailwindGridFormRender('vertical'));
+        $form->setRenderer(new GridFormRender('vertical'));
 
         $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
             $row->addText('name', 'Name')->setWidth(4);
@@ -473,7 +473,7 @@ class ControlsTests extends WP_UnitTestCase
     public function test_tailwind_grid_renderer_forces_full_width_in_horizontal_layout()
     {
         $form = new Form('grid_horizontal_form');
-        $form->setRenderer(new TailwindGridFormRender('horizontal'));
+        $form->setRenderer(new GridFormRender('horizontal'));
 
         $form->addText('name', 'Name')->setWidth(4)->setOption('class', 'custom-field col-md-4');
 

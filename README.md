@@ -217,10 +217,10 @@ With `TailwindGridFormRender('vertical')`, `setWidth()` is mapped to grid span c
 Use `addRepeater()` to build repeatable field groups.
 
 ```php
-use Wenprise\Forms\Renders\TailwindGridFormRender;
+use Wenprise\Forms\Renders\GridFormRender;
 
 $form = new \Wenprise\Forms\Form('contacts_form');
-$form->setRenderer(new TailwindGridFormRender('vertical'));
+$form->setRenderer(new GridFormRender('vertical'));
 
 $form->addRepeater('contacts', 'Contacts', function (\Wenprise\Forms\Container $row): void {
     $row->addText('name', 'Name')->setWidth(6, 3, 4);

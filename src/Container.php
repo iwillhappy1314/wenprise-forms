@@ -196,4 +196,119 @@ class Container extends \Nette\Forms\Container
     {
         return $this[$name] = new Controls\HtmlContent($caption);
     }
+
+    /**
+     * 添加 chosen 单选控件、
+     *
+     * @param string      $name     控件名称。
+     * @param string|null $label    控件标签。
+     * @param array|null  $items    选项列表。
+     * @param array|null  $settings 控件设置。
+     *
+     * @return Controls\ChosenInput
+     */
+    public function addChosen(string $name, ?string $label = null, ?array $items = null, ?array $settings = null): Controls\ChosenInput
+    {
+        return $this[$name] = new Controls\ChosenInput($label, $items, $settings);
+    }
+
+    /**
+     * 添加 switch 控件。
+     *
+     * @param string      $name  控件名称。
+     * @param string|null $label 控件标签。
+     * @param array|null  $items 选项列表。
+     *
+     * @return Controls\SwitchInput
+     */
+    public function addSwitch(string $name, ?string $label = null, ?array $items = null): Controls\SwitchInput
+    {
+        return $this[$name] = new Controls\SwitchInput($label, $items);
+    }
+
+    /**
+     * 添加 chosen 多选控件。
+     *
+     * @param string      $name     控件名称。
+     * @param string|null $label    控件标签。
+     * @param array|null  $items    选项列表。
+     * @param array|null  $settings 控件设置。
+     *
+     * @return Controls\MultiChosenInput
+     */
+    public function addMultiChosen(string $name, ?string $label = null, ?array $items = null, ?array $settings = null): Controls\MultiChosenInput
+    {
+        return $this[$name] = new Controls\MultiChosenInput($label, $items, $settings);
+    }
+
+    /**
+     * 添加签名控件。
+     *
+     * @param string      $name     控件名称。
+     * @param string|null $label    控件标签。
+     * @param array|null  $settings 控件设置。
+     *
+     * @return Controls\SignatureInput
+     */
+    public function addSignature(string $name, ?string $label = null, ?array $settings = null): Controls\SignatureInput
+    {
+        return $this[$name] = new Controls\SignatureInput($label, $settings);
+    }
+
+    /**
+     * 添加自动完成输入控件。
+     *
+     * @param string      $name     控件名称。
+     * @param string|null $label    控件标签。
+     * @param array|null  $settings 控件设置。
+     *
+     * @return Controls\AutoCompleteInput
+     */
+    public function addAutocomplete(string $name, ?string $label = null, ?array $settings = null): Controls\AutoCompleteInput
+    {
+        return $this[$name] = new Controls\AutoCompleteInput($label, $settings);
+    }
+
+    /**
+     * 添加图片选择控件。
+     *
+     * @param string      $name     控件名称。
+     * @param string|null $label    控件标签。
+     * @param array|null  $items    选项列表。
+     * @param array|null  $settings 控件设置。
+     *
+     * @return Controls\ImagePickerInput
+     */
+    public function addImagePicker(string $name, ?string $label = null, ?array $items = null, ?array $settings = null): Controls\ImagePickerInput
+    {
+        return $this[$name] = new Controls\ImagePickerInput($label, $items, $settings);
+    }
+
+    /**
+     * 添加星级评分控件。
+     *
+     * @param string      $name     控件名称。
+     * @param string|null $label    控件标签。
+     * @param array|null  $settings 控件设置。
+     *
+     * @return Controls\StarRatingInput
+     */
+    public function addStarRating(string $name, ?string $label = null, ?array $settings = null): Controls\StarRatingInput
+    {
+        return $this[$name] = new Controls\StarRatingInput($label, $settings);
+    }
+
+    /**
+     * 添加复选树控件。
+     *
+     * @param string      $name     控件名称。
+     * @param string|null $label    控件标签。
+     * @param array|null  $settings 选项树。
+     *
+     * @return Controls\CheckboxTreeInput
+     */
+    public function addCheckboxTree(string $name, ?string $label = null, ?array $settings = null): Controls\CheckboxTreeInput
+    {
+        return $this[$name] = new Controls\CheckboxTreeInput($label, $settings);
+    }
 }

@@ -3,6 +3,7 @@
 namespace Wenprise\Forms\Controls;
 
 use Nette\Forms\Controls\BaseControl;
+use Stringable;
 
 /**
  * Push button control with no default behavior.
@@ -26,20 +27,20 @@ class HtmlContent extends BaseControl {
 	 *
 	 * @return void
 	 */
-	public function getLabel( ?string $caption = null ): void {
-	}
+	public function getLabel(string|Stringable|null $caption = null)
+    {
+        return null;
+    }
 	
 	/**
 	 * 输出 HTML 内容
-	 *
-	 * @param object|string|null $caption
-     *
+	 * 
 	 * @return string
 	 */
-	public function getControl( ?string $caption = null ): string {
+	public function getControl(): string {
 		$this->setOption( 'rendered', true );
 
-		return $this->getCaption();
+		return (string) $this->getCaption();
 	}
 
 }
