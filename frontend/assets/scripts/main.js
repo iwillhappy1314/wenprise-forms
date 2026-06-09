@@ -598,10 +598,6 @@ function initWidgets(container) {
     });
   }
 
-  if ($(container).find('.rs-form--inquiry').length > 0 && window.Alpine === undefined) {
-    ensureBundle([distPath + wprs_get_assets_file('/dist/scripts/alpinejs.js')], 'alpinejs');
-  }
-
   if ($(container).find('.rs-form--birthday').length > 0) {
     ensureBundle([distPath + wprs_get_assets_file('/dist/scripts/combodate.js')], 'combodate');
     loadjs.ready('combodate', function() {

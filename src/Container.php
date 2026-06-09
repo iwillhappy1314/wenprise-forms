@@ -86,20 +86,6 @@ class Container extends \Nette\Forms\Container
     }
 
     /**
-     * 添加文本克隆输入控件。
-     *
-     * @param string      $name     控件名称。
-     * @param string|null $label    控件标签。
-     * @param array|null  $settings 控件设置。
-     *
-     * @return Controls\CloneInput
-     */
-    public function addCloneInput(string $name, ?string $label = null, ?array $settings = null): Controls\CloneInput
-    {
-        return $this[$name] = new Controls\CloneInput($label, $settings);
-    }
-
-    /**
      * 添加 Slider 控件。
      *
      * @param string      $name     控件名称。

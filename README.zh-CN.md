@@ -610,14 +610,6 @@ $form->addTableInput('table', 'Table', [], $fields)
      ->setDefaultValue($values);
 ````
 
-### 克隆输入
-
-允许输入多个文本值。
-
-````php
-$form->addCloneInput('photo1', 'Photo');
-````
-
 ### 组合输入
 
 为文本输入设置前缀或后缀。

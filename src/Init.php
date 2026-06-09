@@ -162,34 +162,4 @@ class Init
 
         wp_register_script('wprs-sweetalert', Helpers::get_assets_url('dist/scripts/sweet-alert.js'), ['jquery'], WENPRISE_FORM_VERSION, true);
     }
-
-
-    /**
-     * 保存Ajax提交的表单数据
-     *
-     * @return void
-     */
-    function save_form_data(): void
-    {
-        // 基本文章数据
-        $post_data = [
-            'post_type'  => Helpers::input_get('post_type', 'inquiry'),
-            'post_title' => Helpers::input_get('name', '') . Helpers::input_get('phone', '') . Helpers::input_get('subject', ''),
-        ];
-
-        $post_id_or_error = wp_insert_post($post_data);
-
-        if ( ! is_wp_error($post_id_or_error)) {
-            // 其他数据添加到自定义子字段中
-            foreach ($_POST as $key => $value) {
-                update_post_meta($post_id_or_error, $key, $value);
-            }
-
-            wp_send_json_success('Post submitted successfully.');
-        } else {
-            wp_send_json_error($post_id_or_error->get_error_message());
-        }
-
-        exit();
-    }
 }

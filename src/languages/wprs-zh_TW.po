@@ -42,19 +42,16 @@ msgstr "選擇一項"
 msgid "No results match"
 msgstr "沒有符合的結果"
 
-#: Controls/CloneInput.php:61
+#: Renders/BaseFormRender.php:641 Renders/GridFormRender.php:205
 msgid "Remove"
 msgstr "刪除"
 
-#: Controls/CloneInput.php:68
 msgid "Add More Fields"
 msgstr "添加更多欄位"
 
-#: Controls/InquiryInput.php:175 Controls/InquiryInput.php:186
 msgid "+ Add Row"
 msgstr "+ 新增行"
 
-#: Controls/InquiryInput.php:222
 msgid "Add"
 msgstr "新增"
 

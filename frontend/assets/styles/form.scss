@@ -159,16 +159,6 @@ ul.rs-checkbox-tree {
   }
 }
 
-.rs-inquiry-input-mobile {
-  display: none;
-}
-
-@media(max-width: 960px) {
-  .rs-inquiry-input-mobile {
-    display: block;
-  }
-}
-
 .rs-captcha__img{
   cursor: pointer;
 }
@@ -197,18 +187,6 @@ ul.rs-checkbox-tree {
     margin-top: 4px;
     font-size: 14px;
     color: #646970;
-  }
-}
-
-.rs-inquiry-input-modal{
-  dialog{
-    border: none !important;
-    border-radius: 5px;
-    box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    padding: 1.5rem;
-    &::backdrop{
-      background: rgba(0, 0, 0, 0.3);
-    }
   }
 }
 

@@ -158,21 +158,6 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
 
 
     /**
-     * 添加文本克隆输入控件
-     *
-     * @param string      $name     表单名称
-     * @param string|null $label    表单标签
-     * @param array|null  $settings 设置
-     *
-     * @return \Wenprise\Forms\Controls\CloneInput
-     */
-    public function addCloneInput(string $name, ?string $label = null, ?array $settings = null): Controls\CloneInput
-    {
-        return $this[$name] = (new Controls\CloneInput($label, $settings));
-    }
-
-
-    /**
      * 添加 Slider 滑动输入控件
      *
      * @param string      $name     表单名称
@@ -319,22 +304,6 @@ class Form extends \Nette\Forms\Form implements HtmlStringable
     public function addTableInput(string $name, ?string $label = null, ?array $settings = null, ?array $field = []): Controls\TableInput
     {
         return $this[$name] = (new Controls\TableInput($label, $settings, $field));
-    }
-
-
-    /**
-     * 询价表格属兔
-     *
-     * @param string      $name
-     * @param string|null $label
-     * @param array|null  $settings
-     * @param array|null  $fields
-     *
-     * @return \Wenprise\Forms\Controls\InquiryInput
-     */
-    public function addInquiryInput(string $name, ?string $label = null, ?array $settings = null, ?array $fields = []): Controls\InquiryInput
-    {
-        return $this[$name] = (new Controls\InquiryInput($label, $settings, $fields));
     }
 
 

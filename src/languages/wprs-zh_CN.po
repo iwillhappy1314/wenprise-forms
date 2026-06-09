@@ -51,11 +51,10 @@ msgstr "请选择一项"
 msgid "No results match"
 msgstr "没有匹配的结果"
 
-#: Controls/CloneInput.php:61
+#: Renders/BaseFormRender.php:641 Renders/GridFormRender.php:205
 msgid "Remove"
 msgstr "删除"
 
-#: Controls/CloneInput.php:68
 msgid "Add More Fields"
 msgstr "添加字段"
 
@@ -159,11 +158,9 @@ msgstr "十一月"
 msgid "December"
 msgstr "十二月"
 
-#: Controls/InquiryInput.php:178 Controls/InquiryInput.php:189
 msgid "+ Add Row"
 msgstr "+添加行"
 
-#: Controls/InquiryInput.php:225
 msgid "Add"
 msgstr "添加"
 

@@ -34,14 +34,8 @@
 .rsf-col-span-9 {
   grid-column: span 9 / span 9;
 }
-.rsf-block {
-  display: block;
-}
 .rsf-grid {
   display: grid;
-}
-.rsf-hidden {
-  display: none;
 }
 .rsf-min-w-0 {
   min-width: 0px;
@@ -1313,9 +1307,6 @@ ul.rs-checkbox-tree li label {
   text-transform: capitalize;
 }
 
-.rs-inquiry-input-mobile {
-  display: none;
-}
 .rs-captcha__img {
   cursor: pointer;
 }
@@ -1338,16 +1329,6 @@ ul.rs-checkbox-tree li label {
   margin-top: 4px;
   font-size: 14px;
   color: #646970;
-}
-
-.rs-inquiry-input-modal dialog {
-  border: none !important;
-  border-radius: 5px;
-  box-shadow: 0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  padding: 1.5rem;
-}
-.rs-inquiry-input-modal dialog::backdrop {
-  background: rgba(0, 0, 0, 0.3);
 }
 
 .rs-form-row > .rs-col,
@@ -3348,12 +3329,6 @@ input[type=button].btn-block {
   }
 }
 
-@media (max-width: 960px) {
-  .rs-inquiry-input-mobile {
-    display: block;
-  }
-}
-
 @media (min-width: 640px) {
   .rs-grid-form__span-sm-1 {
     grid-column: span 1 / span 1;
@@ -3429,12 +3404,6 @@ input[type=button].btn-block {
   }
   .rs-grid-form__span-lg-12 {
     grid-column: span 12 / span 12;
-  }
-  .lg\:rsf-block {
-    display: block;
-  }
-  .lg\:rsf-hidden {
-    display: none;
   }
 }
 

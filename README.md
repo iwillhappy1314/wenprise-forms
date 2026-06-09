@@ -610,14 +610,6 @@ $form->addTableInput('table', 'Table', [], $fields)
      ->setDefaultValue($values);
 ````
 
-### Clone Input
-
-Allow input multi text value.
-
-````php
-$form->addCloneInput('photo1', 'Photo');
-````
-
 ### Group Input
 
 Set a prefix or suffix for text input.
