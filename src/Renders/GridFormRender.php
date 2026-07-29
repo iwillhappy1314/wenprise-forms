@@ -222,7 +222,7 @@ class GridFormRender extends BaseFormRender
                     Html::el('button')
                         ->setAttribute('type', 'button')
                         ->class('rs-btn rs-btn-primary rs-btn--sm rs-repeater__add')
-                        ->setText(__('Add Contact Group', 'wprs'))
+                        ->setText(__('Add More', 'wprs'))
                 )
         );
 
